@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 240" width="100%" height="240">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070b14"/>
+      <stop offset="50%" stop-color="#0d1527"/>
+      <stop offset="100%" stop-color="#050811"/>
+    </linearGradient>
+
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="50%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+
+    <linearGradient id="scanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+    </linearGradient>
+
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1e293b" stroke-width="0.75" stroke-opacity="0.4"/>
+    </pattern>
+
+    <style>
+      @keyframes scanBeam {
+        0% { transform: translateX(-850px); }
+        100% { transform: translateX(850px); }
+      }
+      @keyframes pulseGlow {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.8; }
+      }
+      @keyframes pulseNode {
+        0%, 100% { transform: scale(1); opacity: 0.9; }
+        50% { transform: scale(1.15); opacity: 1; }
+      }
+      @keyframes waveFloat {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-3px); }
+      }
+      .scanner {
+        animation: scanBeam 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      }
+      .glower {
+        animation: pulseGlow 3s ease-in-out infinite;
+      }
+      .pulsing-dot {
+        transform-origin: center;
+        animation: pulseNode 2s ease-in-out infinite;
+      }
+      .floating-title {
+        animation: waveFloat 4s ease-in-out infinite;
+      }
+    </style>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="850" height="240" rx="12" fill="url(#bgGrad)"/>
+  <rect width="850" height="240" rx="12" fill="url(#grid)"/>
+
+  <!-- Top Accent Border -->
+  <path d="M 0 12 Q 0 0 12 0 L 838 0 Q 850 0 850 12" fill="none" stroke="url(#primaryGrad)" stroke-width="2.5"/>
+
+  <!-- Scanning Laser Beam -->
+  <g opacity="0.6">
+    <rect class="scanner" y="2" width="220" height="2" fill="url(#scanGrad)"/>
+  </g>
+
+  <!-- Ambient Glow Circles -->
+  <circle cx="120" cy="60" r="140" fill="#0284c7" opacity="0.08" filter="blur(40px)"/>
+  <circle cx="720" cy="180" r="130" fill="#7c3aed" opacity="0.08" filter="blur(40px)"/>
+
+  <!-- Brand / Title Section -->
+  <g class="floating-title" transform="translate(48, 56)">
+    <!-- Subtitle Pill -->
+    <rect x="0" y="0" width="228" height="22" rx="11" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <circle class="pulsing-dot" cx="12" cy="11" r="4" fill="#10b981"/>
+    <text x="24" y="15" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" letter-spacing="1.5">CLINICAL AI PLATFORM</text>
+
+    <!-- Main Title -->
+    <text x="0" y="52" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" letter-spacing="-0.5">
+      NutriScan <tspan fill="url(#primaryGrad)">Platform</tspan>
+    </text>
+
+    <!-- Subtitle Text -->
+    <text x="0" y="78" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="400">
+      Enterprise Micronutrient Deficiency Prediction, Pediatric Safety Guardrails &amp; Dietary Decision Support
+    </text>
+  </g>
+
+  <!-- Metric / Tech Badges Tray -->
+  <g transform="translate(48, 175)">
+    <!-- Badge 1: PostgreSQL & Redis -->
+    <g transform="translate(0, 0)">
+      <rect width="170" height="32" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+      <circle cx="16" cy="16" r="3" fill="#38bdf8"/>
+      <text x="28" y="20" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Postgres 16 + Redis 7</text>
+    </g>
+
+    <!-- Badge 2: Pediatric Guardrails -->
+    <g transform="translate(182, 0)">
+      <rect width="186" height="32" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+      <circle cx="16" cy="16" r="3" fill="#10b981"/>
+      <text x="28" y="20" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Pediatric Safety Engine</text>
+    </g>
+
+    <!-- Badge 3: ML Targets -->
+    <g transform="translate(380, 0)">
+      <rect width="176" height="32" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+      <circle cx="16" cy="16" r="3" fill="#a855f7"/>
+      <text x="28" y="20" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">9 Calibrated ML Targets</text>
+    </g>
+
+    <!-- Badge 4: Production Ready -->
+    <g transform="translate(568, 0)">
+      <rect width="186" height="32" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+      <circle class="pulsing-dot" cx="16" cy="16" r="3" fill="#06b6d4"/>
+      <text x="28" y="20" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Docker + Render Verified</text>
+    </g>
+  </g>
+
+  <!-- Subtle Bottom Border -->
+  <rect x="0" y="238" width="850" height="2" fill="#1e293b"/>
+</svg>

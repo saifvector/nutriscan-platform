@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 380" width="100%" height="380">
+  <defs>
+    <linearGradient id="flowBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070b14"/>
+      <stop offset="100%" stop-color="#0b1325"/>
+    </linearGradient>
+
+    <linearGradient id="cyanBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+
+    <linearGradient id="emeraldTeal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <linearGradient id="purpleViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+
+    <linearGradient id="amberOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+
+    <pattern id="flowGrid" width="25" height="25" patternUnits="userSpaceOnUse">
+      <path d="M 25 0 L 0 0 0 25" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.3"/>
+    </pattern>
+
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="glow"/>
+      <feComposite in="SourceGraphic" in2="glow" operator="over"/>
+    </filter>
+
+    <style>
+      @keyframes dashFlow {
+        from { stroke-dashoffset: 60; }
+        to { stroke-dashoffset: 0; }
+      }
+      @keyframes statusPulse {
+        0%, 100% { opacity: 0.4; r: 3.5px; }
+        50% { opacity: 1; r: 5px; }
+      }
+      @keyframes cardBorder {
+        0%, 100% { stroke-opacity: 0.4; }
+        50% { stroke-opacity: 0.9; }
+      }
+      .signal-line {
+        stroke-dasharray: 6 6;
+        animation: dashFlow 1.8s linear infinite;
+      }
+      .signal-fast {
+        stroke-dasharray: 4 4;
+        animation: dashFlow 1.2s linear infinite;
+      }
+      .live-dot {
+        animation: statusPulse 2s ease-in-out infinite;
+      }
+      .active-border {
+        animation: cardBorder 3s ease-in-out infinite;
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="850" height="380" rx="12" fill="url(#flowBg)"/>
+  <rect width="850" height="380" rx="12" fill="url(#flowGrid)"/>
+  <rect width="850" height="380" rx="12" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- Architecture Interconnect Wire Paths -->
+  <!-- Client to API Gateway -->
+  <path d="M 190 75 L 290 75" fill="none" stroke="#38bdf8" stroke-width="2" class="signal-line"/>
+  
+  <!-- Gateway to Core Backend -->
+  <path d="M 450 75 L 530 75" fill="none" stroke="#38bdf8" stroke-width="2" class="signal-line"/>
+
+  <!-- Core Backend to Redis -->
+  <path d="M 640 115 L 640 160 L 710 160" fill="none" stroke="#f59e0b" stroke-width="2" class="signal-fast"/>
+
+  <!-- Core Backend to Clinical Safety Guardrails -->
+  <path d="M 600 115 L 600 200 L 460 200" fill="none" stroke="#10b981" stroke-width="2" class="signal-line"/>
+
+  <!-- Core Backend to ML Inference Engine -->
+  <path d="M 620 115 L 620 280 L 460 280" fill="none" stroke="#8b5cf6" stroke-width="2" class="signal-fast"/>
+
+  <!-- Clinical Safety & ML to Persistence -->
+  <path d="M 280 240 L 220 240 L 220 260 L 190 260" fill="none" stroke="#06b6d4" stroke-width="2" class="signal-line"/>
+
+  <!-- ==================== NODES ==================== -->
+
+  <!-- Node 1: Client Application (Top Left) -->
+  <g transform="translate(30, 40)">
+    <rect width="160" height="70" rx="8" fill="#0f172a" stroke="#0284c7" stroke-width="1.5" class="active-border"/>
+    <rect x="0" y="0" width="160" height="24" rx="8" fill="#0369a1" fill-opacity="0.15"/>
+    <circle cx="15" cy="12" r="4" fill="#38bdf8" class="live-dot"/>
+    <text x="26" y="16" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">CLIENT SPA</text>
+    <text x="15" y="42" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">React 18 + Vite</text>
+    <text x="15" y="58" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">Clinical UI &amp; Copilot</text>
+  </g>
+
+  <!-- Node 2: Ingress / Nginx (Top Middle-Left) -->
+  <g transform="translate(290, 40)">
+    <rect width="160" height="70" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+    <rect x="0" y="0" width="160" height="24" rx="8" fill="#1e293b" fill-opacity="0.5"/>
+    <circle cx="15" cy="12" r="4" fill="#06b6d4"/>
+    <text x="26" y="16" fill="#7dd3fc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">INGRESS GATEWAY</text>
+    <text x="15" y="42" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">Nginx / Reverse Proxy</text>
+    <text x="15" y="58" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">SSL, Security Headers, SPA</text>
+  </g>
+
+  <!-- Node 3: Core API Service (Top Right) -->
+  <g transform="translate(530, 35)">
+    <rect width="210" height="80" rx="8" fill="#0f172a" stroke="#3b82f6" stroke-width="1.5" class="active-border"/>
+    <rect x="0" y="0" width="210" height="24" rx="8" fill="#1d4ed8" fill-opacity="0.2"/>
+    <circle cx="15" cy="12" r="4" fill="#60a5fa" class="live-dot"/>
+    <text x="26" y="16" fill="#93c5fd" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">FASTAPI CORE ENGINE</text>
+    <text x="15" y="44" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">NutriScan Backend</text>
+    <text x="15" y="60" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">Auth, Telemetry, Auditing</text>
+    <text x="15" y="73" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9">/ready, /health, /metrics</text>
+  </g>
+
+  <!-- Node 4: Redis Distributed Cache & Denylist (Middle Right) -->
+  <g transform="translate(710, 130)">
+    <rect width="115" height="65" rx="8" fill="#0f172a" stroke="#d97706" stroke-width="1.5"/>
+    <circle cx="15" cy="15" r="4" fill="#f59e0b" class="live-dot"/>
+    <text x="26" y="18" fill="#fbbf24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">REDIS 7</text>
+    <text x="12" y="38" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600">JWT Denylist</text>
+    <text x="12" y="52" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9">Rate Limiter &amp; Cache</text>
+  </g>
+
+  <!-- Node 5: Clinical Safety Guardrails (Middle Center) -->
+  <g transform="translate(280, 165)">
+    <rect width="180" height="70" rx="8" fill="#0f172a" stroke="#059669" stroke-width="1.5" class="active-border"/>
+    <rect x="0" y="0" width="180" height="24" rx="8" fill="#065f46" fill-opacity="0.25"/>
+    <circle cx="15" cy="12" r="4" fill="#10b981" class="live-dot"/>
+    <text x="26" y="16" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">CLINICAL SAFETY ENGINE</text>
+    <text x="15" y="42" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Pediatric Guardrails</text>
+    <text x="15" y="58" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">Contraindications &amp; Limits</text>
+  </g>
+
+  <!-- Node 6: ML Inference & SHAP Pipeline (Bottom Center) -->
+  <g transform="translate(280, 255)">
+    <rect width="180" height="75" rx="8" fill="#0f172a" stroke="#7c3aed" stroke-width="1.5" class="active-border"/>
+    <rect x="0" y="0" width="180" height="24" rx="8" fill="#5b21b6" fill-opacity="0.25"/>
+    <circle cx="15" cy="12" r="4" fill="#a78bfa" class="live-dot"/>
+    <text x="26" y="16" fill="#c4b5fd" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">ML INFERENCE ENGINE</text>
+    <text x="15" y="42" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">9 Deficiency Targets</text>
+    <text x="15" y="58" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">XGBoost, LightGBM, SHAP</text>
+  </g>
+
+  <!-- Node 7: Persistence Layer (Bottom Left) -->
+  <g transform="translate(30, 220)">
+    <rect width="160" height="85" rx="8" fill="#0f172a" stroke="#0891b2" stroke-width="1.5"/>
+    <rect x="0" y="0" width="160" height="24" rx="8" fill="#155e75" fill-opacity="0.25"/>
+    <circle cx="15" cy="12" r="4" fill="#06b6d4" class="live-dot"/>
+    <text x="26" y="16" fill="#67e8f9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">DUAL PERSISTENCE</text>
+    <text x="15" y="42" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">PostgreSQL 16 Primary</text>
+    <text x="15" y="58" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">SQLite WAL Auto-Fallback</text>
+    <text x="15" y="74" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9">Automated Gzip Backups</text>
+  </g>
+
+  <!-- Legend / Info Strip (Bottom) -->
+  <g transform="translate(30, 345)">
+    <rect width="790" height="22" rx="4" fill="#0a0f1d" stroke="#1e293b" stroke-width="1"/>
+    <text x="15" y="15" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">Data Pipeline: Client Ingress &gt; Gateway &gt; Rate Limit &amp; Auth (Redis) &gt; Core Engine &gt; Safety Guardrails &gt; Calibrated ML Inference &gt; ACID Persistence</text>
+  </g>
+</svg>
