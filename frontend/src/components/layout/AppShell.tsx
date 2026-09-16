@@ -451,7 +451,7 @@ export default function AppShell() {
             <Outlet />
             {/* CDSS Statutory Regulatory Notice */}
             <footer style={{
-              marginTop: 56,
+              marginTop: 80,
               padding: '14px 18px',
               borderRadius: 12,
               background: 'var(--c-glass-bg, rgba(20, 184, 166, 0.04))',

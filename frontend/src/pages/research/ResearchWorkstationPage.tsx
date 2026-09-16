@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import { motion, type Variants } from 'framer-motion'
 import {
   FlaskConical, Users, BookOpen, ShieldCheck, CheckCircle2,
@@ -6,6 +7,8 @@ import {
   Check, ArrowRight, ExternalLink, ChevronRight, FileText
 } from 'lucide-react'
 import { sessionManager } from '../../lib/sessionManager'
+import { ResumeAssessmentModal } from '../../components/session/ResumeAssessmentModal'
+import { AssessmentRequiredState } from '../../components/common/AssessmentRequiredState'
 
 /* ─── Animations (Consistent with DashboardPage) ─── */
 const fadeUp: Variants = {
@@ -60,6 +63,21 @@ interface ConsensusMatrixItem {
 }
 
 export default function ResearchWorkstationPage() {
+  const { assessmentId: urlParamId } = useParams()
+  const navigate = useNavigate()
+  const [activeSession, setActiveSession] = useState(() => sessionManager.getActiveSession())
+  const [showResumeModal, setShowResumeModal] = useState(false)
+  const storedPrevious = useMemo(() => sessionManager.getStoredPreviousAssessment(), [])
+
+  useEffect(() => {
+    if (urlParamId && urlParamId !== 'demo') {
+      sessionManager.setActiveSession(urlParamId, new Date().toISOString(), 'completed')
+      setActiveSession(sessionManager.getActiveSession())
+    }
+  }, [urlParamId])
+
+  const effectiveId = activeSession?.active_assessment_id || (urlParamId && urlParamId !== 'demo' ? urlParamId : null)
+
   const [loading, setLoading] = useState(false)
   const [selectedNutrient, setSelectedNutrient] = useState('Vitamin D')
 
@@ -284,6 +302,40 @@ export default function ResearchWorkstationPage() {
 
     fetchLiveResearch()
   }, [selectedNutrient])
+
+  if (!effectiveId) {
+    return (
+      <>
+        <AssessmentRequiredState
+          title="Nutritional Assessment Required"
+          description="The Research Workstation requires an active patient assessment session to synthesize multi-agent clinical consensus, evaluate scientific contradictions, and generate custom literature evidence."
+          actionLabel="Start Assessment"
+          secondaryActionLabel={storedPrevious?.id ? 'Resume Previous Assessment' : undefined}
+          onSecondaryAction={storedPrevious?.id ? () => setShowResumeModal(true) : undefined}
+          icon={FlaskConical}
+        />
+        {storedPrevious?.id && (
+          <ResumeAssessmentModal
+            isOpen={showResumeModal}
+            assessmentId={storedPrevious.id}
+            date={storedPrevious.createdAt}
+            onResume={() => {
+              sessionManager.setActiveSession(storedPrevious.id, storedPrevious.createdAt, 'completed')
+              setActiveSession(sessionManager.getActiveSession())
+              setShowResumeModal(false)
+            }}
+            onStartNew={() => {
+              sessionManager.clearActiveSession()
+              setActiveSession(null)
+              setShowResumeModal(false)
+              navigate('/assessment')
+            }}
+            onClose={() => setShowResumeModal(false)}
+          />
+        )}
+      </>
+    )
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>

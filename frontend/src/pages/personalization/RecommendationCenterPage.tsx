@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import { motion, type Variants } from 'framer-motion'
 import {
   Sparkles, Search, Filter, BookOpen, ChevronRight,
   ShieldCheck, Award, Flame, DollarSign, Check, ExternalLink,
   Layers, ArrowUpRight, Activity
 } from 'lucide-react'
+import { sessionManager } from '../../lib/sessionManager'
+import { ResumeAssessmentModal } from '../../components/session/ResumeAssessmentModal'
+import { AssessmentRequiredState } from '../../components/common/AssessmentRequiredState'
 
 /* ─── Animations (Consistent with DashboardPage) ─── */
 const fadeUp: Variants = {
@@ -145,6 +149,21 @@ const FALLBACK_FOODS: FoodItem[] = [
 ]
 
 export default function RecommendationCenterPage() {
+  const { assessmentId: urlParamId } = useParams()
+  const navigate = useNavigate()
+  const [activeSession, setActiveSession] = useState(() => sessionManager.getActiveSession())
+  const [showResumeModal, setShowResumeModal] = useState(false)
+  const storedPrevious = useMemo(() => sessionManager.getStoredPreviousAssessment(), [])
+
+  useEffect(() => {
+    if (urlParamId && urlParamId !== 'demo') {
+      sessionManager.setActiveSession(urlParamId, new Date().toISOString(), 'completed')
+      setActiveSession(sessionManager.getActiveSession())
+    }
+  }, [urlParamId])
+
+  const effectiveId = activeSession?.active_assessment_id || (urlParamId && urlParamId !== 'demo' ? urlParamId : null)
+
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedTarget, setSelectedTarget] = useState('ALL')
   const [activeFood, setActiveFood] = useState<FoodItem>(FALLBACK_FOODS[0])
@@ -191,6 +210,40 @@ export default function RecommendationCenterPage() {
     if (selectedTarget === 'ALL') return matchesSearch
     return matchesSearch && Object.keys(item.primary_nutrients).some(k => k.toLowerCase().includes(selectedTarget.toLowerCase()))
   })
+
+  if (!effectiveId) {
+    return (
+      <>
+        <AssessmentRequiredState
+          title="Nutritional Assessment Required"
+          description="Precision Foods intelligence and USDA bioavailable repletion library require an active clinical assessment to match specific micronutrient gaps. Complete an assessment to generate your personalized food prescriptions."
+          actionLabel="Start Assessment"
+          secondaryActionLabel={storedPrevious?.id ? 'Resume Previous Assessment' : undefined}
+          onSecondaryAction={storedPrevious?.id ? () => setShowResumeModal(true) : undefined}
+          icon={Sparkles}
+        />
+        {storedPrevious?.id && (
+          <ResumeAssessmentModal
+            isOpen={showResumeModal}
+            assessmentId={storedPrevious.id}
+            date={storedPrevious.createdAt}
+            onResume={() => {
+              sessionManager.setActiveSession(storedPrevious.id, storedPrevious.createdAt, 'completed')
+              setActiveSession(sessionManager.getActiveSession())
+              setShowResumeModal(false)
+            }}
+            onStartNew={() => {
+              sessionManager.clearActiveSession()
+              setActiveSession(null)
+              setShowResumeModal(false)
+              navigate('/assessment')
+            }}
+            onClose={() => setShowResumeModal(false)}
+          />
+        )}
+      </>
+    )
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>

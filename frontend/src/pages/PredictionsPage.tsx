@@ -10,6 +10,7 @@ import { NUTRIENT_ICONS } from '../lib/constants'
 import { useTheme } from '../lib/theme'
 import { sessionManager } from '../lib/sessionManager'
 import { ResumeAssessmentModal } from '../components/session/ResumeAssessmentModal'
+import { AssessmentRequiredState } from '../components/common/AssessmentRequiredState'
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -208,36 +209,15 @@ export default function PredictionsPage() {
 
   if (!effectiveId || nutrients.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 px-6 text-center max-w-2xl mx-auto rounded-3xl border border-slate-800 bg-slate-900/50 shadow-2xl my-12"
-        style={{ background: 'var(--c-card, #0f172a)', borderColor: 'var(--c-border, #1e293b)' }}
-      >
-        <div className="w-16 h-16 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center mb-6 shadow-xl shadow-teal-500/5">
-          <Brain className="w-8 h-8" />
-        </div>
-        <h2 className="text-2xl font-bold tracking-tight text-slate-100 mb-3 font-heading">
-          No assessment available.
-        </h2>
-        <p className="text-sm text-slate-400 leading-relaxed mb-8 max-w-lg">
-          No active clinical screening assessment is currently loaded to evaluate nutrient deficiency probabilities.
-        </p>
-        <div className="flex flex-col sm:flex-row items-center gap-3.5 w-full justify-center">
-          <button
-            onClick={() => navigate('/assessment')}
-            className="w-full sm:w-auto px-7 py-3 rounded-xl font-semibold text-sm bg-teal-600 hover:bg-teal-500 text-white transition-all shadow-lg shadow-teal-900/30 flex items-center justify-center gap-2 active:scale-98"
-          >
-            <PlusCircle className="w-4 h-4" />
-            Start Assessment
-          </button>
-          {storedPrevious?.id && (
-            <button
-              onClick={() => setShowResumeModal(true)}
-              className="w-full sm:w-auto px-7 py-3 rounded-xl font-semibold text-sm bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all flex items-center justify-center gap-2 active:scale-98"
-            >
-              <RotateCcw className="w-4 h-4" />
-              Resume Previous Assessment
-            </button>
-          )}
-        </div>
+      <>
+        <AssessmentRequiredState
+          title="Nutritional Assessment Required"
+          description="No active assessment is currently available to evaluate multi-nutrient deficiency probabilities. Complete an assessment to generate your personalized clinical risk predictions."
+          actionLabel="Start Assessment"
+          secondaryActionLabel={storedPrevious?.id ? 'Resume Previous Assessment' : undefined}
+          onSecondaryAction={storedPrevious?.id ? () => setShowResumeModal(true) : undefined}
+          icon={Brain}
+        />
 
         <ResumeAssessmentModal
           isOpen={showResumeModal}
@@ -247,7 +227,7 @@ export default function PredictionsPage() {
           onStartNew={handleConfirmStartNew}
           onClose={() => setShowResumeModal(false)}
         />
-      </div>
+      </>
     )
   }
 

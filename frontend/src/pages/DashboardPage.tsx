@@ -9,6 +9,7 @@ import {
 import { useTheme } from '../lib/theme'
 import { sessionManager, type ClinicalSession } from '../lib/sessionManager'
 import { ResumeAssessmentModal } from '../components/session/ResumeAssessmentModal'
+import { AssessmentRequiredState } from '../components/common/AssessmentRequiredState'
 
 /* ─── Animations ─── */
 const fadeUp: Variants = {
@@ -207,63 +208,6 @@ function useDashboardData(activeAssessmentId: string | null) {
   return { data, loading }
 }
 
-/* ═══════════════════════════════════════════
-   EMPTY STATE: FIRST VISIT / NO ACTIVE SESSION
-   ═══════════════════════════════════════════ */
-function EmptyAssessmentDashboard({
-  onStartAssessment,
-  onResumeAssessment,
-  hasPrevious,
-}: {
-  onStartAssessment: () => void
-  onResumeAssessment: () => void
-  hasPrevious: boolean
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="flex flex-col items-center justify-center py-20 px-6 text-center max-w-2xl mx-auto rounded-3xl border border-slate-800 bg-slate-900/50 shadow-2xl my-8"
-      style={{
-        background: 'var(--c-card, #0f172a)',
-        borderColor: 'var(--c-border, #1e293b)'
-      }}
-    >
-      <div className="w-16 h-16 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center mb-6 shadow-xl shadow-teal-500/5">
-        <FileText className="w-8 h-8" />
-      </div>
-
-      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100 mb-3 font-heading">
-        Nutritional Assessment Required
-      </h2>
-
-      <p className="text-sm sm:text-base text-slate-400 leading-relaxed mb-8 max-w-lg">
-        No active assessment is currently loaded. Complete an assessment to generate personalized nutritional predictions, deficiency analysis, food recommendations, meal plans, forecasting insights, and clinical reports.
-      </p>
-
-      <div className="flex flex-col sm:flex-row items-center gap-3.5 w-full justify-center">
-        <button
-          onClick={onStartAssessment}
-          className="w-full sm:w-auto px-7 py-3 rounded-xl font-semibold text-sm bg-teal-600 hover:bg-teal-500 text-white transition-all shadow-lg shadow-teal-900/30 flex items-center justify-center gap-2 active:scale-98"
-        >
-          <PlusCircle className="w-4 h-4" />
-          Start Assessment
-        </button>
-
-        {hasPrevious && (
-          <button
-            onClick={onResumeAssessment}
-            className="w-full sm:w-auto px-7 py-3 rounded-xl font-semibold text-sm bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all flex items-center justify-center gap-2 active:scale-98"
-          >
-            <RotateCcw className="w-4 h-4" />
-            Resume Previous Assessment
-          </button>
-        )}
-      </div>
-    </motion.div>
-  )
-}
 
 /* ═══════════════════════════════════════════
    §1 — HERO HEALTH SCORE
@@ -828,10 +772,14 @@ export default function DashboardPage() {
   if (!effectiveAssessmentId || !data) {
     return (
       <div>
-        <EmptyAssessmentDashboard
-          onStartAssessment={() => navigate('/assessment')}
-          onResumeAssessment={handleOpenResume}
-          hasPrevious={Boolean(storedPrevious?.id)}
+        <AssessmentRequiredState
+          title="Nutritional Assessment Required"
+          description="No active assessment is currently loaded. Complete an assessment to generate personalized nutritional predictions, deficiency analysis, food recommendations, meal plans, forecasting insights, and clinical reports."
+          actionLabel="Start Assessment"
+          onAction={() => navigate('/assessment')}
+          secondaryActionLabel={storedPrevious?.id ? 'Resume Previous Assessment' : undefined}
+          onSecondaryAction={handleOpenResume}
+          icon={Sparkles}
         />
 
         <ResumeAssessmentModal
