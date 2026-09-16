@@ -74,17 +74,11 @@ class RecommendationService:
             if persisted_pred:
                 pred_result = persisted_pred
 
-        # If payload is still None, fail with 404 error if assessment_id was provided
+        # If payload is still None, fail with error
         if payload is None:
             if assessment_id:
                 raise ValueError(f"Assessment record for ID '{id_str}' not found.")
-            recent_assessments = PersistenceRepository.list_assessments(limit=1)
-            if recent_assessments:
-                latest_id = recent_assessments[0]["id"]
-                payload = PersistenceRepository.get_assessment(latest_id)
-                pred_result = PersistenceRepository.get_predictions(latest_id)
-            if payload is None:
-                raise ValueError("No clinical assessment found in database.")
+            raise ValueError("No active assessment specified. Please provide a valid assessment ID.")
 
         if pred_result is None:
             engine = PredictionService.get_engine()

@@ -3,15 +3,18 @@
    Designed strictly to match NutriScan Dashboard styling & clinical standards.
    ═══════════════════════════════════════════════════════════════════════════ */
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { motion, type Variants } from 'framer-motion'
 import api from '../../lib/api'
 import {
   ChevronDown, Check, RefreshCw, CheckCircle2,
   FileText, Activity, Stethoscope, Printer, Calendar, Clock,
   Pill, Apple, User, ClipboardList, Shield, ArrowRight,
-  AlertCircle, Sun, Heart, Info
+  AlertCircle, Sun, Heart, Info, PlusCircle, RotateCcw
 } from 'lucide-react'
+import { sessionManager } from '../../lib/sessionManager'
+import { ResumeAssessmentModal } from '../../components/session/ResumeAssessmentModal'
 
 /* ─── Motion Animations (Matching Dashboard) ─── */
 const fadeUp: Variants = {
@@ -555,15 +558,24 @@ function mapDossierToPatientRecord(dossier: any, assessment?: any): PatientRecor
 }
 
 export default function ClinicalCopilotPage() {
-  const [patientsList, setPatientsList] = useState<PatientRecord[]>(PATIENT_PROFILES)
-  const [selectedPatient, setSelectedPatient] = useState<PatientRecord>(() => {
-    try {
-      const savedId = localStorage.getItem('nutriscan_active_patient_id')
-      const found = PATIENT_PROFILES.find(p => p.id === savedId)
-      if (found) return found
-    } catch { /* ignore */ }
-    return PATIENT_PROFILES[0]
-  })
+  const { assessmentId: urlParamId } = useParams()
+  const navigate = useNavigate()
+
+  const [activeSession, setActiveSession] = useState(() => sessionManager.getActiveSession())
+  const [showResumeModal, setShowResumeModal] = useState(false)
+  const storedPrevious = useMemo(() => sessionManager.getStoredPreviousAssessment(), [])
+
+  useEffect(() => {
+    if (urlParamId && urlParamId !== 'demo') {
+      sessionManager.setActiveSession(urlParamId, new Date().toISOString(), 'completed')
+      setActiveSession(sessionManager.getActiveSession())
+    }
+  }, [urlParamId])
+
+  const effectiveId = activeSession?.active_assessment_id || (urlParamId && urlParamId !== 'demo' ? urlParamId : null)
+
+  const [patientsList, setPatientsList] = useState<PatientRecord[]>([])
+  const [selectedPatient, setSelectedPatient] = useState<PatientRecord | null>(null)
 
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [signedInterventions, setSignedInterventions] = useState<Record<string, boolean>>({})
@@ -572,21 +584,16 @@ export default function ClinicalCopilotPage() {
 
   useEffect(() => {
     async function loadActivePatientIntelligence() {
-      let activeAssessment: any = null
-      let assessmentId: string | null = null
-      try {
-        assessmentId = localStorage.getItem('nutriscan_assessment_id')
-        const raw = localStorage.getItem('nutriscan_active_assessment')
-        if (raw) activeAssessment = JSON.parse(raw)
-      } catch { /* ignore */ }
-
-      if (!activeAssessment && !assessmentId) return
+      if (!effectiveId) {
+        setSelectedPatient(null)
+        setPatientsList([])
+        return
+      }
 
       try {
         const payload = {
           patient_data: {
-            assessment_id: assessmentId,
-            ...(activeAssessment || {})
+            assessment_id: effectiveId
           }
         }
 
@@ -600,7 +607,7 @@ export default function ClinicalCopilotPage() {
 
         if (dossier) {
           const activeRecord = mapDossierToPatientRecord(dossier, clinicalAssessment)
-          setPatientsList(prev => [activeRecord, ...prev.filter(p => p.id !== activeRecord.id)])
+          setPatientsList([activeRecord])
           setSelectedPatient(activeRecord)
         }
       } catch (err) {
@@ -609,13 +616,12 @@ export default function ClinicalCopilotPage() {
     }
 
     loadActivePatientIntelligence()
-  }, [])
+  }, [effectiveId])
 
   useEffect(() => {
-    try {
-      localStorage.setItem('nutriscan_active_patient_id', selectedPatient.id)
-    } catch { /* ignore */ }
-    setCarePlanFinalized(false)
+    if (selectedPatient) {
+      setCarePlanFinalized(false)
+    }
   }, [selectedPatient])
 
   const toggleSignOrder = (id: string) => {
@@ -623,6 +629,7 @@ export default function ClinicalCopilotPage() {
   }
 
   const handleFinalizeCarePlan = () => {
+    if (!selectedPatient) return
     const allSigned: Record<string, boolean> = {}
     selectedPatient.recommendedInterventions.forEach(item => {
       allSigned[item.id] = true
@@ -633,20 +640,11 @@ export default function ClinicalCopilotPage() {
 
   const handleRefresh = async () => {
     setRefreshing(true)
-    let activeAssessment: any = null
-    let assessmentId: string | null = null
-    try {
-      assessmentId = localStorage.getItem('nutriscan_assessment_id')
-      const raw = localStorage.getItem('nutriscan_active_assessment')
-      if (raw) activeAssessment = JSON.parse(raw)
-    } catch { /* ignore */ }
-
-    if (activeAssessment || assessmentId) {
+    if (effectiveId) {
       try {
         const payload = {
           patient_data: {
-            assessment_id: assessmentId,
-            ...(activeAssessment || {})
+            assessment_id: effectiveId
           }
         }
         const [dossierRes, assessmentRes] = await Promise.allSettled([
@@ -657,7 +655,7 @@ export default function ClinicalCopilotPage() {
         const clinicalAssessment = assessmentRes.status === 'fulfilled' ? assessmentRes.value.data : null
         if (dossier) {
           const activeRecord = mapDossierToPatientRecord(dossier, clinicalAssessment)
-          setPatientsList(prev => [activeRecord, ...prev.filter(p => p.id !== activeRecord.id)])
+          setPatientsList([activeRecord])
           setSelectedPatient(activeRecord)
         }
       } catch (err) {
@@ -665,6 +663,126 @@ export default function ClinicalCopilotPage() {
       }
     }
     setTimeout(() => setRefreshing(false), 300)
+  }
+
+  if (!selectedPatient) {
+    return (
+      <div style={{ maxWidth: 840, margin: '40px auto', padding: '0 24px' }}>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          style={{
+            background: 'var(--c-card)',
+            border: '1px solid var(--c-border)',
+            borderRadius: 20,
+            padding: '56px 40px',
+            textAlign: 'center',
+            boxShadow: '0 12px 36px rgba(0, 0, 0, 0.04)'
+          }}
+        >
+          <div style={{
+            width: 72,
+            height: 72,
+            borderRadius: '50%',
+            background: 'rgba(37, 99, 235, 0.08)',
+            color: 'var(--c-primary)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 24px'
+          }}>
+            <Stethoscope size={36} />
+          </div>
+
+          <h2 style={{
+            fontSize: '1.65rem',
+            fontWeight: 800,
+            color: 'var(--c-text)',
+            marginBottom: 12,
+            letterSpacing: '-0.02em'
+          }}>
+            No patient assessment loaded.
+          </h2>
+
+          <p style={{
+            fontSize: '1rem',
+            color: 'var(--c-secondary)',
+            lineHeight: 1.6,
+            maxWidth: 580,
+            margin: '0 auto 36px'
+          }}>
+            The Clinical Copilot requires an active patient assessment session to provide diagnostic assistance, differential reasoning, and clinical care planning. Complete a new assessment or resume an existing patient evaluation.
+          </p>
+
+          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button
+              onClick={() => navigate('/assessment')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                background: 'var(--c-primary)',
+                color: '#fff',
+                padding: '12px 24px',
+                borderRadius: 10,
+                fontWeight: 600,
+                fontSize: '0.92rem',
+                border: 'none',
+                cursor: 'pointer',
+                boxShadow: '0 4px 14px rgba(37, 99, 235, 0.25)',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              <PlusCircle size={16} />
+              Start Assessment
+            </button>
+
+            {storedPrevious && (
+              <button
+                onClick={() => setShowResumeModal(true)}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  background: 'var(--c-card)',
+                  color: 'var(--c-text)',
+                  border: '1px solid var(--c-border)',
+                  padding: '12px 24px',
+                  borderRadius: 10,
+                  fontWeight: 600,
+                  fontSize: '0.92rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <RotateCcw size={16} />
+                Resume Previous Assessment
+              </button>
+            )}
+          </div>
+        </motion.div>
+
+        {storedPrevious && (
+          <ResumeAssessmentModal
+            isOpen={showResumeModal}
+            assessmentId={storedPrevious.id}
+            assessmentDate={storedPrevious.date}
+            onResume={() => {
+              sessionManager.setActiveSession(storedPrevious.id, storedPrevious.date, 'completed')
+              setActiveSession(sessionManager.getActiveSession())
+              setShowResumeModal(false)
+            }}
+            onStartNew={() => {
+              sessionManager.clearActiveSession()
+              setActiveSession(null)
+              setShowResumeModal(false)
+              navigate('/assessment')
+            }}
+          />
+        )}
+      </div>
+    )
   }
 
   const riskColor =

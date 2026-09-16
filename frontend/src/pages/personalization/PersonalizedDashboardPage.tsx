@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion, type Variants } from 'framer-motion'
 import {
   Sparkles, Target, TrendingUp, Utensils, DollarSign,
   Globe, ShieldCheck, ChevronRight, CheckCircle2, Activity,
-  Award, Zap, Clock, ThumbsUp, Calendar, ArrowRight, RefreshCw
+  Award, Zap, Clock, ThumbsUp, Calendar, ArrowRight, RefreshCw,
+  PlusCircle, RotateCcw
 } from 'lucide-react'
+import { sessionManager } from '../../lib/sessionManager'
+import { ResumeAssessmentModal } from '../../components/session/ResumeAssessmentModal'
 
 /* ─── Animations (Consistent with DashboardPage) ─── */
 const fadeUp: Variants = {
@@ -78,6 +82,12 @@ const FALLBACK_INTERVENTIONS: Intervention[] = [
 ]
 
 export default function PersonalizedDashboardPage() {
+  const navigate = useNavigate()
+  const [activeSession, setActiveSession] = useState(() => sessionManager.getActiveSession())
+  const [showResumeModal, setShowResumeModal] = useState(false)
+  const storedPrevious = useMemo(() => sessionManager.getStoredPreviousAssessment(), [])
+  const effectiveId = activeSession?.active_assessment_id
+
   const [selectedCulture, setSelectedCulture] = useState('MEDITERRANEAN')
   const [selectedDiet, setSelectedDiet] = useState('VEGETARIAN')
   const [budgetTier, setBudgetTier] = useState('MODERATE')
@@ -86,13 +96,14 @@ export default function PersonalizedDashboardPage() {
   const [strategyData, setStrategyData] = useState<StrategyData | null>(null)
 
   const fetchStrategy = async () => {
+    if (!effectiveId) return
     setLoading(true)
     try {
       const res = await fetch('/api/v1/personalization/strategy', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          patient_id: 'PT-2026-8891',
+          patient_id: effectiveId,
           age: 42,
           gender: 'FEMALE',
           dietary_pattern: selectedDiet,
@@ -112,8 +123,10 @@ export default function PersonalizedDashboardPage() {
   }
 
   useEffect(() => {
-    fetchStrategy()
-  }, [selectedCulture, selectedDiet, budgetTier])
+    if (effectiveId) {
+      fetchStrategy()
+    }
+  }, [selectedCulture, selectedDiet, budgetTier, effectiveId])
 
   // Map API response or fallback
   const rankedInterventions: Intervention[] = strategyData?.ranked_interventions?.length
@@ -122,12 +135,12 @@ export default function PersonalizedDashboardPage() {
         title: item.title,
         category: item.category,
         tier: item.tier || 'Tier 1 Priority',
-        score: Math.round(item.unified_score ?? item.score ?? 90),
-        velocity: Math.round(item.recovery_velocity_score ?? item.velocity ?? 85),
-        burden: item.burden_score != null ? (item.burden_score <= 20 ? 'VERY LOW' : item.burden_score <= 40 ? 'LOW' : 'MODERATE') : (item.burden || 'LOW'),
-        adherence: Math.round((item.adherence_probability ?? item.adherence ?? 0.9) * 100),
+        score: item.clinical_utility_score || Math.round(item.unified_score ?? item.score ?? 90),
+        velocity: item.velocity_points || Math.round(item.recovery_velocity_score ?? item.velocity ?? 85),
+        burden: item.burden_tier || (item.burden_score != null ? (item.burden_score <= 20 ? 'VERY LOW' : item.burden_score <= 40 ? 'LOW' : 'MODERATE') : (item.burden || 'LOW')),
+        adherence: item.projected_adherence_pct || Math.round((item.adherence_probability ?? item.adherence ?? 0.9) * 100),
         rationale: item.clinical_rationale || item.rationale || '',
-        benefit: item.expected_benefit_30d || item.benefit || ''
+        benefit: item.expected_benefit || item.expected_outcome || item.expected_benefit_30d || item.benefit || ''
       }))
     : FALLBACK_INTERVENTIONS
 
@@ -140,11 +153,129 @@ export default function PersonalizedDashboardPage() {
     setTimeout(() => setFeedbackSubmitted(null), 2500)
   }
 
+  if (!effectiveId) {
+    return (
+      <div style={{ maxWidth: 840, margin: '60px auto', padding: '0 24px' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          style={{
+            background: 'var(--c-card)',
+            border: '1px solid var(--c-border)',
+            borderRadius: 20,
+            padding: '56px 40px',
+            textAlign: 'center',
+            boxShadow: '0 12px 36px rgba(0, 0, 0, 0.04)'
+          }}
+        >
+          <div style={{
+            width: 72,
+            height: 72,
+            borderRadius: '50%',
+            background: 'rgba(37, 99, 235, 0.08)',
+            color: 'var(--c-primary)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 24px'
+          }}>
+            <Sparkles size={36} />
+          </div>
+
+          <h2 style={{
+            fontSize: '1.65rem',
+            fontWeight: 800,
+            color: 'var(--c-text)',
+            marginBottom: 12,
+            letterSpacing: '-0.02em'
+          }}>
+            Nutritional Assessment Required
+          </h2>
+
+          <p style={{
+            fontSize: '1rem',
+            color: 'var(--c-secondary)',
+            lineHeight: 1.6,
+            maxWidth: 580,
+            margin: '0 auto 36px'
+          }}>
+            Personalized therapeutic interventions, macro targets, and cultural diets require an active patient assessment. Complete an assessment to generate your personalized treatment strategy.
+          </p>
+
+          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button
+              onClick={() => navigate('/assessment')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                background: 'var(--c-primary)',
+                color: '#fff',
+                padding: '12px 24px',
+                borderRadius: 10,
+                fontWeight: 600,
+                fontSize: '0.92rem',
+                border: 'none',
+                cursor: 'pointer',
+                boxShadow: '0 4px 14px rgba(37, 99, 235, 0.25)',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              <PlusCircle size={16} />
+              Start Assessment
+            </button>
+
+            {storedPrevious && (
+              <button
+                onClick={() => setShowResumeModal(true)}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  background: 'var(--c-card)',
+                  color: 'var(--c-text)',
+                  border: '1px solid var(--c-border)',
+                  padding: '12px 24px',
+                  borderRadius: 10,
+                  fontWeight: 600,
+                  fontSize: '0.92rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <RotateCcw size={16} />
+                Resume Previous Assessment
+              </button>
+            )}
+          </div>
+        </motion.div>
+
+        {storedPrevious && (
+          <ResumeAssessmentModal
+            isOpen={showResumeModal}
+            assessmentId={storedPrevious.id}
+            assessmentDate={storedPrevious.date}
+            onResume={() => {
+              sessionManager.setActiveSession(storedPrevious.id, storedPrevious.date, 'completed')
+              setActiveSession(sessionManager.getActiveSession())
+              setShowResumeModal(false)
+            }}
+            onStartNew={() => {
+              sessionManager.clearActiveSession()
+              setActiveSession(null)
+              setShowResumeModal(false)
+              navigate('/assessment')
+            }}
+          />
+        )}
+      </div>
+    )
+  }
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          COMPACT TOOLBAR (Subtle Parameters, Not Dominating)
+      {/* ══════════════════════════════════════════════════════════════════       COMPACT TOOLBAR (Subtle Parameters, Not Dominating)
           ═══════════════════════════════════════════════════════════════════ */}
       <div style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -158,7 +289,7 @@ export default function PersonalizedDashboardPage() {
           </span>
           <span style={{ color: 'var(--c-border)' }}>•</span>
           <span style={{ fontSize: '0.75rem', color: 'var(--c-muted)' }}>
-            Patient PT-2026-8891 (Sarah Jenkins)
+            Assessment: {effectiveId ? `${effectiveId.slice(0, 8)}...` : ''}
           </span>
         </div>
 

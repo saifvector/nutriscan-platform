@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { 
   Layers, 
@@ -11,8 +12,12 @@ import {
   ShieldCheck, 
   Award,
   Zap,
-  ArrowRight
+  ArrowRight,
+  PlusCircle,
+  RotateCcw
 } from 'lucide-react'
+import { sessionManager } from '../../lib/sessionManager'
+import { ResumeAssessmentModal } from '../../components/session/ResumeAssessmentModal'
 
 interface InterventionOption {
   id: string
@@ -31,18 +36,25 @@ interface InterventionOption {
 }
 
 export default function InterventionComparisonPage() {
+  const navigate = useNavigate()
+  const [activeSession, setActiveSession] = useState(() => sessionManager.getActiveSession())
+  const [showResumeModal, setShowResumeModal] = useState(false)
+  const storedPrevious = useMemo(() => sessionManager.getStoredPreviousAssessment(), [])
+  const effectiveId = activeSession?.active_assessment_id
+
   const [selectedTarget, setSelectedTarget] = useState('Iron & Vitamin D')
   const [apiData, setApiData] = useState<any>(null)
 
   // Fetch live comparison from backend
   useEffect(() => {
+    if (!effectiveId) return
     const fetchComparison = async () => {
       try {
         const res = await fetch('/api/v1/personalization/compare', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            patient_id: 'PT-2026-8891',
+            patient_id: effectiveId,
             target_nutrients: selectedTarget.split(' & '),
             candidate_options: ['FOOD_ONLY', 'FOOD_PLUS_SUPPLEMENT', 'LIFESTYLE_FIRST'],
           })
@@ -56,7 +68,7 @@ export default function InterventionComparisonPage() {
       }
     }
     fetchComparison()
-  }, [selectedTarget])
+  }, [selectedTarget, effectiveId])
 
   // Map API response to UI format, with hardcoded fallback
   const badgeColors: Record<string, string> = {
@@ -128,6 +140,125 @@ export default function InterventionComparisonPage() {
       bestFor: 'Supportive circadian optimization paired with primary nutritional plans.'
     }
   ]
+
+  if (!effectiveId) {
+    return (
+      <div style={{ maxWidth: 840, margin: '60px auto', padding: '0 24px' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          style={{
+            background: 'var(--c-card)',
+            border: '1px solid var(--c-border)',
+            borderRadius: 20,
+            padding: '56px 40px',
+            textAlign: 'center',
+            boxShadow: '0 12px 36px rgba(0, 0, 0, 0.04)'
+          }}
+        >
+          <div style={{
+            width: 72,
+            height: 72,
+            borderRadius: '50%',
+            background: 'rgba(37, 99, 235, 0.08)',
+            color: 'var(--c-primary)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 24px'
+          }}>
+            <Layers size={36} />
+          </div>
+
+          <h2 style={{
+            fontSize: '1.65rem',
+            fontWeight: 800,
+            color: 'var(--c-text)',
+            marginBottom: 12,
+            letterSpacing: '-0.02em'
+          }}>
+            Nutritional Assessment Required
+          </h2>
+
+          <p style={{
+            fontSize: '1rem',
+            color: 'var(--c-secondary)',
+            lineHeight: 1.6,
+            maxWidth: 580,
+            margin: '0 auto 36px'
+          }}>
+            Multi-strategy intervention comparisons, unified clinical scoring, and cost-benefit trade-offs require an active patient assessment session. Complete an assessment to evaluate intervention options.
+          </p>
+
+          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button
+              onClick={() => navigate('/assessment')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                background: 'var(--c-primary)',
+                color: '#fff',
+                padding: '12px 24px',
+                borderRadius: 10,
+                fontWeight: 600,
+                fontSize: '0.92rem',
+                border: 'none',
+                cursor: 'pointer',
+                boxShadow: '0 4px 14px rgba(37, 99, 235, 0.25)',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              <PlusCircle size={16} />
+              Start Assessment
+            </button>
+
+            {storedPrevious && (
+              <button
+                onClick={() => setShowResumeModal(true)}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  background: 'var(--c-card)',
+                  color: 'var(--c-text)',
+                  border: '1px solid var(--c-border)',
+                  padding: '12px 24px',
+                  borderRadius: 10,
+                  fontWeight: 600,
+                  fontSize: '0.92rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <RotateCcw size={16} />
+                Resume Previous Assessment
+              </button>
+            )}
+          </div>
+        </motion.div>
+
+        {storedPrevious && (
+          <ResumeAssessmentModal
+            isOpen={showResumeModal}
+            assessmentId={storedPrevious.id}
+            assessmentDate={storedPrevious.date}
+            onResume={() => {
+              sessionManager.setActiveSession(storedPrevious.id, storedPrevious.date, 'completed')
+              setActiveSession(sessionManager.getActiveSession())
+              setShowResumeModal(false)
+            }}
+            onStartNew={() => {
+              sessionManager.clearActiveSession()
+              setActiveSession(null)
+              setShowResumeModal(false)
+              navigate('/assessment')
+            }}
+          />
+        )}
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 p-6 md:p-8">

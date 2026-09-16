@@ -5,6 +5,7 @@ import {
   AlertTriangle, RefreshCw, Activity, Sparkles, Scale, Award,
   Check, ArrowRight, ExternalLink, ChevronRight, FileText
 } from 'lucide-react'
+import { sessionManager } from '../../lib/sessionManager'
 
 /* ─── Animations (Consistent with DashboardPage) ─── */
 const fadeUp: Variants = {
@@ -203,25 +204,31 @@ export default function ResearchWorkstationPage() {
     const fetchLiveResearch = async () => {
       try {
         setLoading(true)
-        const [consultRes, evidenceRes] = await Promise.allSettled([
-          fetch('/api/v1/agents/consult', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              patient_id: 'PT-2026-8891',
-              full_name: 'Sarah Jenkins',
-              age: 42,
-              gender: 'FEMALE',
-              dietary_pattern: 'VEGETARIAN',
-              symptoms: { fatigue: 6, joint_tightness: 4 }
-            })
-          }),
+        const activeSession = sessionManager.getActiveSession()
+        const effectiveId = activeSession?.active_assessment_id
+
+        const requests: Promise<Response>[] = [
           fetch('/api/v1/research/evidence', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ nutrient: selectedNutrient, include_contradictions: true, min_year: 2018 })
           })
-        ])
+        ]
+
+        if (effectiveId) {
+          requests.push(
+            fetch('/api/v1/agents/consult', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                patient_id: effectiveId,
+                symptoms: {}
+              })
+            })
+          )
+        }
+
+        const [evidenceRes, consultRes] = await Promise.allSettled(requests)
 
         if (consultRes.status === 'fulfilled' && consultRes.value.ok) {
           const cData = await consultRes.value.json()

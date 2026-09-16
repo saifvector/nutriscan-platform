@@ -1,12 +1,14 @@
 import { useState, useEffect, useMemo } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { motion, type Variants } from 'framer-motion'
 import {
   ArrowRight, Sparkles, TrendingUp, TrendingDown, AlertTriangle,
   Shield, Zap, Utensils, Brain, FileText, ChevronRight,
-  Activity, Heart, Clock, Sun, Droplets, Moon
+  Activity, Heart, Clock, Sun, Droplets, Moon, PlusCircle, RotateCcw
 } from 'lucide-react'
 import { useTheme } from '../lib/theme'
+import { sessionManager, type ClinicalSession } from '../lib/sessionManager'
+import { ResumeAssessmentModal } from '../components/session/ResumeAssessmentModal'
 
 /* ─── Animations ─── */
 const fadeUp: Variants = {
@@ -39,93 +41,89 @@ const NUTRIENT_META: Record<string, { icon: string; bodyArea: string; bodyLabel:
   'Vitamin E': { icon: '✨', bodyArea: 'skin', bodyLabel: 'Antioxidant Shield' },
 }
 
-/* ─── Data ─── */
-function useDashboardData(assessmentId?: string) {
+/* ─── Data Hook: Exclusively loads for real active assessment session ─── */
+function useDashboardData(activeAssessmentId: string | null) {
   const [data, setData] = useState<any>(null)
+  const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
+    if (!activeAssessmentId) {
+      setData(null)
+      return
+    }
+
+    let isMounted = true
     const load = async () => {
+      setLoading(true)
       try {
-        // 1. Check for session storage prediction result from Assessment
-        let sessionPrediction: any = null
-        try {
-          const raw = sessionStorage.getItem('prediction_result')
-          if (raw) sessionPrediction = JSON.parse(raw)
-        } catch { /* ignore parse error */ }
-
-        // 2. Fetch baseline health score and progress analytics
-        const [hsRes, progRes] = await Promise.allSettled([
-          fetch('/api/v1/analytics/health-score'),
-          fetch('/api/v1/progress/summary'),
+        // Fetch explicit dashboard data for the active assessment
+        const [dashRes, predRes] = await Promise.allSettled([
+          fetch(`/api/v1/dashboard/${activeAssessmentId}`),
+          fetch(`/api/v1/predictions/${activeAssessmentId}`),
         ])
-        const healthScore = hsRes.status === 'fulfilled' && hsRes.value.ok ? await hsRes.value.json() : null
-        const progress = progRes.status === 'fulfilled' && progRes.value.ok ? await progRes.value.json() : null
 
-        // 3. Process nutrients from session prediction or progress tracking
-        let rawNutrients: any[] = []
-        if (sessionPrediction?.nutrient_predictions?.length) {
-          rawNutrients = sessionPrediction.nutrient_predictions.map((p: any, idx: number) => ({
-            name: p.nutrient,
-            probability: p.probability ?? 0,
-            risk: p.risk_level || (p.probability >= 0.7 ? 'HIGH' : p.probability >= 0.4 ? 'MODERATE' : 'LOW'),
-            rank: p.priority_rank || idx + 1,
-            risk_factors: p.risk_factors || [],
-          }))
-        } else if (sessionPrediction?.predictions?.length) {
-          rawNutrients = sessionPrediction.predictions.map((p: any, idx: number) => {
-            const cleanName = p.target_name.replace(/ Deficiency/i, '').replace(/ Insufficiency/i, '')
-            const prob = p.calibrated_probability ?? p.probability ?? 0
-            const risk = p.risk_tier || (prob >= 0.7 ? 'HIGH' : prob >= 0.4 ? 'MODERATE' : 'LOW')
-            return {
-              name: cleanName,
-              probability: prob,
-              risk,
-              rank: idx + 1,
-              risk_factors: (p.top_predictors || []).map((tp: any) => ({
-                feature_name: tp.feature_name,
-                impact_score: Math.abs(tp.shap_value ?? tp.impact ?? 0.1) * 100,
-                direction: (tp.shap_value ?? 0) >= 0 ? 'RISK' : 'PROTECTIVE',
-                category: 'Clinical Biomarker',
-              })),
-            }
-          })
-        } else if (progress?.nutrient_recovery_tracking?.length) {
-          rawNutrients = progress.nutrient_recovery_tracking.map((n: any, idx: number) => {
-            const prob = (n.current_risk_score || 0) / 100.0
-            return {
-              name: n.nutrient,
-              probability: prob,
-              risk: prob >= 0.7 ? 'HIGH' : prob >= 0.4 ? 'MODERATE' : 'LOW',
-              rank: idx + 1,
-              risk_factors: [],
-            }
-          })
+        let assessmentDashboard = dashRes.status === 'fulfilled' && dashRes.value.ok ? await dashRes.value.json() : null
+        let predictionPayload = predRes.status === 'fulfilled' && predRes.value.ok ? await predRes.value.json() : null
+
+        // Check if backend returned empty indicator
+        if (assessmentDashboard?.hasAssessment === false || (!assessmentDashboard && !predictionPayload)) {
+          if (isMounted) setData(null)
+          return
         }
+
+        const preds = assessmentDashboard?.predictions || 
+                      predictionPayload?.predictions || 
+                      predictionPayload?.nutrient_predictions || 
+                      []
+
+        if (!preds.length && !assessmentDashboard) {
+          if (isMounted) setData(null)
+          return
+        }
+
+        const rawNutrients = preds.map((p: any, idx: number) => {
+          const rawName = p.target_name || p.nutrient || 'Nutrient'
+          const cleanName = rawName.replace(/ Deficiency/i, '').replace(/ Insufficiency/i, '')
+          const prob = p.calibrated_probability ?? p.probability ?? 0
+          const risk = p.risk_tier || p.risk_level || (prob >= 0.7 ? 'HIGH' : prob >= 0.4 ? 'MODERATE' : 'LOW')
+          return {
+            name: cleanName,
+            probability: prob,
+            risk,
+            rank: p.priority_rank || idx + 1,
+            risk_factors: (p.top_predictors || p.risk_factors || []).map((tp: any) => ({
+              feature_name: tp.feature_name || tp.feature || 'Biomarker',
+              impact_score: Math.abs(tp.shap_value ?? tp.impact ?? 0.1) * 100,
+              direction: (tp.shap_value ?? 0) >= 0 ? 'RISK' : 'PROTECTIVE',
+              category: 'Clinical Biomarker',
+            })),
+          }
+        })
 
         const nutrients = rawNutrients.map((n: any) => {
           const meta = NUTRIENT_META[n.name] || { icon: '💊', bodyArea: 'body', bodyLabel: n.name }
           return { ...n, ...meta }
         }).sort((a: any, b: any) => b.probability - a.probability)
 
-        // Compute overall health score and risk category
-        let calculatedScore = 74
-        let calculatedRisk = 'MODERATE'
-
-        if (sessionPrediction?.overall_risk_score != null) {
-          calculatedScore = Math.max(15, Math.min(98, Math.round(100 - sessionPrediction.overall_risk_score)))
-          calculatedRisk = sessionPrediction.overall_risk || (calculatedScore >= 75 ? 'LOW' : calculatedScore >= 50 ? 'MODERATE' : 'HIGH')
-        } else if (healthScore?.current_score != null || healthScore?.health_score != null) {
-          calculatedScore = healthScore.current_score ?? healthScore.health_score
-          calculatedRisk = healthScore.category || 'MODERATE'
-        } else if (nutrients.length > 0) {
-          const avgRiskProb = nutrients.slice(0, 5).reduce((sum, n) => sum + n.probability, 0) / Math.min(5, nutrients.length)
+        // Derive health score directly from assessment or real predictions
+        let calculatedScore = assessmentDashboard?.health_score?.score ?? assessmentDashboard?.health_score
+        if (calculatedScore == null && nutrients.length > 0) {
+          const avgRiskProb = nutrients.slice(0, 5).reduce((sum: number, n: any) => sum + n.probability, 0) / Math.min(5, nutrients.length)
           calculatedScore = Math.max(20, Math.min(95, Math.round(100 - avgRiskProb * 80)))
-          calculatedRisk = calculatedScore >= 75 ? 'LOW' : calculatedScore >= 50 ? 'MODERATE' : 'HIGH'
         }
 
-        // Derive top risk factors from predictions or nutrients
+        const calculatedRisk = calculatedScore >= 75 ? 'LOW' : calculatedScore >= 50 ? 'MODERATE' : 'HIGH'
+
+        // Real Risk Counts
+        const riskCounts = {
+          high: nutrients.filter((n: any) => n.risk === 'HIGH' || n.probability >= 0.7).length,
+          moderate: nutrients.filter((n: any) => n.risk === 'MODERATE' || (n.probability >= 0.4 && n.probability < 0.7)).length,
+          low: nutrients.filter((n: any) => n.risk === 'LOW' || n.probability < 0.4).length,
+        }
+
+        // Real Top Risk Factors
         let topRiskFactors: any[] = []
-        nutrients.forEach(n => {
+        nutrients.forEach((n: any) => {
           if (n.risk_factors?.length) {
             n.risk_factors.forEach((rf: any) => {
               topRiskFactors.push({
@@ -138,163 +136,151 @@ function useDashboardData(assessmentId?: string) {
           }
         })
 
-        if (topRiskFactors.length === 0) {
-          topRiskFactors = nutrients
-            .filter((n: any) => n.probability > 0.35)
-            .slice(0, 5)
-            .map((n: any) => ({
-              name: n.name,
-              impact: Math.round(n.probability * 60),
-              type: n.probability > 0.5 ? 'risk' : 'protective',
-              category: 'Nutritional Biomarker',
-            }))
-        }
-
-        // Tailor priority foods dynamically to top deficiencies and patient dietary pattern
-        let isVegetarian = false
-        let isVegan = false
-        try {
-          const rawActive = localStorage.getItem('nutriscan_active_assessment')
-          if (rawActive) {
-            const parsed = JSON.parse(rawActive)
-            const pat = (parsed.dietary_pattern || parsed.dietaryPattern || '').toLowerCase()
-            if (pat.includes('vegan')) {
-              isVegan = true
-              isVegetarian = true
-            } else if (pat.includes('veg')) {
-              isVegetarian = true
-            }
-          }
-        } catch { /* ignore */ }
-
-        const topNutrientNames = nutrients.slice(0, 3).map(n => n.name)
+        // Real Priority Foods mapped from actual elevated deficiencies
+        const topDeficiencies = nutrients.filter((n: any) => n.probability >= 0.4).slice(0, 3).map((n: any) => n.name)
         const priorityFoods: any[] = []
+        topDeficiencies.forEach((defName: string) => {
+          if (defName.includes('Vitamin D')) {
+            priorityFoods.push({ name: 'UV-Exposed Portobello Mushrooms', target: 'Vitamin D2', density: 'High', emoji: '🍄', tip: 'Sunlight-activated ergocalciferol matrix' })
+          } else if (defName.includes('Iron')) {
+            priorityFoods.push({ name: 'Cooked Green Lentils & Spinach', target: 'Iron + Vitamin C', density: 'Synergy', emoji: '🌱', tip: 'Ascorbic acid multiplies non-heme absorption by 6x' })
+          } else if (defName.includes('Folate')) {
+            priorityFoods.push({ name: 'Steamed Asparagus & Edamame', target: 'Folate (B9)', density: 'Very High', emoji: '🥦', tip: 'Bioavailable folate with active co-factors' })
+          } else if (defName.includes('Calcium')) {
+            priorityFoods.push({ name: 'Calcium-Set Nigari Tofu', target: 'Calcium + Magnesium', density: 'Exceptional', emoji: '🥢', tip: 'Provides elemental calcium with balanced mineral absorption' })
+          } else if (defName.includes('Magnesium')) {
+            priorityFoods.push({ name: 'Raw Sprouted Pumpkin Seeds', target: 'Magnesium & Zinc', density: 'Very High', emoji: '🎃', tip: 'Dense intracellular magnesium source' })
+          }
+        })
 
-        if (isVegetarian) {
-          if (topNutrientNames.includes('Vitamin D') || topNutrientNames.some(n => n.includes('D'))) {
-            priorityFoods.push({ name: 'UV-Exposed Maitake Mushrooms', target: 'Vitamin D2', density: 'High', emoji: '🍄', tip: 'Sunlight-activated ergocalciferol matrix' })
-            if (!isVegan) {
-              priorityFoods.push({ name: 'Pasture-Raised Organic Egg Yolks', target: 'Vitamin D3 + B12', density: 'High', emoji: '🥚', tip: 'Free-range provides 4-6x more bioactive D3' })
-            } else {
-              priorityFoods.push({ name: 'Fortified Organic Soy Milk', target: 'Vitamin D3 & Calcium', density: 'High', emoji: '🥛', tip: 'Delivers 25% DV Vitamin D with plant lipid carriers' })
-            }
-          }
-          if (topNutrientNames.includes('Iron') || topNutrientNames.some(n => n.includes('Anemia') || n.includes('Iron'))) {
-            priorityFoods.push({ name: 'Pre-Soaked Brown Lentils & Quinoa', target: 'Non-Heme Iron', density: 'High', emoji: '🌱', tip: 'Soaking deactivates phytate binding complexes' })
-            priorityFoods.push({ name: 'Baby Spinach + Lemon Juice', target: 'Iron + Vitamin C', density: 'Synergy', emoji: '🥬', tip: 'Ascorbic acid multiplies non-heme absorption by 6x' })
-          }
-          if (topNutrientNames.includes('Folate')) {
-            priorityFoods.push({ name: 'Steamed Asparagus & Edamame', target: 'Folate (B9)', density: 'Very High', emoji: '🌱', tip: 'Cooked legumes provide high bioavailable folate' })
-          }
-          if (topNutrientNames.includes('Magnesium')) {
-            priorityFoods.push({ name: 'Raw Sprouted Pumpkin Seeds', target: 'Magnesium & Zinc', density: 'Very High', emoji: '🎃', tip: '150mg Mg per ounce, supports sleep & nerves' })
-          }
-          if (topNutrientNames.includes('Calcium')) {
-            priorityFoods.push({ name: 'Calcium-Set Nigari Tofu', target: 'Calcium + Magnesium', density: 'Exceptional', emoji: '🥢', tip: 'Delivers 350-430mg bioavailable elemental calcium' })
-            priorityFoods.push({ name: 'Crushed White Sesame & Tahini', target: 'Calcium & Zinc', density: 'High', emoji: '🫓', tip: 'Dense mineral source without animal saturated fat' })
-          }
-          if (topNutrientNames.includes('Vitamin B12') || topNutrientNames.some(n => n.includes('B12'))) {
-            priorityFoods.push({ name: 'Fortified Nutritional Yeast Flakes', target: 'Vitamin B12', density: 'Exceptional', emoji: '✨', tip: '2 tbsp delivers 300%+ daily methylcobalamin' })
-          }
-          if (priorityFoods.length < 4) {
-            const vegDefaults = [
-              { name: 'Calcium-Set Tofu', target: 'Calcium + Iron', density: 'High', emoji: '🥢', tip: 'Pan-sear with garlic & ginger' },
-              { name: 'Spinach + Lemon', target: 'Iron + Vit C', density: 'Synergy', emoji: '🥬', tip: 'Ascorbic acid unlocks plant iron' },
-              { name: 'Sprouted Pumpkin Seeds', target: 'Magnesium + Zinc', density: 'Very High', emoji: '🎃', tip: 'High cellular magnesium density' },
-              { name: 'Fortified Nutritional Yeast', target: 'Vitamin B12', density: 'Exceptional', emoji: '✨', tip: 'Complete bioactive B-complex' },
-            ]
-            vegDefaults.forEach(d => {
-              if (priorityFoods.length < 4 && !priorityFoods.some(p => p.name === d.name)) {
-                priorityFoods.push(d)
-              }
-            })
-          }
-        } else {
-          // Standard Omnivore recommendations
-          if (topNutrientNames.includes('Vitamin D') || topNutrientNames.some(n => n.includes('D'))) {
-            priorityFoods.push({ name: 'Wild Sockeye Salmon', target: 'Vitamin D', density: 'Very High', emoji: '🐟', tip: '988 IU per 3.5oz serving' })
-            priorityFoods.push({ name: 'Pasture-Raised Egg Yolks', target: 'Vitamin D + B12', density: 'High', emoji: '🥚', tip: 'Free-range provides 4-6x more D3' })
-          }
-          if (topNutrientNames.includes('Iron') || topNutrientNames.some(n => n.includes('Anemia') || n.includes('Iron'))) {
-            priorityFoods.push({ name: 'Beef Liver / Organ Meats', target: 'Heme Iron + B12', density: 'Exceptional', emoji: '🥩', tip: 'Highest bioavailability iron source' })
-            priorityFoods.push({ name: 'Baby Spinach + Lemon Juice', target: 'Iron + Vitamin C', density: 'Synergy', emoji: '🥬', tip: 'Ascorbic acid multiplies non-heme absorption by 6x' })
-          }
-          if (topNutrientNames.includes('Folate')) {
-            priorityFoods.push({ name: 'Steamed Asparagus & Lentils', target: 'Folate (B9)', density: 'Very High', emoji: '🌱', tip: 'Cooked lentils provide 90% daily value per cup' })
-          }
-          if (topNutrientNames.includes('Magnesium')) {
-            priorityFoods.push({ name: 'Raw Pumpkin Seeds', target: 'Magnesium', density: 'Very High', emoji: '🎃', tip: '150mg Mg per ounce, supports sleep & nerves' })
-          }
-          if (topNutrientNames.includes('Calcium')) {
-            priorityFoods.push({ name: 'Wild Sardines with Bones', target: 'Calcium + D', density: 'High', emoji: '🥫', tip: '325mg bioavailable calcium per tin' })
-          }
-          if (priorityFoods.length < 4) {
-            const defaults = [
-              { name: 'Wild Salmon', target: 'Vitamin D', density: 'Very High', emoji: '🐟', tip: 'Bake at 400°F for 12 min' },
-              { name: 'Beef Liver', target: 'Iron + B12', density: 'Exceptional', emoji: '🥩', tip: 'Pan-fry with onions' },
-              { name: 'Spinach + Lemon', target: 'Iron + Vit C', density: 'Synergy', emoji: '🥬', tip: '6x iron absorption boost' },
-              { name: 'Egg Yolks', target: 'Vitamin D + B12', density: 'High', emoji: '🥚', tip: 'Free-range = 3-6x more Vit D' },
-            ]
-            defaults.forEach(d => {
-              if (priorityFoods.length < 4 && !priorityFoods.some(p => p.name === d.name)) {
-                priorityFoods.push(d)
-              }
-            })
-          }
+        const highestDef = nutrients[0]?.name || 'Target Micronutrient'
+        const assessmentDateStr = assessmentDashboard?.generated_at || assessmentDashboard?.created_at || new Date().toISOString()
+        let formattedDate = 'Recent'
+        try {
+          formattedDate = new Date(assessmentDateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+        } catch {
+          formattedDate = 'Recent'
         }
 
-        const highestDef = nutrients[0]?.name || 'Vitamin D'
-
-        setData({
-          healthScore: calculatedScore,
-          overallRisk: calculatedRisk,
-          scoreChange: progress?.health_score_delta ?? (sessionPrediction ? +4 : 0),
-          assessmentDate: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
-          nutrients,
-          aiInsight: {
-            headline: nutrients.length > 0 && nutrients[0].probability > 0.5
-              ? `Primary deficiency alert: ${nutrients[0].name} (${Math.round(nutrients[0].probability * 100)}% risk)`
-              : progress?.fastest_recovery_trend
-              ? `Recovery progress detected: ${progress.fastest_recovery_trend}`
-              : 'Your nutritional profile is actively monitored.',
-            body: sessionPrediction?.screening_metadata?.summary || healthScore?.breakdown?.interpretation || `Clinical AI detected significant risk indicators in ${highestDef}. Personalized dietary and replenishment protocols have been synthesized.`,
-            actionable: sessionPrediction?.priority_ranking?.length
-              ? `Prioritize targeted repletion of ${sessionPrediction.priority_ranking.slice(0, 3).join(', ')} with paired bioavailable co-factors.`
-              : progress?.lifestyle_improvements?.join('. ') || 'Follow the personalized nutrition protocol recommended by the clinical AI.',
-          },
-          topRiskFactors: topRiskFactors.slice(0, 5),
-          priorityFoods: priorityFoods.slice(0, 4),
-          timeline: [
-            { time: 'Today', event: 'Health assessment completed', type: 'assessment', detail: `${nutrients.length || 11} biomarkers screened` },
-            { time: 'Today', event: 'AI analysis generated', type: 'insight', detail: `Identified ${highestDef} prioritization` },
-            { time: 'Recommended', event: 'Begin targeted supplementation', type: 'action', detail: `Focus on ${highestDef}` },
-            { time: 'Week 1', event: 'Start recovery diet protocol', type: 'action', detail: 'Incorporate priority nutrient pairs' },
-            { time: 'Week 4', event: 'Follow-up assessment', type: 'milestone', detail: 'Re-evaluate biomarker trajectories' },
-          ],
-          recovery: [
-            { phase: 1, label: 'Now', title: 'Acute Replenishment', status: 'active', tasks: [`Target ${highestDef} replenishment`, 'Add priority synergy foods daily', 'Eliminate absorption inhibitors'] },
-            { phase: 2, label: 'Week 2', title: 'Consolidation', status: 'upcoming', tasks: ['Full dietary rotation active', 'Lifestyle factor optimization', 'Symptom checkpoint check'] },
-            { phase: 3, label: 'Week 4+', title: 'Systemic Resilience', status: 'upcoming', tasks: ['Biomarker re-test validation', 'Maintenance protocol', 'Long-term nutritional stability'] },
-          ],
-        })
+        if (isMounted) {
+          setData({
+            healthScore: calculatedScore ?? 70,
+            overallRisk: calculatedRisk,
+            scoreChange: assessmentDashboard?.health_score_delta ?? 0,
+            assessmentDate: formattedDate,
+            nutrients,
+            riskCounts,
+            aiInsight: {
+              headline: nutrients.length > 0 && nutrients[0].probability >= 0.4
+                ? `Primary deficiency alert: ${nutrients[0].name} (${Math.round(nutrients[0].probability * 100)}% risk)`
+                : 'Nutritional profile within monitored bounds.',
+              body: assessmentDashboard?.summary || `Clinical AI detected significant risk indicators in ${highestDef}. Personalized dietary and replenishment protocols have been synthesized.`,
+              actionable: assessmentDashboard?.critical_actions?.[0] || `Prioritize targeted repletion of ${highestDef} with bioavailable dietary co-factors.`,
+            },
+            topRiskFactors: topRiskFactors.slice(0, 5),
+            priorityFoods: priorityFoods.slice(0, 4),
+            timeline: [
+              { time: 'Day 1', event: 'Health assessment completed', type: 'assessment', detail: `${nutrients.length} biomarkers evaluated` },
+              { time: 'Day 1', event: 'Clinical AI analysis synthesized', type: 'insight', detail: `Identified ${highestDef} prioritization` },
+              { time: 'Week 1', event: 'Begin targeted dietary protocol', type: 'action', detail: 'Implement priority whole food pairings' },
+              { time: 'Week 4', event: 'Follow-up assessment checkpoint', type: 'milestone', detail: 'Re-evaluate biomarker risk trajectories' },
+            ],
+            recovery: [
+              { phase: 1, label: 'Phase 1', title: 'Acute Repletion', status: 'active', tasks: [`Target ${highestDef} replenishment`, 'Incorporate priority nutrient pairs', 'Eliminate absorption inhibitors'] },
+              { phase: 2, label: 'Phase 2', title: 'Homeostatic Balance', status: 'upcoming', tasks: ['Full dietary rotation active', 'Lifestyle factor optimization', 'Midpoint symptom check'] },
+              { phase: 3, label: 'Phase 3', title: 'Long-Term Resilience', status: 'upcoming', tasks: ['Biomarker validation', 'Maintenance protocol', 'Sustained nutritional health'] },
+            ],
+          })
+        }
       } catch (err) {
         console.error('Dashboard data load error:', err)
+        if (isMounted) setData(null)
+      } finally {
+        if (isMounted) setLoading(false)
       }
     }
-    load()
-  }, [assessmentId])
 
-  return data || {
-    healthScore: 0, overallRisk: 'LOADING', scoreChange: 0,
-    assessmentDate: '—', nutrients: [], aiInsight: { headline: 'Loading...', body: '', actionable: '' },
-    topRiskFactors: [], priorityFoods: [], timeline: [], recovery: [],
-  }
+    load()
+    return () => { isMounted = false }
+  }, [activeAssessmentId])
+
+  return { data, loading }
+}
+
+/* ═══════════════════════════════════════════
+   EMPTY STATE: FIRST VISIT / NO ACTIVE SESSION
+   ═══════════════════════════════════════════ */
+function EmptyAssessmentDashboard({
+  onStartAssessment,
+  onResumeAssessment,
+  hasPrevious,
+}: {
+  onStartAssessment: () => void
+  onResumeAssessment: () => void
+  hasPrevious: boolean
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className="flex flex-col items-center justify-center py-20 px-6 text-center max-w-2xl mx-auto rounded-3xl border border-slate-800 bg-slate-900/50 shadow-2xl my-8"
+      style={{
+        background: 'var(--c-card, #0f172a)',
+        borderColor: 'var(--c-border, #1e293b)'
+      }}
+    >
+      <div className="w-16 h-16 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center mb-6 shadow-xl shadow-teal-500/5">
+        <FileText className="w-8 h-8" />
+      </div>
+
+      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100 mb-3 font-heading">
+        Nutritional Assessment Required
+      </h2>
+
+      <p className="text-sm sm:text-base text-slate-400 leading-relaxed mb-8 max-w-lg">
+        No active assessment is currently loaded. Complete an assessment to generate personalized nutritional predictions, deficiency analysis, food recommendations, meal plans, forecasting insights, and clinical reports.
+      </p>
+
+      <div className="flex flex-col sm:flex-row items-center gap-3.5 w-full justify-center">
+        <button
+          onClick={onStartAssessment}
+          className="w-full sm:w-auto px-7 py-3 rounded-xl font-semibold text-sm bg-teal-600 hover:bg-teal-500 text-white transition-all shadow-lg shadow-teal-900/30 flex items-center justify-center gap-2 active:scale-98"
+        >
+          <PlusCircle className="w-4 h-4" />
+          Start Assessment
+        </button>
+
+        {hasPrevious && (
+          <button
+            onClick={onResumeAssessment}
+            className="w-full sm:w-auto px-7 py-3 rounded-xl font-semibold text-sm bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all flex items-center justify-center gap-2 active:scale-98"
+          >
+            <RotateCcw className="w-4 h-4" />
+            Resume Previous Assessment
+          </button>
+        )}
+      </div>
+    </motion.div>
+  )
 }
 
 /* ═══════════════════════════════════════════
    §1 — HERO HEALTH SCORE
    ═══════════════════════════════════════════ */
-function HeroScore({ score, risk, change, date }: { score: number; risk: string; change: number; date: string }) {
+function HeroScore({
+  score,
+  risk,
+  change,
+  date,
+  riskCounts
+}: {
+  score: number
+  risk: string
+  change: number
+  date: string
+  riskCounts: { high: number; moderate: number; low: number }
+}) {
   const circumference = 2 * Math.PI * 68
   const offset = circumference - (score / 100) * circumference
   const scoreColor = score >= 85 ? 'var(--c-success)' : score >= 70 ? 'var(--c-primary)' : score >= 50 ? 'var(--c-warning)' : 'var(--c-danger)'
@@ -311,7 +297,6 @@ function HeroScore({ score, risk, change, date }: { score: number; risk: string;
         marginBottom: 24, position: 'relative', overflow: 'hidden',
       }}
     >
-      {/* Subtle gradient accent */}
       <div style={{
         position: 'absolute', top: -100, right: -100, width: 300, height: 300,
         background: 'radial-gradient(circle, var(--c-surface-tint) 0%, transparent 70%)',
@@ -329,7 +314,6 @@ function HeroScore({ score, risk, change, date }: { score: number; risk: string;
             transform="rotate(-90 80 80)"
             style={{ transition: 'stroke-dashoffset 1s ease' }}
           />
-          {/* Inner glow */}
           <circle cx={80} cy={80} r={56} fill="none" stroke={scoreColor} strokeWidth={1} opacity={0.15} />
         </svg>
         <div style={{
@@ -360,7 +344,7 @@ function HeroScore({ score, risk, change, date }: { score: number; risk: string;
           {category}
         </h1>
         <p style={{ fontSize: '0.9375rem', color: 'var(--c-text-secondary)', lineHeight: 1.6, maxWidth: 440, marginBottom: 20 }}>
-          Based on 11 nutrient predictions, dietary analysis, lifestyle factors, and biochemical interaction modeling.
+          Based on verified nutrient predictions, dietary analysis, lifestyle factors, and biochemical interaction modeling.
         </p>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
           <div style={{
@@ -368,18 +352,20 @@ function HeroScore({ score, risk, change, date }: { score: number; risk: string;
             borderRadius: 8, background: 'var(--c-success-bg)',
           }}>
             <TrendingUp size={14} color="var(--c-success)" />
-            <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--c-success-text)' }}>+{change} pts</span>
+            <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--c-success-text)' }}>
+              {change >= 0 ? `+${change}` : change} pts
+            </span>
           </div>
           <span style={{ fontSize: '0.75rem', color: 'var(--c-muted)' }}>Assessed {date}</span>
         </div>
       </div>
 
-      {/* Right Metrics */}
+      {/* Real Risk Counts */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12, flexShrink: 0 }}>
         {[
-          { label: 'High Risk', value: '2', color: 'var(--c-danger)' },
-          { label: 'Moderate', value: '4', color: 'var(--c-warning)' },
-          { label: 'Low Risk', value: '5', color: 'var(--c-success)' },
+          { label: 'High Risk', value: riskCounts.high, color: 'var(--c-danger)' },
+          { label: 'Moderate', value: riskCounts.moderate, color: 'var(--c-warning)' },
+          { label: 'Low Risk', value: riskCounts.low, color: 'var(--c-success)' },
         ].map(m => (
           <div key={m.label} style={{
             display: 'flex', alignItems: 'center', gap: 12, padding: '10px 16px',
@@ -387,7 +373,9 @@ function HeroScore({ score, risk, change, date }: { score: number; risk: string;
             background: 'var(--c-bg)',
           }}>
             <div style={{ width: 8, height: 8, borderRadius: 4, background: m.color, flexShrink: 0 }} />
-            <span style={{ fontSize: '1.25rem', fontWeight: 800, fontFamily: 'var(--font-heading)', color: m.color, width: 20 }}>{m.value}</span>
+            <span style={{ fontSize: '1.25rem', fontWeight: 800, fontFamily: 'var(--font-heading)', color: m.color, width: 24 }}>
+              {m.value}
+            </span>
             <span style={{ fontSize: '0.75rem', color: 'var(--c-muted)', fontWeight: 500 }}>{m.label}</span>
           </div>
         ))}
@@ -439,7 +427,7 @@ function AIInsight({ insight }: { insight: { headline: string; body: string; act
           border: '1px solid var(--c-border)',
         }}>
           <div style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-accent)', marginBottom: 4 }}>
-            ⚡ Recommended Action
+            Recommended Action
           </div>
           <p style={{ fontSize: '0.8125rem', color: 'var(--c-secondary)', lineHeight: 1.6 }}>
             {insight.actionable}
@@ -451,12 +439,9 @@ function AIInsight({ insight }: { insight: { headline: string; body: string; act
 }
 
 /* ═══════════════════════════════════════════
-   §3 — NUTRIENT RISK HEATMAP
+   §3 — DEFICIENCY RISK MAP
    ═══════════════════════════════════════════ */
 function NutrientHeatmap({ nutrients }: { nutrients: any[] }) {
-  const [hovered, setHovered] = useState<string | null>(null)
-  const { resolved } = useTheme()
-
   return (
     <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible"
       style={{
@@ -464,93 +449,64 @@ function NutrientHeatmap({ nutrients }: { nutrients: any[] }) {
         background: 'var(--c-card)', border: '1px solid var(--c-border)',
       }}
     >
-      <div style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-primary)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
-        Deficiency Risk Map
-      </div>
-      <div style={{ fontSize: '0.8125rem', color: 'var(--c-muted)', marginBottom: 20 }}>
-        11 nutrients · Darker = higher risk
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+        <div>
+          <div style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-primary)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 4 }}>
+            Deficiency Risk Map
+          </div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--c-muted)' }}>
+            {nutrients.length} nutrients · Darker = higher risk
+          </div>
+        </div>
+        <Link to="/predictions" style={{ fontSize: '0.75rem', color: 'var(--c-primary)', display: 'flex', alignItems: 'center', gap: 4, fontWeight: 600 }}>
+          View all <ChevronRight size={14} />
+        </Link>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
-        {nutrients.map(n => {
-          const intensity = n.probability
-          const riskColor = n.risk === 'HIGH'
-            ? (resolved === 'dark' ? `rgba(239,68,68,${0.3 + intensity * 0.5})` : `rgba(220,38,38,${0.15 + intensity * 0.4})`)
-            : n.risk === 'MODERATE'
-            ? (resolved === 'dark' ? `rgba(245,158,11,${0.2 + intensity * 0.4})` : `rgba(245,158,11,${0.1 + intensity * 0.3})`)
-            : (resolved === 'dark' ? `rgba(34,197,94,${0.1 + intensity * 0.3})` : `rgba(22,163,74,${0.08 + intensity * 0.2})`)
-
-          const isHovered = hovered === n.name
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
+        {nutrients.slice(0, 12).map(n => {
+          const pct = Math.round(n.probability * 100)
+          const isHigh = n.risk === 'HIGH' || n.probability >= 0.7
+          const isMod = n.risk === 'MODERATE' || (n.probability >= 0.4 && n.probability < 0.7)
+          const bg = isHigh ? 'rgba(239, 68, 68, 0.12)' : isMod ? 'rgba(245, 158, 11, 0.10)' : 'rgba(34, 197, 94, 0.08)'
+          const border = isHigh ? 'rgba(239, 68, 68, 0.3)' : isMod ? 'rgba(245, 158, 11, 0.25)' : 'rgba(34, 197, 94, 0.2)'
+          const textColor = isHigh ? 'var(--c-danger)' : isMod ? 'var(--c-warning)' : 'var(--c-success)'
 
           return (
-            <div
-              key={n.name}
-              onMouseEnter={() => setHovered(n.name)}
-              onMouseLeave={() => setHovered(null)}
-              style={{
-                padding: '14px 12px', borderRadius: 12, cursor: 'default',
-                background: riskColor,
-                border: `1px solid ${isHovered ? 'var(--c-primary)' : 'transparent'}`,
-                transform: isHovered ? 'scale(1.04)' : 'scale(1)',
-                transition: 'all 0.2s ease',
-                textAlign: 'center',
-              }}
-            >
-              <div style={{ fontSize: 20, marginBottom: 6 }}>{n.icon}</div>
-              <div style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-secondary)', marginBottom: 2 }}>
+            <div key={n.name} style={{
+              padding: '12px 10px', borderRadius: 12, background: bg, border: `1px solid ${border}`,
+              textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
+            }}>
+              <span style={{ fontSize: 18 }}>{n.icon}</span>
+              <span style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-secondary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '100%' }}>
                 {n.name}
-              </div>
-              <div style={{
-                fontSize: '1rem', fontWeight: 800, fontFamily: 'var(--font-heading)',
-                color: n.risk === 'HIGH' ? 'var(--c-danger)' : n.risk === 'MODERATE' ? 'var(--c-warning)' : 'var(--c-success)',
-              }}>
-                {Math.round(n.probability * 100)}%
-              </div>
-              {isHovered && (
-                <div style={{ fontSize: '0.625rem', color: 'var(--c-muted)', marginTop: 4 }}>
-                  {n.bodyLabel}
-                </div>
-              )}
+              </span>
+              <span style={{ fontSize: '0.875rem', fontWeight: 800, fontFamily: 'var(--font-heading)', color: textColor }}>
+                {pct}%
+              </span>
             </div>
           )
         })}
-      </div>
-
-      {/* Legend */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 16 }}>
-        {['HIGH', 'MODERATE', 'LOW'].map(level => (
-          <div key={level} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            <div style={{
-              width: 10, height: 10, borderRadius: 3,
-              background: level === 'HIGH' ? 'var(--c-danger)' : level === 'MODERATE' ? 'var(--c-warning)' : 'var(--c-success)',
-            }} />
-            <span style={{ fontSize: '0.6875rem', color: 'var(--c-muted)', fontWeight: 500 }}>{level}</span>
-          </div>
-        ))}
       </div>
     </motion.div>
   )
 }
 
 /* ═══════════════════════════════════════════
-   §4 — BODY VISUALIZATION
+   §4 — BODY AREA MAPPING
    ═══════════════════════════════════════════ */
 function BodyVisualization({ nutrients }: { nutrients: any[] }) {
-  const highRisk = nutrients.filter(n => n.risk === 'HIGH')
-  const modRisk = nutrients.filter(n => n.risk === 'MODERATE').slice(0, 3)
-
-  const bodyAreas = [
-    { area: 'Brain & Cognition', y: 0, nutrients: nutrients.filter(n => n.bodyArea === 'brain'), icon: '🧠' },
-    { area: 'Vision', y: 1, nutrients: nutrients.filter(n => n.bodyArea === 'eyes'), icon: '👁️' },
-    { area: 'Skin & Healing', y: 2, nutrients: nutrients.filter(n => n.bodyArea === 'skin'), icon: '✨' },
-    { area: 'Thyroid & Endocrine', y: 3, nutrients: nutrients.filter(n => n.bodyArea === 'thyroid'), icon: '🦋' },
-    { area: 'Cardiovascular', y: 4, nutrients: nutrients.filter(n => n.bodyArea === 'heart'), icon: '❤️' },
-    { area: 'Immune System', y: 5, nutrients: nutrients.filter(n => n.bodyArea === 'immune'), icon: '🛡️' },
-    { area: 'Blood & Energy', y: 6, nutrients: nutrients.filter(n => n.bodyArea === 'blood'), icon: '🩸' },
-    { area: 'Bones & Joints', y: 7, nutrients: nutrients.filter(n => n.bodyArea === 'bones'), icon: '🦴' },
-    { area: 'Muscles', y: 8, nutrients: nutrients.filter(n => n.bodyArea === 'muscle'), icon: '💪' },
-    { area: 'Nervous System', y: 9, nutrients: nutrients.filter(n => n.bodyArea === 'nerves'), icon: '💤' },
-  ]
+  const areas = useMemo(() => {
+    const map: Record<string, { label: string; count: number; highCount: number; nutrients: string[] }> = {}
+    nutrients.forEach(n => {
+      const area = n.bodyArea || 'other'
+      if (!map[area]) map[area] = { label: n.bodyLabel || area, count: 0, highCount: 0, nutrients: [] }
+      map[area].count++
+      if (n.risk === 'HIGH' || n.probability >= 0.7) map[area].highCount++
+      map[area].nutrients.push(n.name)
+    })
+    return Object.entries(map).map(([key, val]) => ({ key, ...val }))
+  }, [nutrients])
 
   return (
     <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible"
@@ -559,56 +515,43 @@ function BodyVisualization({ nutrients }: { nutrients: any[] }) {
         background: 'var(--c-card)', border: '1px solid var(--c-border)',
       }}
     >
-      <div style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-primary)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
-        Body Impact Mapping
+      <div style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-primary)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 4 }}>
+        Body Impact Analysis
       </div>
-      <div style={{ fontSize: '0.8125rem', color: 'var(--c-muted)', marginBottom: 20 }}>
-        Where your deficiencies manifest
+      <div style={{ fontSize: '0.75rem', color: 'var(--c-muted)', marginBottom: 20 }}>
+        Symptom correlation by physiological system
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-        {bodyAreas.filter(b => b.nutrients.length > 0).map(area => {
-          const maxRisk = area.nutrients.reduce((max: number, n: any) => Math.max(max, n.probability), 0)
-          const hasHighRisk = area.nutrients.some((n: any) => n.risk === 'HIGH')
-
-          return (
-            <div key={area.area} style={{
-              display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px',
-              borderRadius: 10, background: 'var(--c-bg)', border: '1px solid var(--c-border-light)',
-            }}>
-              <span style={{ fontSize: 18 }}>{area.icon}</span>
-              <div style={{ flex: 1 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--c-secondary)' }}>{area.area}</span>
-                  {hasHighRisk && <AlertTriangle size={12} color="var(--c-danger)" />}
-                </div>
-                <div style={{ fontSize: '0.6875rem', color: 'var(--c-muted)', marginTop: 2 }}>
-                  {area.nutrients.map((n: any) => n.name).join(', ')}
-                </div>
-              </div>
-              <div style={{
-                height: 6, width: 60, background: 'var(--c-bar-track)', borderRadius: 3,
-              }}>
-                <div style={{
-                  width: `${maxRisk * 100}%`, height: '100%', borderRadius: 3,
-                  background: hasHighRisk ? 'var(--c-danger)' : 'var(--c-warning)',
-                  transition: 'width 0.6s ease',
-                }} />
-              </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {areas.slice(0, 5).map(a => (
+          <div key={a.key} style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            padding: '10px 14px', borderRadius: 12, background: 'var(--c-bg)',
+            border: '1px solid var(--c-border-light)',
+          }}>
+            <div>
+              <div style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--c-secondary)' }}>{a.label}</div>
+              <div style={{ fontSize: '0.6875rem', color: 'var(--c-muted)' }}>{a.nutrients.join(', ')}</div>
             </div>
-          )
-        })}
+            <div style={{
+              padding: '4px 8px', borderRadius: 6,
+              background: a.highCount > 0 ? 'rgba(239, 68, 68, 0.12)' : 'var(--c-surface-tint)',
+              color: a.highCount > 0 ? 'var(--c-danger)' : 'var(--c-primary)',
+              fontSize: '0.6875rem', fontWeight: 700,
+            }}>
+              {a.highCount > 0 ? `${a.highCount} high risk` : 'Monitored'}
+            </div>
+          </div>
+        ))}
       </div>
     </motion.div>
   )
 }
 
 /* ═══════════════════════════════════════════
-   §5 — RISK FACTOR WATERFALL
+   §5 — RISK FACTORS WATERFALL
    ═══════════════════════════════════════════ */
 function RiskFactorWaterfall({ factors }: { factors: any[] }) {
-  const maxImpact = Math.max(...factors.map(f => f.impact))
-
   return (
     <motion.div custom={4} variants={fadeUp} initial="hidden" animate="visible"
       style={{
@@ -616,53 +559,32 @@ function RiskFactorWaterfall({ factors }: { factors: any[] }) {
         background: 'var(--c-card)', border: '1px solid var(--c-border)',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
-        <Brain size={14} color="var(--c-primary)" />
-        <span style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-primary)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-          What's Driving Your Risk
-        </span>
+      <div style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-primary)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 4 }}>
+        Predictive Risk Drivers
+      </div>
+      <div style={{ fontSize: '0.75rem', color: 'var(--c-muted)', marginBottom: 20 }}>
+        SHAP feature impact on deficiency predictions
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {factors.map(f => (
-          <div key={f.name} style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div style={{ width: 100, flexShrink: 0 }}>
-              <div style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--c-secondary)' }}>{f.name}</div>
-              <div style={{ fontSize: '0.625rem', color: 'var(--c-muted)' }}>{f.category}</div>
-            </div>
-
-            {/* Bar */}
-            <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 8 }}>
-              <div style={{ flex: 1, height: 8, background: 'var(--c-bar-track)', borderRadius: 4, overflow: 'hidden' }}>
-                <div style={{
-                  width: `${(f.impact / maxImpact) * 100}%`, height: '100%', borderRadius: 4,
-                  background: f.type === 'risk' ? 'var(--c-danger)' : 'var(--c-success)',
-                  transition: 'width 0.6s ease',
-                }} />
-              </div>
-              <span style={{
-                fontSize: '0.75rem', fontWeight: 700, width: 48, textAlign: 'right',
-                color: f.type === 'risk' ? 'var(--c-danger-text)' : 'var(--c-success-text)',
-              }}>
-                {f.type === 'risk' ? '+' : '−'}{f.impact}%
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {factors.map((f, i) => (
+          <div key={i}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', marginBottom: 4 }}>
+              <span style={{ fontWeight: 600, color: 'var(--c-secondary)' }}>{f.name}</span>
+              <span style={{ color: f.type === 'risk' ? 'var(--c-danger)' : 'var(--c-success)', fontWeight: 700 }}>
+                {f.type === 'risk' ? `+${f.impact}%` : `-${f.impact}%`}
               </span>
             </div>
-
-            {/* Icon */}
-            {f.type === 'risk'
-              ? <TrendingUp size={14} color="var(--c-danger)" />
-              : <TrendingDown size={14} color="var(--c-success)" />
-            }
+            <div style={{ height: 6, borderRadius: 3, background: 'var(--c-border-light)', overflow: 'hidden' }}>
+              <div style={{
+                height: '100%', borderRadius: 3,
+                width: `${Math.min(100, f.impact * 2)}%`,
+                background: f.type === 'risk' ? 'var(--c-danger)' : 'var(--c-success)',
+              }} />
+            </div>
           </div>
         ))}
       </div>
-
-      <Link to="/explainability/demo" style={{
-        display: 'flex', alignItems: 'center', gap: 6, marginTop: 16,
-        fontSize: '0.75rem', fontWeight: 600, color: 'var(--c-primary)', textDecoration: 'none',
-      }}>
-        View Full SHAP Analysis <ArrowRight size={12} />
-      </Link>
     </motion.div>
   )
 }
@@ -671,6 +593,8 @@ function RiskFactorWaterfall({ factors }: { factors: any[] }) {
    §6 — PRIORITY FOODS
    ═══════════════════════════════════════════ */
 function PriorityFoods({ foods }: { foods: any[] }) {
+  if (!foods || foods.length === 0) return null
+
   return (
     <motion.div custom={5} variants={fadeUp} initial="hidden" animate="visible"
       style={{
@@ -678,37 +602,40 @@ function PriorityFoods({ foods }: { foods: any[] }) {
         background: 'var(--c-card)', border: '1px solid var(--c-border)',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
         <div>
           <div style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-primary)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 4 }}>
-            Priority Nutrition
+            Targeted Nutritional Interventions
           </div>
-          <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--c-secondary)' }}>
-            Your Top 4 Recovery Foods
+          <div style={{ fontSize: '0.75rem', color: 'var(--c-muted)' }}>
+            High nutrient-density foods matching detected deficiencies
           </div>
         </div>
-        <Link to="/recommendations/demo" style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: '0.75rem', fontWeight: 600, color: 'var(--c-primary)', textDecoration: 'none' }}>
-          See all <ChevronRight size={12} />
+        <Link to="/recommendations" style={{ fontSize: '0.75rem', color: 'var(--c-primary)', display: 'flex', alignItems: 'center', gap: 4, fontWeight: 600 }}>
+          View food protocols <ChevronRight size={14} />
         </Link>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 14 }}>
         {foods.map(f => (
           <div key={f.name} style={{
-            display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px',
-            borderRadius: 14, background: 'var(--c-bg)', border: '1px solid var(--c-border-light)',
-            transition: 'border-color 0.15s, transform 0.15s',
-            cursor: 'default',
-          }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--c-primary)'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--c-border-light)'; e.currentTarget.style.transform = 'translateY(0)' }}
-          >
-            <span style={{ fontSize: 28 }}>{f.emoji}</span>
-            <div>
-              <div style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'var(--c-secondary)', marginBottom: 2 }}>{f.name}</div>
-              <div style={{ fontSize: '0.6875rem', color: 'var(--c-primary)', fontWeight: 600 }}>for {f.target}</div>
-              <div style={{ fontSize: '0.625rem', color: 'var(--c-muted)', marginTop: 4 }}>{f.tip}</div>
+            padding: 16, borderRadius: 14, background: 'var(--c-bg)',
+            border: '1px solid var(--c-border-light)', display: 'flex', flexDirection: 'column', gap: 8,
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+              <span style={{ fontSize: 24 }}>{f.emoji}</span>
+              <span style={{
+                fontSize: '0.625rem', fontWeight: 700, padding: '2px 8px', borderRadius: 4,
+                background: 'var(--c-surface-tint)', color: 'var(--c-primary)',
+              }}>
+                {f.density}
+              </span>
             </div>
+            <div>
+              <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--c-secondary)' }}>{f.name}</div>
+              <div style={{ fontSize: '0.6875rem', color: 'var(--c-primary)', fontWeight: 600 }}>Targets: {f.target}</div>
+            </div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--c-muted)', lineHeight: 1.4 }}>{f.tip}</div>
           </div>
         ))}
       </div>
@@ -720,6 +647,8 @@ function PriorityFoods({ foods }: { foods: any[] }) {
    §7 — RECOVERY ROADMAP
    ═══════════════════════════════════════════ */
 function RecoveryRoadmap({ phases }: { phases: any[] }) {
+  if (!phases || phases.length === 0) return null
+
   return (
     <motion.div custom={6} variants={fadeUp} initial="hidden" animate="visible"
       style={{
@@ -727,55 +656,34 @@ function RecoveryRoadmap({ phases }: { phases: any[] }) {
         background: 'var(--c-card)', border: '1px solid var(--c-border)',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
-        <Zap size={14} color="var(--c-accent)" />
-        <span style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-accent)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-          Recovery Roadmap
-        </span>
+      <div style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-primary)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 4 }}>
+        Replenishment Horizon
+      </div>
+      <div style={{ fontSize: '0.75rem', color: 'var(--c-muted)', marginBottom: 24 }}>
+        Structured stages toward clinical homeostasis
       </div>
 
-      <div style={{ display: 'flex', gap: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
         {phases.map((p, i) => (
-          <div key={p.phase} style={{ flex: 1, position: 'relative' }}>
-            {/* Connector */}
-            {i < phases.length - 1 && (
-              <div style={{
-                position: 'absolute', top: 16, left: 'calc(50% + 20px)', right: -16,
-                height: 2, background: p.status === 'active' ? 'var(--c-primary)' : 'var(--c-border)',
-                zIndex: 0,
-              }} />
-            )}
-
+          <div key={i} style={{
+            padding: 20, borderRadius: 16, background: 'var(--c-bg)',
+            border: p.status === 'active' ? '1px solid var(--c-primary)' : '1px solid var(--c-border-light)',
+            position: 'relative',
+          }}>
             <div style={{
-              padding: '16px', borderRadius: 14,
-              background: p.status === 'active' ? 'var(--c-surface-tint)' : 'var(--c-bg)',
-              border: `1px solid ${p.status === 'active' ? 'var(--c-primary)' : 'var(--c-border-light)'}`,
-              position: 'relative', zIndex: 1,
+              fontSize: '0.6875rem', fontWeight: 700, color: p.status === 'active' ? 'var(--c-primary)' : 'var(--c-muted)',
+              marginBottom: 6, textTransform: 'uppercase',
             }}>
-              {/* Phase number */}
-              <div style={{
-                width: 32, height: 32, borderRadius: 10,
-                background: p.status === 'active' ? 'var(--c-primary)' : 'var(--c-border)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: '0.875rem', fontWeight: 800, color: 'white',
-                fontFamily: 'var(--font-heading)', marginBottom: 12,
-              }}>{p.phase}</div>
-
-              <div style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-primary)', marginBottom: 4 }}>{p.label}</div>
-              <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--c-secondary)', marginBottom: 12, letterSpacing: '-0.01em' }}>{p.title}</div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                {p.tasks.map((t: string, j: number) => (
-                  <div key={j} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-                    <div style={{
-                      width: 14, height: 14, borderRadius: 4, marginTop: 2, flexShrink: 0,
-                      border: `2px solid ${p.status === 'active' ? 'var(--c-primary)' : 'var(--c-border)'}`,
-                    }} />
-                    <span style={{ fontSize: '0.75rem', color: 'var(--c-text-secondary)', lineHeight: 1.4 }}>{t}</span>
-                  </div>
-                ))}
-              </div>
+              {p.label}
             </div>
+            <div style={{ fontSize: '0.9375rem', fontWeight: 700, color: 'var(--c-secondary)', marginBottom: 12 }}>
+              {p.title}
+            </div>
+            <ul style={{ paddingLeft: 16, margin: 0, fontSize: '0.75rem', color: 'var(--c-text-secondary)', lineHeight: 1.6 }}>
+              {p.tasks.map((t: string, ti: number) => (
+                <li key={ti}>{t}</li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>
@@ -787,56 +695,36 @@ function RecoveryRoadmap({ phases }: { phases: any[] }) {
    §8 — HEALTH TIMELINE
    ═══════════════════════════════════════════ */
 function HealthTimeline({ events }: { events: any[] }) {
-  const typeConfig: Record<string, { icon: any; color: string }> = {
-    assessment: { icon: Activity, color: 'var(--c-primary)' },
-    insight: { icon: Sparkles, color: 'var(--c-accent)' },
-    action: { icon: Zap, color: 'var(--c-warning)' },
-    milestone: { icon: Heart, color: 'var(--c-success)' },
-  }
-
   return (
     <motion.div custom={7} variants={fadeUp} initial="hidden" animate="visible"
       style={{
-        padding: 28, borderRadius: 20,
+        padding: 28, borderRadius: 20, flex: 1,
         background: 'var(--c-card)', border: '1px solid var(--c-border)',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
-        <Clock size={14} color="var(--c-primary)" />
-        <span style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-primary)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-          Health Timeline
-        </span>
+      <div style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-primary)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 4 }}>
+        Clinical Assessment Trajectory
+      </div>
+      <div style={{ fontSize: '0.75rem', color: 'var(--c-muted)', marginBottom: 20 }}>
+        Chronological milestones for active assessment
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-        {events.map((e, i) => {
-          const config = typeConfig[e.type] || typeConfig.assessment
-          const Icon = config.icon
-          return (
-            <div key={i} style={{ display: 'flex', gap: 16 }}>
-              {/* Vertical line + dot */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 24 }}>
-                <div style={{
-                  width: 24, height: 24, borderRadius: 8, flexShrink: 0,
-                  background: 'var(--c-bg)', border: `2px solid ${config.color}`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                }}>
-                  <Icon size={10} color={config.color} />
-                </div>
-                {i < events.length - 1 && (
-                  <div style={{ width: 1, flex: 1, minHeight: 20, background: 'var(--c-border)' }} />
-                )}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        {events.map((e, i) => (
+          <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
+            <div style={{
+              width: 10, height: 10, borderRadius: 5, marginTop: 4, flexShrink: 0,
+              background: e.type === 'assessment' ? 'var(--c-primary)' : e.type === 'action' ? 'var(--c-warning)' : 'var(--c-accent)',
+            }} />
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--c-secondary)' }}>{e.event}</span>
+                <span style={{ fontSize: '0.6875rem', color: 'var(--c-muted)' }}>{e.time}</span>
               </div>
-
-              {/* Content */}
-              <div style={{ paddingBottom: 20, flex: 1 }}>
-                <div style={{ fontSize: '0.6875rem', color: 'var(--c-muted)', fontWeight: 500, marginBottom: 2 }}>{e.time}</div>
-                <div style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--c-secondary)', marginBottom: 2 }}>{e.event}</div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--c-text-secondary)' }}>{e.detail}</div>
-              </div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--c-muted)', marginTop: 2 }}>{e.detail}</div>
             </div>
-          )
-        })}
+          </div>
+        ))}
       </div>
     </motion.div>
   )
@@ -846,37 +734,37 @@ function HealthTimeline({ events }: { events: any[] }) {
    §9 — QUICK ACTIONS
    ═══════════════════════════════════════════ */
 function QuickActions({ assessmentId }: { assessmentId?: string }) {
-  const currentId = assessmentId || 'demo'
   const actions = [
-    { label: 'View Predictions', desc: '11-nutrient analysis', icon: Activity, to: `/predictions/${currentId}`, color: 'var(--c-primary)' },
-    { label: 'SHAP Analysis', desc: 'Explainable AI', icon: Brain, to: `/explainability/${currentId}`, color: 'var(--c-accent)' },
-    { label: 'Food Guide', desc: 'Personalized diet', icon: Utensils, to: `/recommendations/${currentId}`, color: 'var(--c-success)' },
-    { label: 'Download Report', desc: 'Clinical PDF', icon: FileText, to: `/reports/${currentId}`, color: 'var(--c-muted)' },
+    { label: 'Predictions', path: assessmentId ? `/predictions/${assessmentId}` : '/predictions', icon: Brain, desc: '9 ML targets & SHAP' },
+    { label: 'Precision Foods', path: assessmentId ? `/recommendations/${assessmentId}` : '/recommendations', icon: Utensils, desc: 'Targeted diet repletion' },
+    { label: 'Biochemical Network', path: assessmentId ? `/network/${assessmentId}` : '/network', icon: Activity, desc: 'Nutrient synergies' },
+    { label: 'Clinical Report', path: assessmentId ? `/reports/${assessmentId}` : '/reports', icon: FileText, desc: 'Exportable PDF dossier' },
   ]
 
   return (
     <motion.div custom={8} variants={fadeUp} initial="hidden" animate="visible"
-      style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}
+      style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14 }}
     >
       {actions.map(a => (
-        <Link key={a.label} to={a.to} style={{
-          padding: '20px 18px', borderRadius: 16, textDecoration: 'none',
-          background: 'var(--c-card)', border: '1px solid var(--c-border)',
-          display: 'flex', flexDirection: 'column', gap: 12,
-          transition: 'border-color 0.15s, transform 0.15s',
-        }}
-          onMouseEnter={e => { e.currentTarget.style.borderColor = a.color; e.currentTarget.style.transform = 'translateY(-2px)' }}
-          onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--c-border)'; e.currentTarget.style.transform = 'translateY(0)' }}
-        >
+        <Link key={a.label} to={a.path} style={{ textDecoration: 'none' }}>
           <div style={{
-            width: 36, height: 36, borderRadius: 10, background: 'var(--c-bg)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>
-            <a.icon size={18} color={a.color} />
-          </div>
-          <div>
-            <div style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'var(--c-secondary)', marginBottom: 2 }}>{a.label}</div>
-            <div style={{ fontSize: '0.6875rem', color: 'var(--c-muted)' }}>{a.desc}</div>
+            padding: 20, borderRadius: 16, background: 'var(--c-card)',
+            border: '1px solid var(--c-border)', display: 'flex', alignItems: 'center', gap: 14,
+            transition: 'all 0.2s ease', cursor: 'pointer',
+          }}
+            onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--c-primary)'}
+            onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--c-border)'}
+          >
+            <div style={{
+              width: 40, height: 40, borderRadius: 12, background: 'var(--c-surface-tint)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+            }}>
+              <a.icon size={20} color="var(--c-primary)" />
+            </div>
+            <div>
+              <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--c-secondary)' }}>{a.label}</div>
+              <div style={{ fontSize: '0.6875rem', color: 'var(--c-muted)' }}>{a.desc}</div>
+            </div>
           </div>
         </Link>
       ))}
@@ -884,21 +772,100 @@ function QuickActions({ assessmentId }: { assessmentId?: string }) {
   )
 }
 
-/* ═══════════════════════════════════════════════════
-   DASHBOARD PAGE — BENTO GRID ASSEMBLY
-   ═══════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   MAIN DASHBOARD PAGE COMPONENT
+   ═══════════════════════════════════════════ */
 export default function DashboardPage() {
-  const { assessmentId } = useParams<{ assessmentId?: string }>()
-  const data = useDashboardData(assessmentId)
+  const { assessmentId: urlParamId } = useParams<{ assessmentId?: string }>()
+  const navigate = useNavigate()
 
+  const [activeSession, setActiveSession] = useState<ClinicalSession | null>(() => sessionManager.getActiveSession())
+  const [showResumeModal, setShowResumeModal] = useState<boolean>(false)
+  const storedPrevious = useMemo(() => sessionManager.getStoredPreviousAssessment(), [])
+
+  // Sync session if URL explicitly specifies an assessment
+  useEffect(() => {
+    if (urlParamId && urlParamId !== 'demo') {
+      sessionManager.setActiveSession(urlParamId, new Date().toISOString(), 'completed')
+      setActiveSession(sessionManager.getActiveSession())
+    }
+  }, [urlParamId])
+
+  // On initial mount, if NO active session is running, but previous assessment exists in storage, show modal!
+  useEffect(() => {
+    if (!urlParamId && !activeSession?.active_assessment_id && storedPrevious?.id) {
+      setShowResumeModal(true)
+    }
+  }, [urlParamId, activeSession, storedPrevious])
+
+  const effectiveAssessmentId = activeSession?.active_assessment_id || urlParamId || null
+  const { data, loading } = useDashboardData(effectiveAssessmentId)
+
+  const handleConfirmResume = () => {
+    if (storedPrevious?.id) {
+      sessionManager.setActiveSession(storedPrevious.id, storedPrevious.createdAt, 'completed')
+      setActiveSession(sessionManager.getActiveSession())
+    }
+    setShowResumeModal(false)
+  }
+
+  const handleConfirmStartNew = () => {
+    sessionManager.clearActiveSession()
+    setActiveSession(null)
+    setShowResumeModal(false)
+    navigate('/assessment')
+  }
+
+  const handleOpenResume = () => {
+    if (storedPrevious?.id) {
+      setShowResumeModal(true)
+    } else {
+      navigate('/assessment')
+    }
+  }
+
+  // FIRST VISIT / NO ACTIVE SESSION: Render clean, professional empty state!
+  if (!effectiveAssessmentId || !data) {
+    return (
+      <div>
+        <EmptyAssessmentDashboard
+          onStartAssessment={() => navigate('/assessment')}
+          onResumeAssessment={handleOpenResume}
+          hasPrevious={Boolean(storedPrevious?.id)}
+        />
+
+        <ResumeAssessmentModal
+          isOpen={showResumeModal}
+          assessmentId={storedPrevious?.id || ''}
+          date={storedPrevious?.createdAt || ''}
+          onResume={handleConfirmResume}
+          onStartNew={handleConfirmStartNew}
+          onClose={() => setShowResumeModal(false)}
+        />
+      </div>
+    )
+  }
+
+  // ACTIVE SESSION POPULATED DASHBOARD
   return (
     <div>
+      {/* Resume Modal (in case triggered manually) */}
+      <ResumeAssessmentModal
+        isOpen={showResumeModal}
+        assessmentId={storedPrevious?.id || ''}
+        date={storedPrevious?.createdAt || ''}
+        onResume={handleConfirmResume}
+        onStartNew={handleConfirmStartNew}
+        onClose={() => setShowResumeModal(false)}
+      />
+
       {/* §1 — Hero Health Score */}
       <HeroScore
         score={data.healthScore}
         risk={data.overallRisk}
         change={data.scoreChange}
         date={data.assessmentDate}
+        riskCounts={data.riskCounts}
       />
 
       {/* §2-3 — AI Insight + Nutrient Heatmap (Bento Row) */}
@@ -927,7 +894,6 @@ export default function DashboardPage() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
         <HealthTimeline events={data.timeline} />
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {/* Lifestyle Snapshot */}
           <motion.div custom={7} variants={fadeUp} initial="hidden" animate="visible"
             style={{
               padding: 24, borderRadius: 20, flex: 1,
@@ -935,32 +901,32 @@ export default function DashboardPage() {
             }}
           >
             <div style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-primary)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>
-              Lifestyle Priorities
+              Assessment Lifecycle
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {[
-                { icon: Sun, label: 'Sunlight Exposure', current: '< 15 min/day', target: '30 min/day', urgency: 'high' },
-                { icon: Droplets, label: 'Hydration', current: '2.0L/day', target: '2.5L/day', urgency: 'low' },
-                { icon: Moon, label: 'Sleep Duration', current: '7 hrs', target: '7-8 hrs', urgency: 'low' },
-              ].map(l => (
-                <div key={l.label} style={{
-                  display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px',
-                  borderRadius: 10, background: 'var(--c-bg)', border: '1px solid var(--c-border-light)',
-                }}>
-                  <l.icon size={16} color={l.urgency === 'high' ? 'var(--c-warning)' : 'var(--c-success)'} />
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--c-secondary)' }}>{l.label}</div>
-                    <div style={{ fontSize: '0.6875rem', color: 'var(--c-muted)' }}>{l.current} → {l.target}</div>
-                  </div>
-                </div>
-              ))}
+              <div style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px',
+                borderRadius: 10, background: 'var(--c-bg)', border: '1px solid var(--c-border-light)',
+              }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--c-muted)' }}>Session ID</span>
+                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--c-primary)', fontFamily: 'monospace' }}>
+                  {effectiveAssessmentId.slice(0, 18)}...
+                </span>
+              </div>
+              <button
+                onClick={handleConfirmStartNew}
+                className="w-full py-2 px-3 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-colors flex items-center justify-center gap-1.5"
+              >
+                <PlusCircle className="w-3.5 h-3.5" />
+                Start New Assessment
+              </button>
             </div>
           </motion.div>
         </div>
       </div>
 
       {/* §9 — Quick Actions */}
-      <QuickActions assessmentId={assessmentId} />
+      <QuickActions assessmentId={effectiveAssessmentId} />
     </div>
   )
 }

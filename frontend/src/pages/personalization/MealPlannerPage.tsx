@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion, type Variants } from 'framer-motion'
 import api from '../../lib/api'
 import {
   Calendar, ShoppingCart, Utensils, DollarSign, Clock,
   Sparkles, CheckCircle2, ChevronRight, Download, Activity,
-  Layers, ArrowRight
+  Layers, ArrowRight, PlusCircle, RotateCcw
 } from 'lucide-react'
+import { sessionManager } from '../../lib/sessionManager'
+import { ResumeAssessmentModal } from '../../components/session/ResumeAssessmentModal'
 
 /* ─── Animations (Consistent with DashboardPage) ─── */
 const fadeUp: Variants = {
@@ -118,6 +121,12 @@ const VEGETARIAN_WEEK_SCHEDULE: Record<string, Record<'Breakfast' | 'Lunch' | 'S
 }
 
 export default function MealPlannerPage() {
+  const navigate = useNavigate()
+  const [activeSession, setActiveSession] = useState(() => sessionManager.getActiveSession())
+  const [showResumeModal, setShowResumeModal] = useState(false)
+  const storedPrevious = useMemo(() => sessionManager.getStoredPreviousAssessment(), [])
+  const effectiveId = activeSession?.active_assessment_id
+
   const [schedule, setSchedule] = useState<Record<string, Record<'Breakfast' | 'Lunch' | 'Snack' | 'Dinner', CalendarMeal>>>(() => {
     try {
       const raw = localStorage.getItem('nutriscan_active_assessment')
@@ -181,21 +190,12 @@ export default function MealPlannerPage() {
 
   useEffect(() => {
     async function loadMealPlan() {
-      let activeAssessment: any = null
-      let assessmentId: string | null = null
-      try {
-        assessmentId = localStorage.getItem('nutriscan_assessment_id')
-        const raw = localStorage.getItem('nutriscan_active_assessment')
-        if (raw) activeAssessment = JSON.parse(raw)
-      } catch { /* ignore */ }
-
-      const rawDiet = (activeAssessment?.dietary_pattern || activeAssessment?.dietaryPattern || 'OMNIVORE').toUpperCase()
-      const diet = rawDiet.includes('VEGAN') ? 'VEGAN' : rawDiet.includes('VEG') ? 'VEGETARIAN' : 'OMNIVORE'
+      if (!effectiveId) return
 
       try {
         const res = await api.post('/meal-plans/weekly', {
-          assessment_id: assessmentId,
-          dietary_pattern: diet,
+          assessment_id: effectiveId,
+          dietary_pattern: 'OMNIVORE',
           cultural_pattern: 'MEDITERRANEAN',
           daily_calorie_target: 2000,
           daily_budget_usd: 14.0,
@@ -266,7 +266,126 @@ export default function MealPlannerPage() {
     }
 
     loadMealPlan()
-  }, [])
+  }, [effectiveId])
+
+  if (!effectiveId) {
+    return (
+      <div style={{ maxWidth: 840, margin: '60px auto', padding: '0 24px' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          style={{
+            background: 'var(--c-card)',
+            border: '1px solid var(--c-border)',
+            borderRadius: 20,
+            padding: '56px 40px',
+            textAlign: 'center',
+            boxShadow: '0 12px 36px rgba(0, 0, 0, 0.04)'
+          }}
+        >
+          <div style={{
+            width: 72,
+            height: 72,
+            borderRadius: '50%',
+            background: 'rgba(37, 99, 235, 0.08)',
+            color: 'var(--c-primary)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 24px'
+          }}>
+            <Calendar size={36} />
+          </div>
+
+          <h2 style={{
+            fontSize: '1.65rem',
+            fontWeight: 800,
+            color: 'var(--c-text)',
+            marginBottom: 12,
+            letterSpacing: '-0.02em'
+          }}>
+            Meal plans require an assessment.
+          </h2>
+
+          <p style={{
+            fontSize: '1rem',
+            color: 'var(--c-secondary)',
+            lineHeight: 1.6,
+            maxWidth: 580,
+            margin: '0 auto 36px'
+          }}>
+            Personalized multi-day meal planning, nutrient targets, and automated grocery lists are generated from your clinical assessment findings. Complete an assessment to generate your personalized meal schedule.
+          </p>
+
+          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button
+              onClick={() => navigate('/assessment')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                background: 'var(--c-primary)',
+                color: '#fff',
+                padding: '12px 24px',
+                borderRadius: 10,
+                fontWeight: 600,
+                fontSize: '0.92rem',
+                border: 'none',
+                cursor: 'pointer',
+                boxShadow: '0 4px 14px rgba(37, 99, 235, 0.25)',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              <PlusCircle size={16} />
+              Start Assessment
+            </button>
+
+            {storedPrevious && (
+              <button
+                onClick={() => setShowResumeModal(true)}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  background: 'var(--c-card)',
+                  color: 'var(--c-text)',
+                  border: '1px solid var(--c-border)',
+                  padding: '12px 24px',
+                  borderRadius: 10,
+                  fontWeight: 600,
+                  fontSize: '0.92rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <RotateCcw size={16} />
+                Resume Previous Assessment
+              </button>
+            )}
+          </div>
+        </motion.div>
+
+        {storedPrevious && (
+          <ResumeAssessmentModal
+            isOpen={showResumeModal}
+            assessmentId={storedPrevious.id}
+            assessmentDate={storedPrevious.date}
+            onResume={() => {
+              sessionManager.setActiveSession(storedPrevious.id, storedPrevious.date, 'completed')
+              setActiveSession(sessionManager.getActiveSession())
+              setShowResumeModal(false)
+            }}
+            onStartNew={() => {
+              sessionManager.clearActiveSession()
+              setActiveSession(null)
+              setShowResumeModal(false)
+              navigate('/assessment')
+            }}
+          />
+        )}
+      </div>
+    )
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>

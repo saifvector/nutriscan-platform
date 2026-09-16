@@ -62,10 +62,7 @@ class PersonalizationService:
         plan = IntelligentMealPlanner.generate_plan(request)
         try:
             from ...core.persistence import PersistenceRepository
-            asmnt_id = getattr(request, "assessment_id", None)
-            if not asmnt_id:
-                recent = PersistenceRepository.list_assessments(limit=1)
-                asmnt_id = recent[0]["id"] if recent else plan.plan_id
+            asmnt_id = getattr(request, "assessment_id", None) or plan.plan_id
             PersistenceRepository.save_meal_plan(
                 str(asmnt_id),
                 request.dietary_pattern.value,
@@ -87,10 +84,7 @@ class PersonalizationService:
         forecast = ClinicalOutcomeForecaster.generate_full_forecast(request)
         try:
             from ...core.persistence import PersistenceRepository
-            asmnt_id = request.assessment_id
-            if not asmnt_id:
-                recent = PersistenceRepository.list_assessments(limit=1)
-                asmnt_id = recent[0]["id"] if recent else "latest"
+            asmnt_id = request.assessment_id or forecast.forecast_id
             PersistenceRepository.save_forecast(
                 str(asmnt_id),
                 forecast.model_dump() if hasattr(forecast, "model_dump") else forecast.dict()

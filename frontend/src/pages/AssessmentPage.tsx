@@ -4,6 +4,7 @@ import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import { ChevronRight, ChevronLeft, Send, User, Utensils, Activity, Heart, Stethoscope, Pill } from 'lucide-react'
 import { DIET_PATTERNS, ACTIVITY_LEVELS, SYMPTOM_LIST } from '../lib/constants'
 import api from '../lib/api'
+import { sessionManager } from '../lib/sessionManager'
 
 const slideVariants: Variants = {
   enter: { opacity: 0, x: 30 },
@@ -166,11 +167,8 @@ export default function AssessmentPage() {
         symptoms: form.symptoms, medical_history: form.medical_history, supplement_usage: form.supplement_usage,
       }
       const res = await api.post('/predict', payload)
-      const assessmentId = res.data.assessment_id || 'latest'
-      // Persist across browser session and localStorage for cross-module integration
-      sessionStorage.setItem('prediction_result', JSON.stringify(res.data))
-      localStorage.setItem('nutriscan_active_assessment', JSON.stringify(payload))
-      localStorage.setItem('nutriscan_assessment_id', String(assessmentId))
+      const assessmentId = String(res.data.assessment_id || 'latest')
+      sessionManager.setActiveSession(assessmentId, new Date().toISOString(), 'completed')
       navigate(`/dashboard/${assessmentId}`)
     } catch (err: any) {
       console.error('Assessment submission error:', err)

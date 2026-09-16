@@ -10,7 +10,7 @@ Endpoints:
 """
 
 import uuid
-from typing import Optional
+from typing import Optional, Any, Union
 from fastapi import APIRouter, HTTPException, Depends, status, Response
 from fastapi.responses import JSONResponse
 
@@ -171,6 +171,16 @@ async def get_report_pdf(
 
 
 @router.get(
+    "/dashboard",
+    status_code=status.HTTP_200_OK,
+    summary="Get Unlinked Dashboard State",
+    description="Returns clean empty state when no active assessment ID is provided."
+)
+async def get_dashboard_unlinked() -> Any:
+    return {"hasAssessment": False, "data": None}
+
+
+@router.get(
     "/dashboard/{assessment_id}",
     response_model=DashboardResponse,
     status_code=status.HTTP_200_OK,
@@ -209,7 +219,6 @@ async def get_dashboard(
 
 @router.get(
     "/progress/summary",
-    response_model=ProgressSummaryResponse,
     status_code=status.HTTP_200_OK,
     summary="Get Longitudinal Health Progress Summary",
     description="Calculates overall health score improvement, recovery velocity, resolved deficiencies, emerging risks, and per-nutrient recovery tracking."
@@ -217,7 +226,9 @@ async def get_dashboard(
 async def get_progress_summary(
     user_id: Optional[uuid.UUID] = None,
     assessment_id: Optional[uuid.UUID] = None
-) -> ProgressSummaryResponse:
+) -> Any:
+    if not assessment_id:
+        return {"hasAssessment": False, "data": None}
     try:
         return ReportingService.get_progress_summary(user_id=user_id, assessment_id=assessment_id)
     except Exception as e:
@@ -292,14 +303,16 @@ async def get_progress_comparison(
 
 @router.get(
     "/analytics/health-score",
-    response_model=AnalyticsHealthScoreResponse,
     status_code=status.HTTP_200_OK,
     summary="Get Health Score Analytics",
     description="Returns detailed health score decomposition, lifestyle influence weighting, and historical progression."
 )
 async def get_analytics_health_score(
-    user_id: Optional[uuid.UUID] = None
-) -> AnalyticsHealthScoreResponse:
+    user_id: Optional[uuid.UUID] = None,
+    assessment_id: Optional[str] = None
+) -> Any:
+    if not assessment_id:
+        return {"hasAssessment": False, "data": None}
     try:
         return ReportingService.get_analytics_health_score(user_id=user_id)
     except Exception as e:
@@ -311,14 +324,16 @@ async def get_analytics_health_score(
 
 @router.get(
     "/analytics/recovery",
-    response_model=AnalyticsRecoveryResponse,
     status_code=status.HTTP_200_OK,
     summary="Get Nutrient Recovery Analytics",
     description="Returns average recovery rate, weekly recovery velocity, resolved deficiency count, and full recovery timeline."
 )
 async def get_analytics_recovery(
-    user_id: Optional[uuid.UUID] = None
-) -> AnalyticsRecoveryResponse:
+    user_id: Optional[uuid.UUID] = None,
+    assessment_id: Optional[str] = None
+) -> Any:
+    if not assessment_id:
+        return {"hasAssessment": False, "data": None}
     try:
         return ReportingService.get_analytics_recovery(user_id=user_id)
     except Exception as e:

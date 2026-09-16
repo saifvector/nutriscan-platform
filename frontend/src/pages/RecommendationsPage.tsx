@@ -1,7 +1,12 @@
 import { useState, useMemo, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { motion, type Variants } from 'framer-motion'
-import { Utensils, Leaf, Dumbbell, Moon, Sun, Droplets, Heart, FileText, ChevronRight, Zap } from 'lucide-react'
+import {
+  Utensils, Leaf, Dumbbell, Moon, Sun, Droplets, Heart,
+  FileText, ChevronRight, Zap, PlusCircle, RotateCcw
+} from 'lucide-react'
+import { sessionManager } from '../lib/sessionManager'
+import { ResumeAssessmentModal } from '../components/session/ResumeAssessmentModal'
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -28,58 +33,20 @@ function getFoodEmoji(name: string, group?: string): string {
   return '🥗'
 }
 
-const FALLBACK_DATA = {
-  foods: {
-    priority1: [
-      { name: 'UV-Exposed Shiitake & Portobello Mushrooms', nutrient: 'Vitamin D', serving: '100g (3.5 oz)', density: 'Very High', tip: 'Sauté with cold-pressed olive oil. Exposure to ultraviolet sunlight boosts natural plant-derived Vitamin D2.', emoji: '🍄' },
-      { name: 'Cooked Green Lentils & Spinach', nutrient: 'Iron + Folate', serving: '1 cup cooked (180g)', density: 'Exceptional', tip: 'Pair with lemon juice or bell pepper (Vitamin C) to enhance non-heme iron absorption by up to 6x.', emoji: '🫘' },
-      { name: 'Fortified Nutritional Yeast', nutrient: 'Vitamin B12 + B-Complex', serving: '2 tablespoons (15g)', density: 'High', tip: 'Sprinkle on pasta, roasted vegetables, or soups. Rich in B1, B2, B3, B6, and active Vitamin B12.', emoji: '🧀' },
-      { name: 'Organic Sprouted Tofu', nutrient: 'Calcium + Protein + Zinc', serving: '150g (firm)', density: 'High', tip: 'Calcium-set tofu provides bioavailable calcium and complete essential amino acids for tissue repair.', emoji: '🧊' },
-    ],
-    priority2: [
-      { name: 'Steamed Baby Spinach', nutrient: 'Folate + Potassium + Magnesium', serving: '1 cup cooked (180g)', density: 'High', tip: 'Steaming reduces soluble oxalates while concentrating folate and magnesium availability.', emoji: '🥬' },
-      { name: 'Greek Yogurt or Fortified Soy Yogurt', nutrient: 'Calcium + B12 + Protein', serving: '200g', density: 'High', tip: 'Rich in probiotic cultures and calcium. Add berries for Vitamin C and antioxidant synergy.', emoji: '🥛' },
-      { name: 'Raw Pumpkin & Chia Seeds', nutrient: 'Zinc + Magnesium', serving: '30g (1 oz)', density: 'High', tip: 'Toast lightly. Excellent zinc-dense plant source with anti-inflammatory omega-3 alpha-linolenic acid.', emoji: '🎃' },
-      { name: 'Brazil Nuts (Selenium Micro-Dose)', nutrient: 'Selenium', serving: '1-2 nuts daily (5g)', density: 'Exceptional', tip: 'A single nut fulfills >100% RDA for selenoprotein enzymes and thyroid peroxidase support.', emoji: '🌰' },
-      { name: 'Whole Cooked Chickpeas', nutrient: 'Folate + Iron + Zinc', serving: '1 cup cooked', density: 'Very High', tip: 'Soak overnight before cooking to reduce phytate binding. Add cumin and turmeric for digestive ease.', emoji: '🫘' },
-    ],
-    priority3: [
-      { name: 'Orange & Red Bell Peppers', nutrient: 'Vitamin C', serving: '1 medium pepper', density: 'Very High', tip: 'Consume raw or lightly charred. Contains 3x the Vitamin C concentration of whole oranges.', emoji: '🫑' },
-      { name: 'Raw Almonds & Walnuts', nutrient: 'Vitamin E + Magnesium', serving: '30g (23 nuts)', density: 'High', tip: 'Raw or dry-roasted. Soak for 4 hours to improve enzyme inhibition and digestive ease.', emoji: '🥜' },
-      { name: 'Roasted Japanese Sweet Potato', nutrient: 'Vitamin A + Potassium', serving: '1 medium baked', density: 'Exceptional', tip: 'Bake with skin intact. Add healthy lipid drizzle (olive or avocado oil) for carotenoid micelle absorption.', emoji: '🍠' },
-    ],
-  },
-  synergies: [
-    { pair: ['Iron', 'Vitamin C'], mechanism: 'Ascorbic acid converts ferric (Fe3+) iron to bioavailable ferrous (Fe2+) form, multiplying absorption up to 6x.', foods: 'Spinach + Fresh Lemon Juice, Lentils + Red Bell Pepper', icon: '⚡' },
-    { pair: ['Calcium', 'Vitamin D'], mechanism: 'Vitamin D enhances active enterocyte calbindin synthesis for transcellular calcium transport.', foods: 'Fortified Plant Milk + Sunlight, Steamed Tofu + UV-Treated Mushrooms', icon: '🦴' },
-    { pair: ['Iodine', 'Selenium'], mechanism: 'Selenium-dependent iodothyronine deiodinases convert T4 to metabolically active T3 hormone.', foods: 'Brazil Nuts + Sea Vegetables (Nori / Dulse)', icon: '🦋' },
-    { pair: ['Potassium', 'Magnesium'], mechanism: 'Magnesium regulates the myocardial Na+/K+ ATPase pump, sustaining cellular electrical gradient.', foods: 'Avocado + Steamed Greens, Baked Sweet Potato + Pumpkin Seeds', icon: '❤️' },
-    { pair: ['Zinc', 'Plant Protein'], mechanism: 'Sprouting and fermenting legume protein degrades phytate complexation, elevating free ionic zinc.', foods: 'Sprouted Chickpeas + Pumpkin Seed Tahini, Tempeh + Sesame Dressing', icon: '💪' },
-  ],
-  lifestyle: [
-    { category: 'Sunlight & Photobiology', icon: Sun, actions: ['Get 15-30 min of direct midday sunlight (10am-2pm) for cutaneous pre-vitamin D3 synthesis', 'Expose arms and legs without sunscreen for optimal photochemical conversion', 'Consider broad-spectrum clinical UV-B lamp during winter months'] },
-    { category: 'Hydration & Electrolytes', icon: Droplets, actions: ['Maintain 2.5-3.0 liters of structured cellular water intake daily', 'Consume fluids between meals rather than during eating to preserve gastric acid enzymatic potency', 'Add a squeeze of fresh lemon and pinch of sea salt for intracellular electrolyte delivery'] },
-    { category: 'Circadian Sleep Architecture', icon: Moon, actions: ['Prioritize 7-8 hours of uninterrupted restorative slow-wave sleep', 'Consume magnesium-dense foods or herbal chamomile 1 hour before bed to support GABAergic relaxation', 'Avoid caffeine after 2pm to prevent adenosine receptor disruption and calcium clearance'] },
-    { category: 'Physical Activity & Bone Loading', icon: Dumbbell, actions: ['Engage in 30 minutes of progressive resistance or brisk walking 5 days weekly', 'Axial weight-bearing movement stimulates osteoblast mechanoreceptors and mineral uptake', 'Consume plant-based protein with electrolytes within 60 minutes post-training'] },
-    { category: 'Stress Regulation & Neuroendocrine', icon: Heart, actions: ['Practice 10-15 minutes of autonomic down-regulation (box breathing, diaphragmatic pacing)', 'Chronic sympathetic cortisol elevations accelerate renal excretion of magnesium and zinc', 'Incorporate adaptogenic teas (ashwagandha or holy basil) under clinical guidance'] },
-  ],
-  recovery: [
-    { phase: 1, label: 'Week 1', title: 'Acute Cellular Replenishment', milestones: ['Initiate targeted daily dietary protocol for identified high-priority micronutrients', 'Incorporate at least 2 Priority-1 therapeutic foods into every main meal', 'Implement strict Vitamin C pairing with every non-heme iron food source'] },
-    { phase: 2, label: 'Weeks 2-3', title: 'Metabolic Consolidation & Mineral Rebalancing', milestones: ['Introduce Priority-2 supportive staple foods into weekly meal rotations', 'Consistently hit sunlight, hydration, and sleep hygiene lifestyle protocols', 'Assess early functional recovery markers (mental clarity, muscle endurance, digestion)'] },
-    { phase: 3, label: 'Week 4+', title: 'Systemic Resilience & Long-Term Homeostasis', milestones: ['Maintain diversified dietary rotation across all three priority tiers', 'Conduct follow-up assessment to quantify clinical score trajectory and status improvement', 'Transition from acute therapeutic repletion to sustainable long-term maintenance habits'] },
-  ],
-}
-
-function useRecommendationData(assessmentId?: string) {
-  const [data, setData] = useState<typeof FALLBACK_DATA>(FALLBACK_DATA)
+function useRecommendationData(assessmentId: string | null) {
+  const [data, setData] = useState<any>(null)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    if (!assessmentId) {
+      setData(null)
+      return
+    }
+
     const fetchRecs = async () => {
+      setLoading(true)
       try {
-        const storedId = localStorage.getItem('nutriscan_assessment_id')
-        const id = (assessmentId && assessmentId !== 'demo') ? assessmentId : (storedId || '')
-        const url = id ? `/api/v1/recommendations/${id}` : '/api/v1/recommendations'
-        const res = await fetch(url)
+        const res = await fetch(`/api/v1/recommendations/${assessmentId}`)
         if (res.ok) {
           const apiData = await res.json()
           
@@ -101,7 +68,6 @@ function useRecommendationData(assessmentId?: string) {
               else if (f.priority_tier === 'PRIORITY_2') p2.push(mapped)
               else p3.push(mapped)
             })
-            // If tiers were unassigned, distribute evenly
             if (p1.length === 0 && p2.length === 0) {
               const allMapped = apiData.food_recommendations.map((f: any) => ({
                 name: f.food_name,
@@ -124,7 +90,7 @@ function useRecommendationData(assessmentId?: string) {
                 foods: s.meal_concept || `${s.primary_food} + ${s.enhancer_food}`,
                 icon: '⚡'
               }))
-            : data.synergies
+            : []
 
           const recovery = Array.isArray(apiData.recovery_milestones) && apiData.recovery_milestones.length > 0
             ? apiData.recovery_milestones.map((m: any, idx: number) => ({
@@ -135,27 +101,37 @@ function useRecommendationData(assessmentId?: string) {
                   ? m.daily_action_checklist
                   : [m.clinical_focus, m.primary_dietary_strategy].filter(Boolean)
               }))
-            : data.recovery
+            : []
+
+          const lifestyle = Array.isArray(apiData.lifestyle_modifications) && apiData.lifestyle_modifications.length > 0
+            ? apiData.lifestyle_modifications.map((l: any) => ({
+                category: l.category || 'General Lifestyle',
+                icon: Sun,
+                actions: Array.isArray(l.action_items) ? l.action_items : [l.recommendation || 'Maintain regular lifestyle habits']
+              }))
+            : []
 
           setData({
             foods: {
-              priority1: p1.length > 0 ? p1 : FALLBACK_DATA.foods.priority1,
-              priority2: p2.length > 0 ? p2 : FALLBACK_DATA.foods.priority2,
-              priority3: p3.length > 0 ? p3 : FALLBACK_DATA.foods.priority3,
+              priority1: p1,
+              priority2: p2,
+              priority3: p3,
             },
             synergies,
-            lifestyle: FALLBACK_DATA.lifestyle,
+            lifestyle,
             recovery,
           })
         }
       } catch (err) {
         console.error('Recommendations fetch error:', err)
+      } finally {
+        setLoading(false)
       }
     }
     fetchRecs()
   }, [assessmentId])
 
-  return data
+  return { data, loading }
 }
 
 function FoodCard({ food }: { food: any }) {
@@ -181,7 +157,13 @@ function FoodCard({ food }: { food: any }) {
 
 export default function RecommendationsPage() {
   const { assessmentId } = useParams()
-  const data = useRecommendationData(assessmentId)
+  const navigate = useNavigate()
+  const [activeSession, setActiveSession] = useState(() => sessionManager.getActiveSession())
+  const [showResumeModal, setShowResumeModal] = useState(false)
+  const storedPrevious = useMemo(() => sessionManager.getStoredPreviousAssessment(), [])
+
+  const effectiveId = activeSession?.active_assessment_id || (assessmentId && assessmentId !== 'demo' ? assessmentId : null)
+  const { data, loading } = useRecommendationData(effectiveId)
   const [activeTab, setActiveTab] = useState<'foods' | 'lifestyle' | 'recovery'>('foods')
 
   const tabs = [
@@ -189,6 +171,125 @@ export default function RecommendationsPage() {
     { key: 'lifestyle' as const, label: 'Lifestyle Interventions', icon: Leaf },
     { key: 'recovery' as const, label: 'Recovery Roadmap', icon: Zap },
   ]
+
+  if (!effectiveId || (!loading && !data)) {
+    return (
+      <div style={{ maxWidth: 840, margin: '60px auto', padding: '0 24px' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          style={{
+            background: 'var(--c-card)',
+            border: '1px solid var(--c-border)',
+            borderRadius: 20,
+            padding: '56px 40px',
+            textAlign: 'center',
+            boxShadow: '0 12px 36px rgba(0, 0, 0, 0.04)'
+          }}
+        >
+          <div style={{
+            width: 72,
+            height: 72,
+            borderRadius: '50%',
+            background: 'rgba(37, 99, 235, 0.08)',
+            color: 'var(--c-primary)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 24px'
+          }}>
+            <Utensils size={36} />
+          </div>
+
+          <h2 style={{
+            fontSize: '1.65rem',
+            fontWeight: 800,
+            color: 'var(--c-text)',
+            marginBottom: 12,
+            letterSpacing: '-0.02em'
+          }}>
+            Generate recommendations after assessment.
+          </h2>
+
+          <p style={{
+            fontSize: '1rem',
+            color: 'var(--c-secondary)',
+            lineHeight: 1.6,
+            maxWidth: 580,
+            margin: '0 auto 36px'
+          }}>
+            Personalized food recommendations, synergistic nutrient pairings, and therapeutic recovery roadmaps require an active clinical assessment to match your metabolic needs. Complete an assessment to generate clinical dietary interventions.
+          </p>
+
+          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button
+              onClick={() => navigate('/assessment')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                background: 'var(--c-primary)',
+                color: '#fff',
+                padding: '12px 24px',
+                borderRadius: 10,
+                fontWeight: 600,
+                fontSize: '0.92rem',
+                border: 'none',
+                cursor: 'pointer',
+                boxShadow: '0 4px 14px rgba(37, 99, 235, 0.25)',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              <PlusCircle size={16} />
+              Start Assessment
+            </button>
+
+            {storedPrevious && (
+              <button
+                onClick={() => setShowResumeModal(true)}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  background: 'var(--c-card)',
+                  color: 'var(--c-text)',
+                  border: '1px solid var(--c-border)',
+                  padding: '12px 24px',
+                  borderRadius: 10,
+                  fontWeight: 600,
+                  fontSize: '0.92rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <RotateCcw size={16} />
+                Resume Previous Assessment
+              </button>
+            )}
+          </div>
+        </motion.div>
+
+        {storedPrevious && (
+          <ResumeAssessmentModal
+            isOpen={showResumeModal}
+            assessmentId={storedPrevious.id}
+            assessmentDate={storedPrevious.date}
+            onResume={() => {
+              sessionManager.setActiveSession(storedPrevious.id, storedPrevious.date, 'completed')
+              setActiveSession(sessionManager.getActiveSession())
+              setShowResumeModal(false)
+            }}
+            onStartNew={() => {
+              sessionManager.clearActiveSession()
+              setActiveSession(null)
+              setShowResumeModal(false)
+              navigate('/assessment')
+            }}
+          />
+        )}
+      </div>
+    )
+  }
 
   return (
     <motion.div initial="hidden" animate="visible" variants={stagger}>
@@ -240,7 +341,7 @@ export default function RecommendationsPage() {
             { label: 'Priority 1 — Critical', desc: 'Address immediately for highest-risk nutrients', foods: data.foods.priority1, color: 'var(--c-danger)' },
             { label: 'Priority 2 — Important', desc: 'Add to weekly meal rotation', foods: data.foods.priority2, color: 'var(--c-warning)' },
             { label: 'Priority 3 — Maintenance', desc: 'Include regularly for overall balance', foods: data.foods.priority3, color: 'var(--c-success)' },
-          ].map(section => (
+          ].map((section: any) => (
             <motion.div key={section.label} variants={fadeUp} style={{ marginBottom: 28 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
                 <div style={{ width: 4, height: 20, borderRadius: 2, background: section.color }} />
@@ -250,14 +351,14 @@ export default function RecommendationsPage() {
                 </div>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
-                {section.foods.map(f => <FoodCard key={f.name} food={f} />)}
+                {section.foods.map((f: any) => <FoodCard key={f.name} food={f} />)}
               </div>
             </motion.div>
           ))}
           <motion.div variants={fadeUp} style={{ marginBottom: 28 }}>
             <div style={{ fontSize: '0.9375rem', fontWeight: 700, color: 'var(--c-secondary)', marginBottom: 14 }}>Nutrient Synergy Pairings</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
-              {data.synergies.map(s => (
+              {data.synergies.map((s: any) => (
                 <div key={s.pair.join('-')} className="card" style={{ padding: 20 }}>
                   <div style={{ fontSize: 20, marginBottom: 10 }}>{s.icon}</div>
                   <div style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'var(--c-primary)', marginBottom: 6 }}>{s.pair.join(' + ')}</div>
@@ -272,7 +373,7 @@ export default function RecommendationsPage() {
 
       {activeTab === 'lifestyle' && (
         <motion.div initial="hidden" animate="visible" variants={stagger} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-          {data.lifestyle.map(cat => (
+          {data.lifestyle.map((cat: any) => (
             <motion.div key={cat.category} variants={fadeUp} className="card" style={{ padding: 24 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
                 <div style={{ width: 36, height: 36, borderRadius: 10, background: 'var(--c-surface-tint)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -281,7 +382,7 @@ export default function RecommendationsPage() {
                 <span style={{ fontSize: '0.9375rem', fontWeight: 700, color: 'var(--c-secondary)' }}>{cat.category}</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {cat.actions.map((action, i) => (
+                {cat.actions.map((action: any, i: number) => (
                   <div key={i} style={{ display: 'flex', gap: 10 }}>
                     <div style={{ width: 5, height: 5, borderRadius: 3, background: 'var(--c-primary)', marginTop: 6, flexShrink: 0 }} />
                     <p style={{ fontSize: '0.8125rem', color: 'var(--c-text-secondary)', lineHeight: 1.5 }}>{action}</p>
@@ -295,7 +396,7 @@ export default function RecommendationsPage() {
 
       {activeTab === 'recovery' && (
         <motion.div initial="hidden" animate="visible" variants={stagger} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-          {data.recovery.map((phase, i) => (
+          {data.recovery.map((phase: any, i: number) => (
             <motion.div key={phase.phase} variants={fadeUp} className="card" style={{ padding: 24 }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: 20 }}>
                 <div style={{
@@ -308,7 +409,7 @@ export default function RecommendationsPage() {
                   <div style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-primary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 4 }}>{phase.label}</div>
                   <h3 style={{ fontSize: '1.125rem', fontWeight: 700, color: 'var(--c-secondary)', marginBottom: 12, letterSpacing: '-0.01em' }}>{phase.title}</h3>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                    {phase.milestones.map((m, j) => (
+                    {phase.milestones.map((m: any, j: number) => (
                       <div key={j} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
                         <div style={{ width: 18, height: 18, borderRadius: 4, flexShrink: 0, marginTop: 1, border: '2px solid var(--c-border)', display: 'flex', alignItems: 'center', justifyContent: 'center' }} />
                         <p style={{ fontSize: '0.8125rem', color: 'var(--c-text-secondary)', lineHeight: 1.5 }}>{m}</p>

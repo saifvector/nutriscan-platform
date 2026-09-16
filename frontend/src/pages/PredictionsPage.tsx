@@ -1,13 +1,15 @@
 import { useMemo, useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { motion, type Variants } from 'framer-motion'
 import {
   Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell
 } from 'recharts'
-import { Brain, ChevronRight } from 'lucide-react'
+import { Brain, ChevronRight, FileText, PlusCircle, RotateCcw } from 'lucide-react'
 import { NUTRIENT_ICONS } from '../lib/constants'
 import { useTheme } from '../lib/theme'
+import { sessionManager } from '../lib/sessionManager'
+import { ResumeAssessmentModal } from '../components/session/ResumeAssessmentModal'
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -30,27 +32,6 @@ function useChartColors() {
     tooltipBorder: resolved === 'dark' ? '#293548' : '#E5E7EB',
   }), [resolved])
 }
-
-const FALLBACK_PREDICTIONS = [
-  { name: 'Vitamin D', code: 'VITAMIN_D', probability: 0.87, risk: 'HIGH', confidence: 0.92, rank: 1 },
-  { name: 'Iron', code: 'IRON', probability: 0.74, risk: 'HIGH', confidence: 0.88, rank: 2 },
-  { name: 'Vitamin B12', code: 'VITAMIN_B12', probability: 0.62, risk: 'MODERATE', confidence: 0.85, rank: 3 },
-  { name: 'Folate', code: 'FOLATE', probability: 0.55, risk: 'MODERATE', confidence: 0.81, rank: 4 },
-  { name: 'Potassium', code: 'POTASSIUM', probability: 0.52, risk: 'MODERATE', confidence: 0.84, rank: 5 },
-  { name: 'Calcium', code: 'CALCIUM', probability: 0.48, risk: 'MODERATE', confidence: 0.79, rank: 6 },
-  { name: 'Iodine', code: 'IODINE', probability: 0.45, risk: 'MODERATE', confidence: 0.82, rank: 7 },
-  { name: 'Zinc', code: 'ZINC', probability: 0.42, risk: 'MODERATE', confidence: 0.83, rank: 8 },
-  { name: 'Vitamin B6', code: 'VITAMIN_B6', probability: 0.39, risk: 'LOW', confidence: 0.86, rank: 9 },
-  { name: 'Magnesium', code: 'MAGNESIUM', probability: 0.38, risk: 'LOW', confidence: 0.86, rank: 10 },
-  { name: 'Vitamin B1', code: 'VITAMIN_B1', probability: 0.35, risk: 'LOW', confidence: 0.88, rank: 11 },
-  { name: 'Selenium', code: 'SELENIUM', probability: 0.33, risk: 'LOW', confidence: 0.85, rank: 12 },
-  { name: 'Vitamin C', code: 'VITAMIN_C', probability: 0.31, risk: 'LOW', confidence: 0.90, rank: 13 },
-  { name: 'Vitamin B2', code: 'VITAMIN_B2', probability: 0.28, risk: 'LOW', confidence: 0.87, rank: 14 },
-  { name: 'Vitamin A', code: 'VITAMIN_A', probability: 0.25, risk: 'LOW', confidence: 0.87, rank: 15 },
-  { name: 'Vitamin B3', code: 'VITAMIN_B3', probability: 0.22, risk: 'LOW', confidence: 0.89, rank: 16 },
-  { name: 'Protein', code: 'PROTEIN', probability: 0.18, risk: 'LOW', confidence: 0.91, rank: 17 },
-  { name: 'Vitamin E', code: 'VITAMIN_E', probability: 0.14, risk: 'LOW', confidence: 0.89, rank: 18 },
-]
 
 function normalizePredictions(data: any): any[] {
   if (!data) return []
@@ -83,94 +64,50 @@ function normalizePredictions(data: any): any[] {
   return []
 }
 
-function usePredictionData() {
-  const [predictions, setPredictions] = useState<any[]>(() => {
-    try {
-      const stored = sessionStorage.getItem('prediction_result')
-      if (stored) {
-        const parsed = JSON.parse(stored)
-        if (!parsed.mock) {
-          const normalized = normalizePredictions(parsed)
-          if (normalized.length > 0) return normalized
-        }
-      }
-    } catch { /* fallback */ }
-    return []
-  })
+function usePredictionData(explicitId?: string) {
+  const [predictions, setPredictions] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    const activeSession = sessionManager.getActiveSession()
+    const targetId = explicitId || activeSession?.active_assessment_id
+
+    if (!targetId) {
+      setPredictions([])
+      return
+    }
+
     const fetchPredictions = async () => {
-      // 1. Check if valid predictions exist in sessionStorage
+      setLoading(true)
       try {
-        const stored = sessionStorage.getItem('prediction_result')
-        if (stored) {
-          const parsed = JSON.parse(stored)
-          if (!parsed.mock) {
-            const normalized = normalizePredictions(parsed)
-            if (normalized.length > 0) {
-              setPredictions(normalized)
-              return
-            }
-          }
-        }
-      } catch { /* ignore */ }
-
-      // 2. Check if active patient assessment payload exists in localStorage
-      let assessmentPayload: any = null
-      try {
-        const localAsmnt = localStorage.getItem('nutriscan_active_assessment')
-        if (localAsmnt) {
-          assessmentPayload = JSON.parse(localAsmnt)
-        }
-      } catch { /* ignore */ }
-
-      if (assessmentPayload) {
-        try {
-          setLoading(true)
-          const res = await fetch('/api/v1/predict', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(assessmentPayload)
-          })
-          if (res.ok) {
-            const data = await res.json()
-            sessionStorage.setItem('prediction_result', JSON.stringify(data))
-            const normalized = normalizePredictions(data)
-            if (normalized.length > 0) {
-              setPredictions(normalized)
-              return
-            }
-          }
-        } catch (err) {
-          console.error('Predictions fetch error with active assessment:', err)
-        } finally {
-          setLoading(false)
-        }
-      }
-
-      // 3. Fallback to latest persisted assessment report
-      try {
-        const res = await fetch('/api/v1/reports/history')
+        const res = await fetch(`/api/v1/predictions/${targetId}`)
         if (res.ok) {
-          const history = await res.json()
-          if (Array.isArray(history) && history.length > 0) {
-            const latest = history[0]
-            if (latest.report_payload?.nutrient_predictions) {
-              const normalized = normalizePredictions(latest.report_payload)
-              if (normalized.length > 0) {
-                setPredictions(normalized)
-                return
-              }
-            }
-          }
+          const data = await res.json()
+          const normalized = normalizePredictions(data)
+          setPredictions(normalized)
+          return
         }
+
+        // Try dashboard bundle if direct predictions not present
+        const dashRes = await fetch(`/api/v1/dashboard/${targetId}`)
+        if (dashRes.ok) {
+          const dashData = await dashRes.json()
+          const normalized = normalizePredictions(dashData)
+          setPredictions(normalized)
+          return
+        }
+
+        setPredictions([])
       } catch (err) {
-        console.error('Historical prediction fetch note:', err)
+        console.error('Predictions fetch error:', err)
+        setPredictions([])
+      } finally {
+        setLoading(false)
       }
     }
+
     fetchPredictions()
-  }, [])
+  }, [explicitId])
 
   return { predictions, loading }
 }
@@ -183,20 +120,30 @@ function NutrientCard({ nutrient }: { nutrient: any }) {
           <span style={{ fontSize: 18 }}>{NUTRIENT_ICONS[nutrient.name] || '💊'}</span>
           <div>
             <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--c-secondary)' }}>{nutrient.name}</div>
-            <div style={{ fontSize: '0.6875rem', color: 'var(--c-muted)' }}>Priority #{nutrient.rank}</div>
+            <div style={{ fontSize: '0.6875rem', color: 'var(--c-muted)' }}>Rank #{nutrient.rank}</div>
           </div>
         </div>
-        <span className={`risk-badge risk-badge-${nutrient.risk.toLowerCase()}`}>{nutrient.risk}</span>
+        <span className={`badge badge-${nutrient.risk.toLowerCase()}`}>
+          {nutrient.risk}
+        </span>
       </div>
+
       <div style={{ marginBottom: 10 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-          <span style={{ fontSize: '0.6875rem', color: 'var(--c-muted)' }}>Deficiency Probability</span>
-          <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--c-secondary)' }}>{Math.round(nutrient.probability * 100)}%</span>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', marginBottom: 4 }}>
+          <span style={{ color: 'var(--c-muted)' }}>Deficiency Probability</span>
+          <span style={{ fontWeight: 700, color: 'var(--c-secondary)' }}>{Math.round(nutrient.probability * 100)}%</span>
         </div>
         <div className="progress-bar">
-          <div className="progress-fill" style={{ width: `${Math.round(nutrient.probability * 100)}%`, background: nutrient.risk === 'HIGH' ? 'var(--c-danger)' : nutrient.risk === 'MODERATE' ? 'var(--c-warning)' : 'var(--c-success)' }} />
+          <div
+            className="progress-bar-fill"
+            style={{
+              width: `${Math.round(nutrient.probability * 100)}%`,
+              background: nutrient.risk === 'HIGH' ? 'var(--c-danger)' : nutrient.risk === 'MODERATE' ? 'var(--c-warning)' : 'var(--c-success)',
+            }}
+          />
         </div>
       </div>
+
       <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.6875rem', color: 'var(--c-muted)' }}>
         <span>Confidence</span>
         <span style={{ fontWeight: 600 }}>{Math.round(nutrient.confidence * 100)}%</span>
@@ -206,8 +153,22 @@ function NutrientCard({ nutrient }: { nutrient: any }) {
 }
 
 export default function PredictionsPage() {
-  const { assessmentId } = useParams()
-  const { predictions: nutrients, loading } = usePredictionData()
+  const { assessmentId: urlParamId } = useParams()
+  const navigate = useNavigate()
+
+  const [activeSession, setActiveSession] = useState(() => sessionManager.getActiveSession())
+  const [showResumeModal, setShowResumeModal] = useState(false)
+  const storedPrevious = useMemo(() => sessionManager.getStoredPreviousAssessment(), [])
+
+  useEffect(() => {
+    if (urlParamId && urlParamId !== 'demo') {
+      sessionManager.setActiveSession(urlParamId, new Date().toISOString(), 'completed')
+      setActiveSession(sessionManager.getActiveSession())
+    }
+  }, [urlParamId])
+
+  const effectiveId = activeSession?.active_assessment_id || (urlParamId !== 'demo' ? urlParamId : undefined)
+  const { predictions: nutrients, loading } = usePredictionData(effectiveId)
   const cc = useChartColors()
 
   const radarData = nutrients.map((n: any) => ({
@@ -222,24 +183,70 @@ export default function PredictionsPage() {
 
   const getRiskFill = (risk: string) => risk === 'HIGH' ? cc.danger : risk === 'MODERATE' ? cc.warning : cc.success
 
+  const handleConfirmResume = () => {
+    if (storedPrevious?.id) {
+      sessionManager.setActiveSession(storedPrevious.id, storedPrevious.createdAt, 'completed')
+      setActiveSession(sessionManager.getActiveSession())
+    }
+    setShowResumeModal(false)
+  }
+
+  const handleConfirmStartNew = () => {
+    sessionManager.clearActiveSession()
+    setActiveSession(null)
+    setShowResumeModal(false)
+    navigate('/assessment')
+  }
+
   if (loading) {
     return (
-      <div style={{ padding: 40, textAlign: 'center' }}>
+      <div style={{ padding: 60, textAlign: 'center' }}>
         <p style={{ color: 'var(--c-muted)', fontSize: '0.875rem' }}>Analyzing clinical screening parameters and computing multi-nutrient probabilities...</p>
       </div>
     )
   }
 
-  if (nutrients.length === 0) {
+  if (!effectiveId || nutrients.length === 0) {
     return (
-      <div style={{ maxWidth: 640, margin: '60px auto', textAlign: 'center' }} className="card">
-        <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-secondary)', marginBottom: 8 }}>No Active Assessment Data</h2>
-        <p style={{ fontSize: '0.875rem', color: 'var(--c-muted)', marginBottom: 24 }}>
-          Please complete the clinical screening questionnaire to generate personalized multi-nutrient predictions.
+      <div className="flex flex-col items-center justify-center py-20 px-6 text-center max-w-2xl mx-auto rounded-3xl border border-slate-800 bg-slate-900/50 shadow-2xl my-12"
+        style={{ background: 'var(--c-card, #0f172a)', borderColor: 'var(--c-border, #1e293b)' }}
+      >
+        <div className="w-16 h-16 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center mb-6 shadow-xl shadow-teal-500/5">
+          <Brain className="w-8 h-8" />
+        </div>
+        <h2 className="text-2xl font-bold tracking-tight text-slate-100 mb-3 font-heading">
+          No assessment available.
+        </h2>
+        <p className="text-sm text-slate-400 leading-relaxed mb-8 max-w-lg">
+          No active clinical screening assessment is currently loaded to evaluate nutrient deficiency probabilities.
         </p>
-        <Link to="/assessment" className="btn-primary" style={{ display: 'inline-flex', padding: '10px 24px' }}>
-          Start New Assessment <ChevronRight size={14} />
-        </Link>
+        <div className="flex flex-col sm:flex-row items-center gap-3.5 w-full justify-center">
+          <button
+            onClick={() => navigate('/assessment')}
+            className="w-full sm:w-auto px-7 py-3 rounded-xl font-semibold text-sm bg-teal-600 hover:bg-teal-500 text-white transition-all shadow-lg shadow-teal-900/30 flex items-center justify-center gap-2 active:scale-98"
+          >
+            <PlusCircle className="w-4 h-4" />
+            Start Assessment
+          </button>
+          {storedPrevious?.id && (
+            <button
+              onClick={() => setShowResumeModal(true)}
+              className="w-full sm:w-auto px-7 py-3 rounded-xl font-semibold text-sm bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all flex items-center justify-center gap-2 active:scale-98"
+            >
+              <RotateCcw className="w-4 h-4" />
+              Resume Previous Assessment
+            </button>
+          )}
+        </div>
+
+        <ResumeAssessmentModal
+          isOpen={showResumeModal}
+          assessmentId={storedPrevious?.id || ''}
+          date={storedPrevious?.createdAt || ''}
+          onResume={handleConfirmResume}
+          onStartNew={handleConfirmStartNew}
+          onClose={() => setShowResumeModal(false)}
+        />
       </div>
     )
   }
@@ -285,7 +292,7 @@ export default function PredictionsPage() {
       </div>
 
       <motion.div variants={fadeUp}>
-        <Link to={`/explainability/${assessmentId}`} className="btn-primary" style={{ padding: '10px 24px', fontSize: '0.8125rem' }}>
+        <Link to={`/explainability/${effectiveId}`} className="btn-primary" style={{ padding: '10px 24px', fontSize: '0.8125rem' }}>
           <Brain size={14} /> View Explainability <ChevronRight size={14} />
         </Link>
       </motion.div>

@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { motion, type Variants } from 'framer-motion'
 import {
   FileText,
@@ -17,8 +17,12 @@ import {
   Sparkles,
   Eye,
   Calendar,
-  AlertCircle
+  AlertCircle,
+  PlusCircle,
+  RotateCcw
 } from 'lucide-react'
+import { sessionManager } from '../lib/sessionManager'
+import { ResumeAssessmentModal } from '../components/session/ResumeAssessmentModal'
 
 import HealthScoreCard from '../components/reporting/HealthScoreCard'
 import ProgressOverview from '../components/reporting/ProgressOverview'
@@ -36,73 +40,50 @@ const stagger: Variants = { visible: { transition: { staggerChildren: 0.05 } } }
 
 export default function ReportsPage() {
   const { assessmentId } = useParams()
-  const id = assessmentId || 'demo'
+  const navigate = useNavigate()
+  const [activeSession, setActiveSession] = useState(() => sessionManager.getActiveSession())
+  const [showResumeModal, setShowResumeModal] = useState(false)
+  const storedPrevious = useMemo(() => sessionManager.getStoredPreviousAssessment(), [])
+
+  const effectiveId = activeSession?.active_assessment_id || (assessmentId && assessmentId !== 'demo' ? assessmentId : null)
 
   const [activeTab, setActiveTab] = useState<'overview' | 'analytics' | 'history' | 'comparison'>('overview')
   const [generating, setGenerating] = useState(false)
   const [generated, setGenerated] = useState(false)
   const [pdfModalOpen, setPdfModalOpen] = useState(false)
 
-  // Live state with fallback defaults
-  const [healthScore, setHealthScore] = useState(76)
-  const [healthCategory, setHealthCategory] = useState('GOOD')
-  const [scoreBreakdown, setScoreBreakdown] = useState({
-    baseline_score: 100.0,
-    nutrient_risk_deduction: 22.5,
-    interaction_penalty: 4.5,
-    lifestyle_modifier: 3.0,
-    confidence_adjustment: 1.5,
-    deficiency_count: 1,
-    protective_factor_count: 5,
-    final_score: 76,
-    category: 'GOOD',
-    interpretation: 'Good nutritional foundation (75–89). Mild isolated risk factors identified in Vitamin D and Iron. Targeted whole food pairings and lifestyle optimization continue to reinforce homeostatic recovery.',
-  })
-
-  const [recoveryItems, setRecoveryItems] = useState(() => [
-    { nutrient: 'Vitamin D', initial_risk_score: 87, current_risk_score: 52, improvement_percentage: 40.2, recovery_trend: 'Improving', recovery_status: 'On Track', recommended_action: 'Continue morning sunlight (30m) and daily fatty fish/egg yolk sources.' },
-    { nutrient: 'Iron', initial_risk_score: 71, current_risk_score: 43, improvement_percentage: 39.4, recovery_trend: 'Improving', recovery_status: 'On Track', recommended_action: 'Maintain ascorbic acid pairing with legumes; avoid tea 90m post-meal.' },
-    { nutrient: 'Vitamin B12', initial_risk_score: 63, current_risk_score: 29, improvement_percentage: 54.0, recovery_trend: 'Improving', recovery_status: 'Resolved', recommended_action: 'Maintenance phase: adequate nutritional yeast or fortified plant milk.' },
-    { nutrient: 'Calcium', initial_risk_score: 60, current_risk_score: 44, improvement_percentage: 26.7, recovery_trend: 'Improving', recovery_status: 'Needs Attention', recommended_action: 'Incorporate fortified tahini, almonds, and dark leafy greens.' },
-    { nutrient: 'Magnesium', initial_risk_score: 54, current_risk_score: 38, improvement_percentage: 29.6, recovery_trend: 'Improving', recovery_status: 'On Track', recommended_action: 'Maintain pumpkin seeds, dark chocolate, and avocado intake.' },
-    { nutrient: 'Folate', initial_risk_score: 48, current_risk_score: 32, improvement_percentage: 33.3, recovery_trend: 'Improving', recovery_status: 'On Track', recommended_action: 'Continue asparagus, lentils, and steamed spinach servings.' },
-    { nutrient: 'Zinc', initial_risk_score: 45, current_risk_score: 31, improvement_percentage: 31.1, recovery_trend: 'Improving', recovery_status: 'On Track', recommended_action: 'Optimal immune signaling; continue pumpkin seeds and legumes.' },
-    { nutrient: 'Vitamin C', initial_risk_score: 35, current_risk_score: 20, improvement_percentage: 42.9, recovery_trend: 'Improving', recovery_status: 'Resolved', recommended_action: 'Robust antioxidant level; daily citrus and bell pepper intake.' },
-    { nutrient: 'Vitamin A', initial_risk_score: 28, current_risk_score: 18, improvement_percentage: 35.7, recovery_trend: 'Improving', recovery_status: 'Resolved', recommended_action: 'Carotenoid status optimal with sweet potatoes and carrots.' },
-    { nutrient: 'Vitamin E', initial_risk_score: 22, current_risk_score: 15, improvement_percentage: 31.8, recovery_trend: 'Improving', recovery_status: 'Resolved', recommended_action: 'Lipid membrane protection intact via sunflower seeds and extra virgin olive oil.' },
-    { nutrient: 'Protein', initial_risk_score: 20, current_risk_score: 12, improvement_percentage: 40.0, recovery_trend: 'Improving', recovery_status: 'Resolved', recommended_action: 'Nitrogen balance positive with high-density amino acid rotation.' },
-  ])
-
-  const [assessmentHistory, setAssessmentHistory] = useState<HistoryEntry[]>([
-    { id: 'rpt-003', assessment_id: 'aid-003', assessment_number: 3, date: '2026-09-10', version: 'v1.2', health_score: 76, health_category: 'GOOD', risk_distribution: { HIGH: 0, MODERATE: 3, LOW: 8 }, deficiency_count: 1, status: 'COMPLETED' },
-    { id: 'rpt-002', assessment_id: 'aid-002', assessment_number: 2, date: '2026-08-26', version: 'v1.1', health_score: 69, health_category: 'MODERATE_RISK', risk_distribution: { HIGH: 1, MODERATE: 4, LOW: 6 }, deficiency_count: 2, status: 'COMPLETED' },
-    { id: 'rpt-001', assessment_id: 'aid-001', assessment_number: 1, date: '2026-08-10', version: 'v1.0', health_score: 62, health_category: 'MODERATE_RISK', risk_distribution: { HIGH: 3, MODERATE: 4, LOW: 4 }, deficiency_count: 3, status: 'COMPLETED' },
-  ])
-
-  const [timelineCoordinates, setTimelineCoordinates] = useState([
-    { date: 'Aug 10', health_score: 62, 'Vitamin D': 87, 'Iron': 71, 'Vitamin B12': 63, 'Calcium': 60, 'Zinc': 45 },
-    { date: 'Aug 26', health_score: 69, 'Vitamin D': 68, 'Iron': 56, 'Vitamin B12': 45, 'Calcium': 51, 'Zinc': 37 },
-    { date: 'Sep 10', health_score: 76, 'Vitamin D': 52, 'Iron': 43, 'Vitamin B12': 29, 'Calcium': 44, 'Zinc': 31 },
-  ])
+  // Live state
+  const [healthScore, setHealthScore] = useState<number>(0)
+  const [healthCategory, setHealthCategory] = useState<string>('UNKNOWN')
+  const [scoreBreakdown, setScoreBreakdown] = useState<any>(null)
+  const [recoveryItems, setRecoveryItems] = useState<any[]>([])
+  const [assessmentHistory, setAssessmentHistory] = useState<HistoryEntry[]>([])
+  const [timelineCoordinates, setTimelineCoordinates] = useState<any[]>([])
 
   // Fetch live data from API
   useEffect(() => {
+    if (!effectiveId) return
+
     const fetchReportData = async () => {
       try {
-        // Fetch health score
-        const hsRes = await fetch('/api/v1/analytics/health-score')
-        if (hsRes.ok) {
-          const hsData = await hsRes.json()
-          if (hsData.health_score != null) setHealthScore(hsData.health_score)
-          if (hsData.category) setHealthCategory(hsData.category)
-          if (hsData.breakdown) setScoreBreakdown(prev => ({ ...prev, ...hsData.breakdown }))
-          if (hsData.recovery_items?.length) setRecoveryItems(hsData.recovery_items)
+        const [hsRes, histRes, trendRes] = await Promise.allSettled([
+          fetch(`/api/v1/analytics/health-score?assessment_id=${effectiveId}`),
+          fetch('/api/v1/reports/history'),
+          fetch('/api/v1/progress/trends')
+        ])
+
+        if (hsRes.status === 'fulfilled' && hsRes.value.ok) {
+          const hsData = await hsRes.value.json()
+          if (hsData.hasAssessment !== false) {
+            if (hsData.health_score != null) setHealthScore(hsData.health_score)
+            if (hsData.category) setHealthCategory(hsData.category)
+            if (hsData.breakdown) setScoreBreakdown(hsData.breakdown)
+            if (hsData.recovery_items?.length) setRecoveryItems(hsData.recovery_items)
+          }
         }
 
-        // Fetch report history
-        const histRes = await fetch('/api/v1/reports/history')
-        if (histRes.ok) {
-          const histData = await histRes.json()
+        if (histRes.status === 'fulfilled' && histRes.value.ok) {
+          const histData = await histRes.value.json()
           if (Array.isArray(histData) && histData.length > 0) {
             setAssessmentHistory(histData.map((r: any) => ({
               id: r.id || r.report_id,
@@ -119,10 +100,8 @@ export default function ReportsPage() {
           }
         }
 
-        // Fetch progress trends
-        const trendRes = await fetch('/api/v1/progress/trends')
-        if (trendRes.ok) {
-          const trendData = await trendRes.json()
+        if (trendRes.status === 'fulfilled' && trendRes.value.ok) {
+          const trendData = await trendRes.value.json()
           if (trendData.timeline?.length) setTimelineCoordinates(trendData.timeline)
         }
       } catch (err) {
@@ -130,7 +109,7 @@ export default function ReportsPage() {
       }
     }
     fetchReportData()
-  }, [id])
+  }, [effectiveId])
 
   const reportSections = [
     { title: 'Executive Summary', desc: 'Overall health score, risk classification, and priority clinical nutrients.', icon: Shield },
@@ -141,13 +120,14 @@ export default function ReportsPage() {
     { title: 'Longitudinal Progress', desc: 'Recovery velocity, velocity per week, and before-and-after deltas.', icon: TrendingUp },
   ]
 
-  const handleGenerate = async () => {
+  const handleGenerateReport = async () => {
+    if (!effectiveId) return
     setGenerating(true)
     try {
       const res = await fetch('/api/v1/reports/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ assessment_id: id })
+        body: JSON.stringify({ assessment_id: effectiveId })
       })
       if (res.ok) {
         setGenerated(true)
@@ -160,10 +140,132 @@ export default function ReportsPage() {
     }
   }
 
+  const handleGenerate = handleGenerateReport
+
   const handleDownloadPdf = (reportId?: string) => {
-    // Direct link to backend PDF stream or preview
-    const targetId = reportId || 'demo'
-    window.open(`/api/v1/reports/${targetId}/pdf`, '_blank')
+    const targetId = reportId || effectiveId
+    if (targetId) {
+      window.open(`/api/v1/reports/${targetId}/pdf`, '_blank')
+    }
+  }
+
+  if (!effectiveId) {
+    return (
+      <div style={{ maxWidth: 840, margin: '60px auto', padding: '0 24px' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          style={{
+            background: 'var(--c-card)',
+            border: '1px solid var(--c-border)',
+            borderRadius: 20,
+            padding: '56px 40px',
+            textAlign: 'center',
+            boxShadow: '0 12px 36px rgba(0, 0, 0, 0.04)'
+          }}
+        >
+          <div style={{
+            width: 72,
+            height: 72,
+            borderRadius: '50%',
+            background: 'rgba(37, 99, 235, 0.08)',
+            color: 'var(--c-primary)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 24px'
+          }}>
+            <FileText size={36} />
+          </div>
+
+          <h2 style={{
+            fontSize: '1.65rem',
+            fontWeight: 800,
+            color: 'var(--c-text)',
+            marginBottom: 12,
+            letterSpacing: '-0.02em'
+          }}>
+            No reports available.
+          </h2>
+
+          <p style={{
+            fontSize: '1rem',
+            color: 'var(--c-secondary)',
+            lineHeight: 1.6,
+            maxWidth: 580,
+            margin: '0 auto 36px'
+          }}>
+            Clinical assessment reports, PDF exports, and longitudinal recovery summaries require a completed nutritional assessment. Complete an assessment to generate your formal diagnostic report.
+          </p>
+
+          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button
+              onClick={() => navigate('/assessment')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                background: 'var(--c-primary)',
+                color: '#fff',
+                padding: '12px 24px',
+                borderRadius: 10,
+                fontWeight: 600,
+                fontSize: '0.92rem',
+                border: 'none',
+                cursor: 'pointer',
+                boxShadow: '0 4px 14px rgba(37, 99, 235, 0.25)',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              <PlusCircle size={16} />
+              Start Assessment
+            </button>
+
+            {storedPrevious && (
+              <button
+                onClick={() => setShowResumeModal(true)}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  background: 'var(--c-card)',
+                  color: 'var(--c-text)',
+                  border: '1px solid var(--c-border)',
+                  padding: '12px 24px',
+                  borderRadius: 10,
+                  fontWeight: 600,
+                  fontSize: '0.92rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <RotateCcw size={16} />
+                Resume Previous Assessment
+              </button>
+            )}
+          </div>
+        </motion.div>
+
+        {storedPrevious && (
+          <ResumeAssessmentModal
+            isOpen={showResumeModal}
+            assessmentId={storedPrevious.id}
+            assessmentDate={storedPrevious.date}
+            onResume={() => {
+              sessionManager.setActiveSession(storedPrevious.id, storedPrevious.date, 'completed')
+              setActiveSession(sessionManager.getActiveSession())
+              setShowResumeModal(false)
+            }}
+            onStartNew={() => {
+              sessionManager.clearActiveSession()
+              setActiveSession(null)
+              setShowResumeModal(false)
+              navigate('/assessment')
+            }}
+          />
+        )}
+      </div>
+    )
   }
 
   return (
@@ -452,7 +554,7 @@ export default function ReportsPage() {
       <PDFPreviewModal
         isOpen={pdfModalOpen}
         onClose={() => setPdfModalOpen(false)}
-        reportId={id}
+        reportId={effectiveId || ''}
         patientName="Alex Mercer"
         assessmentDate="2026-09-10"
         healthScore={healthScore}
