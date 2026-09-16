@@ -66,18 +66,37 @@ The platform follows a decoupled, cloud-native architecture partitioned into sev
 
 ---
 
-## Clinical Interface and Platform Views
+## Clinical Interface and Platform Workstations
 
-The platform includes a specialized clinical workstation for practitioners, researchers, and dietary specialists:
+The platform features a comprehensive clinical workstation suite for practitioners, researchers, and dietary specialists:
 
-### Clinical Copilot and Assessment Dossier
-![Clinical Copilot Dossier](reports/screenshots/copilot_1_dossier.png)
+### 1. Clinical Health Dashboard and Deficiency Risk Map
+Standardized health score synthesis, patient risk tiering (High, Moderate, Low), and interactive multi-nutrient deficiency risk matrix.
+![Clinical Health Dashboard](assets/screenshots/dashboard.png)
 
-### Differential Diagnosis and Risk Scoring
-![Differential Diagnosis](reports/screenshots/copilot_4_differential.png)
+### 2. Clinical Copilot Workstation
+AI-assisted diagnostic evaluation, primary ICD-10 diagnostic consensus, clinical impact analysis, and key biomarker findings table.
+![Clinical Copilot Workstation](assets/screenshots/clinical_copilot.png)
 
-### Clinical Decision Review and Safety Verification
-![Clinical Decision Review](reports/screenshots/copilot_5_review.png)
+### 3. Interactive Biochemical Interaction Network
+Dynamic neural graph mapping multi-nutrient synergies, antagonistic interactions, absorption co-factors, and deficiency cascade pathways.
+![Biochemical Interaction Network](assets/screenshots/biochemical_network.png)
+
+### 4. Autonomous Multi-Agent Scientific Research Workstation
+Consensus deliberation across specialized clinical agents with live scientific evidence citations (Lancet, AJCN, PubMed) and grade ratings.
+![Multi-Agent Research Workstation](assets/screenshots/multi_agent_research.png)
+
+### 5. 7-Day Precision Chrononutrition Meal Planner
+Circadian-synchronized therapeutic meal schedules with nutrient target coverage (RDA), mineral absorption separation, and smart grocery intelligence.
+![Precision Meal Planner](assets/screenshots/precision_meal_planner.png)
+
+### 6. Pharmacokinetic Longitudinal Biomarker Forecasting
+Bayesian biomarker replenishment curves with 95% statistical confidence intervals, recovery velocities, and kinetic drag analysis.
+![Longitudinal Forecasting](assets/screenshots/longitudinal_forecasting.png)
+
+### 7. Governance, Telemetry and Regulatory Compliance
+Real-time inference latency tracking (P50/P95), population covariate drift (PSI), probability calibration (ECE), and 18/18 locked NIH safety rules.
+![Governance and Telemetry](assets/screenshots/governance_telemetry.png)
 
 ---
 
