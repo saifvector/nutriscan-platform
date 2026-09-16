@@ -1,0 +1,116 @@
+{
+  "high_risk_positive_case": {
+    "test_index": 2,
+    "predicted_probability": 0.3210837185779447,
+    "actual_label": 1,
+    "top_contributing_features": [
+      {
+        "feature": "symptom_fatigue_energy_loss",
+        "shap_value": -0.09408360239267846,
+        "feature_value": 3.0
+      },
+      {
+        "feature": "history_anemia",
+        "shap_value": -0.08679899440771001,
+        "feature_value": 0.0
+      },
+      {
+        "feature": "lifestyle_moderate_activity_minutes",
+        "shap_value": -0.07781369897486352,
+        "feature_value": 60.0
+      },
+      {
+        "feature": "supp_iodine_mcg",
+        "shap_value": -0.06787970118803217,
+        "feature_value": 75.0
+      },
+      {
+        "feature": "supp_folate_dfe_mcg",
+        "shap_value": -0.06688163191684193,
+        "feature_value": 566.0
+      },
+      {
+        "feature": "exam_pulse_rate",
+        "shap_value": -0.06157407607361558,
+        "feature_value": 70.66666666666667
+      },
+      {
+        "feature": "diet_caffeine_mg",
+        "shap_value": -0.05839816746391085,
+        "feature_value": 184.5
+      },
+      {
+        "feature": "demo_education_level",
+        "shap_value": 0.0577776080584517,
+        "feature_value": 3.0
+      },
+      {
+        "feature": "supp_calcium_mg",
+        "shap_value": -0.05514676240117342,
+        "feature_value": 30.0
+      },
+      {
+        "feature": "exam_diastolic_bp",
+        "shap_value": -0.053708487963194176,
+        "feature_value": 93.66666666666667
+      }
+    ]
+  },
+  "low_risk_negative_case": {
+    "test_index": 0,
+    "predicted_probability": 0.2418206377321488,
+    "actual_label": 0,
+    "top_contributing_features": [
+      {
+        "feature": "supp_zinc_mg",
+        "shap_value": -0.2931019822399558,
+        "feature_value": 32.2
+      },
+      {
+        "feature": "symptom_fatigue_energy_loss",
+        "shap_value": -0.09712072269566809,
+        "feature_value": 2.0
+      },
+      {
+        "feature": "lifestyle_moderate_activity_minutes",
+        "shap_value": -0.0772914076090263,
+        "feature_value": 90.0
+      },
+      {
+        "feature": "nar_zinc",
+        "shap_value": -0.0747268553798796,
+        "feature_value": 2.0
+      },
+      {
+        "feature": "history_anemia",
+        "shap_value": -0.07249542598087282,
+        "feature_value": 0.0
+      },
+      {
+        "feature": "supp_iodine_mcg",
+        "shap_value": -0.06787970118803217,
+        "feature_value": 75.0
+      },
+      {
+        "feature": "exam_pulse_rate",
+        "shap_value": -0.062135777562277145,
+        "feature_value": 70.33333333333333
+      },
+      {
+        "feature": "diet_niacin_b3_mg",
+        "shap_value": 0.05047358936876096,
+        "feature_value": 21.916999999999994
+      },
+      {
+        "feature": "history_arthritis",
+        "shap_value": 0.03669466086614127,
+        "feature_value": 1.0
+      },
+      {
+        "feature": "supp_vitamin_b6_mg",
+        "shap_value": -0.035987124963732034,
+        "feature_value": 1.7
+      }
+    ]
+  }
+}

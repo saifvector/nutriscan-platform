@@ -1,0 +1,15 @@
+apiVersion: v2
+name: nutriscan
+description: Enterprise Helm Chart for NutriScan AI Clinical Copilot & Screening Platform
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+maintainers:
+  - name: NutriScan Healthcare Platform Engineering
+    email: devops@nutriscan.ai
+keywords:
+  - healthcare
+  - ai
+  - clinical-copilot
+  - nutrition
+  - machine-learning

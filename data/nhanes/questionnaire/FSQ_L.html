@@ -1,0 +1,2673 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm -->
+<html xml:lang="en" lang="en" xmlns="http://www.w3c.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <title>FSQ_L</title>
+    <meta name="title" content="NHANES August 2021-August 2023: Food Security  Data Documentation, Codebook, and Frequencies">
+    <link rel="stylesheet" href="./FSQ_L_files/documentation.css">
+  </head>
+  <body class="nhanes-doc">
+    <div id="toc">
+      <h3>Table of Contents</h3>
+      <div id="toc-scroll">
+        <ul>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#Component_Description">Component Description</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#Quality_Assurance_&amp;_Quality_Control">Quality Assurance &amp; Quality Control</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#Data_Processing_and_Editing">Data Processing and Editing</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#Analytic_Notes">Analytic Notes</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#References">References</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#Codebook">Codebook</a>
+            <ul id="CodebookLinks">
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#SEQN">SEQN - Respondent sequence number</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD032A">FSD032A - HH Worried run out of food</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD032B">FSD032B - HH Food didn't last</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD032C">FSD032C - HH Couldn't afford balanced meals</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSQBOX1">FSQBOX1 - CHECK ITEM</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD041">FSD041 - HH Adults cut size or skip meals</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD052">FSD052 - HH How often adults cut size/skip meals</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD061">FSD061 - HH Eat less than should</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD071">FSD071 - HH Hungry, but didn't eat</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD081">FSD081 - HH Lost weight, no money for food</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSQBOX2">FSQBOX2 - CHECK ITEM</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD092">FSD092 - HH Adults not eat whole day</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD102">FSD102 - HH How often adults not eat for day</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSDAD">FSDAD - Adult food security category</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD151">FSD151 - HH Emergency food received</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSQ165">FSQ165 - HH FS benefit: ever received</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD165N">FSD165N - HH FS benefit: # of people ever received</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSQ012">FSQ012 - HH FS benefit: receive in last 12 months</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD012N">FSD012N - HH FS benefit: # of people received(12m)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD230">FSD230 - HH FS benefit: currently receive</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD230N">FSD230N - HH FS benefit: #people currently receive</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD795">FSD795 - HH FS benefit: # of months received</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD225">FSD225 - HH FS benefit: time since last received</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD235">FSD235 - HH FS benefit: amount received last time</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSQBOX5">FSQBOX5 - CHECK ITEM</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD162">FSD162 - HH WIC benefit: receive in last 12 month</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSQ760">FSQ760 - HH WIC benefit: received in last 30 days</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD760N">FSD760N - HH WIC benefit: no. people received</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSQBOX6">FSQBOX6 - CHECK ITEM</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSQ653">FSQ653 - CH WIC benefit: ever received</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD660ZC">FSD660ZC - CH WIC benefit: currently receive</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD675">FSD675 - CH WIC benefit: received in infancy</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD680">FSD680 - CH WIC benefit: received b/w 1-4 yrs old</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSD670ZC">FSD670ZC - CH WIC benefit: # of months received</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSQ690">FSQ690 - CH WIC benefit: Mom received while preg.</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#FSQ695">FSQ695 - CH WIC benefit: starting month of preg.</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#Appendix_1">Appendix 1</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#Appendix_2">Appendix 2</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="PageHeader">
+        <h1>National Health and Nutrition Examination Survey</h1>
+        <h2>August 2021-August 2023 Data Documentation, Codebook, and Frequencies</h2>
+        <h3>Food Security  (FSQ_L)</h3>
+        <h4> Data File: FSQ_L.xpt</h4>
+        <h5 class="left">First Published: December 2025</h5>
+        <h5 class="right">Last Revised: NA</h5>
+      </div>
+      <div id="Sections">
+        <h2 id="Component_Description">Component Description</h2><p>The Food Security section (variable name prefix FSQ) provides individual and household-level interview data on the following topics:</p>
+<p><strong>1. Household food security</strong><br>
+In the household interview, an adult responded to the
+U.S. Food Security Survey Module (US FSSM) questions (Bickel G, et. al, 2000).
+All households were asked 10 questions. These questions refer to all household
+members, not just NHANES participants. One categorical household-level variable
+was created to characterize the food security status for adults in the
+household. The categorical variable derived from these responses is released on
+each household participant’s record. Different from previous NHANES cycles, the
+8 US FSSM items that were unique to households with children were not included
+in NHANES August 2021-August 2023 to reduce survey participant burden. Please
+refer to the Analytic Notes section for additional details.&nbsp;</p>
+<p>A question on individual household members use of emergency foods from food banks, soup kitchens, or other organizations in the last 12 months is also included in this section.</p>
+<p><strong>2. Supplemental Nutrition Assistance Program (SNAP)/Food Stamp program benefits</strong><br>
+All SNAP/Food Stamp benefits questions were collected at the household level. To obtain a more complete picture of all benefit recipients in the household, the data collection instruments were designed to identify each household member’s SNAP/Food Stamp benefit receipt status using a household roster. The data were then summarized at the household level.</p>
+<p>Within each household, for each family that participated in NHANES, one adult responded to questions about SNAP/Food Stamp benefits received by all household members. Information collected included whether anyone in the household had ever received SNAP/Food Stamp benefits; whether anyone in the household received benefits in the last 12 months; and whether anyone in the household is a current SNAP/Food Stamp benefits recipient. For households with benefit recipients in the past 12 months, the number of months benefits were received; the time since benefits were last received; and the amount of benefits the household received last was also collected.</p>
+<p>Household-level data on SNAP/Food Stamp benefits are released on all household participants’ records. The time since benefits were last received and the time until anticipated benefits will be received was calculated for each family within the household, based on the family interview date, and released at the family level.</p>
+<p><strong>3. Women, Infants and Children (WIC) program benefits&nbsp;</strong><br>
+Data collected for WIC benefits included three household-level questions as well as six individual-level questions for participants aged birth to 5 years, and one individual-level question for participants 1-5 years.</p>
+<p>In the household interview, an adult from each family responded to the question on whether anyone in the household received WIC benefits in the last 12 months, followed by questions on current WIC participation in the last 30 days and the number of people in the household receiving WIC benefits. These household-level questions are released on all household participants’ records.</p>
+<p>For participants aged birth to five years, information was collected on whether they ever received WIC benefits, current participation, total length (in months) of benefits received, and WIC participation during various important periods in early childhood, including prenatal, infancy, and 1-4 years old, and released on the individual participant’s record.</p>
+<p>The table in&nbsp;<a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#Appendix_1">Appendix 1</a> provides detailed information on each of the four FSQ components described above. <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FSQ_L.htm#Appendix_2">Appendix 2</a> highlights the changes in the FSQ section among the latest&nbsp;three&nbsp;release cycles. </p><h2 id="Quality_Assurance_&amp;_Quality_Control">Quality Assurance &amp; Quality Control</h2><p>The automated interview systems used in NHANES are programmed with built-in consistency checks to reduce data entry errors. All the data were reviewed for accuracy and completeness. NHANES staff reviewed audio recordings of interviews, traveled to field sites to observe interviews, read interviewer comments, and attended training and re-training sessions to maintain the high-quality data.</p><h2 id="Data_Processing_and_Editing">Data Processing and Editing</h2><p>Frequency counts were checked, "skip" patterns were verified, and the reasonableness of question responses was reviewed. Edits were made to some variables to ensure the completeness, consistency, and analytic usefulness of the data. Edits were also made, when necessary, to address data disclosure concerns.</p>
+<p><strong>FSDAD (Adult food security category)</strong><br>
+Ten FSSM questions were asked of households irrespective of if they had children. One categorical variable with four response levels was created based on the number of affirmative responses for those questions. This categorical variable could be used to characterize the overall food security status for the adults in the household. The algorithm used to derive the categorical variable is described below:</p>
+<p>Count affirmative responses in these 10 items: FSD032a, FSD032b, FSD032c, FSD041, FSD052, FSD061, FSD071, FSD081, FSD092, and FSD102. Derive the codes as the following:</p>
+<p>1 = Adult full food security: no affirmative response in any of these items.<br>
+2 = Adult marginal food security: 1-2 affirmative responses.<br>
+3 = Adult low food security: 3-5 affirmative responses.<br>
+4 = Adult very low food security: 6-10 affirmative responses.</p>
+<p>No food security category is assigned if all or most of these items were answered as “don’t know” or “refusal.” There are 25 such records in the August 2021-August 2023 dataset. These records contain missing values for FSDAD.</p>
+<p><strong>FSD165-FSD235 (all variables for SNAP/Food Stamp benefits)</strong><br>
+Information on the receipt of SNAP/Food Stamp benefits by all household members was provided in the present file: ever (FSQ165); the number of people ever received (FSD165N); received in the last 12 months (FSQ012); the number of people who received in the last 12 months (FSD012N); currently receiving (FSD230); the number of people currently receiving (FSD230N); number of months received benefits (FSD795); time since last received benefits (FSD225); and amount of benefits last received (FSD235). Receipt of SNAP/Food Stamp benefits by all individuals residing in the household, both survey and non-survey participants, was included. In households with more than one family where there were inconsistencies across families, all data were reviewed and reconciled.</p>
+<p><strong>FSD225 (Time since last received SNAP/Food Stamp benefits)&nbsp;</strong><br>
+During the household interview, the respondent was asked to report the date that the household last received SNAP/Food Stamp benefits. A variable was then derived by calculating the number of days between the time the household last received the SNAP/Food Stamp benefit and the date of interview for the corresponding family. The derived variable was released as FSD225 at the family level.</p>
+<p><strong>FSQ235 (Amount last received SNAP/Food Stamp benefits)</strong><br>
+The amount last received in benefits was determined by asking about the date and the amount last received by all persons in the household who received SNAP/Food Stamps in the last 12 months. The latest amount received by the household was released at the household level.</p>
+<p><strong>FSD795 (number of months received SNAP/Food Stamp benefits)</strong><br>
+The number of months SNAP/Food Stamp benefits were received is included for households with current recipients and those who received them in the last 12 months. When a household had both current recipients and past recipients in the last 12 months, the total number of months were calculated by checking for overlapping months. For example, if a household member is currently receiving benefits from May to July, and another household member received benefits from February to May, the total number of months was 6 (2 + 4 = 6), in the past 12 months.</p>
+<p><strong>FSD760N (number of people in the household received WIC benefits in the past 30 days)</strong><br>
+The family respondent was asked whether anyone living in the household received WIC benefits in the past 30 days. Respondents with affirmative answers were followed up with a question (i.e., FSQ770) asking them to identify all persons living in the household who received benefits from a household roster. In addition to these household-level questions, child participants were also asked about whether they were receiving WIC benefits at the time of their own interviews (i.e., FSD660ZC). Responses to FSQ770 and FSD660ZC were used to derive the data in FSD760N. Receipt of WIC benefits by both survey and non-survey participants residing in the household was included. In households with more than one family where there were inconsistencies across families, all data were reviewed and reconciled.</p>
+<p><strong>FSD670ZC (number of months the participant received WIC benefits)</strong><br>
+This information was collected using two-part (number and unit) questions to allow respondents to report the length in either months or years. The released variable was edited to standardize the reported length to number of months.</p><h2 id="Analytic_Notes">Analytic Notes</h2><p>NHANES has assessed household food security with the U.S. Food Security Survey Module (US FSSM) since 1999. In the August 2021-August 2023 cycle, the 8 items of the US FSMM that were unique to households with children were dropped to reduce survey participant burden. As result, the derived variable encoding household food security categories utilizing the full 18 US FSSM items (i.e., FSDHH) is not included in the present dataset. The adult food security category indicator (FSDAD) is still reported for all participants in the present dataset. FSDAD was derived from the 10 basic US FSSM items, including questions on overall household experiences associated with difficulty in meeting food needs, and specific questions on related behaviors among adult household members. Users should be cautious when comparing data from NHANES August 2021-August 2023 with previous survey cycles, and with reports using separate food security category indicators for households with and without children, such as the <a href="https://ers.usda.gov/sites/default/files/_laserfiche/publications/109896/ERR-337.pdf?v=63714" target="_blank">Household Food Security in the United States in 2023</a> (Rabbitt MP, et. al, 2024). For more information on food security measurement, please refer to the USDA's website at: <a href="https://www.ers.usda.gov/topics/food-nutrition-assistance/food-security-in-the-us/measurement" target="_blank">Food Security in the U.S. - Measurement / Economic Research Service</a>.</p>
+<p>In the August 2021-August 2023 cycle, detailed individual-level WIC participation questions for women aged 12 years and over were dropped to reduce survey participant burden. However, their participation in the last 12 months and last 30 days would be included in the household level WIC participation items (i.e., FSD162, FSQ760, and FSD760N).</p>
+<p>The NHANES household interview included two questionnaires: a sample participant questionnaire to collect information regarding each individual survey participant’s personal health status, and a family questionnaire to collect information at the family level, such as total income for the family, food availability in the family, etc. The sample participant questionnaire was answered by participants themselves (adult proxy for child under 16 years old). The family questionnaire required an adult family member, preferably the head of the family, to respond to these questions for the entire family. The information on household food security status and SNAP/Food Stamp program as well as WIC program benefits in the FSQ section were collected as part of this family questionnaire. In August 2021-August 2023, 1,325 participants had missing values for all of these items in the FSQ section because the family questionnaire was not administered. Most common reasons for missing the family questionnaire interview were: “no eligible adult respondent in the family available” or “refusal.”</p>
+<p>FSQ data were collected as part of the household interview. Thus, the interview sample weights should be used in their analysis. However, if the data analysis requires merging of these data with data collected in the MEC, examination sample weights should be used for analyses. Please refer to the <a href="https://wwwn.cdc.gov/nchs/nhanes/analyticguidelines.aspx" target="_blank">NHANES Analytic Guidelines</a> and the on-line <a href="https://wwwn.cdc.gov/nchs/nhanes/tutorials/" target="_blank">NHANES Tutorial</a> for further details on the use of sample weights and other analytic issues. Both are available on the NHANES website.</p></div>
+      <div id="References">
+        <h2>References</h2>
+        <ul>
+          <li>Bickel G, Nord M, Price C, Hamilton W, Cook J. Guide to Measuring Household Food Security Revised 2000. U.S. Department of Agriculture, Food and Nutrition Service, Alexandria VA. March, 2000. Available from: <a href="https://fns-prod.azureedge.us/sites/default/files/FSGuide.pdf" target="_blank">https://fns-prod.azureedge.us/sites/default/files/FSGuide.pdf</a> [Accessed on: 12/12/2025]</li>
+          <li>Rabbitt MP, Reed-Jones M, Hales LJ, &amp; Burke MP. (2024). Household food security in the United States in 2023 (Report No. ERR-337). U.S. Department of Agriculture, Economic Research Service. Available from: <a href="https://ers.usda.gov/sites/default/files/_laserfiche/publications/109896/ERR-337.pdf?v=63714" target="_blank">https://ers.usda.gov/sites/default/files/_laserfiche/publications/109896/ERR-337.pdf?v=63714</a> [Accessed on: 12/12/2025]</li>
+        </ul>
+      </div>
+      <div id="Codebook">
+        <h2>Codebook and Frequencies</h2>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SEQN">SEQN - Respondent sequence number</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SEQN</dd>
+            <dt>SAS Label: </dt>
+            <dd>Respondent sequence number</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Respondent sequence number.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD032A">FSD032A - HH Worried run out of food</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD032A</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH Worried run out of food</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Now I am going to read you several statements that people have made about their food situation. For these statements, please tell me whether the statement was often true, sometimes true, or never true for {you/your household} in the last 12 months, that is since last {DISPLAY CURRENT MONTH AND LAST YEAR}. The first statement is . . .  {I/we} worried whether {my/our} food would run out before {I/we} got money to buy more.</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Often true</td>
+                <td class="values" align="right">993</td>
+                <td class="values" align="right">993</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Sometimes true</td>
+                <td class="values" align="right">2143</td>
+                <td class="values" align="right">3136</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Never true</td>
+                <td class="values" align="right">7440</td>
+                <td class="values" align="right">10576</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">27</td>
+                <td class="values" align="right">10603</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">10606</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1327</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD032B">FSD032B - HH Food didn't last</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD032B</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH Food didn't last</dd>
+            <dt>English Text: </dt>
+            <dd class="info">[The next statement is . . .]  The food that {I/we} bought just didn't last, and {I/we} didn't have enough money to get more food.</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Often true</td>
+                <td class="values" align="right">742</td>
+                <td class="values" align="right">742</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Sometimes true</td>
+                <td class="values" align="right">1858</td>
+                <td class="values" align="right">2600</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Never true</td>
+                <td class="values" align="right">7971</td>
+                <td class="values" align="right">10571</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">28</td>
+                <td class="values" align="right">10599</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">7</td>
+                <td class="values" align="right">10606</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1327</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD032C">FSD032C - HH Couldn't afford balanced meals</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD032C</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH Couldn't afford balanced meals</dd>
+            <dt>English Text: </dt>
+            <dd class="info">[The next statement is . . .]  {I/we} couldn't afford to eat balanced meals.</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Often true</td>
+                <td class="values" align="right">697</td>
+                <td class="values" align="right">697</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Sometimes true</td>
+                <td class="values" align="right">1652</td>
+                <td class="values" align="right">2349</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Never true</td>
+                <td class="values" align="right">8226</td>
+                <td class="values" align="right">10575</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">26</td>
+                <td class="values" align="right">10601</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">5</td>
+                <td class="values" align="right">10606</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1327</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSQBOX1">FSQBOX1 - CHECK ITEM</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSQBOX1</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">BOX 1. CHECK ITEM: IF RESPONSE TO FSD032 'A', 'B', or 'C' IS CODE 1 OR 2 (OFTEN TRUE OR SOMETIMES TRUE), CONTINUE. OTHERWISE, GO TO FSDAD.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD041">FSD041 - HH Adults cut size or skip meals</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD041</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH Adults cut size or skip meals</dd>
+            <dt>English Text: </dt>
+            <dd class="info">In the last 12 months, since last {DISPLAY CURRENT MONTH AND LAST YEAR}, did {you/you or other adults in your household} ever cut the size of your meals or skip meals because there wasn't enough money for food?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">1527</td>
+                <td class="values" align="right">1527</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">2110</td>
+                <td class="values" align="right">3637</td>
+                <td class="values">FSD061</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3637</td>
+                <td class="values">FSD061</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">5</td>
+                <td class="values" align="right">3642</td>
+                <td class="values">FSD061</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8291</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD052">FSD052 - HH How often adults cut size/skip meals</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD052</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH How often adults cut size/skip meals</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How often did this happen?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Almost every month,</td>
+                <td class="values" align="right">428</td>
+                <td class="values" align="right">428</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some months but not every month, or</td>
+                <td class="values" align="right">704</td>
+                <td class="values" align="right">1132</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Only 1 or 2 months?</td>
+                <td class="values" align="right">395</td>
+                <td class="values" align="right">1527</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">1527</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">1527</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">10406</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD061">FSD061 - HH Eat less than should</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD061</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH Eat less than should</dd>
+            <dt>English Text: </dt>
+            <dd class="info">In the last 12 months, did you ever eat less than you felt you should because there wasn't enough money for food?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">1455</td>
+                <td class="values" align="right">1455</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">2184</td>
+                <td class="values" align="right">3639</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3639</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">3642</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8291</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD071">FSD071 - HH Hungry, but didn't eat</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD071</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH Hungry, but didn't eat</dd>
+            <dt>English Text: </dt>
+            <dd class="info">[In the last 12 months], were you ever hungry but didn't eat because there wasn't enough money for food?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">835</td>
+                <td class="values" align="right">835</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">2806</td>
+                <td class="values" align="right">3641</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3641</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">3642</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8291</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD081">FSD081 - HH Lost weight, no money for food</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD081</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH Lost weight, no money for food</dd>
+            <dt>English Text: </dt>
+            <dd class="info">[In the last 12 months], did you lose weight because there wasn't enough money for food?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">558</td>
+                <td class="values" align="right">558</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">3064</td>
+                <td class="values" align="right">3622</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3622</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">20</td>
+                <td class="values" align="right">3642</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8291</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSQBOX2">FSQBOX2 - CHECK ITEM</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSQBOX2</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">BOX 2. CHECK ITEM: IF RESPONSE TO FSD041, FSD061, FSD071, OR FSD081 IS CODE 1 (YES), CONTINUE. OTHERWISE GO TO FSDAD.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD092">FSD092 - HH Adults not eat whole day</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD092</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH Adults not eat whole day</dd>
+            <dt>English Text: </dt>
+            <dd class="info">[In the last 12 months], did {you/you or other adults in your household} ever not eat for a whole day because there wasn't enough money for food?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">356</td>
+                <td class="values" align="right">356</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">1455</td>
+                <td class="values" align="right">1811</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">1812</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">1813</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">10120</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD102">FSD102 - HH How often adults not eat for day</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD102</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH How often adults not eat for day</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How often did this happen?  </dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Almost every month,</td>
+                <td class="values" align="right">107</td>
+                <td class="values" align="right">107</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some months but not every month, or</td>
+                <td class="values" align="right">161</td>
+                <td class="values" align="right">268</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Only 1 or 2 months?</td>
+                <td class="values" align="right">88</td>
+                <td class="values" align="right">356</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">356</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">356</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">11577</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSDAD">FSDAD - Adult food security category</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSDAD</dd>
+            <dt>SAS Label: </dt>
+            <dd>Adult food security category</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Adult food security category for last 12 months</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Calculated at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">AD full food security: 0</td>
+                <td class="values" align="right">6939</td>
+                <td class="values" align="right">6939</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">AD marginal food security: 1-2</td>
+                <td class="values" align="right">1376</td>
+                <td class="values" align="right">8315</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">AD low food security: 3-5</td>
+                <td class="values" align="right">1234</td>
+                <td class="values" align="right">9549</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">AD very low food security: 6-10</td>
+                <td class="values" align="right">1032</td>
+                <td class="values" align="right">10581</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1352</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD151">FSD151 - HH Emergency food received</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD151</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH Emergency food received</dd>
+            <dt>English Text: </dt>
+            <dd class="info">In the last 12 months, did {you/you or any member of your household} ever get emergency food from a church, a food pantry, or a food bank, or eat in a soup kitchen?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">1730</td>
+                <td class="values" align="right">1730</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">8853</td>
+                <td class="values" align="right">10583</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">22</td>
+                <td class="values" align="right">10605</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">7</td>
+                <td class="values" align="right">10612</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1321</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSQ165">FSQ165 - HH FS benefit: ever received</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSQ165</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH FS benefit: ever received</dd>
+            <dt>English Text: </dt>
+            <dd class="info">The next questions are about SNAP, the Supplemental Nutrition Assistance Program, formerly known as the Food Stamp Program. SNAP benefits are provided on an electronic debit card {or EBT card} {called the {DISPLAY STATE NAME FOR EBT CARD}} card in STATE}. Have {you/you or anyone in your household} ever received SNAP or Food Stamp benefits?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">4830</td>
+                <td class="values" align="right">4830</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">5695</td>
+                <td class="values" align="right">10525</td>
+                <td class="values">FSQBOX5</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">31</td>
+                <td class="values" align="right">10556</td>
+                <td class="values">FSQBOX5</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">31</td>
+                <td class="values" align="right">10587</td>
+                <td class="values">FSQBOX5</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1346</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD165N">FSD165N - HH FS benefit: # of people ever received</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD165N</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH FS benefit: # of people ever received</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How many people in your household ever received SNAP or Food Stamp benefits?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1 to 6</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">4674</td>
+                <td class="values" align="right">4674</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">7 or more</td>
+                <td class="values" align="right">150</td>
+                <td class="values" align="right">4824</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">4825</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">5</td>
+                <td class="values" align="right">4830</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">7103</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSQ012">FSQ012 - HH FS benefit: receive in last 12 months</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSQ012</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH FS benefit: receive in last 12 months</dd>
+            <dt>English Text: </dt>
+            <dd class="info">In the last 12 months, did {you/you or any member of your household} receive SNAP or Food Stamp benefits?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">3005</td>
+                <td class="values" align="right">3005</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">1817</td>
+                <td class="values" align="right">4822</td>
+                <td class="values">FSQBOX5</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">4823</td>
+                <td class="values">FSQBOX5</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">7</td>
+                <td class="values" align="right">4830</td>
+                <td class="values">FSQBOX5</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">7103</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD012N">FSD012N - HH FS benefit: # of people received(12m)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD012N</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH FS benefit: # of people received(12m)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">In the last 12 months, how many people in your household received SNAP or Food Stamp benefits?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected on household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1 to 6</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">2895</td>
+                <td class="values" align="right">2895</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">7 or more</td>
+                <td class="values" align="right">110</td>
+                <td class="values" align="right">3005</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3005</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3005</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8928</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD230">FSD230 - HH FS benefit: currently receive</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD230</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH FS benefit: currently receive</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Do you/Does any member of your household} currently receive SNAP or Food Stamp benefits?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">2400</td>
+                <td class="values" align="right">2400</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">602</td>
+                <td class="values" align="right">3002</td>
+                <td class="values">FSD795</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3002</td>
+                <td class="values">FSD795</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">3005</td>
+                <td class="values">FSD795</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8928</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD230N">FSD230N - HH FS benefit: #people currently receive</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD230N</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH FS benefit: #people currently receive</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How many people in your household currently receive SNAP or Food Stamp benefits?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1 to 6</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">2290</td>
+                <td class="values" align="right">2290</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">7 or more</td>
+                <td class="values" align="right">110</td>
+                <td class="values" align="right">2400</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2400</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2400</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">9533</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD795">FSD795 - HH FS benefit: # of months received</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD795</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH FS benefit: # of months received</dd>
+            <dt>English Text: </dt>
+            <dd class="info">During the past 12 months, for how many months did {you/{NAME(S)}} get Food Stamps?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Calculated at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1 to 12</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">2923</td>
+                <td class="values" align="right">2923</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">12</td>
+                <td class="values" align="right">2935</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">70</td>
+                <td class="values" align="right">3005</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8928</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD225">FSD225 - HH FS benefit: time since last received</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD225</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH FS benefit: time since last received</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Number of days between the time the household last received Food Stamp benefit and the date of interview.</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Calculated at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 296</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">2444</td>
+                <td class="values" align="right">2444</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">55555</td>
+                <td class="values">More than 300 days</td>
+                <td class="values" align="right">21</td>
+                <td class="values" align="right">2465</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77777</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">23</td>
+                <td class="values" align="right">2488</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99999</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">512</td>
+                <td class="values" align="right">3000</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8933</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD235">FSD235 - HH FS benefit: amount received last time</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD235</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH FS benefit: amount received last time</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How much did {you/your household} receive in food stamp benefits the last time you got them?
+ENTER DOLLAR AMOUNT.</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">8 to 1000</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">2482</td>
+                <td class="values" align="right">2482</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">55555</td>
+                <td class="values">More than $1,000</td>
+                <td class="values" align="right">195</td>
+                <td class="values" align="right">2677</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77777</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">61</td>
+                <td class="values" align="right">2738</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99999</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">267</td>
+                <td class="values" align="right">3005</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8928</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSQBOX5">FSQBOX5 - CHECK ITEM</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSQBOX5</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">BOX 5. CHECK ITEM: IF THERE IS AT LEAST 1 CHILD IN THE HOUSEHOLD WHO IS 0-5 YEARS OLD OR THERE IS A FEMALE IN THE HOUSEHOLD WHO IS BETWEEN 20 AND 59 YEARS OLD, CONTINUE. OTHERWISE, GO TO BOX 6.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD162">FSD162 - HH WIC benefit: receive in last 12 month</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD162</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH WIC benefit: receive in last 12 month</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Next are a few questions about the WIC program, that is, the Women, Infants and Children program. In the last 12 months, did {you/you or any member of your household} receive benefits from the WIC program?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">1044</td>
+                <td class="values" align="right">1044</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">9530</td>
+                <td class="values" align="right">10574</td>
+                <td class="values">FSQBOX6</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">15</td>
+                <td class="values" align="right">10589</td>
+                <td class="values">FSQBOX6</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">32</td>
+                <td class="values" align="right">10621</td>
+                <td class="values">FSQBOX6</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1312</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSQ760">FSQ760 - HH WIC benefit: received in last 30 days</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSQ760</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH WIC benefit: received in last 30 days</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Did {you/you or anyone who lives here} receive WIC benefits in the past 30 days? {Here is the list of children 5 years and younger and women ages 12 to 59 years who live here, let me read it to you.}</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">785</td>
+                <td class="values" align="right">785</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">259</td>
+                <td class="values" align="right">1044</td>
+                <td class="values">FSQBOX6</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">1044</td>
+                <td class="values">FSQBOX6</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">1044</td>
+                <td class="values">FSQBOX6</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">10889</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD760N">FSD760N - HH WIC benefit: no. people received</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD760N</dd>
+            <dt>SAS Label: </dt>
+            <dd>HH WIC benefit: no. people received</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How many people in your household received WIC in the past 30 days?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at household level.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1 to 6</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">781</td>
+                <td class="values" align="right">781</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">784</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">785</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">11148</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSQBOX6">FSQBOX6 - CHECK ITEM</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSQBOX6</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">BOX 6. CHECK ITEM: IF THE RESPONDENT AGE BETWEEN 0-5 YEARS, CONTINUE WITH FSQ653. OTHERWISE, GO TO END OF SECTION.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSQ653">FSQ653 - CH WIC benefit: ever received</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSQ653</dd>
+            <dt>SAS Label: </dt>
+            <dd>CH WIC benefit: ever received</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Next are a few questions about the WIC program. Has {SP} ever received benefits from WIC, that is, the Women, Infants, and Children program?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at individual level in the household interview.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			5 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">645</td>
+                <td class="values" align="right">645</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">585</td>
+                <td class="values" align="right">1230</td>
+                <td class="values">FSQ690</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">1230</td>
+                <td class="values">FSQ690</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">7</td>
+                <td class="values" align="right">1237</td>
+                <td class="values">FSQ690</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">10696</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD660ZC">FSD660ZC - CH WIC benefit: currently receive</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD660ZC</dd>
+            <dt>SAS Label: </dt>
+            <dd>CH WIC benefit: currently receive</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Is {SP} now receiving benefits from the WIC program?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at individual level in the household interview.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			5 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">318</td>
+                <td class="values" align="right">318</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">324</td>
+                <td class="values" align="right">642</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">642</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">645</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">11288</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD675">FSD675 - CH WIC benefit: received in infancy</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD675</dd>
+            <dt>SAS Label: </dt>
+            <dd>CH WIC benefit: received in infancy</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Did {SP} receive benefits from WIC when {he/she} was less than one year old?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at individual level in the household interview.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			5 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">600</td>
+                <td class="values" align="right">600</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">39</td>
+                <td class="values" align="right">639</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">639</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">6</td>
+                <td class="values" align="right">645</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">11288</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD680">FSD680 - CH WIC benefit: received b/w 1-4 yrs old</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD680</dd>
+            <dt>SAS Label: </dt>
+            <dd>CH WIC benefit: received b/w 1-4 yrs old</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Did {SP} receive benefits from WIC when {he/she} {was/is} between the ages of {1 to {SP AGE/4} years old/12 to {SP AGE} months old}?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at individual level in the household interview.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			5 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">387</td>
+                <td class="values" align="right">387</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">120</td>
+                <td class="values" align="right">507</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">507</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">508</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">11425</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSD670ZC">FSD670ZC - CH WIC benefit: # of months received</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSD670ZC</dd>
+            <dt>SAS Label: </dt>
+            <dd>CH WIC benefit: # of months received</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How long {did SP receive/has SP been receiving} benefits from the WIC program?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at individual level in the household interview.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			5 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 60</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">638</td>
+                <td class="values" align="right">638</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">777</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">638</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">999</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">7</td>
+                <td class="values" align="right">645</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">11288</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSQ690">FSQ690 - CH WIC benefit: Mom received while preg.</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSQ690</dd>
+            <dt>SAS Label: </dt>
+            <dd>CH WIC benefit: Mom received while preg.</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Did {SP's} mother receive benefits from WIC, while she was pregnant with {SP}?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at individual level in the household interview.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			5 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">505</td>
+                <td class="values" align="right">505</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">709</td>
+                <td class="values" align="right">1214</td>
+                <td class="values">End of Section</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">1214</td>
+                <td class="values">End of Section</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">23</td>
+                <td class="values" align="right">1237</td>
+                <td class="values">End of Section</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">10696</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FSQ695">FSQ695 - CH WIC benefit: starting month of preg.</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FSQ695</dd>
+            <dt>SAS Label: </dt>
+            <dd>CH WIC benefit: starting month of preg.</dd>
+            <dt>English Text: </dt>
+            <dd class="info">What month of the pregnancy did {SP's} mother begin to receive WIC benefits?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Collected at individual level in the household interview.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 0 YEARS -
+			5 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1 to 9</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">480</td>
+                <td class="values" align="right">480</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">480</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">25</td>
+                <td class="values" align="right">505</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">11428</td>
+                <td class="values" align="right">11933</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="Appendices">
+        <div id="Appendix">
+          <h2 id="Appendix_1">Appendix 1</h2><a name="Appendix_1"></a>
+<table bordercolor="#000000" border="1">
+    <caption valign="top" align="left"><strong>Components of the Food Security (FSQ) section in August 2021-August 2023</strong></caption>
+    <thead>
+        <tr>
+            <th>Component</th>
+            <th>Data Collection Details</th>
+            <th>Variable Name</th>
+            <th>Target: Gender Age</th>
+            <th>Label</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="12">Household Food Security</td>
+            <td rowspan="12"><a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/questionnaires/FSQ-FAM-L-508.pdf" target="_blank">Food Security (FSQ) Family Interview</a><br>
+            <br>
+            Household Level</td>
+            <td>FSD032A</td>
+            <td>MF (0-150)</td>
+            <td>HH Worried run out of food</td>
+        </tr>
+        <tr>
+            <td>FSD032B</td>
+            <td>MF (0-150)</td>
+            <td>HH Food didn't last</td>
+        </tr>
+        <tr>
+            <td>FSD032C</td>
+            <td>MF (0-150)</td>
+            <td>HH Couldn't afford balanced meals</td>
+        </tr>
+        <tr>
+            <td>FSD041</td>
+            <td>MF (0-150)</td>
+            <td>HH Adults cut size or skip meals</td>
+        </tr>
+        <tr>
+            <td>FSD052</td>
+            <td>MF (0-150)</td>
+            <td>HH How often adults cut size/skip meals</td>
+        </tr>
+        <tr>
+            <td>FSD061</td>
+            <td>MF (0-150)</td>
+            <td>HH Eat less than should</td>
+        </tr>
+        <tr>
+            <td>FSD071</td>
+            <td>MF (0-150)</td>
+            <td>HH Hungry, but didn't eat</td>
+        </tr>
+        <tr>
+            <td>FSD081</td>
+            <td>MF (0-150)</td>
+            <td>HH Lost weight, no money for food</td>
+        </tr>
+        <tr>
+            <td>FSD092</td>
+            <td>MF (0-150)</td>
+            <td>HH Adults not eat whole day</td>
+        </tr>
+        <tr>
+            <td>FSD102</td>
+            <td>MF (0-150)</td>
+            <td>HH How often adults not eat for day</td>
+        </tr>
+        <tr>
+            <td>FSDAD</td>
+            <td>MF (0-150)</td>
+            <td>Adult food security category</td>
+        </tr>
+        <tr>
+            <td>FSD151</td>
+            <td>MF (0-150)</td>
+            <td>HH Emergency food received</td>
+        </tr>
+        <tr>
+            <td rowspan="12">Supplemental Nutrition Assistance Program (SNAP)/Food Stamp Program Benefits</td>
+            <td rowspan="12"><a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/questionnaires/FSQ-FAM-L-508.pdf" target="_blank">Food Security (FSQ) Family Interview</a><br>
+            <br>
+            Household Level</td>
+            <td>FSQ165</td>
+            <td>MF (0-150)</td>
+            <td>HH FS benefit: ever received</td>
+        </tr>
+        <tr>
+            <td>FSQ165N</td>
+            <td>MF (0-150)</td>
+            <td>HH FS benefit: no. people ever received</td>
+        </tr>
+        <tr>
+            <td>FSQ012</td>
+            <td>MF (0-150)</td>
+            <td>HH FS benefit: receive in last 12 months</td>
+        </tr>
+        <tr>
+            <td>FSD012N</td>
+            <td>MF (0-150)</td>
+            <td>HH FS benefit: No. people received (12 m)</td>
+        </tr>
+        <tr>
+            <td>FSD230</td>
+            <td>MF (0-150)</td>
+            <td>HH FS benefit: currently receive</td>
+        </tr>
+        <tr>
+            <td>FSD230N</td>
+            <td>MF (0-150)</td>
+            <td>HH FS benefit: no. people currently receive</td>
+        </tr>
+        <tr>
+            <td>FSD795</td>
+            <td>MF (0-150)</td>
+            <td>HH FS benefit: no. months received</td>
+        </tr>
+        <tr>
+            <td>FSD225</td>
+            <td>MF (0-150)</td>
+            <td>HH FS benefit: time since last received</td>
+        </tr>
+        <tr>
+            <td>FSQ235</td>
+            <td>MF (0-150)</td>
+            <td>HH FS benefit: amount received last time</td>
+        </tr>
+        <tr>
+            <td>FSD855</td>
+            <td>MF (0-150)</td>
+            <td>HH FS benefit: anticipate will receive</td>
+        </tr>
+        <tr>
+            <td>FSD860</td>
+            <td>MF (0-150)</td>
+            <td>HH FS benefit: time will receive</td>
+        </tr>
+        <tr>
+            <td>FSQ865</td>
+            <td>MF (0-150)</td>
+            <td>HH FS benefit: amount will receive</td>
+        </tr>
+        <tr>
+            <td rowspan="10">Women, Infants and Children (WIC) Program Benefits</td>
+            <td rowspan="3"><a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/questionnaires/FSQ-FAM-L-508.pdf" target="_blank">Food Security (FSQ) Family Interview</a><br>
+            <br>
+            Household level</td>
+            <td>FSQ162</td>
+            <td>MF (0-150)</td>
+            <td>HH WIC benefit: receive in last 12 month</td>
+        </tr>
+        <tr>
+            <td>FSQ760</td>
+            <td>MF (0-150)</td>
+            <td>HH WIC benefit: receive in last 30 days</td>
+        </tr>
+        <tr>
+            <td>FSQ760N</td>
+            <td>MF (0-150)</td>
+            <td>HH WIC benefit: # of people received</td>
+        </tr>
+        <tr>
+            <td rowspan="7"><a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/questionnaires/DBQ-L-508.pdf" target="_blank">Diet Behavior (DBQ) Household Interview</a><br>
+            <br>
+            Individual level</td>
+            <td>FSQ653</td>
+            <td>MF (0-5)</td>
+            <td>CH WIC benefit: Ever received</td>
+        </tr>
+        <tr>
+            <td>FSD660ZC</td>
+            <td>MF (0-5)</td>
+            <td>CH WIC benefit: currently receive</td>
+        </tr>
+        <tr>
+            <td>FSD675</td>
+            <td>MF (0-5)</td>
+            <td>CH WIC benefit: received in infancy</td>
+        </tr>
+        <tr>
+            <td>FSD680</td>
+            <td>MF (1-5)</td>
+            <td>CH WIC benefit: received b/w 1-4 yrs old</td>
+        </tr>
+        <tr>
+            <td>FSD670ZC</td>
+            <td>MF (0-5)</td>
+            <td>CH WIC benefit: # of months received</td>
+        </tr>
+        <tr>
+            <td>FSQ690</td>
+            <td>MF (0-5)</td>
+            <td>CH WIC benefit: mom received while preg.</td>
+        </tr>
+        <tr>
+            <td>FSQ695</td>
+            <td>MF (0-5)</td>
+            <td>CH WIC benefit: starting month of preg.</td>
+        </tr>
+    </tbody>
+</table></div>
+        <div id="Appendix">
+          <h2 id="Appendix_2">Appendix 2</h2><a name="Appendix_2"></a>
+<table bordercolor="#000000" border="1">
+    <caption valign="top" align="left">Changes in the FSQ section among the last 3 release cycles</caption>
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>2015-2016</th>
+            <th>2017-2018</th>
+            <th>2021-2023</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>U.S. Food Security Survey Module (US FSSM) questions</td>
+            <td>10 items collected for all households; 8 additional items collected for households with children under the age of 18 years.&nbsp;</td>
+            <td>No change from 2015-2016</td>
+            <td>10 items continuously collected for all households; 8 additional items previously collected for households with children under the age of 18 years were dropped.&nbsp;</td>
+        </tr>
+        <tr>
+            <td>Household food security category</td>
+            <td>Derived for all households by counting affirmative responses in the 18 US FSSM items</td>
+            <td>No change from 2015-2016</td>
+            <td>No longer available</td>
+        </tr>
+        <tr>
+            <td>Child food security category</td>
+            <td>Derived for all households with children under the age of 18 by counting affirmative responses in the 8 US FSSM items that are specific to household with children.</td>
+            <td>No change from 2015-2016</td>
+            <td>No longer available</td>
+        </tr>
+        <tr>
+            <td>Household members notified to receive Supplemental Nutrition Assistance Program (SNAP)/Food Stamp (FS) benefits in the next 30 days</td>
+            <td>Collected and released at household level.<br>
+            Response was confirmed by a follow-up question using a household roster for the respondent to identify household members who were notified to receive benefits in the next 30 days</td>
+            <td>No change from 2015-2016</td>
+            <td>No longer collected</td>
+        </tr>
+        <tr>
+            <td>Women received WIC benefits during latest pregnancy</td>
+            <td>Collected for women who were pregnant or 0-24 months postpartum at the time of interview</td>
+            <td>No change from 2015-2016</td>
+            <td>No longer collected</td>
+        </tr>
+        <tr>
+            <td>The month of the latest pregnancy when the women participant started to receive WIC benefits</td>
+            <td>Collected for women who were pregnant or 0-24 months postpartum at the time of interview</td>
+            <td>No change from 2015-2016</td>
+            <td>No longer collected</td>
+        </tr>
+        <tr>
+            <td>Women received WIC benefits post-partum, last pregnancy</td>
+            <td>Collected for women who were 0-24 months postpartum at the time of interview</td>
+            <td>No change from 2015-2016</td>
+            <td>No longer collected</td>
+        </tr>
+        <tr>
+            <td>Women currently receive WIC benefits</td>
+            <td>Collected for women who were pregnant or 0-24 months postpartum at the time of interview</td>
+            <td>No change from 2015-2016</td>
+            <td>No longer collected</td>
+        </tr>
+    </tbody>
+</table></div>
+      </div>
+    </div>
+  
+<div id="extension-mmplj"></div></body></html>

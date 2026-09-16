@@ -1,0 +1,2006 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm -->
+<html xml:lang="en" lang="en" xmlns="http://www.w3c.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <title>TST_L</title>
+    <meta name="title" content="NHANES August 2021-August 2023: Sex Steroid Hormone Panel - Serum  Data Documentation, Codebook, and Frequencies">
+    <link rel="stylesheet" href="./TST_L_files/documentation.css">
+  </head>
+  <body class="nhanes-doc">
+    <div id="toc">
+      <h3>Table of Contents</h3>
+      <div id="toc-scroll">
+        <ul>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#Component_Description">Component Description</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#Eligible_Sample">Eligible Sample</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#Description_of_Laboratory_Methodology">Description of Laboratory Methodology</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#Laboratory_Method_Files">Laboratory Method Files</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#Laboratory_Quality_Assurance_and_Monitoring">Laboratory Quality Assurance and Monitoring</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#Data_Processing_and_Editing">Data Processing and Editing</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#Analytic_Notes">Analytic Notes</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#References">References</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#Codebook">Codebook</a>
+            <ul id="CodebookLinks">
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#SEQN">SEQN - Respondent sequence number</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#WTPH2YR">WTPH2YR - Phlebotomy 2 Year Weight</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBX17H">LBX17H - 17α-hydroxyprogesterone (ng/dL)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBD17HSI">LBD17HSI - 17α-hydroxyprogesterone (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBD17HLC">LBD17HLC - 17α-hydroxyprogesterone Comment Code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBXAND">LBXAND - Androstenedione (ng/dL)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDANDSI">LBDANDSI - Androstenedione (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDANDLC">LBDANDLC - Androstenedione Comment Code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBXAMH">LBXAMH - Anti-Mullerian hormone (ng/mL)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDAMHSI">LBDAMHSI - Anti-Mullerian hormone (pmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDAMHLC">LBDAMHLC - Anti-Mullerian hormone Comment Code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBXDHE">LBXDHE - DHEAS (µg/dL)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDDHESI">LBDDHESI - DHEAS (µmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDDHELC">LBDDHELC - DHEAS Comment Code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBXEST">LBXEST - Estradiol (pg/mL)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDESTSI">LBDESTSI - Estradiol (pmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDESTLC">LBDESTLC - Estradiol Comment Code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBXESO">LBXESO - Estrone (ng/dL)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDESOSI">LBDESOSI - Estrone (pmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDESOLC">LBDESOLC - Estrone Comment Code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBXES1">LBXES1 - Estrone Sulfate (pg/mL)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDES1SI">LBDES1SI - Estrone Sulfate (pmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDES1LC">LBDES1LC - Estrone Sulfate Comment Code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBXFSH">LBXFSH - Follicle Stimulating Hormone (mIU/mL)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDFSHLC">LBDFSHLC - FSH Comment Code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBXLUH">LBXLUH - Luteinizing Hormone (mIU/mL)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDLUHLC">LBDLUHLC - Luteinizing Hormone Comment Code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBXPG4">LBXPG4 - Progesterone (ng/dL)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDPG4SI">LBDPG4SI - Progesterone (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDPG4LC">LBDPG4LC - Progesterone Comment Code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBXSHBG">LBXSHBG - SHBG (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDSHGLC">LBDSHGLC - SHBG Comment Code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBXTST">LBXTST - Testosterone, total (ng/dL)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDTSTSI">LBDTSTSI - Testosterone, total (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm#LBDTSTLC">LBDTSTLC - Testosterone comment code</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="PageHeader">
+        <h1>National Health and Nutrition Examination Survey</h1>
+        <h2>August 2021-August 2023 Data Documentation, Codebook, and Frequencies</h2>
+        <h3>Sex Steroid Hormone Panel - Serum  (TST_L)</h3>
+        <h4> Data File: TST_L.xpt</h4>
+        <h5 class="left">First Published: October 2024</h5>
+        <h5 class="right">Last Revised: NA</h5>
+      </div>
+      <div id="Sections">
+        <h2 id="Component_Description">Component Description</h2><p>The sex steroid hormone panel – Serum (TST) consists of 17α-hydroxyprogesterone, androstenedione, anti-Müllerian hormone, dehydroepiandrosterone sulfate (DHEAS), estradiol, estrone, estrone sulfate, follicle-stimulating hormone, luteinizing hormone, progesterone, sex hormone binding globulin, and total testosterone. This data will allow for analysis of the selected steroid hormones and related binding protein that can be used to assist in disease diagnosis, treatment, and prevention of diseases, such as Polycystic Ovary Syndrome (PCOS), androgen deficiency, certain cancers, and hormone imbalances. An estimated 5 to 7 million women in the United States (U.S.) suffer with the effects of PCOS; and PCOS can occur in girls as young as 11 years old. PCOS is the most common hormonal disorder among women of reproductive age and is the leading cause of infertility. Androgen deficiency, such as hypogonadism, is associated with a range of chronic diseases. The prevalence of symptomatic androgen deficiency in men between 30 and 79 years of age is estimated to be 5.6% (Araujo et. al., 2007). Androgen deficiency in men and excess in women and the associated chronic diseases are a public health concern. Estradiol is the key biomarker for assessing reproductive function in females, including amenorrhea, infertility, and menopausal status. Estradiol levels decline greatly with age, and this decrease is associated with increased risk for cardiovascular disease, cognitive impairment, and bone fractures in older women. Estrogen hormone therapy, or use of estradiol as a supplement, raises health concerns related to estradiol concentration in blood, such as elevated levels in postmenopausal women increasing the risk of breast cancer.</p>
+<p><strong>17α-hydroxyprogesterone</strong></p>
+<p>17α-hydroxyprogesterone (17-OHP) is a steroid hormone that is primarily produced in the adrenal glands, as well as in the ovaries, testes, and placenta. It is derived from progesterone via 17α-hydroxylase and is a chemical intermediate in the biosynthesis of several other steroids, including cortisol. Measurement of 17-OHP is useful in the diagnosis of congenital adrenal hyperplasia (CAH).</p>
+<p><strong>Androstenedione</strong> <br>
+</p>
+<p>Androstenedione is a steroid hormone that is produced in the adrenal glands and the gonads. It is a precursor of androgen and estrogen sex hormones, such as testosterone and estrone. Androstenedione is synthesized by the conversion of dehydroepiandrosterone. Elevated androstenedione levels may cause symptoms of hyperandrogenism in females. Measurement of androstenedione is useful in the diagnosis of congenital adrenal hyperplasia, in conjunction with other androgenic precursors, such as 17α-hydroxyprogesterone.<br>
+ <br>
+<strong>Anti-Müllerian hormone (AMH)</strong></p>
+<p>Anti-Müllerian hormone (AMH) or Müllerian-inhibiting substance, is a dimeric glycoprotein secreted by granulosa cells of the preantral and small antral ovarian follicles. AMH levels in the blood can provide information about ovarian function, menopausal status, and can aid in  assessments for developmental disorders in children. An increased level of AMH is often seen with PCOS.</p>
+<p><strong>Dehydroepiandrosterone sulfate (DHEAS)</strong></p>
+<p>DHEAS is produced in the adrenal cortex. It is a conjugated steroid converted by the sulfation of dehydroepiandrosterone (DHEA) at the 3β position via hydroxysteroid sulfotransferase. While DHEAS  itself is hormonally inactive, it can be converted to DHEA, which in turn can serve as a precursor to more active steroid hormones, such as testosterone or estradiol. Measurements of DHEAS provides information about the adrenal gland function and can help with the diagnosis of congenital adrenal hyperplasia and PCOS.</p>
+<p><strong>Estradiol</strong></p>
+<p>Estradiol is produced primarily in the ovary (follicle, corpus luteum), but small quantities are also formed in the testes and in the adrenal cortex, as well as in fat cells. During pregnancy, estradiol is mainly formed in the placenta. About 98% of estradiol is bound to transport proteins (SHBG and albumin). Estradiol secretion has two surges during the menstrual cycle. The determination of estradiol is utilized clinically in the elucidation of fertility disorders in the hypothalamus-pituitary-gonad axis, gynecomastia, estrogen-producing ovarian and testicular tumors and in hyperplasia of the adrenal cortex. Further clinical indications are the monitoring of fertility therapy and determining the time of ovulation within the framework of in vitro fertilization (IVF).</p>
+<p><strong>Estrone</strong></p>
+<p>Estrone is mainly produced in the gonads through the aromatization of androstenedione but can also be reversibly converted from estradiol via 17β-hydroxysteroid dehydrogenase. Serum estrone is primarily bound to albumin and partially bound to sex hormone-binding globulin (SHBG), with a small portion freely circulating. Measurement of estrone levels by itself or together with estradiol can provide information about potential metabolic disorders, tumors, or developmental disorders, such as early or delayed puberty.</p>
+<p><strong>Estrone sulfate</strong></p>
+<p>Estrone sulfate is the most abundant circulating estrogen in women and is thought to serve as a long-term reservoir for estrone and estradiol. Thus, estrone sulfate serves as a precursor and intermediate to the major estrogens, estrone and estradiol. It is produced from estrone by estrogen sulfotransferases. While it is mainly biological inactive, it maintains an equilibrium of more active estrogens, such as estrone. Estrone can then be converted to the more reactive estradiol by 17β-hydroxysteroid dehydrogenase. The measurement of estrone sulfate can help with monitoring treatments for certain cancers.</p>
+<p><strong>Follicle Simulating Hormone (FSH)</strong></p>
+<p>Follicle-stimulating hormone (FSH) is a glycoprotein with two polypeptide units that is produced by the anterior pituitary gland. FSH, often together with luteinizing hormone and/or other hormones, can provide information about ovarian function, as well as help with assessing disease, such as PCOS or disorders of the pituitary or the hypothalamus. <br>
+<br>
+<strong>Luteinizing Hormone (LH)</strong></p>
+<p>Luteinizing hormone (LH) is a heterodimeric glycoprotein that consists of one alpha and one beta subunit. LH is produced mainly in gonadotropic cells in the anterior pituitary gland. LH often together with follicle stimulating hormone and other steroids, can provide information about ovarian function and can help with assessing disorders of the pituitary and hypothalamus.</p>
+<p><strong>Progesterone</strong></p>
+<p>Progesterone is a steroid hormone that belongs to the progestogens class of steroid hormones. It is produced in the adrenal glands, corpus luteum, and placenta. Progesterone can be used to track ovulation, monitor the health of a pregnancy, and can help with the diagnosis congenital adrenal hyperplasia.</p>
+<p><strong>Sex hormone-binding globulin (SHBG)</strong></p>
+<p>Sex hormone-binding globulin (SHBG) is the blood transport protein for androgens and estrogens. SHBG has a high binding affinity to dihydrotestosterone (DHT), medium affinity to testosterone and estradiol, and only a low affinity to estrone, dehydroepiandrosterone (DHEA), androstenedione, and estriol. Its synthesis and secretion are regulated by estrogen (Burger, et. al., 2002; Davis, et. al., 2001). SHBG serum concentrations depend on the extent, duration, and the kind of estrogen applied, and how regulation takes place. In the serum, SHBG mainly takes over the transportation of steroids and the reduction/regulation of the effect of androgen (Rosner, et. al., 1999; Burger, et. al., 2002). Decreased SHBG serum levels are associated with conditions where elevated androgen levels are present or where the effect of androgen on its target organs is excessive. This explains the gender-related differences seen between men and women, especially during puberty.</p>
+<p>Measurement of SHBG can be an important indicator of an excessive/chronic androgenic action where androgen levels are normal, but where clinical symptoms would seem to indicate androgen in excess. SHBG is a useful supplementary parameter in the determination of androgen where a relatively high concentration of free androgen (e.g., testosterone) is suspected (Pugeat, et. al., 1996).</p>
+<p>Elevated SHBG levels can be seen in elderly men, and are often found in patients with hyperthyroidism, cirrhosis of the liver, and some polymorphisms in the SHBG gene (Bhasin, et. al., 2018). SHBG levels also increase when oral contraceptives, estrogen or antiepileptic drugs are taken. Pregnant women have markedly higher SHBG serum concentrations due to their increased estrogen production.  Decreased SHBG concentrations are often seen with hypothyroidism, PCOS, obesity, hirsutism, elevated androgen levels, alopecia, acromegaly, and some polymorphisms in the SHBG gene.</p>
+<p><strong>Testosterone</strong></p>
+<p>Testosterone is the most important androgenic steroid that has an anabolic effect in humans. It is synthesized in the testes of the male, and in much smaller amounts, in the ovary of the female, and in the adrenal gland of both female and male. In human males, testosterone plays a key role in the development of male reproductive tissues, such as the testis and prostate, as well as promoting secondary sexual characteristics, such as increased muscle and bone mass, and the growth of body hair. The secretion of testosterone is regulated by LH and is subject to negative feedback via the pituitary and hypothalamus. Most of the circulating testosterone is bound to carrier proteins (SHBG and albumin). In women, increased production of testosterone can cause hirsutism and virilization (depending on the increase). The determination of testosterone in the female is helpful in the evaluation of congenital adrenal hyperplasia, PCOS, and when an ovarian tumor, adrenal tumor, adrenal hyperplasia, or ovarian insufficiency is suspected. Testosterone is determined in men when reduced testosterone production is suspected, e.g., in hypogonadism, estrogen therapy, chromosome aberrations (as in the Klinefelter’s syndrome) and liver cirrhosis.</p><h2 id="Eligible_Sample">Eligible Sample</h2><p>All examined participants aged 3 years and older were eligible for
+17α-hydroxyprogesterone, androstenedione,
+dehydroepiandrosterone, estradiol, estrone, estrone sulfate, progesterone, sex
+hormone binding globulin, and total testosterone.</p>
+<p>All examined participants aged 6 years and older were eligible for anti-Müllerian hormone, follicle-stimulating
+hormone, and luteinizing hormone.</p><h2 id="Description_of_Laboratory_Methodology">Description of Laboratory Methodology</h2><p>The following tests for the TST: 17 α-hydroxyprogesterone, androstenedione, DHEAS, estrone, estrone sulfate, estradiol, progesterone, and testosterone are preformed via the isotope dilution liquid chromatography tandem mass spectrometry (ID-LC-MS/MS) method. ID-LC-MS/MS is performed on a triple quadrupole mass spectrometer using electrospray ionization in both positive and negative modes. The analytes are identified based on chromatographic retention time and on specific mass to charge ratio transitions using selected reaction monitoring (SRM). Isotopically labeled internal standards are used for each analyte.</p>
+<p>AMH is based on the reaction of AMH with immuno-antibodies and chemi-luminescence measurements of the reaction products after two incubation periods. This assay consists of two incubation steps and a chemiluminescent measurement obtained with a photomultiplier tube.</p>
+<p>LH is a test based on the reaction of LH with immuno-antibodies and chemi-luminescence measurements for the reaction products. This assay consists of two incubation steps and a chemiluminescent measurement obtained with a photomultiplier tube.</p>
+<p>FSH is a test based on the reaction of FSH with immuno-antibodies and chemi-luminescence measurements for the reaction products. This assay consists of two incubation steps and a chemiluminescent measurement obtained with a photomultiplier tube.</p>
+<p>SHBG is based on the reaction of SHBG with immuno-antibodies and chemi-luminescence measurements of the reaction products that occurs after two incubation periods and subjecting to a magnetic field. The microparticles are captured on an electrode, where a chemiluminescent reaction occurs and can be measured by a photomultiplier tube.</p>
+<p>Refer to the Laboratory Method Files section for a detailed description of the laboratory methods used.</p>
+<p>There were no changes to the lab method, lab equipment, or lab site for this component during the NHANES August 2021—August 2023 cycle.</p><h2 id="Laboratory_Method_Files">Laboratory Method Files</h2>
+        <p>
+          <a target="_blank" href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/labmethods/TST-L-MET-508-Hormone-Panel.pdf">Panel of Steroid Hormones</a>
+          <span> (October 2024)</span>
+        </p>
+        <p>
+          <a target="_blank" href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/labmethods/TST-L-MET-508-AMH.pdf">Anti-Müllerian Hormone</a>
+          <span> (October 2024)</span>
+        </p>
+        <p>
+          <a target="_blank" href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/labmethods/TST-L-MET-508-SHBG.pdf">Sex Hormone-Binding Globulin</a>
+          <span> (October 2024)</span>
+        </p>
+        <p>
+          <a target="_blank" href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/labmethods/TST-L-MET-508-FSH.pdf">Follicle-Stimulating Hormone </a>
+          <span> (October 2024)</span>
+        </p>
+        <p>
+          <a target="_blank" href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/labmethods/TST-L-MET-508-LUH.pdf">Luteinizing Hormone</a>
+          <span> (October 2024)</span>
+        </p>
+        <h2 id="Laboratory_Quality_Assurance_and_Monitoring">Laboratory Quality Assurance and Monitoring</h2><p>
+</p>
+<p>Detailed
+instructions on specimen collection and processing are discussed in the <a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/manuals/2021-Laboratory-Procedures-508.pdf">NHANES Laboratory Procedures Manual</a> (LPM).
+Vials are stored under appropriate frozen (–30°C) conditions until they are
+shipped to the National Center for Environmental Health for testing.</p>
+<p>The NHANES quality
+assurance and quality control (QA/QC) protocols meet the 1988 Clinical
+Laboratory Improvement Amendments mandates. Detailed QA/QC instructions are
+discussed in the <a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/manuals/2021-Laboratory-Procedures-508.pdf">NHANES LPM</a>.
+</p>
+<p><strong>Mobile Examination
+Centers (MECs)</strong></p>
+<p>Laboratory team
+performance is monitored using several techniques. NCHS and contract
+consultants use a structured competency assessment evaluation during visits to
+evaluate both the quality of the laboratory work and the QC procedures. Each
+laboratory staff member is observed for equipment operation, specimen
+collection and preparation; testing procedures and constructive feedback are
+given to each staff member. Formal retraining sessions are conducted annually
+to ensure that required skill levels were maintained.</p>
+<p><strong>Analytical
+Laboratories</strong></p>
+<p>NHANES uses
+several methods to monitor the quality of the analyses performed by the
+contract laboratories. In the MEC, these methods include performing blind split
+samples collected&nbsp;during “dry run” sessions. In addition, contract
+laboratories randomly perform repeat testing on 2% of all specimens.</p>
+<p>NCHS developed and
+distributed a QC protocol for all the contract laboratories, which outlined the
+use of Westgard rules (Westgard, et. al., 1981) when testing NHANES specimens.
+Progress reports containing any problems encountered during shipping or receipt
+of specimens, summary statistics for each control pool, QC graphs, instrument
+calibration, reagents, and any special considerations are submitted to NCHS
+quarterly. The reports are reviewed for trends or shifts in the data. The
+laboratories are required to explain any identified areas of concern.</p>
+<p>All QC procedures
+recommended by the manufacturers were followed. Reported results for all assays
+meet the Division of Environmental Health Laboratory Sciences’ QA/QC performance
+criteria for accuracy and precision, similar to the Westgard rules (Caudill, et.
+al., 2008).</p><h2 id="Data_Processing_and_Editing">Data Processing and Editing</h2><p>The data were
+reviewed. Incomplete data or improbable values were sent to the performing
+laboratory for confirmation.</p>
+<p>Nine derived
+variables were created in this data file. The variables were created using the
+following formulas:</p>
+<p><strong>LBD17HSI</strong></p>
+<p>17α-hydroxyprogesterone
+in ng/dL (LBX17H) was converted to nmol/L (LBD17HSI)
+by multiplying by 0.0303. </p>
+<p><strong>LBDANDSI</strong></p>
+<p>Androstenedione
+in ng/dL (LBXAND) was converted to nmol/L (LBDANDSI) by multiplying by 0.0349. </p>
+<p><strong>LBDAMHSI</strong></p>
+<p>Anti-Müllerian hormone in ng/mL (LBXAMH) was converted to pmol/L (LBDAMHSI) by multiplying by 7.14.<strong></strong></p>
+<p><strong>LBDDHESI</strong></p>
+<p>DHEAS in µg/dL (LBXDHE) was converted to µmol/L
+(LBDDHESI) by multiplying by 0.0271.<strong></strong></p>
+<p><strong>LBDESTSI</strong></p>
+<p>Estradiol in pg/mL (LBXEST) was converted to pmol/L (LBDESTSI) by multiplying
+by 3.67.</p>
+<p><strong>LBDESOSI</strong></p>
+<p>Estrone in ng/dL (LBXESO) was converted to pmol/L (LBDESOSI) by
+multiplying by 37.0.<strong></strong></p>
+<p><strong>LBDES1SI</strong></p>
+<p>Estrone
+sulfate in pg/mL (LBXES1) was converted to pmol/L (LBDES1SI) by multiplying by
+2.73.<strong></strong></p>
+<p><strong>LBDPG4SI</strong></p>
+<p>Progesterone in ng/dL (LBXPG4) was converted to nmol/L by multiplying by
+0.0318.</p>
+<p><strong>LBDTSTSI</strong></p>
+<p>Total testosterone
+in ng/dL (LBXTST) was converted to nmol/L (LBDTSTSI) by multiplying by 0.0347.</p><h2 id="Analytic_Notes">Analytic Notes</h2><p>There are over 800 laboratory tests performed on NHANES participants. However, not all participants provided biospecimens or enough volume for all the tests to be performed. The specimen availability can also vary by age or other population characteristics. Analysts should evaluate the extent of missing data in the dataset related to the outcome of interest as well as any predictor variables used in the analyses to determine whether additional re-weighting for item non-response is necessary.</p>
+<p>Please refer to the NHANES <a href="https://wwwn.cdc.gov/nchs/nhanes/analyticguidelines.aspx">Analytic Guidelines</a> and the on-line <a href="https://wwwn.cdc.gov/nchs/nhanes/tutorials/">NHANES Tutorial</a> for details
+on the use of sample weights and other analytic issues.</p>
+<p><strong>Phlebotomy Weights</strong> <br>
+<br>
+For the August 2021-August 2023 cycle, analysis of nonresponse patterns for the phlebotomy component in the MEC examination revealed differences by age group and race/ethnicity, among other characteristics. For example, approximately 67% of children aged 1-17 years who were examined in the MEC provided a blood specimen through phlebotomy, while 95% of examined adults aged 18 and older provided a blood specimen. Therefore, an additional phlebotomy weight, WTPH2YR, has been included in this data release to address possible nonresponse bias. Participants who are eligible but did not provide a blood specimen have their phlebotomy weight assigned a value of “0” in their records. The phlebotomy weight should be used for analyses that use variables derived from blood analytes, and is included in all relevant data files.</p>
+<p><strong>Demographic and
+Other Related Variables</strong></p>
+<p>The analysis of
+NHANES laboratory data must be conducted using the appropriate survey design
+and demographic variables. The<a href="https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Demographics&amp;Cycle=2021-2023"> August
+2021—August 2023 Demographics File </a>contains demographic data, health
+indicators, and other related information collected during household interviews
+as well as the sample design variables. The recommended procedure for variance
+estimation requires use of stratum and PSU variables (SDMVSTRA and SDMVPSU,
+respectively) in the demographic data file. </p>
+<p>The <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FASTQX_L.htm">Fasting Questionnaire
+File </a>includes auxiliary information, such as fasting status, the time of
+venipuncture, and the conditions precluding venipuncture.</p>
+<p>This laboratory
+data file can be linked to the other NHANES data files using the unique survey
+participant identifier (i.e., SEQN). </p>
+<p><strong>Detection Limits</strong></p>
+<p>The detection
+limits were constant for all of the analytes in the data set. Two variables are
+provided for each of these analytes. The variable named ended “LC” (ex.,
+LBDTSTLC) indicates whether the result was below the limit of detection: the
+value “0” means that the result was at or above the limit of detection, “1”
+indicates that the result was below the limit of detection. The other variable
+prefixed LBX (ex., LBXTST) provides the analytic result for that analyte. For
+analytes with analytic results below the lower limit of detection (ex.,
+LBDTSTLC=1), an imputed fill value was placed in the analyte results field.
+This value is the lower limit of detection divided by the square root of 2
+(LLOD/sqrt[2]). </p>
+<p>The lower limit of
+detection (LLOD) for steroid hormone panel:<br>
+</p>
+<p>
+</p>
+<table bordercolor="#000000" border="1">
+    <thead>
+        <tr>
+            <th>Variable Name&nbsp;</th>
+            <th>SAS Label&nbsp;</th>
+            <th>&nbsp;LLOD</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>LBX17H</td>
+            <td>17a-hydroxyprogesterone (ng/dL)</td>
+            <td>0.41</td>
+        </tr>
+        <tr>
+            <td>LBXAND</td>
+            <td>Androstenedione (ng/dL)</td>
+            <td>0.82</td>
+        </tr>
+        <tr>
+            <td>LBXAMH</td>
+            <td>Anti-Müllerian hormone</td>
+            <td>0.03*</td>
+        </tr>
+        <tr>
+            <td>LBXDHE</td>
+            <td>Dehydroepiandrosterone sulfate (ug/dL)</td>
+            <td>0.22</td>
+        </tr>
+        <tr>
+            <td>LBXEST</td>
+            <td>Estradiol (pg/mL)</td>
+            <td>1.72</td>
+        </tr>
+        <tr>
+            <td>LBXESO</td>
+            <td>Estrone (ng/dL)</td>
+            <td>0.13</td>
+        </tr>
+        <tr>
+            <td>LBXES1</td>
+            <td>Estrone Sulfate (pg/mL)</td>
+            <td>2.04</td>
+        </tr>
+        <tr>
+            <td>LBXFSH</td>
+            <td>Follicle Stimulating Hormone (mIU/mL)</td>
+            <td>0.300</td>
+        </tr>
+        <tr>
+            <td>LBXLUH</td>
+            <td>Luteinizing Hormone (mIU/mL)</td>
+            <td>0.100</td>
+        </tr>
+        <tr>
+            <td>LBXPG4</td>
+            <td>Progesterone (ng/dL)</td>
+            <td>0.86</td>
+        </tr>
+        <tr>
+            <td>LBXSHBG</td>
+            <td>SHBG (nmol/L)</td>
+            <td>0.350</td>
+        </tr>
+        <tr>
+            <td>LBDTST</td>
+            <td>Testosterone, total (ng/dL)</td>
+            <td>0.57</td>
+        </tr>
+    </tbody>
+</table>
+<p class="MsoNormal" style="margin-top:0in;margin-right:.5in;margin-bottom:12.0pt;
+margin-left:.5in;line-height:15.95pt;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; *Values not
+reported below the Limit of Quantitation (LLOQ)</p></div>
+      <div id="References">
+        <h2>References</h2>
+        <ul>
+          <li>Burger H.G., Dudley E.C., Robertson D.M., Dennerstein L.  Hormonal changes in the menopause transition.  Recent Prog Horm Res. (2002) 57:257-75.</li>
+          <li>Caudill S.P., Schleicher R.L., Pirkle J.L., Multi-rule quality control for the age-related eye disease study. Statist. Med. (2008) 27(30):4094-40106.</li>
+          <li>Davis S, Mirick DK, Stevens RG.  Night shift work, light at night, and risk of breast cancer.  J Natl Cancer Inst. (2001) Oct 17;93(20):1557-62.</li>
+          <li>Pugeat M., Crave J.C., Tourniaire J., Forest M.G. Clinical Utility of Sex Hormone-Binding Globulin Measurement.  Horm Res (1996) 45:148–155.</li>
+          <li>Rosner W., Hryb D.J., Khan M.S., Nakhla A.M., Romas N.A..  Sex hormone-binding globulin mediates steroid hormone signal transduction at the plasma membrane.  J Steroid Biochem Mol Biol. (1999) Apr-Jun;69(1-6):481-5</li>
+          <li>Westgard J.O., Barry P.L., Hunt M.R., Groth T. A multi-rule Shewhart chart for quality control in clinical chemistry. Clin Chem (1981) 27:493-501.</li>
+        </ul>
+      </div>
+      <div id="Codebook">
+        <h2>Codebook and Frequencies</h2>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SEQN">SEQN - Respondent sequence number</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SEQN</dd>
+            <dt>SAS Label: </dt>
+            <dd>Respondent sequence number</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Respondent sequence number.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="WTPH2YR">WTPH2YR - Phlebotomy 2 Year Weight</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">WTPH2YR</dd>
+            <dt>SAS Label: </dt>
+            <dd>Phlebotomy 2 Year Weight</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Phlebotomy 2 Year Weight</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">4391.8220579 to 253478.77765</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7532</td>
+                <td class="values" align="right">7532</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">No blood sample provided</td>
+                <td class="values" align="right">961</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBX17H">LBX17H - 17α-hydroxyprogesterone (ng/dL)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBX17H</dd>
+            <dt>SAS Label: </dt>
+            <dd>17α-hydroxyprogesterone (ng/dL)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">17α-hydroxyprogesterone (ng/dL)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.29 to 1840</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7120</td>
+                <td class="values" align="right">7120</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1373</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBD17HSI">LBD17HSI - 17α-hydroxyprogesterone (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBD17HSI</dd>
+            <dt>SAS Label: </dt>
+            <dd>17α-hydroxyprogesterone (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">17α-hydroxyprogesterone (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.00879 to 55.8</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7120</td>
+                <td class="values" align="right">7120</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1373</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBD17HLC">LBD17HLC - 17α-hydroxyprogesterone Comment Code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBD17HLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>17α-hydroxyprogesterone Comment Code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">17α-hydroxyprogesterone Comment Code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">7112</td>
+                <td class="values" align="right">7112</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">8</td>
+                <td class="values" align="right">7120</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1373</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXAND">LBXAND - Androstenedione (ng/dL)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXAND</dd>
+            <dt>SAS Label: </dt>
+            <dd>Androstenedione (ng/dL)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Androstenedione (ng/dL)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.58 to 755</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7190</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1303</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDANDSI">LBDANDSI - Androstenedione (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDANDSI</dd>
+            <dt>SAS Label: </dt>
+            <dd>Androstenedione (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Androstenedione (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.0202 to 26.3</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7190</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1303</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDANDLC">LBDANDLC - Androstenedione Comment Code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDANDLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Androstenedione Comment Code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Androstenedione Comment Code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">7186</td>
+                <td class="values" align="right">7186</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1303</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXAMH">LBXAMH - Anti-Mullerian hormone (ng/mL)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXAMH</dd>
+            <dt>SAS Label: </dt>
+            <dd>Anti-Mullerian hormone (ng/mL)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Anti-Mullerian hormone (ng/mL)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.02 to 45.92</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">6823</td>
+                <td class="values" align="right">6823</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1670</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDAMHSI">LBDAMHSI - Anti-Mullerian hormone (pmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDAMHSI</dd>
+            <dt>SAS Label: </dt>
+            <dd>Anti-Mullerian hormone (pmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Anti-Mullerian hormone (pmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.14 to 327.87</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">6823</td>
+                <td class="values" align="right">6823</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1670</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDAMHLC">LBDAMHLC - Anti-Mullerian hormone Comment Code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDAMHLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Anti-Mullerian hormone Comment Code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Anti-Mullerian hormone Comment Code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">4902</td>
+                <td class="values" align="right">4902</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">1921</td>
+                <td class="values" align="right">6823</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1670</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXDHE">LBXDHE - DHEAS (µg/dL)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXDHE</dd>
+            <dt>SAS Label: </dt>
+            <dd>DHEAS (µg/dL)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Dehydroepiandrosterone sulfate (µg/dL)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.156 to 601</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7065</td>
+                <td class="values" align="right">7065</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1428</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDDHESI">LBDDHESI - DHEAS (µmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDDHESI</dd>
+            <dt>SAS Label: </dt>
+            <dd>DHEAS (µmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Dehydroepiandrosterone sulfate (µmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.00423 to 16.3</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7065</td>
+                <td class="values" align="right">7065</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1428</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDDHELC">LBDDHELC - DHEAS Comment Code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDDHELC</dd>
+            <dt>SAS Label: </dt>
+            <dd>DHEAS Comment Code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Dehydroepiandrosterone sulfate Comment Code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">7057</td>
+                <td class="values" align="right">7057</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">8</td>
+                <td class="values" align="right">7065</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1428</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXEST">LBXEST - Estradiol (pg/mL)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXEST</dd>
+            <dt>SAS Label: </dt>
+            <dd>Estradiol (pg/mL)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Estradiol (pg/mL)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1.22 to 13200</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7148</td>
+                <td class="values" align="right">7148</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1345</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDESTSI">LBDESTSI - Estradiol (pmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDESTSI</dd>
+            <dt>SAS Label: </dt>
+            <dd>Estradiol (pmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Estradiol (pmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">4.48 to 48400</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7148</td>
+                <td class="values" align="right">7148</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1345</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDESTLC">LBDESTLC - Estradiol Comment Code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDESTLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Estradiol Comment Code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Estradiol Comment Code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">6450</td>
+                <td class="values" align="right">6450</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">698</td>
+                <td class="values" align="right">7148</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1345</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXESO">LBXESO - Estrone (ng/dL)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXESO</dd>
+            <dt>SAS Label: </dt>
+            <dd>Estrone (ng/dL)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Estrone (ng/dL)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.0919 to 510</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7159</td>
+                <td class="values" align="right">7159</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1334</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDESOSI">LBDESOSI - Estrone (pmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDESOSI</dd>
+            <dt>SAS Label: </dt>
+            <dd>Estrone (pmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Estrone (pmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">3.4 to 18900</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7159</td>
+                <td class="values" align="right">7159</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1334</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDESOLC">LBDESOLC - Estrone Comment Code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDESOLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Estrone Comment Code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Estrone Comment Code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">6993</td>
+                <td class="values" align="right">6993</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">166</td>
+                <td class="values" align="right">7159</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1334</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXES1">LBXES1 - Estrone Sulfate (pg/mL)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXES1</dd>
+            <dt>SAS Label: </dt>
+            <dd>Estrone Sulfate (pg/mL)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Estrone Sulfate (pg/mL)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1.44 to 25400</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7013</td>
+                <td class="values" align="right">7013</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1480</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDES1SI">LBDES1SI - Estrone Sulfate (pmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDES1SI</dd>
+            <dt>SAS Label: </dt>
+            <dd>Estrone Sulfate (pmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Estrone Sulfate (pmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">3.93 to 69300</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7013</td>
+                <td class="values" align="right">7013</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1480</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDES1LC">LBDES1LC - Estrone Sulfate Comment Code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDES1LC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Estrone Sulfate Comment Code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Estrone Sulfate Comment Code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">6966</td>
+                <td class="values" align="right">6966</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">47</td>
+                <td class="values" align="right">7013</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1480</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXFSH">LBXFSH - Follicle Stimulating Hormone (mIU/mL)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXFSH</dd>
+            <dt>SAS Label: </dt>
+            <dd>Follicle Stimulating Hormone (mIU/mL)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Follicle Stimulating Hormone (mIU/mL)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.21 to 194.7</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7014</td>
+                <td class="values" align="right">7014</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1479</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDFSHLC">LBDFSHLC - FSH Comment Code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDFSHLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>FSH Comment Code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Follicle Stimulating Hormone Comment Code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">6919</td>
+                <td class="values" align="right">6919</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">95</td>
+                <td class="values" align="right">7014</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1479</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXLUH">LBXLUH - Luteinizing Hormone (mIU/mL)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXLUH</dd>
+            <dt>SAS Label: </dt>
+            <dd>Luteinizing Hormone (mIU/mL)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Luteinizing Hormone (mIU/mL)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.07 to 116.2</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7014</td>
+                <td class="values" align="right">7014</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1479</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDLUHLC">LBDLUHLC - Luteinizing Hormone Comment Code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDLUHLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Luteinizing Hormone Comment Code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Luteinizing Hormone Comment Code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">6624</td>
+                <td class="values" align="right">6624</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">390</td>
+                <td class="values" align="right">7014</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1479</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPG4">LBXPG4 - Progesterone (ng/dL)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPG4</dd>
+            <dt>SAS Label: </dt>
+            <dd>Progesterone (ng/dL)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Progesterone (ng/dL)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.608 to 12800</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7136</td>
+                <td class="values" align="right">7136</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1357</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPG4SI">LBDPG4SI - Progesterone (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPG4SI</dd>
+            <dt>SAS Label: </dt>
+            <dd>Progesterone (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Progesterone (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.0193 to 407</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7136</td>
+                <td class="values" align="right">7136</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1357</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPG4LC">LBDPG4LC - Progesterone Comment Code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPG4LC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Progesterone Comment Code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Progesterone Comment Code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">6701</td>
+                <td class="values" align="right">6701</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">435</td>
+                <td class="values" align="right">7136</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1357</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXSHBG">LBXSHBG - SHBG (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXSHBG</dd>
+            <dt>SAS Label: </dt>
+            <dd>SHBG (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Sex Hormone Binding Globulin (SHBG, nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1.18 to 671.9</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7191</td>
+                <td class="values" align="right">7191</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1302</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDSHGLC">LBDSHGLC - SHBG Comment Code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDSHGLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>SHBG Comment Code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Sex Hormone Binding Globulin Comment Code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">7191</td>
+                <td class="values" align="right">7191</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7191</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1302</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXTST">LBXTST - Testosterone, total (ng/dL)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXTST</dd>
+            <dt>SAS Label: </dt>
+            <dd>Testosterone, total (ng/dL)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Testosterone, total (ng/dL)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.403 to 5180</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7160</td>
+                <td class="values" align="right">7160</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1333</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDTSTSI">LBDTSTSI - Testosterone, total (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDTSTSI</dd>
+            <dt>SAS Label: </dt>
+            <dd>Testosterone, total (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Testosterone, total (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.014 to 180</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7160</td>
+                <td class="values" align="right">7160</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1333</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDTSTLC">LBDTSTLC - Testosterone comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDTSTLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Testosterone comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Testosterone comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">7062</td>
+                <td class="values" align="right">7062</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">98</td>
+                <td class="values" align="right">7160</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1333</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+<div id="extension-mmplj"></div></body></html>

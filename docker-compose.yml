@@ -1,0 +1,101 @@
+version: '3.8'
+
+services:
+  # ----------------------------------------------------------------------------
+  # 1. Production PostgreSQL Database (ACID & Clinical Persistence)
+  # ----------------------------------------------------------------------------
+  postgres:
+    image: postgres:16-alpine
+    container_name: nutriscan_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-nutriscan_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nutriscan_secure_pass_2026}
+      POSTGRES_DB: ${POSTGRES_DB:-nutriscan_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./database/seeds.sql:/docker-entrypoint-initdb.d/02-seeds.sql:ro
+    networks:
+      - nutriscan_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nutriscan_admin} -d ${POSTGRES_DB:-nutriscan_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # ----------------------------------------------------------------------------
+  # 2. Production Redis (Distributed Token Denylist, Cache & Rate Limiter)
+  # ----------------------------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: nutriscan_redis
+    restart: unless-stopped
+    command: redis-server --save 60 1 --loglevel warning
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - nutriscan_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+
+  # ----------------------------------------------------------------------------
+  # 3. NutriScan FastAPI Backend API
+  # ----------------------------------------------------------------------------
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: nutriscan_backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-nutriscan_admin}:${POSTGRES_PASSWORD:-nutriscan_secure_pass_2026}@postgres:5432/${POSTGRES_DB:-nutriscan_db}
+      DATABASE_ENGINE: postgresql
+      REDIS_URL: redis://redis:6379/0
+      JWT_SECRET: ${JWT_SECRET:-nutriscan_production_jwt_secret_key_minimum_32_bytes_2026}
+      ENVIRONMENT: production
+      PORT: 8000
+    ports:
+      - "8000:8000"
+    networks:
+      - nutriscan_network
+
+  # ----------------------------------------------------------------------------
+  # 4. NutriScan React + Vite Frontend (Served via Nginx)
+  # ----------------------------------------------------------------------------
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: nutriscan_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    networks:
+      - nutriscan_network
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  nutriscan_network:
+    driver: bridge

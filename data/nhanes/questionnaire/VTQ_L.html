@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm -->
+<html xml:lang="en" lang="en" xmlns="http://www.w3c.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <title>VTQ_L</title>
+    <meta name="title" content="NHANES August 2021-August 2023: Volatile Toxicant Data Documentation, Codebook, and Frequencies">
+    <link rel="stylesheet" href="./VTQ_L_files/documentation.css">
+  </head>
+  <body class="nhanes-doc">
+    <div id="toc">
+      <h3>Table of Contents</h3>
+      <div id="toc-scroll">
+        <ul>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#Component_Description">Component Description</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#Eligible_Sample">Eligible Sample</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#Interview_Setting_and_Mode_of_Administration">Interview Setting and Mode of Administration</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#Quality_Assurance_&amp;_Quality_Control">Quality Assurance &amp; Quality Control</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#Data_Processing_and_Editing">Data Processing and Editing</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#Analytic_Notes">Analytic Notes</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#Codebook">Codebook</a>
+            <ul id="CodebookLinks">
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#SEQN">SEQN - Respondent sequence number</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#WTSVOC2Y">WTSVOC2Y - VOC Subsample Weight</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#VTQ231A">VTQ231A - Use moth balls or toilet deodorizers?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#VTQ233A">VTQ233A - Past 3 days inhale smoke for 10 minutes</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#VTQ233B">VTQ233B - When did you last inhale smoke for 10min</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#VTQ244A">VTQ244A - Did you pump gas into your car?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#VTD244B">VTD244B - Long ago did you pump gas in your car?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#VTQ261A">VTQ261A - In last 48 hrs use dry cleaning solvent?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#VTD261B">VTD261B - Long since use dry cleaning solvents?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#VTQ271A">VTQ271A - In last 48 hrs, bathe for 5+ minutes?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#VTD271B">VTD271B - How long, in hrs, since you bathed?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#VTQ281A">VTQ281A - In past 48 hrs breathe paint fumes?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VTQ_L.htm#VTD281B">VTD281B - How long, since breathed paint fumes?</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="PageHeader">
+        <h1>National Health and Nutrition Examination Survey</h1>
+        <h2>August 2021-August 2023 Data Documentation, Codebook, and Frequencies</h2>
+        <h3>Volatile Toxicant (VTQ_L)</h3>
+        <h4> Data File: VTQ_L.xpt</h4>
+        <h5 class="left">First Published: December 2025</h5>
+        <h5 class="right">Last Revised: NA</h5>
+      </div>
+      <div id="Sections">
+        <h2 id="Component_Description">Component Description</h2><p>The volatile toxicant questionnaire (variable name prefix VTQ) includes data about the participants home, activities, amount of time spent in various locations and exposure to different chemicals over the past 48 hours. This questionnaire data can be used in conjunction with the volatile organic compound (VOC) laboratory dataset in the NHANES August 2021 – August 2023 Laboratory Data section.
+</p>
+<p>VOCs are a large group of chemicals that have been used as solvents, degreasers, and cleaning agents in industry and consumer products. Many VOCs were found to contaminate ground water and drinking water sources, and because of human health concerns, have been banned or restricted from most uses.</p><h2 id="Eligible_Sample">Eligible Sample</h2><p>Participants aged 12 years and older from a one-half sample were eligible.</p><h2 id="Interview_Setting_and_Mode_of_Administration">Interview Setting and Mode of Administration</h2><p>The volatile toxicant questionnaire was asked in the mobile examination center (MEC), by trained phlebotomists, using the computer-assisted personal interview (CAPI) system.</p><h2 id="Quality_Assurance_&amp;_Quality_Control">Quality Assurance &amp; Quality Control</h2><p>VTQ data were systematically reviewed for consistency, data processing, and data input errors on a periodic basis during the data collection.&nbsp;<br>
+</p>
+<p>The CAPI system is programmed with built-in consistency checks to reduce data entry errors. CAPI also uses online help screens to assist interviewers in defining key terms used&nbsp;</p><h2 id="Data_Processing_and_Editing">Data Processing and Editing</h2><p>Data were edited for completeness and consistency.</p><h2 id="Analytic_Notes">Analytic Notes</h2><p> Please refer to the <a href="https://wwwn.cdc.gov/nchs/nhanes/analyticguidelines.aspx" target="_blank">NHANES Analytic Guidelines</a> and the on-line <a href="https://wwwn.cdc.gov/nchs/nhanes/tutorials/default.aspx" target="_blank">NHANES Tutorial</a> for further details on the use of sample weights and other analytic issues.</p></div>
+      <div id="Codebook">
+        <h2>Codebook and Frequencies</h2>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SEQN">SEQN - Respondent sequence number</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SEQN</dd>
+            <dt>SAS Label: </dt>
+            <dd>Respondent sequence number</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Respondent sequence number.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="WTSVOC2Y">WTSVOC2Y - VOC Subsample Weight</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">WTSVOC2Y</dd>
+            <dt>SAS Label: </dt>
+            <dd>VOC Subsample Weight</dd>
+            <dt>English Text: </dt>
+            <dd class="info">VOC Subsample Weight</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">11386.962716 to 543590.56928</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">2960</td>
+                <td class="values" align="right">2960</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">No Lab Result</td>
+                <td class="values" align="right">658</td>
+                <td class="values" align="right">3618</td>
+                <td class="values">End of Section</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3618</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="VTQ231A">VTQ231A - Use moth balls or toilet deodorizers?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">VTQ231A</dd>
+            <dt>SAS Label: </dt>
+            <dd>Use moth balls or toilet deodorizers?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Do you/Does she/Does he} currently use moth balls, moth crystals or toilet bowl deodorizers inside {your/her/his} home?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HELP SCREEN SHOULD READ: Some toilet bowl deodorizers clip onto the toilet rim, other, such as deodorant blocks and gels, are placed inside the tank or hang inside the wall of the tank. Brand names include Bully, 2000 Flushes, Vanish, X-14, Ty-D-Bol, Toilet Duck, Clorox, Lime-A-Way, and Sno Bol.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">252</td>
+                <td class="values" align="right">252</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">2665</td>
+                <td class="values" align="right">2917</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2917</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">40</td>
+                <td class="values" align="right">2957</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">661</td>
+                <td class="values" align="right">3618</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="VTQ233A">VTQ233A - Past 3 days inhale smoke for 10 minutes</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">VTQ233A</dd>
+            <dt>SAS Label: </dt>
+            <dd>Past 3 days inhale smoke for 10 minutes</dd>
+            <dt>English Text: </dt>
+            <dd class="info">In the last three days, did {you/she/he} inhale smoke from any source for 10 or more minutes?</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">473</td>
+                <td class="values" align="right">473</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">2482</td>
+                <td class="values" align="right">2955</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2955</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">2957</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">661</td>
+                <td class="values" align="right">3618</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="VTQ233B">VTQ233B - When did you last inhale smoke for 10min</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">VTQ233B</dd>
+            <dt>SAS Label: </dt>
+            <dd>When did you last inhale smoke for 10min</dd>
+            <dt>English Text: </dt>
+            <dd class="info">When did {you/she/he} last spend 10 or more minutes inhaling smoke?</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Today</td>
+                <td class="values" align="right">252</td>
+                <td class="values" align="right">252</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Yesterday</td>
+                <td class="values" align="right">157</td>
+                <td class="values" align="right">409</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">More than 2 days</td>
+                <td class="values" align="right">63</td>
+                <td class="values" align="right">472</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">472</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">473</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">3145</td>
+                <td class="values" align="right">3618</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="VTQ244A">VTQ244A - Did you pump gas into your car?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">VTQ244A</dd>
+            <dt>SAS Label: </dt>
+            <dd>Did you pump gas into your car?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">In the last 48 hours, did {you/she/he} pump gas into a car or other motor vehicle {yourself/herself/ himself}?</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">638</td>
+                <td class="values" align="right">638</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">2311</td>
+                <td class="values" align="right">2949</td>
+                <td class="values">VTQ261A</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2949</td>
+                <td class="values">VTQ261A</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">8</td>
+                <td class="values" align="right">2957</td>
+                <td class="values">VTQ261A</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">661</td>
+                <td class="values" align="right">3618</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="VTD244B">VTD244B - Long ago did you pump gas in your car?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">VTD244B</dd>
+            <dt>SAS Label: </dt>
+            <dd>Long ago did you pump gas in your car?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How long ago, in hours, did {you/she/he} pump gas into a car or other motor vehicle {yourself/herself/ himself}?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HOURS
+HARD EDIT:  Range - 1 - 48</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+            <dt>Hard Edits: </dt>
+            <dd class="info">1 to 48</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1 to 48</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">628</td>
+                <td class="values" align="right">628</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">Less than one hour</td>
+                <td class="values" align="right">10</td>
+                <td class="values" align="right">638</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">638</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">638</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2980</td>
+                <td class="values" align="right">3618</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="VTQ261A">VTQ261A - In last 48 hrs use dry cleaning solvent?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">VTQ261A</dd>
+            <dt>SAS Label: </dt>
+            <dd>In last 48 hrs use dry cleaning solvent?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">In the last 48 hours, did {you/she/he} use dry cleaning solvents, visit a dry cleaning shop or wear clothes that had been dry-cleaned within the last week?</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">50</td>
+                <td class="values" align="right">50</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">2899</td>
+                <td class="values" align="right">2949</td>
+                <td class="values">VTQ271A</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2949</td>
+                <td class="values">VTQ271A</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">8</td>
+                <td class="values" align="right">2957</td>
+                <td class="values">VTQ271A</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">661</td>
+                <td class="values" align="right">3618</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="VTD261B">VTD261B - Long since use dry cleaning solvents?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">VTD261B</dd>
+            <dt>SAS Label: </dt>
+            <dd>Long since use dry cleaning solvents?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How long ago, in hours, has it been since {you/she/he} used dry cleaning solvents, visited a dry cleaning shop or wore clothes that had been dry-cleaned within the last week?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HARD EDIT:  Range - 1 - 48
+HOURS</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+            <dt>Hard Edits: </dt>
+            <dd class="info">1 to 48</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1 to 48</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">49</td>
+                <td class="values" align="right">49</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">Less than one hour</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">49</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">49</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">49</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">3569</td>
+                <td class="values" align="right">3618</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="VTQ271A">VTQ271A - In last 48 hrs, bathe for 5+ minutes?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">VTQ271A</dd>
+            <dt>SAS Label: </dt>
+            <dd>In last 48 hrs, bathe for 5+ minutes?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">In the last 48 hours, did {you/she/he} take a hot shower or bath for five minutes or longer?</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">2286</td>
+                <td class="values" align="right">2286</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">666</td>
+                <td class="values" align="right">2952</td>
+                <td class="values">VTQ281A</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2952</td>
+                <td class="values">VTQ281A</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">5</td>
+                <td class="values" align="right">2957</td>
+                <td class="values">VTQ281A</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">661</td>
+                <td class="values" align="right">3618</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="VTD271B">VTD271B - How long, in hrs, since you bathed?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">VTD271B</dd>
+            <dt>SAS Label: </dt>
+            <dd>How long, in hrs, since you bathed?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How long ago, in hours, has it been since {your/SP's} last shower or hot bath?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Hours</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+            <dt>Hard Edits: </dt>
+            <dd class="info">1 to 48</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1 to 48</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">2285</td>
+                <td class="values" align="right">2285</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">Less than one hour</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2285</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2285</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2285</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1333</td>
+                <td class="values" align="right">3618</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="VTQ281A">VTQ281A - In past 48 hrs breathe paint fumes?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">VTQ281A</dd>
+            <dt>SAS Label: </dt>
+            <dd>In past 48 hrs breathe paint fumes?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">In the last 48 hours, did {you/she/he} breathe fumes from freshly painted indoor surfaces, paints, paint thinner, or varnish?</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">80</td>
+                <td class="values" align="right">80</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">2872</td>
+                <td class="values" align="right">2952</td>
+                <td class="values">End of Section</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2952</td>
+                <td class="values">End of Section</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">2956</td>
+                <td class="values">End of Section</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">662</td>
+                <td class="values" align="right">3618</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="VTD281B">VTD281B - How long, since breathed paint fumes?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">VTD281B</dd>
+            <dt>SAS Label: </dt>
+            <dd>How long, since breathed paint fumes?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How long ago, in hours, has it been since {you/she/he} breathed fumes from freshly painted indoor surfaces, paints, paint thinner, or varnish?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HARD EDIT:  Range - 1 - 48
+HOURS</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+            <dt>Hard Edits: </dt>
+            <dd class="info">1 to 48</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1 to 48</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">80</td>
+                <td class="values" align="right">80</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">Less than one hour</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">80</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">80</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">80</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">3538</td>
+                <td class="values" align="right">3618</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+<div id="extension-mmplj"></div></body></html>

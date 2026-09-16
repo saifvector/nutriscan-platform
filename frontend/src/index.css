@@ -1,0 +1,353 @@
+@import "tailwindcss";
+
+/* ─── Light Theme Tokens (Default) ─── */
+@theme {
+  --color-bg: #FAFAF9;
+  --color-bg-secondary: #F5F5F4;
+  --color-primary: #0F766E;
+  --color-primary-light: #14B8A6;
+  --color-primary-dark: #0D5F59;
+  --color-secondary: #0F172A;
+  --color-secondary-light: #1E293B;
+  --color-accent: #D4A017;
+  --color-accent-light: #E5B93C;
+  --color-card: #FFFFFF;
+  --color-border: #E5E7EB;
+  --color-border-light: #F3F4F6;
+  --color-success: #16A34A;
+  --color-warning: #F59E0B;
+  --color-danger: #DC2626;
+  --color-muted: #6B7280;
+  --color-muted-light: #9CA3AF;
+  --color-text: #111827;
+  --color-text-secondary: #4B5563;
+  --font-heading: 'Inter Tight', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.07);
+}
+
+/* ─── Dark Theme Overrides ─── */
+:root {
+  /* Semantic color tokens — consumed by inline styles via var() */
+  --c-bg: #FAFAF9;
+  --c-bg-secondary: #F5F5F4;
+  --c-primary: #0F766E;
+  --c-primary-light: #14B8A6;
+  --c-primary-dark: #0D5F59;
+  --c-secondary: #0F172A;
+  --c-secondary-light: #1E293B;
+  --c-accent: #D4A017;
+  --c-accent-light: #E5B93C;
+  --c-card: #FFFFFF;
+  --c-card-hover: #F9FAFB;
+  --c-border: #E5E7EB;
+  --c-border-light: #F3F4F6;
+  --c-success: #16A34A;
+  --c-success-bg: #DCFCE7;
+  --c-success-text: #166534;
+  --c-warning: #F59E0B;
+  --c-warning-bg: #FEF3C7;
+  --c-warning-text: #92400E;
+  --c-danger: #DC2626;
+  --c-danger-bg: #FEE2E2;
+  --c-danger-text: #991B1B;
+  --c-muted: #6B7280;
+  --c-muted-light: #9CA3AF;
+  --c-text: #111827;
+  --c-text-secondary: #4B5563;
+  --c-surface-tint: #F0FDFA;
+  --c-surface-warm: #F5F0E8;
+  --c-surface-alt: #FAFAF9;
+  --c-bar-track: #F3F4F6;
+  --c-navbar-bg: rgba(250, 250, 249, 0.85);
+  --c-sidebar-bg: #0F172A;
+  --c-sidebar-text: rgba(255, 255, 255, 0.5);
+  --c-sidebar-active: rgba(255, 255, 255, 0.08);
+  --c-sidebar-border: rgba(255, 255, 255, 0.06);
+  --c-chart-grid: #F3F4F6;
+  --c-chart-tick: #9CA3AF;
+  --c-chart-label: #4B5563;
+  --c-tooltip-bg: #FFFFFF;
+  --c-tooltip-border: #E5E7EB;
+  --c-selection-bg: rgba(15, 118, 110, 0.15);
+  --c-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --c-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --c-shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.08);
+  --c-input-bg: #FFFFFF;
+  --c-input-border: #E5E7EB;
+  --c-input-focus: #0F766E;
+  --c-badge-check-bg: #FFFFFF;
+}
+
+[data-theme="dark"] {
+  --c-bg: #0B0F14;
+  --c-bg-secondary: #111827;
+  --c-primary: #14B8A6;
+  --c-primary-light: #2DD4BF;
+  --c-primary-dark: #0F766E;
+  --c-secondary: #F8FAFC;
+  --c-secondary-light: #E2E8F0;
+  --c-accent: #F4B942;
+  --c-accent-light: #FBBF24;
+  --c-card: #171F2E;
+  --c-card-hover: #1E293B;
+  --c-border: #293548;
+  --c-border-light: #1E293B;
+  --c-success: #22C55E;
+  --c-success-bg: rgba(34, 197, 94, 0.12);
+  --c-success-text: #4ADE80;
+  --c-warning: #F59E0B;
+  --c-warning-bg: rgba(245, 158, 11, 0.12);
+  --c-warning-text: #FBBF24;
+  --c-danger: #EF4444;
+  --c-danger-bg: rgba(239, 68, 68, 0.12);
+  --c-danger-text: #FCA5A5;
+  --c-muted: #94A3B8;
+  --c-muted-light: #64748B;
+  --c-text: #F8FAFC;
+  --c-text-secondary: #94A3B8;
+  --c-surface-tint: rgba(20, 184, 166, 0.08);
+  --c-surface-warm: #111827;
+  --c-surface-alt: #111827;
+  --c-bar-track: #293548;
+  --c-navbar-bg: rgba(11, 15, 20, 0.85);
+  --c-sidebar-bg: #080C11;
+  --c-sidebar-text: rgba(148, 163, 184, 0.7);
+  --c-sidebar-active: rgba(20, 184, 166, 0.1);
+  --c-sidebar-border: rgba(41, 53, 72, 0.6);
+  --c-chart-grid: #293548;
+  --c-chart-tick: #64748B;
+  --c-chart-label: #94A3B8;
+  --c-tooltip-bg: #1E293B;
+  --c-tooltip-border: #293548;
+  --c-selection-bg: rgba(20, 184, 166, 0.2);
+  --c-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --c-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --c-shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.4);
+  --c-input-bg: #1E293B;
+  --c-input-border: #293548;
+  --c-input-focus: #14B8A6;
+  --c-badge-check-bg: #293548;
+}
+
+/* ─── Base Styles ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  line-height: 1.6;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--c-secondary);
+}
+
+/* ─── Utility Classes ─── */
+.container-wide {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* ─── Risk Level Utilities ─── */
+.risk-low { color: var(--c-success); }
+.risk-moderate { color: var(--c-warning); }
+.risk-high { color: var(--c-danger); }
+
+.risk-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.risk-badge-low {
+  background-color: var(--c-success-bg);
+  color: var(--c-success-text);
+}
+
+.risk-badge-moderate {
+  background-color: var(--c-warning-bg);
+  color: var(--c-warning-text);
+}
+
+.risk-badge-high {
+  background-color: var(--c-danger-bg);
+  color: var(--c-danger-text);
+}
+
+/* ─── Card Base ─── */
+.card {
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--c-shadow-sm);
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+
+.card-hover:hover {
+  border-color: var(--c-primary);
+  box-shadow: var(--c-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* ─── Button Styles ─── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background-color: var(--c-primary);
+  color: white;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--c-primary-dark);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background-color: transparent;
+  color: var(--c-secondary);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  border-color: var(--c-primary);
+  background-color: var(--c-surface-tint);
+  color: var(--c-primary);
+}
+
+/* ─── Section Spacing ─── */
+.section {
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
+.section-sm {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--c-muted-light);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-muted);
+}
+
+/* ─── Selection ─── */
+::selection {
+  background-color: var(--c-selection-bg);
+  color: var(--c-secondary);
+}
+
+/* ─── Spinner animation ─── */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Copilot Entrance Animations ─── */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

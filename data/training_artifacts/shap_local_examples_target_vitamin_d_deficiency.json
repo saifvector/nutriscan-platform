@@ -1,0 +1,116 @@
+{
+  "high_risk_positive_case": {
+    "test_index": 1,
+    "predicted_probability": 0.3062836223487472,
+    "actual_label": 1,
+    "top_contributing_features": [
+      {
+        "feature": "supp_vitamin_d_mcg",
+        "shap_value": 0.35770552628292673,
+        "feature_value": 0.0
+      },
+      {
+        "feature": "exam_waist_height_ratio",
+        "shap_value": -0.10910246298509314,
+        "feature_value": 0.3895131086142322
+      },
+      {
+        "feature": "demo_poverty_ratio",
+        "shap_value": -0.09872840009104304,
+        "feature_value": 5.0
+      },
+      {
+        "feature": "exam_weight_kg",
+        "shap_value": -0.08471853142448763,
+        "feature_value": 41.3
+      },
+      {
+        "feature": "demo_education_level",
+        "shap_value": -0.06179656736886487,
+        "feature_value": 5.0
+      },
+      {
+        "feature": "lifestyle_sedentary_minutes_per_day",
+        "shap_value": 0.0465951569609187,
+        "feature_value": 720.0
+      },
+      {
+        "feature": "diet_vitamin_d_mcg",
+        "shap_value": -0.04257890891872972,
+        "feature_value": null
+      },
+      {
+        "feature": "demo_age_years",
+        "shap_value": 0.041564840150704344,
+        "feature_value": 24.0
+      },
+      {
+        "feature": "exam_bmi",
+        "shap_value": -0.03731496282432654,
+        "feature_value": 16.1
+      },
+      {
+        "feature": "exam_pulse_rate",
+        "shap_value": 0.023850880291007317,
+        "feature_value": 86.0
+      }
+    ]
+  },
+  "low_risk_negative_case": {
+    "test_index": 0,
+    "predicted_probability": 0.13162268690249262,
+    "actual_label": 0,
+    "top_contributing_features": [
+      {
+        "feature": "supp_vitamin_d_mcg",
+        "shap_value": -0.7841331374472245,
+        "feature_value": 25.0
+      },
+      {
+        "feature": "demo_race_ethnicity",
+        "shap_value": -0.06060506619074266,
+        "feature_value": 3.0
+      },
+      {
+        "feature": "nar_vitamin_d",
+        "shap_value": -0.05113531350843069,
+        "feature_value": 1.9400000000000002
+      },
+      {
+        "feature": "demo_education_level",
+        "shap_value": -0.046144345468496495,
+        "feature_value": 5.0
+      },
+      {
+        "feature": "total_folate_intake_mcg",
+        "shap_value": -0.044311375246614416,
+        "feature_value": 795.5
+      },
+      {
+        "feature": "demo_poverty_ratio",
+        "shap_value": -0.034300529719899615,
+        "feature_value": 5.0
+      },
+      {
+        "feature": "lifestyle_sedentary_minutes_per_day",
+        "shap_value": 0.03322195135280721,
+        "feature_value": 540.0
+      },
+      {
+        "feature": "exam_pulse_rate",
+        "shap_value": -0.020787528648038983,
+        "feature_value": 61.333333333333336
+      },
+      {
+        "feature": "diet_vitamin_a_rae_mcg",
+        "shap_value": 0.01922729549785316,
+        "feature_value": 527.5
+      },
+      {
+        "feature": "total_vitamin_d_intake_mcg",
+        "shap_value": 0.01812799389939029,
+        "feature_value": 29.1
+      }
+    ]
+  }
+}

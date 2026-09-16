@@ -1,0 +1,239 @@
+﻿.nhanes-doc { font: 75% Verdana, Arial, Helvetica, sans-serif; }
+
+.nhanes-doc h1 {
+    color: #0c5205;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-size: 2em;
+    font-weight: normal;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.nhanes-doc h2 {
+    color: #0c5205;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-size: 1.6em;
+    font-weight: normal;
+}
+
+.nhanes-doc h3 {
+    color: #000;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-size: 1.5em;
+    font-weight: normal;
+}
+
+.nhanes-doc h3.vartitle {
+    background-color: #c1d5b0;
+    padding: 6px 12px;
+}
+
+.nhanes-doc h4 {
+    color: #000;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.nhanes-doc h5 {
+    color: #000;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.nhanes-doc h5.specialnote {
+    color: #000;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-left: 3em;
+}
+
+.nhanes-doc a {
+    color: #039;
+    text-decoration: none;
+}
+
+.nhanes-doc p {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    line-height: 1.33em;
+    padding: 0 3em 1em;
+    text-align: left;
+}
+
+.nhanes-doc ol,
+.nhanes-doc ul {
+    margin-bottom: 1.2em;
+    margin-left: 2.4em;
+}
+
+.nhanes-doc ul { list-style-type: disc; }
+
+.nhanes-doc ol { list-style-type: decimal; }
+
+.nhanes-doc li { margin-top: 0.6em; }
+
+.nhanes-doc #toc ul,
+.nhanes-doc #References ul { margin-left: 0em; }
+
+.nhanes-doc #Sections ol ul,
+.nhanes-doc #Sections ul ul { margin-left: 0; }
+
+.nhanes-doc #Sections ol ol,
+.nhanes-doc #Sections ul ol { margin-left: -1.2em; }
+
+.nhanes-doc #Sections li { margin-left: 1.2em; }
+
+.nhanes-doc table {
+    border: #000 1px solid;
+    border-collapse: collapse;
+    margin: 0 auto 1em;
+    max-width: 600px;
+    padding: 2px;
+    page-break-inside: avoid;
+    table-layout: auto;
+}
+
+.nhanes-doc th {
+    background: #f4f4e1;
+    border: #000 1px solid;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    padding: 5px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.nhanes-doc th.rowheader {
+    background: #f4f4e1;
+    border: #000 1px solid;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    padding: 5px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.nhanes-doc td {
+    border: #000 1px solid;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    padding: 5px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.nhanes-doc td p {
+    margin: inherit;
+    padding: 0;
+}
+
+.nhanes-doc td.values2 {
+    text-align: RIGHT;
+    vertical-align: top;
+}
+
+.nhanes-doc table caption {
+    font-weight: bold;
+    padding-bottom: 0.5em;
+}
+
+.nhanes-doc div#wrapper { width: 650px; }
+
+.nhanes-doc div#toc {
+    border: solid 1px #CCC;
+    float: left;
+    height: 95%;
+    left: 750px;
+    overflow: hidden;
+    position: fixed;
+    top: 10px;
+    width: 400px;
+    z-index: 10;
+}
+
+.nhanes-doc div#toc h3 {
+    background-color: #f4f4e1;
+    border-bottom: solid 1px #ccc;
+    letter-spacing: 8px;
+    margin: 0;
+    padding: 8px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.nhanes-doc div#toc-scroll {
+    height: calc(100% - 1.5em);
+    overflow: scroll;
+    width: 100%;
+}
+
+.nhanes-doc div#toc li {
+    margin-left: -0.5em;
+    margin-right: -0.5em;
+}
+
+.nhanes-doc div#PageHeader {
+    border-bottom: thin solid #999;
+    margin-bottom: 12px;
+    width: 650px;
+}
+
+.nhanes-doc div#Sections { width: 650px; }
+
+.nhanes-doc div#Codebook { width: 650px; }
+
+.nhanes-doc div#Codebook dl {
+    display: table;
+    margin: 2em 0 10px 40px;
+    padding: 0;
+    width: 600px;
+}
+
+.nhanes-doc div#Codebook dt {
+    display: table-cell;
+    float: left;
+    font-weight: bold;
+    margin: 0;
+    padding: 0.5em;
+    width: 150px;
+}
+
+.nhanes-doc div#Codebook dd {
+    display: table-cell;
+    float: left;
+    margin: 0;
+    padding: 0.5em;
+    width: 420px;
+}
+
+.nhanes-doc div#References {
+    page-break-after: always;
+    width: 650px;
+}
+
+.nhanes-doc div#References li { word-wrap: break-word; }
+
+.nhanes-doc div#Appendix {
+    page-break-after: always;
+    width: 650px;
+}
+
+.nhanes-doc table.values {
+    border: 2px;
+    left: 20px;
+    margin-bottom: 20px;
+    page-break-inside: avoid;
+    position: relative;
+    width: 600px;
+}
+
+.nhanes-doc span.file-size { color: gray; }
+
+.nhanes-doc .pagebreak {
+    background-color: transparent;
+    display: block;
+    page-break-after: always;
+    page-break-inside: avoid;
+}
+
+@print { .nhanes-doc div#toc { display: none; } }

@@ -1,0 +1,116 @@
+{
+  "high_risk_positive_case": {
+    "test_index": 158,
+    "predicted_probability": 0.4026345908641815,
+    "actual_label": 1,
+    "top_contributing_features": [
+      {
+        "feature": "demo_age_years",
+        "shap_value": -0.14566966891288757,
+        "feature_value": 31.0
+      },
+      {
+        "feature": "lifestyle_moderate_activity_minutes",
+        "shap_value": -0.07976656407117844,
+        "feature_value": 60.0
+      },
+      {
+        "feature": "diet_cholesterol_mg",
+        "shap_value": -0.06704936176538467,
+        "feature_value": 159.5
+      },
+      {
+        "feature": "diet_riboflavin_b2_mg",
+        "shap_value": -0.05317685753107071,
+        "feature_value": 2.081
+      },
+      {
+        "feature": "diet_vitamin_d_mcg",
+        "shap_value": -0.0461563877761364,
+        "feature_value": 12.2
+      },
+      {
+        "feature": "lifestyle_alcohol_drinker",
+        "shap_value": 0.04052435979247093,
+        "feature_value": 0.0
+      },
+      {
+        "feature": "diet_copper_mg",
+        "shap_value": -0.031691763550043106,
+        "feature_value": 0.765
+      },
+      {
+        "feature": "exam_weight_kg",
+        "shap_value": 0.030990678817033768,
+        "feature_value": 59.0
+      },
+      {
+        "feature": "diet_folic_acid_mcg",
+        "shap_value": 0.030883224681019783,
+        "feature_value": 402.5
+      },
+      {
+        "feature": "diet_caffeine_mg",
+        "shap_value": 0.02933802828192711,
+        "feature_value": 60.0
+      }
+    ]
+  },
+  "low_risk_negative_case": {
+    "test_index": 0,
+    "predicted_probability": 0.3253963887691498,
+    "actual_label": 0,
+    "top_contributing_features": [
+      {
+        "feature": "exam_pulse_rate",
+        "shap_value": -0.2357150763273239,
+        "feature_value": 84.66666666666667
+      },
+      {
+        "feature": "diet_caffeine_mg",
+        "shap_value": -0.14423274993896484,
+        "feature_value": 216.0
+      },
+      {
+        "feature": "exam_waist_cm",
+        "shap_value": -0.04384323209524155,
+        "feature_value": 111.5
+      },
+      {
+        "feature": "exam_weight_kg",
+        "shap_value": -0.04169858247041702,
+        "feature_value": 93.6
+      },
+      {
+        "feature": "diet_vitamin_k_mcg",
+        "shap_value": -0.04163220897316933,
+        "feature_value": 6.25
+      },
+      {
+        "feature": "exam_height_cm",
+        "shap_value": -0.03428978472948074,
+        "feature_value": 180.8
+      },
+      {
+        "feature": "lifestyle_alcohol_drinker",
+        "shap_value": -0.02952812798321247,
+        "feature_value": 1.0
+      },
+      {
+        "feature": "diet_vitamin_d_mcg",
+        "shap_value": -0.029388509690761566,
+        "feature_value": 1.25
+      },
+      {
+        "feature": "diet_riboflavin_b2_mg",
+        "shap_value": 0.028064975515007973,
+        "feature_value": 0.8555
+      },
+      {
+        "feature": "diet_carbohydrate_g",
+        "shap_value": -0.027510691434144974,
+        "feature_value": 41.394999999999996
+      }
+    ]
+  }
+}

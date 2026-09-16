@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nutriscan-api-ingress
+  namespace: nutriscan-clinical
+  labels:
+    app.kubernetes.io/name: nutriscan-ai
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/proxy-body-size: 50m
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
+spec:
+  tls:
+    - hosts:
+        - api.nutriscan.ai
+      secretName: nutriscan-tls-cert
+  rules:
+    - host: api.nutriscan.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nutriscan-api-service
+                port:
+                  number: 80

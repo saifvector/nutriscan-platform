@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm -->
+<html xml:lang="en" lang="en" xmlns="http://www.w3c.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <title>FFMR_L</title>
+    <meta name="title" content="NHANES August 2021-August 2023: Folate Forms - Total &amp; Individual – Washed RBCs Data Documentation, Codebook, and Frequencies">
+    <link rel="stylesheet" href="./FFMR_L_files/documentation.css">
+  </head>
+  <body class="nhanes-doc">
+    <div id="toc">
+      <h3>Table of Contents</h3>
+      <div id="toc-scroll">
+        <ul>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#Component_Description">Component Description</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#Eligible_Sample">Eligible Sample</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#Description_of_Laboratory_Methodology">Description of Laboratory Methodology</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#Laboratory_Method_Files">Laboratory Method Files</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#Laboratory_Quality_Assurance_and_Monitoring">Laboratory Quality Assurance and Monitoring</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#Data_Processing_and_Editing">Data Processing and Editing</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#Analytic_Notes">Analytic Notes</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#References">References</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#Codebook">Codebook</a>
+            <ul id="CodebookLinks">
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#SEQN">SEQN - Respondent sequence number</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#WTPH2YR">WTPH2YR - Phlebotomy 2 Year Weight</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#LBDRF7SI">LBDRF7SI - Total Folate, RBC (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#LBXRF1SI">LBXRF1SI - 5-Methyl-tetrahydrofolate, RBC (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#LBDRF1LC">LBDRF1LC - 5-Methyl-tetrahydrofolate, RBC cmt</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#LBXRF2SI">LBXRF2SI - Folic acid, RBC (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#LBDRF2LC">LBDRF2LC - Folic acid, RBC cmt</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#LBXRF3SI">LBXRF3SI - 5-Formyl-tetrahydrofolate, RBC (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#LBDRF3LC">LBDRF3LC - 5-Formyl-tetrahydrofolate, RBC cmt</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#LBXRF4SI">LBXRF4SI - Tetrahydrofolate, RBC (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#LBDRF4LC">LBDRF4LC - Tetrahydrofolate, RBC cmt</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#LBXRF5SI">LBXRF5SI - 5,10-Methenyl-tetrahydrofolate (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#LBDRF5LC">LBDRF5LC - 5,10-Methenyl-tetrahydrofolate, RBC cmt</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#LBXRF6SI">LBXRF6SI - MeFox oxidation product, RBC (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FFMR_L.htm#LBDRF6LC">LBDRF6LC - MeFox oxidation product, RBC cmt</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="PageHeader">
+        <h1>National Health and Nutrition Examination Survey</h1>
+        <h2>August 2021-August 2023 Data Documentation, Codebook, and Frequencies</h2>
+        <h3>Folate Forms - Total &amp; Individual – Washed RBCs (FFMR_L)</h3>
+        <h4> Data File: FFMR_L.xpt</h4>
+        <h5 class="left">First Published: January 2026</h5>
+        <h5 class="right">Last Revised: NA</h5>
+      </div>
+      <div id="Sections">
+        <h2 id="Component_Description">Component Description</h2><p>Folate belongs to the group of
+water-soluble B vitamins that occur naturally in food. Prolonged folate
+deficiency leads to megaloblastic anemia. Low folate status has been causally
+linked to an increased risk in women of reproductive age to have an offspring
+with neural tube defects.&nbsp; Low folate
+status also increases plasma homocysteine levels, a potential risk factor for
+chronic diseases, such as cardiovascular disease or cognitive function.
+Potential roles of folate and other B vitamins in modulating the risk for
+diseases (e.g., heart disease, cancer, and cognitive impairment) are
+under investigation. While serum folate is an indicator of recent intake, red
+blood cell (RBC) folate is an indicator of long-term status.</p>
+<p>These data will be used to estimate deficiencies and other health effects of
+specific nutrients in the population and subgroup, to provide population
+reference data, and to estimate the contribution of diet, supplements, and
+other factors to the levels of nutrients. Data will be used in research to
+further define nutrient requirements as well as optimal levels for disease
+prevention and health promotion. Data will also be used to evaluate the effect
+of changes in nutrition and public health policies, including welfare reform
+legislation, food fortification policy, and child nutrition programs on the
+nutritional status of the U.S. population.</p><h2 id="Eligible_Sample">Eligible Sample</h2><p>Examined participants aged 6 years and older were eligible.</p><h2 id="Description_of_Laboratory_Methodology">Description of Laboratory Methodology</h2><p>RBC folate status
+can be determined directly by measuring folate forms in washed RBCs (Stamm et
+al., 2018) or indirectly by measuring folate forms in a whole blood (WB) lysate
+(Fazili et al., 2004; Fazili et al., 2005). The direct measurement requires the
+addition of exogenous γ-glutamyl hydrolase (exo-GGH) to deconjugate folate
+polyglutamates to monoglutamates (Stamm et al., 2018). It also requires the
+measurement of hemoglobin (Hb) in the RBC lysate to correct for residual
+moisture (~20%) in the washed RBCs. By using the mean corpuscular hemoglobin
+content (MCHC), RBC folate can be calculated. The indirect measurement can
+either utilize the endogenous plasma-based γ-glutamyl hydrolase (no addition of
+enzyme; 4 h incubation at 37°C) or preferably, for faster deconjugation, use
+the addition of exo-GGH (30 min incubation at ambient temperature [+15°C to
++30°C]). To calculate RBC folate, it requires the measurement of serum folate
+to correct for the serum folate contribution to WB folate and hematocrit (Hct)
+to normalize to the proportion of packed red cells.</p>
+<p>For this NHANES component, RBC folate status was determined directly by measuring folate forms in washed RBCs.</p>
+<p><a></a><a>Five&nbsp;</a>folate forms, 5-methylTHF, pteroylglutamic acid (Folic Acid, PGA), tetrahydrofolate
+(THF), 5-formyl-tetrahydrofolic acid (5-formylTHF),
+5,10-methenyltetrahydrofolic acid (5,10-methenylTHF), and one oxidation product
+of 5-methylTHF called MeFox (pyrazino-s-triazine derivative of
+4-α-hydroxy-5-methylTHF) are measured by isotope-dilution high performance
+liquid chromatography coupled to tandem mass spectrometry (HPLC-MS/MS). The
+current method is a modification of previously published methods (Fazili et
+al., 2004; Fazili, et al., 2005) to add the measurement of an oxidation product
+(Fazili et al., 2013;143:108-113) and to scale down the amount of specimen
+needed and increase the sample throughput (Fazili et al., 2013;405:4549-60).
+The method distinguishes 5-formylTHF from 10-formylTHF on the basis of mass
+transitions; however, during HPLC-MS/MS in the acidic mobile phase, 10-formylTHF
+converts within minutes to 5,10-methenylTHF and trace amounts of 5-formylTHF,
+THF, and 10-formyl-folic acid. Thus, this method is not capable of quantifying
+10-formylTHF; formylated folates are quantified as 5-formylTHF and
+5,10-methenylTHF, which are stable under these conditions (Pfeiffer et al.,
+2004).</p>
+<p>The assay is
+performed by combining specimen (150 µL of WB lysate or RBC lysate) with an
+internal standard mixture containing exo-GGH enzyme (5 µg per mL of WB lysate
+or RBC lysate) and incubating at ambient temperature (+15°C to +30°C) for 30
+min to deconjugate folate polyglutamates to monoglutamates prior to folate
+extraction. Ammonium formate buffer (1%) is added to the samples and extraction
+and clean-up is performed by automated 96-probe solid phase extraction (SPE)
+using 96-well phenyl SPE plates which takes ~1 h for a 96-well plate. Folate
+forms are separated within 4 min using isocratic mobile phase conditions and
+measured by HPLC-MS/MS (7 min to next injection). Quantitation is based on peak
+area ratios interpolated against a five-point aqueous linear calibration curve
+using 1/x2 weighting.</p>
+<p>RBC folate form concentrations
+(nmol/L) measured in an RBC lysate are calculated as RBC folate form = (RBC
+lysate folate form / Hb) * MCHC.</p>
+<p>Refer to the
+Laboratory Method Files section for a detailed description on the laboratory methods
+used.</p>
+<div>
+</div><h2 id="Laboratory_Method_Files">Laboratory Method Files</h2>
+        <p>
+          <a target="_blank" href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/labmethods/FFMR-L-MET-508.pdf">Folate Forms - Total &amp; Individual – Washed RBCs</a>
+          <span> (January 2026)</span>
+        </p>
+        <h2 id="Laboratory_Quality_Assurance_and_Monitoring">Laboratory Quality Assurance and Monitoring</h2><p>Washed red blood
+cell specimens are processed, stored, and shipped to the Division of Laboratory
+Sciences, National Center for Environmental Health, Centers for Disease Control
+and Prevention, Atlanta, GA for analysis. </p>
+<p>Detailed
+instructions on specimen collection and processing are discussed in the <a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/manuals/2021-Laboratory-Procedures-508.pdf">NHANES Laboratory Procedures Manual
+(LPM)</a>. Vials are stored under appropriate frozen (–30°C) conditions
+until they are shipped to the National Center for Environmental Health for
+testing. </p>
+<p>The NHANES quality assurance and quality control (QA/QC) protocols meet the
+1988 Clinical Laboratory Improvement Amendments. Detailed QA/QC instructions
+are discussed in the <a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/manuals/2021-Laboratory-Procedures-508.pdf">NHANES
+LPM</a>. </p>
+<p><strong>Mobile Examination
+Centers (MECs)</strong></p>
+<p>Laboratory team
+performance is monitored using several techniques. NCHS and contract
+consultants use a structured QA evaluation during unscheduled visits to
+evaluate both the quality of the laboratory work and the QC procedures. Each
+laboratory staff member is observed for equipment operation, specimen
+collection and preparation; testing procedures and constructive feedback are
+given to each staff member. Formal retraining sessions are conducted annually
+to ensure that required skill levels were maintained. </p>
+<p><strong>Analytical
+Laboratories </strong></p>
+<p>NHANES uses
+several methods to monitor the quality of the analyses performed by the
+contract laboratories. In the MEC, these methods include performing blind split
+samples collected during “dry run” sessions. In addition, contract laboratories
+randomly perform repeat testing on 2% of all specimens. </p>
+<p>NCHS developed and
+distributed a QC protocol for all the contract laboratories, which outlined the
+use of Westgard rules (Westgard, et al., 1981) when testing NHANES specimens.
+Progress reports containing any problems encountered during shipping or receipt
+of specimens, summary statistics for each control pool, QC graphs, instrument
+calibration, reagents, and any special considerations are submitted to NCHS
+quarterly. The reports are reviewed for trends or shifts in the data. The
+laboratories are required to explain any identified areas of concern. </p>
+<p>All QC procedures
+recommended by the manufacturers were followed. Reported results for all assays
+meet the Division of Laboratory Sciences’ QA/QC performance criteria for
+accuracy and precision, similar to the Westgard rules (Caudill, et al., 2008).</p><h2 id="Data_Processing_and_Editing">Data Processing and Editing</h2><p>The data were
+reviewed. Incomplete data or improbable values were sent to the performing
+laboratory for confirmation.</p><h2 id="Analytic_Notes">Analytic Notes</h2><p>There are over 800
+laboratory tests performed on NHANES participants. However, not all
+participants provided biospecimens or enough volume for all the tests to be
+performed. The specimen availability can also vary by age or other population
+characteristics. Analysts should evaluate the extent of missing data in the
+dataset related to the outcome of interest as well as any predictor variables
+used in the analyses to determine whether additional re-weighting for item
+non-response is necessary.</p>
+<p>Please refer to the
+<a href="https://wwwn.cdc.gov/nchs/nhanes/analyticguidelines.aspx">NHANES Analytic Guidelines</a>&nbsp;and
+the on-line <a href="https://wwwn.cdc.gov/nchs/nhanes/tutorials/">NHANES Tutorial</a>&nbsp;for
+further details on the use of sample weights and other analytic issues. </p>
+<p><strong>Phlebotomy Weights<br>
+<br>
+</strong>For the August 2021-August 2023 cycle,
+analysis of nonresponse patterns for the phlebotomy component in the MEC
+examination revealed differences by age group and race/ethnicity, among other
+characteristics. For example, approximately 67% of children aged 1-17 years who
+were examined in the MEC provided a blood specimen through phlebotomy, while
+95% of examined adults aged 18 and older provided a blood specimen. Therefore,
+an additional phlebotomy weight, WTPH2YR, has been included in this data
+release to address possible nonresponse bias. Participants who are eligible but
+did not provide a blood specimen have their phlebotomy weight assigned a value
+of “0” in their records. The phlebotomy weight should be used for analyses that
+use variables derived from blood analytes, and is included in all relevant data
+files.<strong></strong></p>
+<p><strong style="text-indent: 30pt;">RBC Folate Forms for NHANES 2021-2023</strong></p>
+<p>
+In NHANES 2021-2023, washed red blood cells (RBC) were diluted approximately 1+1 with saline and then 1+10 with ascorbic acid solution to generate RBC lysates. Several folate forms were measured in RBC lysates by isotope-dilution high-performance liquid chromatography coupled to tandem mass spectrometry (LC-MS/MS). Instrument-measured lysate concentrations were converted to concentrations expressed in nmol/L RBC by dividing by the Hb content measured in the same aliquot and multiplying by the participant-specific MCHC to account for the ‘dilution’ effect from washed RBC to lysate (Table 1, LBXRF1SI to LBXRF6SI). For individual RBC folate forms with lysate concentrations below the limit of detection (LOD), an imputed value equal to the LOD divided by the square root of 2 was used prior to calculating the RBC concentration (nmol/L RBC). RBC folate form concentrations were not calculated when the Hb or MCHC value was missing. Total RBC folate (LBDRF7SI) was calculated as the sum of individual folate forms LBXRF1SI through LBXRF5SI. LBXRF6SI was not included in the total folate calculation, because this folate form is not biologically active and due to evidence that it may already be present in vivo (Pfeiffer, et al., 2015). RBC total folate concentration was not calculated when one or more individual RBC folate form results were missing.</p>
+<p><strong>Table 1.</strong>&nbsp; Folate forms measured by LC-MS/MS</p>
+<table bordercolor="#000000" border="1" style="margin-left: 40px;">
+    <thead>
+        <tr>
+            <th>Analyte</th>
+            <th>Abbreviation</th>
+            <th>Variable Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>5-Methyltetrahydrofolate</td>
+            <td>5-methylTHF</td>
+            <td>LBXRF1SI</td>
+        </tr>
+        <tr>
+            <td>Pteroylglutamic acid (Folic Acid)</td>
+            <td>PGA</td>
+            <td>LBXRF2SI</td>
+        </tr>
+        <tr>
+            <td>5-Formyltetrahydrofolate</td>
+            <td>5-formylTHF</td>
+            <td>LBXRF3SI</td>
+        </tr>
+        <tr>
+            <td>Tetrahydrofolate</td>
+            <td>THF</td>
+            <td>LBXRF4SI</td>
+        </tr>
+        <tr>
+            <td>5,10-Methenyltetrahydrofolate</td>
+            <td>5,10-methenylTHF</td>
+            <td>LBXRF5SI</td>
+        </tr>
+        <tr>
+            <td>Pyrazino-s-triazine derivative of 4-a-hydroxy-5-methyltetrahydrofolate</td>
+            <td>MeFox</td>
+            <td>LBXRF6SI</td>
+        </tr>
+        <tr>
+            <td>Total washed RBC folate (sum of biologically active folate forms)</td>
+            <td>tFOL</td>
+            <td>LBDRF7SI</td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<p><strong style="text-indent: 30pt;">Demographic and Other Related Variables</strong></p>
+<p>The
+analysis of NHANES laboratory data may require additional demographic
+variables. The&nbsp;<a href="https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Demographics&amp;Cycle=2021-2023">NHANES August 2021- August 2023 Demographics File</a>&nbsp;contains demographic data, health indicators, and
+other related information collected during household interviews.&nbsp;</p>
+<p>This
+laboratory data file can be linked to the Demographics file and other NHANES
+data files in the August 2021-August 2023 cycle&nbsp;using the unique survey
+participant identifier (i.e., SEQN).</p>
+<p><strong>Detection Limits </strong></p>
+<p>The lower limit of detection (LLOD) for the five folate forms and the oxidation product of 5-methylTHF applies to instrument measurements performed on RBC lysates, not to the reported concentrations of folate forms in RBC (nmol/L RBC) that are presented in the data. Reported RBC folate concentrations are calculated from the instrument-measured lysate values using each participant’s Hb and MCHC. As a result, even when the underlying instrument measurement is below the detection limit, the reported values expressed in nmol/L RBC will be larger than the instrument LLOD values. Because values below the LLOD were addressed during the calculation of RBC concentrations from lysate instrument measurements, data analysts do not need to apply the LLOD values in subsequent analyses. However, an indicator variable is provided. The variable name ending in “LC” (ex., LBDRF1LC) indicates whether the instrument-measured lysate value was below the LLOD (0 = at or above LLOD; 1 = below LLOD). Measurements indicated as below the LLOD retain the increased uncertainty associated with instrument results below the detection limit, even when the reported RBC concentration is greater than the LLOD.  The corresponding variable prefixed LBX (ex., LBXRF1SI) reports the calculated concentration in nmol/L RBC.</p>
+<p>Total folate was calculated as the sum of individual folate forms (RF1–RF5); therefore, a lower limit of detection does not apply to total folate.</p></div>
+      <div id="References">
+        <h2>References</h2>
+        <ul>
+          <li>Caudill, S.P., Schleicher, R.L., Pirkle, J.L. Multi-rule quality control for the age-related eye disease study. Statist. Med. (2008) 27(20):4094-40106.</li>
+          <li>Fazili Z, Pfeiffer CM, Zhang M, Jain R. Erythrocyte folate extraction and quantitative determination by liquid chromatography-tandem mass spectrometry: comparison of results with microbiologic assay. Clin Chem 2005; 51:2318–25.</li>
+          <li>Fazili Z, Pfeiffer CM. Accounting for an isobaric interference allows correct determination of folate vitamers in serum by isotope dilution-liquid chromatography-tandem MS. J Nutr. 2013;143:108–113.</li>
+          <li>Fazili Z, Pfeiffer CM. Measurement of folates in serum and conventionally prepared whole blood lysates: Application of an automated 96-well plate isotope-dilution tandem mass spectrometry method. Clin Chem. 2004;50:2378–81.</li>
+          <li>Fazili Z, Whitehead RD Jr, Paladugula N, Pfeiffer CM. A high-throughput LC-MS/MS method suitable for population biomonitoring measures five serum folate vitamers and one oxidation product. Anal Bioanal Chem. 2013;405:4549-60</li>
+          <li>Pfeiffer C, Sternberg M, Fazili M, Lacher D, Zhang M, Johnson C, Hammer H, Baily R, Rader J, Yamini S, Berry RJ, Yetley E. British Journal of Nutrition (2015) 113:1965:1977.</li>
+          <li>Pfeiffer CM, Fazili Z, McCoy L, Zhang M, and Gunter EW. Determination of folate vitamers in human serum by stable-isotope dilution tandem mass spectrometry and comparison to radioassay and microbiologic assay.  Clin Chem. 2004;50:423–32.</li>
+          <li>Stamm R, Fazili Z, Pfeiffer CM. Addition of exogenous γ-glutamyl hydrolase eliminates the need for lengthy incubation of whole blood lysate for quantitation of folate vitamers by high-performance liquid chromatography-tandem mass spectrometry. Curr Dev Nutr. 2018;2:1–9.</li>
+          <li>Westgard J.O., Barry P.L., Hunt M.R., Groth T. A multi-rule Shewhart chart for quality control in clinical chemistry. Clin Chem (1981) 27:493-501.</li>
+        </ul>
+      </div>
+      <div id="Codebook">
+        <h2>Codebook and Frequencies</h2>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SEQN">SEQN - Respondent sequence number</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SEQN</dd>
+            <dt>SAS Label: </dt>
+            <dd>Respondent sequence number</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Respondent sequence number.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="WTPH2YR">WTPH2YR - Phlebotomy 2 Year Weight</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">WTPH2YR</dd>
+            <dt>SAS Label: </dt>
+            <dd>Phlebotomy 2 Year Weight</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Phlebotomy 2 Year Weight</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">4391.8220579 to 241728.85724</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7316</td>
+                <td class="values" align="right">7316</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">No blood sample provided</td>
+                <td class="values" align="right">752</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDRF7SI">LBDRF7SI - Total Folate, RBC (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDRF7SI</dd>
+            <dt>SAS Label: </dt>
+            <dd>Total Folate, RBC (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Total folate, washed Red Blood Cells (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">125 to 6360</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7190</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">878</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXRF1SI">LBXRF1SI - 5-Methyl-tetrahydrofolate, RBC (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXRF1SI</dd>
+            <dt>SAS Label: </dt>
+            <dd>5-Methyl-tetrahydrofolate, RBC (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">5-Methyl-tetrahydrofolate, RBC (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">28 to 5960</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7190</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">878</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDRF1LC">LBDRF1LC - 5-Methyl-tetrahydrofolate, RBC cmt</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDRF1LC</dd>
+            <dt>SAS Label: </dt>
+            <dd>5-Methyl-tetrahydrofolate, RBC cmt</dd>
+            <dt>English Text: </dt>
+            <dd class="info">5-Methyl-tetrahydrofolate, RBC comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">7190</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">878</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXRF2SI">LBXRF2SI - Folic acid, RBC (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXRF2SI</dd>
+            <dt>SAS Label: </dt>
+            <dd>Folic acid, RBC (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Folic acid, RBC (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.664 to 72.5</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7190</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">878</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDRF2LC">LBDRF2LC - Folic acid, RBC cmt</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDRF2LC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Folic acid, RBC cmt</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Folic acid, RBC comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">3230</td>
+                <td class="values" align="right">3230</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">3960</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">878</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXRF3SI">LBXRF3SI - 5-Formyl-tetrahydrofolate, RBC (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXRF3SI</dd>
+            <dt>SAS Label: </dt>
+            <dd>5-Formyl-tetrahydrofolate, RBC (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">5-Formyl-tetrahydrofolate, RBC (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.92 to 45.5</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7190</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">878</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDRF3LC">LBDRF3LC - 5-Formyl-tetrahydrofolate, RBC cmt</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDRF3LC</dd>
+            <dt>SAS Label: </dt>
+            <dd>5-Formyl-tetrahydrofolate, RBC cmt</dd>
+            <dt>English Text: </dt>
+            <dd class="info">5-Formyl-tetrahydrofolate, RBC comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">2985</td>
+                <td class="values" align="right">2985</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">4205</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">878</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXRF4SI">LBXRF4SI - Tetrahydrofolate, RBC (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXRF4SI</dd>
+            <dt>SAS Label: </dt>
+            <dd>Tetrahydrofolate, RBC (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Tetrahydrofolate, RBC (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1.84 to 1360</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7190</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">878</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDRF4LC">LBDRF4LC - Tetrahydrofolate, RBC cmt</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDRF4LC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Tetrahydrofolate, RBC cmt</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Tetrahydrofolate, RBC comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">7101</td>
+                <td class="values" align="right">7101</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">89</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">878</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXRF5SI">LBXRF5SI - 5,10-Methenyl-tetrahydrofolate (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXRF5SI</dd>
+            <dt>SAS Label: </dt>
+            <dd>5,10-Methenyl-tetrahydrofolate (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">5,10-Methenyl-tetrahydrofolate, RBC (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1.56 to 1020</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7190</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">878</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDRF5LC">LBDRF5LC - 5,10-Methenyl-tetrahydrofolate, RBC cmt</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDRF5LC</dd>
+            <dt>SAS Label: </dt>
+            <dd>5,10-Methenyl-tetrahydrofolate, RBC cmt</dd>
+            <dt>English Text: </dt>
+            <dd class="info">5,10-Methenyl-tetrahydrofolate, RBC comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">5291</td>
+                <td class="values" align="right">5291</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">1899</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">878</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXRF6SI">LBXRF6SI - MeFox oxidation product, RBC (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXRF6SI</dd>
+            <dt>SAS Label: </dt>
+            <dd>MeFox oxidation product, RBC (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MeFox oxidation product, RBC (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">7.57 to 1630</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7190</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">878</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDRF6LC">LBDRF6LC - MeFox oxidation product, RBC cmt</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDRF6LC</dd>
+            <dt>SAS Label: </dt>
+            <dd>MeFox oxidation product, RBC cmt</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MeFox oxidation product, RBC comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">7190</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7190</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">878</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+<div id="extension-mmplj"></div></body></html>

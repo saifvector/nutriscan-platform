@@ -1,0 +1,37 @@
+file_name,table_type,rows,nutrient_columns
+foundation_foods/acquisition_samples.csv,Foundation Foods,8361,None
+foundation_foods/agricultural_samples.csv,Foundation Foods,810,None
+foundation_foods/food.csv,Foundation Foods,87990,None
+foundation_foods/food_attribute.csv,Foundation Foods,9380,value
+foundation_foods/food_attribute_type.csv,Foundation Foods,5,None
+foundation_foods/food_calorie_conversion_factor.csv,Foundation Foods,423,food_nutrient_conversion_factor_id; protein_value; fat_value; carbohydrate_value
+foundation_foods/food_category.csv,Foundation Foods,28,None
+foundation_foods/food_component.csv,Foundation Foods,3066,None
+foundation_foods/food_nutrient.csv,Foundation Foods,170469,nutrient_id; amount
+foundation_foods/food_nutrient_conversion_factor.csv,Foundation Foods,11559,None
+foundation_foods/food_portion.csv,Foundation Foods,10951,amount; measure_unit_id
+foundation_foods/food_protein_conversion_factor.csv,Foundation Foods,366,food_nutrient_conversion_factor_id; value
+foundation_foods/food_update_log_entry.csv,Foundation Foods,87990,None
+foundation_foods/foundation_food.csv,Foundation Foods,395,None
+foundation_foods/input_food.csv,Foundation Foods,6038,amount; unit
+foundation_foods/lab_method.csv,Foundation Foods,305,None
+foundation_foods/lab_method_code.csv,Foundation Foods,214,None
+foundation_foods/lab_method_nutrient.csv,Foundation Foods,671,nutrient_id
+foundation_foods/market_acquisition.csv,Foundation Foods,7577,None
+foundation_foods/measure_unit.csv,Foundation Foods,123,None
+foundation_foods/nutrient.csv,Foundation Foods,477,unit_name; nutrient_nbr
+foundation_foods/sample_food.csv,Foundation Foods,4079,None
+foundation_foods/sub_sample_food.csv,Foundation Foods,75055,None
+foundation_foods/sub_sample_result.csv,Foundation Foods,134267,food_nutrient_id; adjusted_amount; nutrient_name
+fndds/fndds_derivation.csv,FNDDS Survey Foods,49,None
+fndds/food.csv,FNDDS Survey Foods,5432,None
+fndds/food_attribute.csv,FNDDS Survey Foods,25942,value
+fndds/food_attribute_type.csv,FNDDS Survey Foods,5,None
+fndds/food_nutrient.csv,FNDDS Survey Foods,353015,nutrient_id; amount
+fndds/food_portion.csv,FNDDS Survey Foods,22046,amount; measure_unit_id
+fndds/food_update_log_entry.csv,FNDDS Survey Foods,5432,None
+fndds/input_food.csv,FNDDS Survey Foods,18584,amount; unit
+fndds/measure_unit.csv,FNDDS Survey Foods,122,None
+fndds/nutrient.csv,FNDDS Survey Foods,477,unit_name; nutrient_nbr
+fndds/survey_fndds_food.csv,FNDDS Survey Foods,5432,None
+fndds/wweia_food_category.csv,FNDDS Survey Foods,172,None

@@ -1,0 +1,2507 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm -->
+<html xml:lang="en" lang="en" xmlns="http://www.w3c.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <title>FAR_L</title>
+    <meta name="title" content="NHANES August 2021-August 2023: Fatty Acids - Washed RBCs  Data Documentation, Codebook, and Frequencies">
+    <link rel="stylesheet" href="./FAR_L_files/documentation.css">
+  </head>
+  <body class="nhanes-doc">
+    <div id="toc">
+      <h3>Table of Contents</h3>
+      <div id="toc-scroll">
+        <ul>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#Component_Description">Component Description</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#Eligible_Sample">Eligible Sample</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#Description_of_Laboratory_Methodology">Description of Laboratory Methodology</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#Laboratory_Method_Files">Laboratory Method Files</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#Laboratory_Quality_Assurance_and_Monitoring">Laboratory Quality Assurance and Monitoring</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#Data_Processing_and_Editing">Data Processing and Editing</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#Analytic_Notes">Analytic Notes</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#References">References</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#Codebook">Codebook</a>
+            <ul id="CodebookLinks">
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#SEQN">SEQN - Respondent sequence number</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#WTPH2YR">WTPH2YR - Phlebotomy 2 Year Weight</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPAN">LBXPAN - alpha-Linolenic acid (C18:3n-3) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPANLC">LBDPANLC - alpha-Linolenic acid (C18:3n-3) cmt code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXP1A">LBXP1A - Arachidic acid (C20:0) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDP1ALC">LBDP1ALC - Arachidic acid (C20:0) comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPRA">LBXPRA - Arachidonic acid (C20:4n-6) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPRALC">LBDPRALC - Arachidonic acid (C20:4n-6) comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPDA">LBXPDA - Docosanoic acid (C22:0) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPDALC">LBDPDALC - Docosanoic acid (C22:0) comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPHA">LBXPHA - Docosahexaenoic acid (C22:6n-3) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPHALC">LBDPHALC - Docosahexaenoic acid (C22:6n-3) cmt code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPD3">LBXPD3 - Docosapentaenoic acid 3 (C22:5n-3) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPD3LC">LBDPD3LC - Docosapentaenoic acid 3 (C22:5n-3) cmt</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPD6">LBXPD6 - Docosapentaenoic acid (C22:5n-6) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPD6LC">LBDPD6LC - Docosapentaenoic acid (C22:5n-6) cmt cd</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPTA">LBXPTA - Docosatetraenoic acid (C22:4n-6) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPTALC">LBDPTALC - Docosatetraenoic acid (C22:4n-6) cmt cd</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPED">LBXPED - 11,14-Eicosadienoic acid (C20:2n6) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPEDLC">LBDPEDLC - 11,14-Eicosadienoic acid(C20:2n6) cmt cd</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXP1E">LBXP1E - 11-Eicosenoic acid (C20:1n-9) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDP1ELC">LBDP1ELC - 11-Eicosenoic acid (C20:1n-9) cmt code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPPE">LBXPPE - Eicosapentaenoic acid (C20:5n-3) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPPELC">LBDPPELC - Eicosapentaenoic acid (C20:5n-3) cmt cd</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPLG">LBXPLG - gamma-Linolenic acid (C18:3n-6) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPLGLC">LBDPLGLC - gamma-Linolenic acid (C18:3n-6) cmt code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPGH">LBXPGH - homo-gamma-Linolenic acid(C20:3n-6) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPGHLC">LBDPGHLC - homo-gamma-Linolenic acd (C20:3n-6) cmt</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXP1G">LBXP1G - Tetracosanoic acid (C24:0) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDP1GLC">LBDP1GLC - Tetracosanoic acid (C24:0) comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPNL">LBXPNL - Linoleic acid (C18:2n-6) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPNLLC">LBDPNLLC - Linoleic acid (C18:2n-6) comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPMR">LBXPMR - Myristic acid (C14:0) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPMRLC">LBDPMRLC - Myristic acid (C14:0) comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPNR">LBXPNR - 15-Tetracosenoic acid (C24:1n9) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPNRLC">LBDPNRLC - 15-Tetracosenoic acid(C24:1n9) comt code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPOL">LBXPOL - Oleic acid (C18:1n-9) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPOLLC">LBDPOLLC - Oleic acid (C18:1n-9) comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPPL">LBXPPL - Palmitoleic acid (16:1n-7) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPPLLC">LBDPPLLC - Palmitoleic acid (16:1n-7) comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPPM">LBXPPM - Palmitic acid (C16:0) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPPMLC">LBDPPMLC - Palmitic acid (C16:0) comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBXPST">LBXPST - Stearic acid (C18:0) (%)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FAR_L.htm#LBDPSTLC">LBDPSTLC - Stearic acid (C18:0) comment code</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="PageHeader">
+        <h1>National Health and Nutrition Examination Survey</h1>
+        <h2>August 2021-August 2023 Data Documentation, Codebook, and Frequencies</h2>
+        <h3>Fatty Acids - Washed RBCs  (FAR_L)</h3>
+        <h4> Data File: FAR_L.xpt</h4>
+        <h5 class="left">First Published: December 2025</h5>
+        <h5 class="right">Last Revised: NA</h5>
+      </div>
+      <div id="Sections">
+        <h2 id="Component_Description">Component Description</h2><p>The
+analysis of red blood cell (RBC) fatty acids (FA) is an indicator of long term
+(4 months) FA status. Evaluation of
+RBC fatty acid content has become increasingly favored as a measure of n-3 polyunsaturated fatty acids (PUFA) intake. PUFA alter membrane physical
+characteristics and the activity of membrane-bound proteins. In membranes, they
+interact with ion channels and can be converted into bioactive eicosanoid
+(Harris, et al., 2008). </p>
+<p>The
+American Heart Association recommendation for those with no history of coronary
+heart disease (CHD) is to eat two fatty fish servings per week and for those
+with a history of CHD to consume 1 g/day of two omega-3 fatty acids,
+eicosapentaenoic (EPA) and docosahexaenoic (DHA) acid (Kris-Etherton, et al.,
+2002). The Omega-3 Index is a measure of EPA (C20:5 n-3) and DHA (C22:6 n-3) in the
+blood, and expressed as a percent of 21 fatty acids, in specifically the red
+blood cell membranes (Harris, et al., 2004). The Omega-3 Index
+has been suggested for use to identify those at risk for death from coronary
+heart disease (Harris, et. al., 2004).</p><h2 id="Eligible_Sample">Eligible Sample</h2><p>Examined participants aged 6 years and older were eligible.</p><h2 id="Description_of_Laboratory_Methodology">Description of Laboratory Methodology</h2><p>Esterified
+FA are hydrolyzed from washed RBC membranes using sequential treatment with
+mineral acid and base in the presence of heat. Using a modification of
+Lagerstedt et al., total FA are hexane-extracted from the matrix (100 µL 50:50
+saline diluted RBC) along with an internal standard solution containing
+thirteen stable isotopically-labeled FA to account for recovery (Lagerstedt et.
+al., 2001). The extract is derivatized with pentafluorobenzyl bromide (PFBBr)
+in the presence of triethylamine to form pentafluorobenzyl esters. The reaction
+mixture is injected onto a capillary gas chromatograph column to resolve
+individual FA of interest from other matrix constituents. FA are detected using
+electron capture negative-ion mass spectrometry within 34 minutes. Six
+saturated FA (SFA), four monounsaturated FA (MUFA), and eleven polyunsaturated
+FA (PUFA) (21 FA in total) are measured using selected ion monitoring.
+Quantitation is accomplished by comparing the peak area ratio of the analyte to
+internal standard in the unknown sample with the peak area ratio of a known
+amount of analyte to internal standard in a calibrator solution. </p>
+<p>Refer to the Laboratory Method Files section for
+a detailed description on the laboratory methods used.</p><h2 id="Laboratory_Method_Files">Laboratory Method Files</h2>
+        <p>
+          <a target="_blank" href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/labmethods/FAR-L-MET-508.pdf">Fatty Acids – RBC </a>
+          <span> (December 2025)</span>
+        </p>
+        <h2 id="Laboratory_Quality_Assurance_and_Monitoring">Laboratory Quality Assurance and Monitoring</h2><p>Washed
+red blood cell specimens are processed, stored, and shipped to the Division of
+Laboratory Sciences, National Center for Environmental Health, Centers for
+Disease Control and Prevention, Atlanta, GA for analysis. </p>
+<p>Detailed instructions on specimen collection and
+processing are discussed in the NHANES <a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/manuals/2021-Laboratory-Procedures-508.pdf">Laboratory Procedures Manual (LPM)</a>. Vials are stored under
+appropriate frozen (–30°C) conditions until they are shipped to the National
+Center for Environmental Health for testing. </p>
+<p>
+The NHANES quality assurance and quality control (QA/QC) protocols meet the
+1988 Clinical Laboratory Improvement Amendments. Detailed QA/QC instructions
+are discussed in the <a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/manuals/2021-Laboratory-Procedures-508.pdf">NHANES
+LPM</a>. </p>
+<p><strong>Mobile Examination
+Centers (MECs) </strong></p>
+<p>Laboratory
+team performance is monitored using several techniques. NCHS and contract
+consultants use a structured QA evaluation during unscheduled visits to
+evaluate both the quality of the laboratory work and the QC procedures. Each
+laboratory staff member is observed for equipment operation, specimen
+collection and preparation; testing procedures and constructive feedback are
+given to each staff member. Formal retraining sessions are conducted annually
+to ensure that required skill levels were maintained. </p>
+<p><strong>Analytical
+Laboratories </strong></p>
+<p>NHANES
+uses several methods to monitor the quality of the analyses performed by the
+contract laboratories. In the MEC, these methods include performing blind split
+samples collected during “dry run” sessions. In addition, contract laboratories
+randomly perform repeat testing on 2% of all specimens. </p>
+<p>NCHS
+developed and distributed a QC protocol for all the contract laboratories,
+which outlined the use of Westgard rules (Westgard, et. al., 1981) when testing
+NHANES specimens. Progress reports containing any problems encountered during
+shipping or receipt of specimens, summary statistics for each control pool, QC
+graphs, instrument calibration, reagents, and any special considerations are
+submitted to NCHS quarterly. The reports are reviewed for trends or shifts in
+the data. The laboratories are required to explain any identified areas of
+concern. </p>
+<p>All QC
+procedures recommended by the manufacturers were followed. Reported results for
+all assays meet the Division of Laboratory Sciences’ QA/QC performance criteria
+for accuracy and precision, similar to the Westgard rules (Caudill, et. al.,
+2008). </p><h2 id="Data_Processing_and_Editing">Data Processing and Editing</h2><p>The data were
+reviewed. Incomplete data or improbable values were sent to the performing
+laboratory for confirmation.</p><h2 id="Analytic_Notes">Analytic Notes</h2><p>There are over 800
+laboratory tests performed on NHANES participants. However, not all
+participants provided biospecimens or enough volume for all the tests to be
+performed. The specimen availability can also vary by age or other population
+characteristics. Analysts should evaluate the extent of missing data in the
+dataset related to the outcome of interest as well as any predictor variables
+used in the analyses to determine whether additional re-weighting for item
+non-response is necessary.</p>
+<p>Please refer to the
+<a href="https://wwwn.cdc.gov/nchs/nhanes/analyticguidelines.aspx">NHANES Analytic Guidelines</a>&nbsp;and
+the on-line <a href="https://wwwn.cdc.gov/nchs/nhanes/tutorials/default.aspx">NHANES Tutorial</a>&nbsp;for
+further details on the use of sample weights and other analytic issues. </p>
+<p><strong>Phlebotomy Weights</strong></p>
+<p>For the August 2021-August 2023 cycle,
+analysis of nonresponse patterns for the phlebotomy component in the MEC
+examination revealed differences by age group and race/ethnicity, among other
+characteristics. For example, approximately 67% of children aged 1-17 years who
+were examined in the MEC provided a blood specimen through phlebotomy, while
+95% of examined adults aged 18 and older provided a blood specimen. Therefore,
+an additional phlebotomy weight, WTPH2YR, has been included in this data
+release to address possible nonresponse bias. Participants who are eligible but
+did not provide a blood specimen have their phlebotomy weight assigned a value
+of “0” in their records. The phlebotomy weight should be used for analyses that
+use variables derived from blood analytes, and is included in all relevant data
+files.</p>
+<p><strong>Demographic and Other Related Variables </strong></p>
+<p>The
+analysis of NHANES laboratory data may require additional demographic
+variables. The&nbsp;<a href="https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Demographics&amp;Cycle=2021-2023">NHANES August 2021-August 2023
+Demographics File</a> contains demographic data, health
+indicators, and other related information collected during household
+interviews.&nbsp;</p>
+<p>The&nbsp;<a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FASTQX_L.htm">Fasting Questionnaire File</a>&nbsp;includes auxiliary information, such as
+fasting status, length of fast, and the time of venipuncture.</p>
+<p>This
+laboratory data file can be linked to the Demographics file and other NHANES
+data files using the unique survey participant identifier (i.e., SEQN).</p>
+<p><strong>Detection Limits </strong></p>
+<p>The detection
+limits were constant for all of the analytes in the data set. The lower limit
+of detection (LLOD, in mg/L) for the RBC fatty acids are shown below. </p>
+<table bordercolor="#000000" border="1">
+    <thead>
+        <tr>
+            <th>Variable Name</th>
+            <th>Analyte Description</th>
+            <th>LLOD</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>LBXPAN</td>
+            <td>alpha-Linolenic acid (C18:3n3) (%)</td>
+            <td>0.03</td>
+        </tr>
+        <tr>
+            <td>LBXP1A</td>
+            <td>Arachidic acid (C20:0) (%)</td>
+            <td>0.30</td>
+        </tr>
+        <tr>
+            <td>LBXPRA</td>
+            <td>Arachidonic acid (C20:4n6) (%)</td>
+            <td>0.08</td>
+        </tr>
+        <tr>
+            <td>LBXPDA</td>
+            <td>Docosanoic acid (C22:0) (%)</td>
+            <td>0.10</td>
+        </tr>
+        <tr>
+            <td>LBXPHA</td>
+            <td>Docosahexaenoic acid (C22:6n3) (%)</td>
+            <td>0.20</td>
+        </tr>
+        <tr>
+            <td>LBXPD3</td>
+            <td>Docosapentaenoic acid 3 (C22:5n3) (%)</td>
+            <td>0.07</td>
+        </tr>
+        <tr>
+            <td>LBXPD6</td>
+            <td>Docosapentaenoic acid 6 (C22:5n6) (%)</td>
+            <td>0.08</td>
+        </tr>
+        <tr>
+            <td>LBXPTA</td>
+            <td>Docosatetraenoic acid (C22:4n6) (%)</td>
+            <td>0.05</td>
+        </tr>
+        <tr>
+            <td>LBXPED</td>
+            <td>11,14-Eicosadienoic acid (C20:2n6) (%)</td>
+            <td>0.05</td>
+        </tr>
+        <tr>
+            <td>LBXP1E</td>
+            <td>11-Eicosenoic acid (C20:1n9) (%)</td>
+            <td>0.06</td>
+        </tr>
+        <tr>
+            <td>LBXPPE</td>
+            <td>Eicosapentaenoic acid (C20:5n3) (%)</td>
+            <td>0.40</td>
+        </tr>
+        <tr>
+            <td>LBXPLG</td>
+            <td>gamma-Linolenic acid (C18:3n6) (%)</td>
+            <td>0.07</td>
+        </tr>
+        <tr>
+            <td>LBXPGH</td>
+            <td>homo-gamma-Linolenic acid (C20:3n6) (%)</td>
+            <td>0.06</td>
+        </tr>
+        <tr>
+            <td>LBXP1G</td>
+            <td>Tetracosanoic acid (C24:0) (%)</td>
+            <td>0.10</td>
+        </tr>
+        <tr>
+            <td>LBXPNL</td>
+            <td>Linoleic acid (C18:2n6) (%)</td>
+            <td>0.30</td>
+        </tr>
+        <tr>
+            <td>LBXPMR</td>
+            <td>Myristic acid (C14:0) (%)</td>
+            <td>1.00</td>
+        </tr>
+        <tr>
+            <td>LBXPNR</td>
+            <td>15-Tetracosenoic acid (C24:1n9) (%)</td>
+            <td>0.05</td>
+        </tr>
+        <tr>
+            <td>LBXPOL</td>
+            <td>Oleic acid (C18:1n9) (%)</td>
+            <td>0.30</td>
+        </tr>
+        <tr>
+            <td>LBXPPL</td>
+            <td>Palmitoleic acid (C16:1n7) (%)</td>
+            <td>0.05</td>
+        </tr>
+        <tr>
+            <td>LBXPPM</td>
+            <td>Palmitic acid (C16:0) (%)</td>
+            <td>3.00</td>
+        </tr>
+        <tr>
+            <td>LBXPST</td>
+            <td>Stearic acid (C18:0) (%)</td>
+            <td>9.00</td>
+        </tr>
+    </tbody>
+</table>
+<p>This component does not
+report data as mass concentrations (mg/L). Instead, data are reported as weight
+percentages of total fatty acids
+(see section on Calculating Percent RBC Fatty Acid). Two
+variables are provided for each of these analytes. The variable name ending in
+“LC” (ex., LBDPANLC) indicates whether the mass concentration result used in
+the weight percentage calculation was below the limit of detection: the value
+“0” means that the result was at or above the limit of detection, “1” indicates
+that the result was below the limit of detection. The other variable prefixed
+LBX (ex., LBXPAN) provides the analytic weight percentage result for that
+analyte. For analytes with mass concentration results below the lower limit of
+detection (ex., LBDPANLC=1), the weight percentage values were set to missing because the weight percentage data
+cannot be compared to the LLOD. 15 mass concentration results in
+the dataset were below the LLOD and corresponding weight percentage values were
+set to missing and their comment variables set to 1.</p>
+<p><strong>Calculating Percent RBC Fatty Acid</strong></p>
+<p>Fatty acid concentrations measured in
+mg/L are summed for the total FA concentration (mg/L). Individual fatty acid
+weight percentages are calculated by dividing the individual fatty acid
+concentrations (mg/L) by the total FA (mg/L). The fatty acid data is expressed
+as weight percentages of total fatty acids.</p></div>
+      <div id="References">
+        <h2>References</h2>
+        <ul>
+          <li>Caudill, S.P., Schleicher, R.L., Pirkle, J.L. Multi-rule quality control
+for the age-related eye disease study. Statist. Med. (2008) 27(20):4094-40106.</li>
+          <li>Harris WS and vonSchacky C. The Omega-3 Index: a new risk factor for death
+from coronary heart disease? Prev Med 2004; 39:212-20.</li>
+          <li>Harris WS. The omega-3 index as a risk factor for coronary heart
+disease.&nbsp; Am J Clin Nutr
+2008;87(suppl):1997S–2002S.</li>
+          <li>Kris-Etherton
+PM, Harris WS, Appel LJ; American Heart Association. Circ 2002; 106:2747-2757.</li>
+          <li>Lagerstedt S, Hinrichs D, Batt S, Magera M, Rinaldo P, McConnell J.
+Quantitative Determination of Plasma C8-C26 Total Fatty Acids for the
+Biochemical Diagnosis of Nutritional and Metabolic Disorders. Mol Genet &amp;
+Metab 2001; 73: 38-45.</li>
+          <li>Westgard J.O., Barry P.L., Hunt M.R., Groth T. A multi-rule Shewhart chart
+for quality control in clinical chemistry. Clin Chem (1981) 27:493-501.</li>
+        </ul>
+      </div>
+      <div id="Codebook">
+        <h2>Codebook and Frequencies</h2>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SEQN">SEQN - Respondent sequence number</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SEQN</dd>
+            <dt>SAS Label: </dt>
+            <dd>Respondent sequence number</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Respondent sequence number.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="WTPH2YR">WTPH2YR - Phlebotomy 2 Year Weight</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">WTPH2YR</dd>
+            <dt>SAS Label: </dt>
+            <dd>Phlebotomy 2 Year Weight</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Phlebotomy 2 Year Weight</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 241728.85724</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">8068</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPAN">LBXPAN - alpha-Linolenic acid (C18:3n-3) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPAN</dd>
+            <dt>SAS Label: </dt>
+            <dd>alpha-Linolenic acid (C18:3n-3) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">alpha-Linolenic acid (C18:3n-3) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.038 to 0.611</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7176</td>
+                <td class="values" align="right">7176</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">892</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPANLC">LBDPANLC - alpha-Linolenic acid (C18:3n-3) cmt code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPANLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>alpha-Linolenic acid (C18:3n-3) cmt code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">alpha-Linolenic acid (C18:3n-3) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7176</td>
+                <td class="values" align="right">7176</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7176</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">892</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXP1A">LBXP1A - Arachidic acid (C20:0) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXP1A</dd>
+            <dt>SAS Label: </dt>
+            <dd>Arachidic acid (C20:0) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Arachidic acid (C20:0) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.157 to 0.817</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7133</td>
+                <td class="values" align="right">7133</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">935</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDP1ALC">LBDP1ALC - Arachidic acid (C20:0) comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDP1ALC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Arachidic acid (C20:0) comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Arachidic acid (C20:0) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7133</td>
+                <td class="values" align="right">7133</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7133</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">935</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPRA">LBXPRA - Arachidonic acid (C20:4n-6) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPRA</dd>
+            <dt>SAS Label: </dt>
+            <dd>Arachidonic acid (C20:4n-6) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Arachidonic acid (C20:4n-6) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">4.17 to 21.2</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7213</td>
+                <td class="values" align="right">7213</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">855</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPRALC">LBDPRALC - Arachidonic acid (C20:4n-6) comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPRALC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Arachidonic acid (C20:4n-6) comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Arachidonic acid (C20:4n-6) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7213</td>
+                <td class="values" align="right">7213</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7213</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">855</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPDA">LBXPDA - Docosanoic acid (C22:0) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPDA</dd>
+            <dt>SAS Label: </dt>
+            <dd>Docosanoic acid (C22:0) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Docosanoic acid (C22:0) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.629 to 3.26</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7165</td>
+                <td class="values" align="right">7165</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">903</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPDALC">LBDPDALC - Docosanoic acid (C22:0) comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPDALC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Docosanoic acid (C22:0) comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Docosanoic acid (C22:0) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7165</td>
+                <td class="values" align="right">7165</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7165</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">903</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPHA">LBXPHA - Docosahexaenoic acid (C22:6n-3) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPHA</dd>
+            <dt>SAS Label: </dt>
+            <dd>Docosahexaenoic acid (C22:6n-3) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Docosahexaenoic acid (C22:6n-3) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.337 to 10.4</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7215</td>
+                <td class="values" align="right">7215</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">853</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPHALC">LBDPHALC - Docosahexaenoic acid (C22:6n-3) cmt code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPHALC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Docosahexaenoic acid (C22:6n-3) cmt code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Docosahexaenoic acid (C22:6n-3) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7215</td>
+                <td class="values" align="right">7215</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7215</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">853</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPD3">LBXPD3 - Docosapentaenoic acid 3 (C22:5n-3) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPD3</dd>
+            <dt>SAS Label: </dt>
+            <dd>Docosapentaenoic acid 3 (C22:5n-3) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Docosapentaenoic acid 3 (C22:5n-3) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.381 to 7.5</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7210</td>
+                <td class="values" align="right">7210</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">858</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPD3LC">LBDPD3LC - Docosapentaenoic acid 3 (C22:5n-3) cmt</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPD3LC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Docosapentaenoic acid 3 (C22:5n-3) cmt</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Docosapentaenoic acid 3 (C22:5n-3) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7210</td>
+                <td class="values" align="right">7210</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7210</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">858</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPD6">LBXPD6 - Docosapentaenoic acid (C22:5n-6) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPD6</dd>
+            <dt>SAS Label: </dt>
+            <dd>Docosapentaenoic acid (C22:5n-6) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Docosapentaenoic acid (C22:5n-6) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.116 to 1.66</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7213</td>
+                <td class="values" align="right">7213</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">855</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPD6LC">LBDPD6LC - Docosapentaenoic acid (C22:5n-6) cmt cd</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPD6LC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Docosapentaenoic acid (C22:5n-6) cmt cd</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Docosapentaenoic acid (C22:5n-6) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7213</td>
+                <td class="values" align="right">7213</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7213</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">855</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPTA">LBXPTA - Docosatetraenoic acid (C22:4n-6) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPTA</dd>
+            <dt>SAS Label: </dt>
+            <dd>Docosatetraenoic acid (C22:4n-6) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Docosatetraenoic acid (C22:4n-6) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.563 to 8.89</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7213</td>
+                <td class="values" align="right">7213</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">855</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPTALC">LBDPTALC - Docosatetraenoic acid (C22:4n-6) cmt cd</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPTALC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Docosatetraenoic acid (C22:4n-6) cmt cd</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Docosatetraenoic acid (C22:4n-6) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7213</td>
+                <td class="values" align="right">7213</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7213</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">855</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPED">LBXPED - 11,14-Eicosadienoic acid (C20:2n6) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPED</dd>
+            <dt>SAS Label: </dt>
+            <dd>11,14-Eicosadienoic acid (C20:2n6) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">11,14-Eicosadienoic acid (C20:2n6) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.123 to 0.628</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7215</td>
+                <td class="values" align="right">7215</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">853</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPEDLC">LBDPEDLC - 11,14-Eicosadienoic acid(C20:2n6) cmt cd</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPEDLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>11,14-Eicosadienoic acid(C20:2n6) cmt cd</dd>
+            <dt>English Text: </dt>
+            <dd class="info">11,14-Eicosadienoic acid (C20:2n6) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7215</td>
+                <td class="values" align="right">7215</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7215</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">853</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXP1E">LBXP1E - 11-Eicosenoic acid (C20:1n-9) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXP1E</dd>
+            <dt>SAS Label: </dt>
+            <dd>11-Eicosenoic acid (C20:1n-9) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">11-Eicosenoic acid (C20:1n-9) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.109 to 0.764</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7035</td>
+                <td class="values" align="right">7035</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1033</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDP1ELC">LBDP1ELC - 11-Eicosenoic acid (C20:1n-9) cmt code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDP1ELC</dd>
+            <dt>SAS Label: </dt>
+            <dd>11-Eicosenoic acid (C20:1n-9) cmt code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">11-Eicosenoic acid (C20:1n-9) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7035</td>
+                <td class="values" align="right">7035</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7035</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1033</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPPE">LBXPPE - Eicosapentaenoic acid (C20:5n-3) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPPE</dd>
+            <dt>SAS Label: </dt>
+            <dd>Eicosapentaenoic acid (C20:5n-3) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Eicosapentaenoic acid (C20:5n-3) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.063 to 6.92</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7213</td>
+                <td class="values" align="right">7213</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">855</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPPELC">LBDPPELC - Eicosapentaenoic acid (C20:5n-3) cmt cd</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPPELC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Eicosapentaenoic acid (C20:5n-3) cmt cd</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Eicosapentaenoic acid (C20:5n-3) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7213</td>
+                <td class="values" align="right">7213</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">7215</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">853</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPLG">LBXPLG - gamma-Linolenic acid (C18:3n-6) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPLG</dd>
+            <dt>SAS Label: </dt>
+            <dd>gamma-Linolenic acid (C18:3n-6) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">gamma-Linolenic acid (C18:3n-6) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.016 to 0.168</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7176</td>
+                <td class="values" align="right">7176</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">892</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPLGLC">LBDPLGLC - gamma-Linolenic acid (C18:3n-6) cmt code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPLGLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>gamma-Linolenic acid (C18:3n-6) cmt code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">gamma-Linolenic acid (C18:3n6) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7176</td>
+                <td class="values" align="right">7176</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7176</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">892</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPGH">LBXPGH - homo-gamma-Linolenic acid(C20:3n-6) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPGH</dd>
+            <dt>SAS Label: </dt>
+            <dd>homo-gamma-Linolenic acid(C20:3n-6) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">homo-gamma-Linolenic acid(C20:3n-6) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.535 to 4.6</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7215</td>
+                <td class="values" align="right">7215</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">853</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPGHLC">LBDPGHLC - homo-gamma-Linolenic acd (C20:3n-6) cmt</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPGHLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>homo-gamma-Linolenic acd (C20:3n-6) cmt</dd>
+            <dt>English Text: </dt>
+            <dd class="info">homo-gamma-Linolenic acd (C20:3n-6) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7215</td>
+                <td class="values" align="right">7215</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7215</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">853</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXP1G">LBXP1G - Tetracosanoic acid (C24:0) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXP1G</dd>
+            <dt>SAS Label: </dt>
+            <dd>Tetracosanoic acid (C24:0) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Tetracosanoic acid (C24:0) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">3.05 to 9.48</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7165</td>
+                <td class="values" align="right">7165</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">903</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDP1GLC">LBDP1GLC - Tetracosanoic acid (C24:0) comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDP1GLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Tetracosanoic acid (C24:0) comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Tetracosanoic acid (C24:0) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7165</td>
+                <td class="values" align="right">7165</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7165</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">903</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPNL">LBXPNL - Linoleic acid (C18:2n-6) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPNL</dd>
+            <dt>SAS Label: </dt>
+            <dd>Linoleic acid (C18:2n-6) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Linoleic acid (C18:2n-6) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">4.04 to 15.6</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7173</td>
+                <td class="values" align="right">7173</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">895</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPNLLC">LBDPNLLC - Linoleic acid (C18:2n-6) comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPNLLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Linoleic acid (C18:2n-6) comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Linoleic acid (C18:2n-6) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7173</td>
+                <td class="values" align="right">7173</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7173</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">895</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPMR">LBXPMR - Myristic acid (C14:0) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPMR</dd>
+            <dt>SAS Label: </dt>
+            <dd>Myristic acid (C14:0) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Myristic acid (C14:0) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.135 to 1.13</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7153</td>
+                <td class="values" align="right">7153</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">915</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPMRLC">LBDPMRLC - Myristic acid (C14:0) comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPMRLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Myristic acid (C14:0) comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Myristic acid (C14:0) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7153</td>
+                <td class="values" align="right">7153</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">13</td>
+                <td class="values" align="right">7166</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">902</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPNR">LBXPNR - 15-Tetracosenoic acid (C24:1n9) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPNR</dd>
+            <dt>SAS Label: </dt>
+            <dd>15-Tetracosenoic acid (C24:1n9) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">15-Tetracosenoic acid (C24:1n9) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">2.84 to 10.6</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7166</td>
+                <td class="values" align="right">7166</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">902</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPNRLC">LBDPNRLC - 15-Tetracosenoic acid(C24:1n9) comt code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPNRLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>15-Tetracosenoic acid(C24:1n9) comt code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">15-Tetracosenoic acid (C24:1n9) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7166</td>
+                <td class="values" align="right">7166</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7166</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">902</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPOL">LBXPOL - Oleic acid (C18:1n-9) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPOL</dd>
+            <dt>SAS Label: </dt>
+            <dd>Oleic acid (C18:1n-9) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Oleic acid (C18:1n-9) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">7.93 to 19.1</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7125</td>
+                <td class="values" align="right">7125</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">943</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPOLLC">LBDPOLLC - Oleic acid (C18:1n-9) comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPOLLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Oleic acid (C18:1n-9) comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Oleic acid (C18:1n-9) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7125</td>
+                <td class="values" align="right">7125</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7125</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">943</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPPL">LBXPPL - Palmitoleic acid (16:1n-7) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPPL</dd>
+            <dt>SAS Label: </dt>
+            <dd>Palmitoleic acid (16:1n-7) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Palmitoleic acid (16:1n-7) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.025 to 2.17</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7084</td>
+                <td class="values" align="right">7084</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">984</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPPLLC">LBDPPLLC - Palmitoleic acid (16:1n-7) comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPPLLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Palmitoleic acid (16:1n-7) comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Palmitoleic acid (16:1n-7) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7084</td>
+                <td class="values" align="right">7084</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7084</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">984</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPPM">LBXPPM - Palmitic acid (C16:0) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPPM</dd>
+            <dt>SAS Label: </dt>
+            <dd>Palmitic acid (C16:0) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Palmitic acid (C16:0) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">15.4 to 31.1</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7215</td>
+                <td class="values" align="right">7215</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">853</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPPMLC">LBDPPMLC - Palmitic acid (C16:0) comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPPMLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Palmitic acid (C16:0) comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Palmitic acid (C16:0) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7215</td>
+                <td class="values" align="right">7215</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7215</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">853</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXPST">LBXPST - Stearic acid (C18:0) (%)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXPST</dd>
+            <dt>SAS Label: </dt>
+            <dd>Stearic acid (C18:0) (%)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Stearic acid (C18:0) (%)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">10.1 to 21.8</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7165</td>
+                <td class="values" align="right">7165</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">903</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDPSTLC">LBDPSTLC - Stearic acid (C18:0) comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDPSTLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Stearic acid (C18:0) comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Stearic acid (C18:0) comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 6 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">detectable result</td>
+                <td class="values" align="right">7165</td>
+                <td class="values" align="right">7165</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">below detectable limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7165</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">903</td>
+                <td class="values" align="right">8068</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+<div id="extension-mmplj"></div></body></html>

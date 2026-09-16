@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm -->
+<html xml:lang="en" lang="en" xmlns="http://www.w3c.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <title>LUX_L</title>
+    <meta name="title" content="NHANES August 2021-August 2023: Liver Ultrasound Transient Elastography  Data Documentation, Codebook, and Frequencies">
+    <link rel="stylesheet" href="./LUX_L_files/documentation.css">
+  </head>
+  <body class="nhanes-doc">
+    <div id="toc">
+      <h3>Table of Contents</h3>
+      <div id="toc-scroll">
+        <ul>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#Component_Description">Component Description</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#Eligible_Sample">Eligible Sample</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#Protocol_and_Procedure">Protocol and Procedure</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#Quality_Assurance_&amp;_Quality_Control">Quality Assurance &amp; Quality Control</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#Data_Processing_and_Editing">Data Processing and Editing</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#Analytic_Notes">Analytic Notes</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#References">References</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#Codebook">Codebook</a>
+            <ul id="CodebookLinks">
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#SEQN">SEQN - Respondent sequence number</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#LUAXSTAT">LUAXSTAT - Elastography exam status</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#LUARXNC">LUARXNC - Reason for partial exam</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#LUARXND">LUARXND - Reason exam not done</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#LUARXIN">LUARXIN - Reason ineligible</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#LUAPNME">LUAPNME - Exam wand type</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#LUANMVGP">LUANMVGP - Count:complete measures from final wand</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#LUANMTGP">LUANMTGP - Count:measures attempted with final wand</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#LUXSMED">LUXSMED - Median stiffness (E), kilopascals (kPa)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#LUXSIQR">LUXSIQR - Stiffness E interquartile range (IQRe)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#LUXSIQRM">LUXSIQRM - Ratio: Stiffness IQRe / median E</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#LUXCAPM">LUXCAPM - Median CAP, decibels per meter (dB/m)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/LUX_L.htm#LUXCPIQR">LUXCPIQR - CAP interquartile range (IQRc)</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="PageHeader">
+        <h1>National Health and Nutrition Examination Survey</h1>
+        <h2>August 2021-August 2023 Data Documentation, Codebook, and Frequencies</h2>
+        <h3>Liver Ultrasound Transient Elastography  (LUX_L)</h3>
+        <h4> Data File: LUX_L.xpt</h4>
+        <h5 class="left">First Published: September 2024</h5>
+        <h5 class="right">Last Revised: NA</h5>
+      </div>
+      <div id="Sections">
+        <h2 id="Component_Description">Component Description</h2><p>Chronic liver disease and cirrhosis are significant contributors to morbidity and mortality in the U.S. population (Singh et al., 2013; Tapper and Parikh, 2018; Yoon, 2018). With the obesity epidemic, nonalcoholic fatty-liver disease is considered the most common cause of chronic liver disease in U.S. adults and children. Other important causes of chronic liver disease in the general population include alcoholic liver disease and chronic viral hepatitis infections (B or C).</p>
+<p>The main goals of the NHANES liver ultrasound transient elastography (variable name prefix LUX) component are to provide objective measures for two important liver disease manifestations: liver fibrosis (scarring in the liver) and hepatic steatosis (fat in the liver). A healthy liver is usually soft and flexible, but a person with liver disease tends to have a liver that is stiff. Liver fibrosis was measured by FibroScan®, which uses ultrasound and the vibration controlled transient elastography (VCTE<span style="font-size: 10px;"><sup>TM </sup></span>) to derive liver stiffness. The device also simultaneously measures the ultrasound attenuation related to the presence of hepatic steatosis and records the controlled attenuation parameter (CAPTM) as the indicator for the fatness in the liver. Elastography has been evaluated by others for its accuracy to assess liver steatosis and liver fibrosis (Tang et al., 2015, Castéra et al., 2005, Barr et al., 2015).
+</p><h2 id="Eligible_Sample">Eligible Sample</h2><p>All participants 12 years and older in the NHANES August 2021-August 2023 sample were eligible. Participants were excluded if they (1) were unable to lie down on the exam table, (2) were pregnant (or unsure if pregnant) at the time of their exam, or a urine could not be obtained to test for pregnancy, (3) had an implanted electronic medical device, or (4) were wearing a bandage or had lesions on the right side of their abdomen by the ribs (where measurements would be taken).</p><h2 id="Protocol_and_Procedure">Protocol and Procedure</h2><p>A detailed description of the procedures was documented in the <a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/manuals/2021-LUTE-Procedures-508.pdf">August 2021 – August 2023 Liver Ultrasound Transient Elastography Procedures Manual </a>of this component. The elastography measurements were obtained in the NHANES Mobile Examination Center (MEC), using the FibroScan® model 502 V2 Touch equipped with a medium (M) or extra-large (XL) wand (probe). </p>
+<p>With FibroScan®, a mechanical vibration of mild amplitude and low frequency (50Hz) is transmitted through the intercostal space using a vibrating tip contacting the skin. The vibration induces a shear wave that propagates through the liver. The displacements induced by the shear waves were tracked and measured using pulse echo ultrasound acquisition algorithms. The shear wave velocity is related directly to tissue stiffness; with harder tissues, there is faster shear wave propagation. Using the Young modulus, the velocity is converted into liver stiffness, and expressed in kilopascals. In systematic reviews comparing vibration controlled transient elastography (VCTE<span style="font-size: 10px;"><sup>TM</sup></span>) to biopsy (as a gold standard) for the detection of severe liver fibrosis, the mean area under the receiver operating characteristic (ROC) curve was 0.89 (95% CI, 0.88-0.91) (Tsochatzis et al., 2011, Friedrich-Rust et al., 2008) and the overall sensitivity and specificity were 82% (95% CI, 78-86%) and 86% (95% CI 0.80-0.91). In addition to the high accuracy, meta-analyses have demonstrated FibroScan® results carry significant prognostic value (Singh et al., 2013). Transient elastography has been FDA approved as a test for the evaluation of liver fibrosis. </p>
+<p>The FibroScan® machine has also incorporated a novel physical parameter (controlled attenuation parameter or CAP<span style="font-size: 10px;"><sup>TM</sup></span>), which measures the ultrasound attenuation related to the presence of hepatic steatosis. The CAP measurement is recorded simultaneously with the liver stiffness measurement. The accuracy of the CAP measurement for the detection of steatosis against biopsy has been reported in few studies; for steatosis ≥10%, the area under the ROC curve is 0.81, with a sensitivity and specificity of 76% and 79%; for steatosis &gt;34% these values were 0.80, 79% and 71%, respectively (Myers et al., 2012, de Ledinghen V et al., 2016, Sasso et al., 2016).</p>
+<p>The elastography exam was performed by NHANES examiners, including health technicians (HTs), radiology technicians (RTs), and clinicians (registered nurse), who were trained and certified by NHANES staff and the equipment manufacturer (Echosens<span style="font-size: 10px;"><sup>TM</sup></span> North America). The exams were performed according to the manufacturer guidelines. To help maintain a standardized data quality, the machine conducts and displays several quality control (QC) measures during the test: 1) the median of all valid measurements performed during the examination; 2) interquartile range (IQR) which represents the interval around the median within which 50% of all valid measurements will fall; and 3) IQR/M: the ratio of the IQR to the median stiffness. All these QC indexes were recalculated after each new measurement. Examiners were trained to take 10 valid measurements with an IQR/M ratio less than 30%.</p>
+<p>If the first 10 measurements taken had an IQR/M ≥ 30%, the examiner may choose to capture additional measurements until the IQR/M index was lower than 30%. The examiner also has the option to delete outlier measurements to lower the IQR/M from the list of valid measurements. It should be noted that examiners were only allowed to delete measurements from the beginning of the measurements. Once a measurement was chosen to be deleted, any measurements taken before the chosen one will be eliminated from the exam as well. This is to reduce bias, so examiners were unable to hand select which measurement(s) to delete. </p>
+<p>The QC criteria of IQR/M &lt;30% is to reduce variability and improve validity by taking measurements that result in few outliers. Multiple factors can affect the measurement and result in outliers, for example, a participant moves during the exam, or technical issues, such as the placement of the probe is not centered over the liver or perpendicular, or if structures such as lung or ribs appear while the measurement is captured. Participants with a lot of adipose tissue sometimes may make it difficult for examiners to capture 10 valid measurements. Because of the twelve-minute time limit and the challenge of locating the proper site to administer the exam on the body, examiners could end up retaining fewer than 10 valid measurements. </p><h2 id="Quality_Assurance_&amp;_Quality_Control">Quality Assurance &amp; Quality Control</h2><p>A detailed description of quality assurance and quality control measures considered for this component can be found in the <a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/manuals/2021-LUTE-Procedures-508.pdf">August 2021 – August 2023 Procedures Manual</a>. Briefly, the NHANES examiners completed a 2-day training program with survey staff and an expert FibroScan® Technician (reference examiner). The training included an overview of the component and demonstrations conducted by the reference examiner with volunteer subjects. The reference examiner reviewed and demonstrated the proper technique of the FibroScan® examination. Supervised practice exercises followed, conducted with several volunteer subjects. The reference examiner would certify the examiner after observing 3 satisfactory exams. </p>
+<p>NHANES staff members and an external university-based medical epidemiologist with expertise in chronic liver disease monitored MEC staff performance in the field through periodic visits and direct observations. Examiner performance was also monitored using data reviews for each technician or clinician compared to all others and annual reference examiner refresher training. </p>
+<p>Multiple times per year NHANES staff would select a sample of the original FibroScan® PDF files obtained by the examiners in the MEC for re-review. The samples selected for review include ones from new and experienced examiners, and participants with: 1) extreme stiffness (E), CAP, or E-IQR values, 2) stiffness (E) or CAP values that seemed unusual for younger participants, or 3) inconsistent extreme stiffness (E) and CAP values in the same person (i.e., low stiffness (E) and high CAP or high stiffness (E) and low CAP). </p>
+<p>Annual FibroScan® wand calibration was performed by the manufacturer and software updates were performed according to manufacturer recommendations. In addition, NHANES used four shear wave liver fibrosis phantoms (CIRS Model 039) for determining variances within and between FibroScan® machines and probes over time. </p><h2 id="Data_Processing_and_Editing">Data Processing and Editing</h2><p>Information obtained by staff in the MEC regarding pregnancy status/test results, fasting times, possible exam exclusions, and other comments were recorded in the NHANES database during the participant’s MEC visit. All measures recorded by the FibroScan® machines were directly transferred via the Integrated Survey Information System to the NHANES database system immediately after each exam. Examiners were instructed to visually verify that the values transferred correctly.  </p>
+<p> Computerized data quality control procedures were performed to check for completeness and data validity and to identify logical inconsistencies and extreme data values (e.g., fasting times lasting more than 40 hours) and rare deviations in the protocol (e.g., technical error for number of measures recorded or duplicate files due to exam restarts).  </p>
+<p> Prior to data release, NHANES staff reviewed extreme values and cross-checked with other available data for verification and reviewed free-text comments noted by MEC staff and made edits or corrections as appropriate. </p>
+<p> The liver elastography exam status code (LUAXSTAT) was created and indicates the following for each participant: <br>
+1 = Complete exam (i.e., fasting time of at least 3 hours, 10 or more complete stiffness (E) measures, and a liver stiffness interquartile (IQRe) range / median E &lt;30%). <br>
+2 = Partial exam (i.e., either a fasting time &lt; 3 hours, &lt; 10 complete stiffness (E) measures, or a liver stiffness interquartile (IQRe) range/median E 30% or higher). <br>
+3 = Ineligible participant (see eligibility criteria above).
+4= Not done (i.e., refusal, limited time during exam visit, other). </p>
+<p>The number of measures attempted (LUANMTGP) and the number of measures recorded (LUANMVGP), using the final wand, were categorized at high end to 20 to 29, and 30 or more. </p>
+<p>FibroScan® measures were not edited, and there are no imputed values in this file. </p>
+<p> Elastography results were not reported to participants if they had &lt;10 complete stiffness (E) measures or liver stiffness interquartile (IQRe) range/median E ≥30%, or fasted &lt;3 hours, as recommended by the elastography equipment manufacturer. An exception to these criteria was permitted if the participant had an E value below the referral criteria and had at least 10 complete stiffness measures, even though the 3-hour fasting time was not satisfied. In this data file, elastography results are included for all participants regardless of the number of complete stiffness measures, the IQRe value, or the length of fast.
+</p><h2 id="Analytic_Notes">Analytic Notes</h2><p>As stated above no changes were made to the stiffness, controlled attenuation parameter, IQRe, or IQRc values obtained from the FibroScan® machine. Analysts should be aware that some extreme values may be present. Extreme values may be to the result of difficulty obtaining the measures due to participant body habitus (especially those who are obese or who have narrow intercostal spaces) or may represent truly high values. </p>
+<p>Sample weights: the NHANES examination sample weights should be used to analyze elastography data unless it is merged with a more restrictive data file, such as the morning fasting sample, then use the sample weight appropriate for that more selective group. </p>
+<p>Please refer to the <a href="https://wwwn.cdc.gov/nchs/nhanes/analyticguidelines.aspx">NHANES Analytic Guidelines</a> and the on-line <a href="https://wwwn.cdc.gov/nchs/nhanes/tutorials/">NHANES Tutorials</a> for further details on the use of sample weights and other analytic issues. Both are available on the NHANES website. </p></div>
+      <div id="References">
+        <h2>References</h2>
+        <ul>
+          <li>Barr RG,
+Ferraioli G, Palmeri ML, et al. Elastography Assessment of Liver Fibrosis:
+Society of Radiologists in Ultrasound Consensus Conference Statement.
+Radiology 2015;276:845-61.</li>
+          <li>Castéra L, Vergniol J, Foucher J, Le Bail B, Chanteloup E, Haaser M, Darriet M, Couzigou P, De Lédinghen V. Prospective comparison of transient elastography, Fibrotest, APRI, and liver biopsy for the assessment of fibrosis in chronic hepatitis C. Gastroenterology. 2005;128:343-50.</li>
+          <li>de Ledinghen V, Wong GL, Vergniol J, et al. Controlled attenuation parameter for the diagnosis of steatosis in non-alcoholic fatty liver disease. J Gastroenterol Hepatol 2016;31:848-55.</li>
+          <li>Friedrich-Rust M, Ong MF, Martens S, et al. Performance of transient elastography for the staging of liver fibrosis: a meta-analysis. Gastroenterology 2008;134:960-74.</li>
+          <li>Myers RP, Pollett A, Kirsch R, et al. Controlled Attenuation Parameter (CAP): a noninvasive method for the detection of hepatic steatosis based on transient elastography. Liver Int 2012;32:902-10.</li>
+          <li>Sasso M, Audiere S, Kemgang A, et al. Liver Steatosis Assessed by Controlled Attenuation Parameter (CAP) Measured with the XL Probe of the FibroScan: A Pilot Study Assessing Diagnostic Accuracy. Ultrasound Med Biol 2016;42:92-103.</li>
+          <li>Singh S, Fujii LL, Murad MH, et al. Liver stiffness is associated with risk of decompensation, liver cancer, and death in patients with chronic liver diseases: a systematic review and meta-analysis. Clin Gastroenterol Hepatol 2013;11:1573-84.e1-2; quiz e88-9.</li>
+          <li>Tang A, Cloutier G, Szeverenyi NM, et al. Ultrasound Elastography and MR Elastography for Assessing Liver Fibrosis: Part 1, Principles and Techniques. AJR Am J Roentgenol 2015;205:22-32.</li>
+          <li>Tang A, Cloutier G, Szeverenyi NM, et al. Ultrasound Elastography and MR Elastography for Assessing Liver Fibrosis: Part 2, Diagnostic Performance, Confounders, and Future Directions. AJR Am J Roentgenol 2015;205:33-40.</li>
+          <li>Tapper EB, Parikh ND. Mortality due to cirrhosis and liver cancer in the United States, 1999-2016: observational study. BMJ. 2018;362:k2817.</li>
+          <li>Tsochatzis EA, Gurusamy KS, Ntaoula S, et al. Elastography for the diagnosis of severity of fibrosis in chronic liver disease: a meta-analysis of diagnostic accuracy. J Hepatol 2011;54:650-9.</li>
+          <li>Yoon Y-HC, CM. Surveillance Report #111 Liver Cirrhosis Mortality in the United States: National, State and Regional Trends, 2000-2015. Arlington, VA; April2018.</li>
+        </ul>
+      </div>
+      <div id="Codebook">
+        <h2>Codebook and Frequencies</h2>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SEQN">SEQN - Respondent sequence number</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SEQN</dd>
+            <dt>SAS Label: </dt>
+            <dd>Respondent sequence number</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Respondent sequence number.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LUAXSTAT">LUAXSTAT - Elastography exam status</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LUAXSTAT</dd>
+            <dt>SAS Label: </dt>
+            <dd>Elastography exam status</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Elastography exam status.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Complete</td>
+                <td class="values" align="right">6280</td>
+                <td class="values" align="right">6280</td>
+                <td class="values">LUAPNME</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Partial</td>
+                <td class="values" align="right">514</td>
+                <td class="values" align="right">6794</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Ineligible</td>
+                <td class="values" align="right">201</td>
+                <td class="values" align="right">6995</td>
+                <td class="values">LUARXIN</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Not done</td>
+                <td class="values" align="right">204</td>
+                <td class="values" align="right">7199</td>
+                <td class="values">LUARXND</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7199</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LUARXNC">LUARXNC - Reason for partial exam</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LUARXNC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Reason for partial exam</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Reason for partial exam.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Fasting &lt; 3hrs</td>
+                <td class="values" align="right">165</td>
+                <td class="values" align="right">165</td>
+                <td class="values">LUAPNME</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Unable to obtain 10 valid measures</td>
+                <td class="values" align="right">138</td>
+                <td class="values" align="right">303</td>
+                <td class="values">LUAPNME</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">IQR/M &gt;30%</td>
+                <td class="values" align="right">211</td>
+                <td class="values" align="right">514</td>
+                <td class="values">LUAPNME</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">6685</td>
+                <td class="values" align="right">7199</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LUARXND">LUARXND - Reason exam not done</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LUARXND</dd>
+            <dt>SAS Label: </dt>
+            <dd>Reason exam not done</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Reason exam not done.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Participant refusal</td>
+                <td class="values" align="right">106</td>
+                <td class="values" align="right">106</td>
+                <td class="values">LUANMTGP</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Limited time</td>
+                <td class="values" align="right">40</td>
+                <td class="values" align="right">146</td>
+                <td class="values">LUANMTGP</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Other (e.g. physical or technical limitations )</td>
+                <td class="values" align="right">58</td>
+                <td class="values" align="right">204</td>
+                <td class="values">LUANMTGP</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">6995</td>
+                <td class="values" align="right">7199</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LUARXIN">LUARXIN - Reason ineligible</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LUARXIN</dd>
+            <dt>SAS Label: </dt>
+            <dd>Reason ineligible</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Reason ineligible.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Pregnant/ Unable to get urine to test for pregnancy</td>
+                <td class="values" align="right">67</td>
+                <td class="values" align="right">67</td>
+                <td class="values">LUANMTGP</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Other (e.g. insulin pump or other implantable electronic device)</td>
+                <td class="values" align="right">134</td>
+                <td class="values" align="right">201</td>
+                <td class="values">LUANMTGP</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">6998</td>
+                <td class="values" align="right">7199</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LUAPNME">LUAPNME - Exam wand type</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LUAPNME</dd>
+            <dt>SAS Label: </dt>
+            <dd>Exam wand type</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Exam wand type.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">M</td>
+                <td class="values">M</td>
+                <td class="values" align="right">5158</td>
+                <td class="values" align="right">5158</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">XL</td>
+                <td class="values">XL</td>
+                <td class="values" align="right">1574</td>
+                <td class="values" align="right">6732</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">&lt; blank &gt;</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">467</td>
+                <td class="values" align="right">7199</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LUANMVGP">LUANMVGP - Count:complete measures from final wand</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LUANMVGP</dd>
+            <dt>SAS Label: </dt>
+            <dd>Count:complete measures from final wand</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Total number of complete measures retained (using final wand).</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">0</td>
+                <td class="values" align="right">32</td>
+                <td class="values" align="right">32</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">1</td>
+                <td class="values" align="right">13</td>
+                <td class="values" align="right">45</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">2</td>
+                <td class="values" align="right">6</td>
+                <td class="values" align="right">51</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">3</td>
+                <td class="values" align="right">8</td>
+                <td class="values" align="right">59</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">4</td>
+                <td class="values" align="right">7</td>
+                <td class="values" align="right">66</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">5</td>
+                <td class="values" align="right">11</td>
+                <td class="values" align="right">77</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">6</td>
+                <td class="values">6</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">81</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">7</td>
+                <td class="values" align="right">7</td>
+                <td class="values" align="right">88</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">8</td>
+                <td class="values">8</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">92</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">9</td>
+                <td class="values" align="right">14</td>
+                <td class="values" align="right">106</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">10</td>
+                <td class="values">10</td>
+                <td class="values" align="right">4945</td>
+                <td class="values" align="right">5051</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">11</td>
+                <td class="values">11</td>
+                <td class="values" align="right">974</td>
+                <td class="values" align="right">6025</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">12</td>
+                <td class="values">12</td>
+                <td class="values" align="right">334</td>
+                <td class="values" align="right">6359</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">13</td>
+                <td class="values">13</td>
+                <td class="values" align="right">138</td>
+                <td class="values" align="right">6497</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">14</td>
+                <td class="values">14</td>
+                <td class="values" align="right">89</td>
+                <td class="values" align="right">6586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">15</td>
+                <td class="values">15</td>
+                <td class="values" align="right">51</td>
+                <td class="values" align="right">6637</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">16</td>
+                <td class="values">16</td>
+                <td class="values" align="right">21</td>
+                <td class="values" align="right">6658</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">17</td>
+                <td class="values">17</td>
+                <td class="values" align="right">15</td>
+                <td class="values" align="right">6673</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">18</td>
+                <td class="values">18</td>
+                <td class="values" align="right">11</td>
+                <td class="values" align="right">6684</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">19</td>
+                <td class="values">19</td>
+                <td class="values" align="right">9</td>
+                <td class="values" align="right">6693</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">20</td>
+                <td class="values">20 to 29</td>
+                <td class="values" align="right">31</td>
+                <td class="values" align="right">6724</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">30</td>
+                <td class="values">30 or more</td>
+                <td class="values" align="right">8</td>
+                <td class="values" align="right">6732</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">467</td>
+                <td class="values" align="right">7199</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LUANMTGP">LUANMTGP - Count:measures attempted with final wand</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LUANMTGP</dd>
+            <dt>SAS Label: </dt>
+            <dd>Count:measures attempted with final wand</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Total number of measures attempted (using final wand).</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">Not done</td>
+                <td class="values" align="right">467</td>
+                <td class="values" align="right">467</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">1</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">468</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">2</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">469</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">3</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">472</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">5</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">473</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">6</td>
+                <td class="values">6</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">474</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">7</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">476</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">8</td>
+                <td class="values">8</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">478</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">9</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">482</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">10</td>
+                <td class="values">10</td>
+                <td class="values" align="right">2361</td>
+                <td class="values" align="right">2843</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">11</td>
+                <td class="values">11</td>
+                <td class="values" align="right">1186</td>
+                <td class="values" align="right">4029</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">12</td>
+                <td class="values">12</td>
+                <td class="values" align="right">576</td>
+                <td class="values" align="right">4605</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">13</td>
+                <td class="values">13</td>
+                <td class="values" align="right">445</td>
+                <td class="values" align="right">5050</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">14</td>
+                <td class="values">14</td>
+                <td class="values" align="right">326</td>
+                <td class="values" align="right">5376</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">15</td>
+                <td class="values">15</td>
+                <td class="values" align="right">247</td>
+                <td class="values" align="right">5623</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">16</td>
+                <td class="values">16</td>
+                <td class="values" align="right">163</td>
+                <td class="values" align="right">5786</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">17</td>
+                <td class="values">17</td>
+                <td class="values" align="right">144</td>
+                <td class="values" align="right">5930</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">18</td>
+                <td class="values">18</td>
+                <td class="values" align="right">131</td>
+                <td class="values" align="right">6061</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">19</td>
+                <td class="values">19</td>
+                <td class="values" align="right">116</td>
+                <td class="values" align="right">6177</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">20</td>
+                <td class="values">20-29</td>
+                <td class="values" align="right">538</td>
+                <td class="values" align="right">6715</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">30</td>
+                <td class="values">30 or more</td>
+                <td class="values" align="right">484</td>
+                <td class="values" align="right">7199</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7199</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LUXSMED">LUXSMED - Median stiffness (E), kilopascals (kPa)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LUXSMED</dd>
+            <dt>SAS Label: </dt>
+            <dd>Median stiffness (E), kilopascals (kPa)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Median liver stiffness (E). This indicator is presented with one digit to the right of the decimal ratio (e.g. XX.X), and the units for this measure are kilopascals (kPa).</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1.5 to 75</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">6700</td>
+                <td class="values" align="right">6700</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">499</td>
+                <td class="values" align="right">7199</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LUXSIQR">LUXSIQR - Stiffness E interquartile range (IQRe)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LUXSIQR</dd>
+            <dt>SAS Label: </dt>
+            <dd>Stiffness E interquartile range (IQRe)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Stiffness (E) interquartile range (IQRe) of final stiffness measures. This indicator is presented with one digit to the right of the decimal (e.g., XX.X).</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 72.8</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">6687</td>
+                <td class="values" align="right">6687</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">512</td>
+                <td class="values" align="right">7199</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LUXSIQRM">LUXSIQRM - Ratio: Stiffness IQRe / median E</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LUXSIQRM</dd>
+            <dt>SAS Label: </dt>
+            <dd>Ratio: Stiffness IQRe / median E</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Ratio of the stiffness IQRe / median E stiffness value. This indicator is presented as a percent with one digit to the right of the decimal (e.g., XX.X%).</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 1720.7</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">6687</td>
+                <td class="values" align="right">6687</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">512</td>
+                <td class="values" align="right">7199</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LUXCAPM">LUXCAPM - Median CAP, decibels per meter (dB/m)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LUXCAPM</dd>
+            <dt>SAS Label: </dt>
+            <dd>Median CAP, decibels per meter (dB/m)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Median controlled attenuated parameter (CAP). This indicator is presented as a whole number (e.g., XXX), and the units for this measure are decibels per meter (dB/m).</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">100 to 400</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">6699</td>
+                <td class="values" align="right">6699</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">500</td>
+                <td class="values" align="right">7199</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LUXCPIQR">LUXCPIQR - CAP interquartile range (IQRc)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LUXCPIQR</dd>
+            <dt>SAS Label: </dt>
+            <dd>CAP interquartile range (IQRc)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Controlled attenuated parameter (CAP) interquartile range (IQRc) of final CAP measures. This indicator is presented as a whole number (e.g., XX).</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 208</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">6686</td>
+                <td class="values" align="right">6686</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">513</td>
+                <td class="values" align="right">7199</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+<div id="extension-mmplj"></div></body></html>

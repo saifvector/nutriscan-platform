@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <!-- Background Gradient: Deep Clinical Navy / Emerald Slate -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#042F2E"/>
+      <stop offset="100%" stop-color="#0A1128"/>
+    </linearGradient>
+
+    <!-- Vibrant Emerald to Cyan Gradient -->
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="50%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+
+    <!-- Pulse Wave Highlight Gradient -->
+    <linearGradient id="pulseGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="45%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+
+    <!-- Soft Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#10B981" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Premium Squircle Container -->
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#bgGrad)" stroke="#10B981" stroke-width="1.8" stroke-opacity="0.4"/>
+  
+  <!-- Subtle Radar/Biometric Grid Lines -->
+  <circle cx="32" cy="32" r="23" stroke="#10B981" stroke-width="1" stroke-opacity="0.15" stroke-dasharray="3 3"/>
+  <circle cx="32" cy="32" r="15" stroke="#06B6D4" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="2 2"/>
+
+  <!-- Clinical Botanical Shield (Nutrient Leaf Silhouette) -->
+  <path d="M32 11C32 11 15 18 15 33C15 42 22 49 32 53C42 49 49 42 49 33C49 18 32 11 32 11Z" 
+        fill="url(#leafGrad)" 
+        filter="url(#glow)"/>
+
+  <!-- Right-Hemisphere Geometric Tone for Dimension -->
+  <path d="M32 11C32 11 49 18 49 33C49 42 42 49 32 53V11Z" 
+        fill="#064E3B" 
+        fill-opacity="0.3"/>
+
+  <!-- Central Foliar Spine / Precision Alignment Line -->
+  <path d="M32 14V50" 
+        stroke="#FFFFFF" 
+        stroke-width="1.6" 
+        stroke-linecap="round" 
+        stroke-opacity="0.85"/>
+
+  <!-- Biometric Scanner / Dynamic Diagnostic Pulse Line -->
+  <path d="M10 33H21L24.5 24L28.5 41L32.5 26L36 37L38.5 33H54" 
+        stroke="url(#pulseGrad)" 
+        stroke-width="2.6" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+
+  <!-- Diagnostic Focus Nodes (Nutrient Micro-points) -->
+  <circle cx="24.5" cy="24" r="2.0" fill="#FFFFFF"/>
+  <circle cx="28.5" cy="41" r="2.0" fill="#38BDF8"/>
+  <circle cx="32.5" cy="26" r="2.2" fill="#FFFFFF"/>
+  <circle cx="36" cy="37" r="2.0" fill="#34D399"/>
+
+  <!-- AI Radar Scan Pip on Upper Right -->
+  <path d="M45 14C49.5 18 52 24.5 52 31.5" 
+        stroke="#38BDF8" 
+        stroke-width="2.2" 
+        stroke-linecap="round" 
+        stroke-opacity="0.8"/>
+  <circle cx="45" cy="14" r="2.2" fill="#38BDF8"/>
+</svg>

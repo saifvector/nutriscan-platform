@@ -1,0 +1,1352 @@
+{
+  "Logistic Regression": {
+    "model_name": "Logistic Regression",
+    "mean_accuracy": 0.9128,
+    "mean_f1_macro": 0.7913,
+    "mean_f1_weighted": 0.917,
+    "mean_precision_macro": 0.7765,
+    "mean_recall_macro": 0.8165,
+    "mean_roc_auc": 0.9197,
+    "training_time_sec": 1.059,
+    "inference_time_sec": 0.038,
+    "per_sample_latency_ms": 0.127,
+    "per_nutrient_metrics": {
+      "Protein": {
+        "accuracy": 0.8933,
+        "precision_macro": 0.7136,
+        "recall_macro": 0.7616,
+        "f1_macro": 0.7345,
+        "f1_weighted": 0.8971,
+        "roc_auc_ovr": 0.9667,
+        "confusion_matrix": [
+          [
+            202,
+            19,
+            1
+          ],
+          [
+            6,
+            63,
+            3
+          ],
+          [
+            0,
+            3,
+            3
+          ]
+        ]
+      },
+      "Vitamin A": {
+        "accuracy": 0.9433,
+        "precision_macro": 0.8895,
+        "recall_macro": 0.8915,
+        "f1_macro": 0.8886,
+        "f1_weighted": 0.9447,
+        "roc_auc_ovr": 0.9905,
+        "confusion_matrix": [
+          [
+            230,
+            10,
+            0
+          ],
+          [
+            4,
+            44,
+            1
+          ],
+          [
+            0,
+            2,
+            9
+          ]
+        ]
+      },
+      "Vitamin B12": {
+        "accuracy": 0.8667,
+        "precision_macro": 0.7595,
+        "recall_macro": 0.8441,
+        "f1_macro": 0.7952,
+        "f1_weighted": 0.8721,
+        "roc_auc_ovr": 0.9612,
+        "confusion_matrix": [
+          [
+            202,
+            21,
+            3
+          ],
+          [
+            8,
+            37,
+            6
+          ],
+          [
+            0,
+            2,
+            21
+          ]
+        ]
+      },
+      "Folate": {
+        "accuracy": 0.93,
+        "precision_macro": 0.926,
+        "recall_macro": 0.8452,
+        "f1_macro": 0.8775,
+        "f1_weighted": 0.9298,
+        "roc_auc_ovr": 0.9858,
+        "confusion_matrix": [
+          [
+            215,
+            8,
+            0
+          ],
+          [
+            9,
+            54,
+            0
+          ],
+          [
+            0,
+            4,
+            10
+          ]
+        ]
+      },
+      "Vitamin C": {
+        "accuracy": 0.9333,
+        "precision_macro": 0.7081,
+        "recall_macro": 0.7538,
+        "f1_macro": 0.7252,
+        "f1_weighted": 0.9387,
+        "roc_auc_ovr": 0.9635,
+        "confusion_matrix": [
+          [
+            224,
+            5,
+            0
+          ],
+          [
+            0,
+            52,
+            10
+          ],
+          [
+            0,
+            5,
+            4
+          ]
+        ]
+      },
+      "Vitamin D": {
+        "accuracy": 0.86,
+        "precision_macro": 0.8205,
+        "recall_macro": 0.8449,
+        "f1_macro": 0.8271,
+        "f1_weighted": 0.8676,
+        "roc_auc_ovr": 0.9602,
+        "confusion_matrix": [
+          [
+            135,
+            19,
+            0
+          ],
+          [
+            3,
+            42,
+            9
+          ],
+          [
+            0,
+            11,
+            81
+          ]
+        ]
+      },
+      "Vitamin E": {
+        "accuracy": 0.9933,
+        "precision_macro": 0.9655,
+        "recall_macro": 0.9963,
+        "f1_macro": 0.9803,
+        "f1_weighted": 0.9934,
+        "roc_auc_ovr": 0.5,
+        "confusion_matrix": [
+          [
+            271,
+            2
+          ],
+          [
+            0,
+            27
+          ]
+        ]
+      },
+      "Iron": {
+        "accuracy": 0.89,
+        "precision_macro": 0.8325,
+        "recall_macro": 0.8735,
+        "f1_macro": 0.8506,
+        "f1_weighted": 0.8934,
+        "roc_auc_ovr": 0.9769,
+        "confusion_matrix": [
+          [
+            180,
+            18,
+            0
+          ],
+          [
+            4,
+            62,
+            7
+          ],
+          [
+            0,
+            4,
+            25
+          ]
+        ]
+      },
+      "Calcium": {
+        "accuracy": 0.9,
+        "precision_macro": 0.842,
+        "recall_macro": 0.8471,
+        "f1_macro": 0.8429,
+        "f1_weighted": 0.9017,
+        "roc_auc_ovr": 0.9745,
+        "confusion_matrix": [
+          [
+            163,
+            13,
+            1
+          ],
+          [
+            2,
+            88,
+            6
+          ],
+          [
+            0,
+            8,
+            19
+          ]
+        ]
+      },
+      "Zinc": {
+        "accuracy": 0.94,
+        "precision_macro": 0.8915,
+        "recall_macro": 0.933,
+        "f1_macro": 0.9104,
+        "f1_weighted": 0.9415,
+        "roc_auc_ovr": 0.9878,
+        "confusion_matrix": [
+          [
+            193,
+            11,
+            1
+          ],
+          [
+            1,
+            68,
+            3
+          ],
+          [
+            0,
+            2,
+            21
+          ]
+        ]
+      },
+      "Magnesium": {
+        "accuracy": 0.88,
+        "precision_macro": 0.8322,
+        "recall_macro": 0.8642,
+        "f1_macro": 0.8459,
+        "f1_weighted": 0.8827,
+        "roc_auc_ovr": 0.9701,
+        "confusion_matrix": [
+          [
+            154,
+            13,
+            0
+          ],
+          [
+            3,
+            74,
+            14
+          ],
+          [
+            0,
+            6,
+            36
+          ]
+        ]
+      },
+      "Vitamin B1": {
+        "accuracy": 0.9267,
+        "precision_macro": 0.7936,
+        "recall_macro": 0.8353,
+        "f1_macro": 0.8128,
+        "f1_weighted": 0.9289,
+        "roc_auc_ovr": 0.9834,
+        "confusion_matrix": [
+          [
+            214,
+            12,
+            0
+          ],
+          [
+            3,
+            58,
+            4
+          ],
+          [
+            0,
+            3,
+            6
+          ]
+        ]
+      },
+      "Vitamin B2": {
+        "accuracy": 0.9233,
+        "precision_macro": 0.4811,
+        "recall_macro": 0.563,
+        "f1_macro": 0.5098,
+        "f1_weighted": 0.9335,
+        "roc_auc_ovr": 0.9693,
+        "confusion_matrix": [
+          [
+            262,
+            17,
+            0
+          ],
+          [
+            3,
+            15,
+            2
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "Vitamin B3": {
+        "accuracy": 0.8767,
+        "precision_macro": 0.5905,
+        "recall_macro": 0.7241,
+        "f1_macro": 0.6375,
+        "f1_weighted": 0.8904,
+        "roc_auc_ovr": 0.938,
+        "confusion_matrix": [
+          [
+            237,
+            28,
+            1
+          ],
+          [
+            6,
+            25,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "Vitamin B6": {
+        "accuracy": 0.89,
+        "precision_macro": 0.7237,
+        "recall_macro": 0.7964,
+        "f1_macro": 0.754,
+        "f1_weighted": 0.8948,
+        "roc_auc_ovr": 0.9711,
+        "confusion_matrix": [
+          [
+            199,
+            19,
+            0
+          ],
+          [
+            5,
+            63,
+            6
+          ],
+          [
+            0,
+            3,
+            5
+          ]
+        ]
+      },
+      "Potassium": {
+        "accuracy": 0.9233,
+        "precision_macro": 0.9208,
+        "recall_macro": 0.923,
+        "f1_macro": 0.9218,
+        "f1_weighted": 0.9235,
+        "roc_auc_ovr": 0.9896,
+        "confusion_matrix": [
+          [
+            103,
+            3,
+            1
+          ],
+          [
+            3,
+            99,
+            9
+          ],
+          [
+            0,
+            7,
+            75
+          ]
+        ]
+      },
+      "Selenium": {
+        "accuracy": 0.9033,
+        "precision_macro": 0.7862,
+        "recall_macro": 0.8913,
+        "f1_macro": 0.8246,
+        "f1_weighted": 0.9108,
+        "roc_auc_ovr": 0.5,
+        "confusion_matrix": [
+          [
+            236,
+            24
+          ],
+          [
+            5,
+            35
+          ]
+        ]
+      },
+      "Iodine": {
+        "accuracy": 0.9567,
+        "precision_macro": 0.5,
+        "recall_macro": 0.5093,
+        "f1_macro": 0.5044,
+        "f1_weighted": 0.9608,
+        "roc_auc_ovr": 0.9652,
+        "confusion_matrix": [
+          [
+            280,
+            3,
+            0
+          ],
+          [
+            0,
+            7,
+            6
+          ],
+          [
+            0,
+            4,
+            0
+          ]
+        ]
+      }
+    }
+  },
+  "Random Forest": {
+    "model_name": "Random Forest",
+    "mean_accuracy": 0.9285,
+    "mean_f1_macro": 0.8142,
+    "mean_f1_weighted": 0.9303,
+    "mean_precision_macro": 0.8207,
+    "mean_recall_macro": 0.8248,
+    "mean_roc_auc": 0.9221,
+    "training_time_sec": 3.443,
+    "inference_time_sec": 1.0917,
+    "per_sample_latency_ms": 3.639,
+    "per_nutrient_metrics": {
+      "Protein": {
+        "accuracy": 0.8867,
+        "precision_macro": 0.729,
+        "recall_macro": 0.6318,
+        "f1_macro": 0.6524,
+        "f1_weighted": 0.8832,
+        "roc_auc_ovr": 0.9541,
+        "confusion_matrix": [
+          [
+            208,
+            14,
+            0
+          ],
+          [
+            14,
+            57,
+            1
+          ],
+          [
+            0,
+            5,
+            1
+          ]
+        ]
+      },
+      "Vitamin A": {
+        "accuracy": 0.96,
+        "precision_macro": 0.9364,
+        "recall_macro": 0.9779,
+        "f1_macro": 0.9545,
+        "f1_weighted": 0.9614,
+        "roc_auc_ovr": 0.9942,
+        "confusion_matrix": [
+          [
+            229,
+            11,
+            0
+          ],
+          [
+            1,
+            48,
+            0
+          ],
+          [
+            0,
+            0,
+            11
+          ]
+        ]
+      },
+      "Vitamin B12": {
+        "accuracy": 0.8833,
+        "precision_macro": 0.7993,
+        "recall_macro": 0.8638,
+        "f1_macro": 0.8274,
+        "f1_weighted": 0.8877,
+        "roc_auc_ovr": 0.9682,
+        "confusion_matrix": [
+          [
+            203,
+            18,
+            5
+          ],
+          [
+            8,
+            42,
+            1
+          ],
+          [
+            0,
+            3,
+            20
+          ]
+        ]
+      },
+      "Folate": {
+        "accuracy": 0.9733,
+        "precision_macro": 0.9671,
+        "recall_macro": 0.9581,
+        "f1_macro": 0.9619,
+        "f1_weighted": 0.9736,
+        "roc_auc_ovr": 0.9969,
+        "confusion_matrix": [
+          [
+            218,
+            5,
+            0
+          ],
+          [
+            2,
+            61,
+            0
+          ],
+          [
+            0,
+            1,
+            13
+          ]
+        ]
+      },
+      "Vitamin C": {
+        "accuracy": 0.9667,
+        "precision_macro": 0.9038,
+        "recall_macro": 0.8353,
+        "f1_macro": 0.8596,
+        "f1_weighted": 0.9657,
+        "roc_auc_ovr": 0.9822,
+        "confusion_matrix": [
+          [
+            225,
+            4,
+            0
+          ],
+          [
+            1,
+            60,
+            1
+          ],
+          [
+            0,
+            4,
+            5
+          ]
+        ]
+      },
+      "Vitamin D": {
+        "accuracy": 0.8633,
+        "precision_macro": 0.8223,
+        "recall_macro": 0.842,
+        "f1_macro": 0.8291,
+        "f1_weighted": 0.8689,
+        "roc_auc_ovr": 0.9724,
+        "confusion_matrix": [
+          [
+            136,
+            18,
+            0
+          ],
+          [
+            6,
+            40,
+            8
+          ],
+          [
+            0,
+            9,
+            83
+          ]
+        ]
+      },
+      "Vitamin E": {
+        "accuracy": 0.9933,
+        "precision_macro": 0.9655,
+        "recall_macro": 0.9963,
+        "f1_macro": 0.9803,
+        "f1_weighted": 0.9934,
+        "roc_auc_ovr": 0.5,
+        "confusion_matrix": [
+          [
+            271,
+            2
+          ],
+          [
+            0,
+            27
+          ]
+        ]
+      },
+      "Iron": {
+        "accuracy": 0.9067,
+        "precision_macro": 0.8695,
+        "recall_macro": 0.9061,
+        "f1_macro": 0.8844,
+        "f1_weighted": 0.9099,
+        "roc_auc_ovr": 0.9879,
+        "confusion_matrix": [
+          [
+            179,
+            19,
+            0
+          ],
+          [
+            2,
+            67,
+            4
+          ],
+          [
+            0,
+            3,
+            26
+          ]
+        ]
+      },
+      "Calcium": {
+        "accuracy": 0.91,
+        "precision_macro": 0.8669,
+        "recall_macro": 0.9171,
+        "f1_macro": 0.8884,
+        "f1_weighted": 0.912,
+        "roc_auc_ovr": 0.9773,
+        "confusion_matrix": [
+          [
+            159,
+            16,
+            2
+          ],
+          [
+            2,
+            89,
+            5
+          ],
+          [
+            0,
+            2,
+            25
+          ]
+        ]
+      },
+      "Zinc": {
+        "accuracy": 0.9367,
+        "precision_macro": 0.915,
+        "recall_macro": 0.9018,
+        "f1_macro": 0.9021,
+        "f1_weighted": 0.9383,
+        "roc_auc_ovr": 0.9935,
+        "confusion_matrix": [
+          [
+            192,
+            13,
+            0
+          ],
+          [
+            0,
+            71,
+            1
+          ],
+          [
+            0,
+            5,
+            18
+          ]
+        ]
+      },
+      "Magnesium": {
+        "accuracy": 0.9,
+        "precision_macro": 0.8555,
+        "recall_macro": 0.893,
+        "f1_macro": 0.8713,
+        "f1_weighted": 0.9025,
+        "roc_auc_ovr": 0.9768,
+        "confusion_matrix": [
+          [
+            155,
+            12,
+            0
+          ],
+          [
+            1,
+            77,
+            13
+          ],
+          [
+            0,
+            4,
+            38
+          ]
+        ]
+      },
+      "Vitamin B1": {
+        "accuracy": 0.9367,
+        "precision_macro": 0.927,
+        "recall_macro": 0.7832,
+        "f1_macro": 0.817,
+        "f1_weighted": 0.9359,
+        "roc_auc_ovr": 0.992,
+        "confusion_matrix": [
+          [
+            215,
+            11,
+            0
+          ],
+          [
+            3,
+            62,
+            0
+          ],
+          [
+            0,
+            5,
+            4
+          ]
+        ]
+      },
+      "Vitamin B2": {
+        "accuracy": 0.9567,
+        "precision_macro": 0.5418,
+        "recall_macro": 0.5904,
+        "f1_macro": 0.5632,
+        "f1_weighted": 0.9573,
+        "roc_auc_ovr": 0.9794,
+        "confusion_matrix": [
+          [
+            271,
+            8,
+            0
+          ],
+          [
+            4,
+            16,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "Vitamin B3": {
+        "accuracy": 0.8633,
+        "precision_macro": 0.4673,
+        "recall_macro": 0.5536,
+        "f1_macro": 0.4929,
+        "f1_weighted": 0.8777,
+        "roc_auc_ovr": 0.8664,
+        "confusion_matrix": [
+          [
+            234,
+            31,
+            1
+          ],
+          [
+            7,
+            25,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ]
+        ]
+      },
+      "Vitamin B6": {
+        "accuracy": 0.92,
+        "precision_macro": 0.8383,
+        "recall_macro": 0.7477,
+        "f1_macro": 0.7699,
+        "f1_weighted": 0.9194,
+        "roc_auc_ovr": 0.9752,
+        "confusion_matrix": [
+          [
+            204,
+            14,
+            0
+          ],
+          [
+            4,
+            69,
+            1
+          ],
+          [
+            0,
+            5,
+            3
+          ]
+        ]
+      },
+      "Potassium": {
+        "accuracy": 0.94,
+        "precision_macro": 0.944,
+        "recall_macro": 0.935,
+        "f1_macro": 0.9385,
+        "f1_weighted": 0.94,
+        "roc_auc_ovr": 0.9906,
+        "confusion_matrix": [
+          [
+            104,
+            3,
+            0
+          ],
+          [
+            2,
+            106,
+            3
+          ],
+          [
+            0,
+            10,
+            72
+          ]
+        ]
+      },
+      "Selenium": {
+        "accuracy": 0.94,
+        "precision_macro": 0.852,
+        "recall_macro": 0.9231,
+        "f1_macro": 0.8824,
+        "f1_weighted": 0.9427,
+        "roc_auc_ovr": 0.5,
+        "confusion_matrix": [
+          [
+            246,
+            14
+          ],
+          [
+            4,
+            36
+          ]
+        ]
+      },
+      "Iodine": {
+        "accuracy": 0.9767,
+        "precision_macro": 0.5714,
+        "recall_macro": 0.5897,
+        "f1_macro": 0.5802,
+        "f1_weighted": 0.9754,
+        "roc_auc_ovr": 0.9897,
+        "confusion_matrix": [
+          [
+            283,
+            0,
+            0
+          ],
+          [
+            0,
+            10,
+            3
+          ],
+          [
+            0,
+            4,
+            0
+          ]
+        ]
+      }
+    }
+  },
+  "XGBoost": {
+    "model_name": "XGBoost",
+    "mean_accuracy": 0.9367,
+    "mean_f1_macro": 0.8149,
+    "mean_f1_weighted": 0.9358,
+    "mean_precision_macro": 0.828,
+    "mean_recall_macro": 0.8095,
+    "mean_roc_auc": 0.9297,
+    "training_time_sec": 2.811,
+    "inference_time_sec": 0.1096,
+    "per_sample_latency_ms": 0.365,
+    "per_nutrient_metrics": {
+      "Protein": {
+        "accuracy": 0.88,
+        "precision_macro": 0.5716,
+        "recall_macro": 0.5403,
+        "f1_macro": 0.5515,
+        "f1_weighted": 0.8649,
+        "roc_auc_ovr": 0.9651,
+        "confusion_matrix": [
+          [
+            218,
+            4,
+            0
+          ],
+          [
+            26,
+            46,
+            0
+          ],
+          [
+            0,
+            6,
+            0
+          ]
+        ]
+      },
+      "Vitamin A": {
+        "accuracy": 0.9633,
+        "precision_macro": 0.9436,
+        "recall_macro": 0.9739,
+        "f1_macro": 0.9573,
+        "f1_weighted": 0.9643,
+        "roc_auc_ovr": 0.9952,
+        "confusion_matrix": [
+          [
+            231,
+            9,
+            0
+          ],
+          [
+            2,
+            47,
+            0
+          ],
+          [
+            0,
+            0,
+            11
+          ]
+        ]
+      },
+      "Vitamin B12": {
+        "accuracy": 0.9067,
+        "precision_macro": 0.864,
+        "recall_macro": 0.8488,
+        "f1_macro": 0.8562,
+        "f1_weighted": 0.9062,
+        "roc_auc_ovr": 0.9786,
+        "confusion_matrix": [
+          [
+            215,
+            10,
+            1
+          ],
+          [
+            13,
+            37,
+            1
+          ],
+          [
+            0,
+            3,
+            20
+          ]
+        ]
+      },
+      "Folate": {
+        "accuracy": 0.9667,
+        "precision_macro": 0.9633,
+        "recall_macro": 0.9252,
+        "f1_macro": 0.9423,
+        "f1_weighted": 0.9667,
+        "roc_auc_ovr": 0.997,
+        "confusion_matrix": [
+          [
+            219,
+            4,
+            0
+          ],
+          [
+            4,
+            59,
+            0
+          ],
+          [
+            0,
+            2,
+            12
+          ]
+        ]
+      },
+      "Vitamin C": {
+        "accuracy": 0.9667,
+        "precision_macro": 0.8905,
+        "recall_macro": 0.8036,
+        "f1_macro": 0.829,
+        "f1_weighted": 0.9648,
+        "roc_auc_ovr": 0.985,
+        "confusion_matrix": [
+          [
+            225,
+            4,
+            0
+          ],
+          [
+            0,
+            61,
+            1
+          ],
+          [
+            0,
+            5,
+            4
+          ]
+        ]
+      },
+      "Vitamin D": {
+        "accuracy": 0.91,
+        "precision_macro": 0.8768,
+        "recall_macro": 0.8854,
+        "f1_macro": 0.8798,
+        "f1_weighted": 0.9118,
+        "roc_auc_ovr": 0.979,
+        "confusion_matrix": [
+          [
+            148,
+            6,
+            0
+          ],
+          [
+            5,
+            44,
+            5
+          ],
+          [
+            0,
+            11,
+            81
+          ]
+        ]
+      },
+      "Vitamin E": {
+        "accuracy": 0.9933,
+        "precision_macro": 0.9655,
+        "recall_macro": 0.9963,
+        "f1_macro": 0.9803,
+        "f1_weighted": 0.9934,
+        "roc_auc_ovr": 0.5,
+        "confusion_matrix": [
+          [
+            271,
+            2
+          ],
+          [
+            0,
+            27
+          ]
+        ]
+      },
+      "Iron": {
+        "accuracy": 0.9367,
+        "precision_macro": 0.9142,
+        "recall_macro": 0.9115,
+        "f1_macro": 0.9118,
+        "f1_weighted": 0.9375,
+        "roc_auc_ovr": 0.9908,
+        "confusion_matrix": [
+          [
+            189,
+            9,
+            0
+          ],
+          [
+            4,
+            67,
+            2
+          ],
+          [
+            0,
+            4,
+            25
+          ]
+        ]
+      },
+      "Calcium": {
+        "accuracy": 0.9333,
+        "precision_macro": 0.8891,
+        "recall_macro": 0.89,
+        "f1_macro": 0.8888,
+        "f1_weighted": 0.934,
+        "roc_auc_ovr": 0.9843,
+        "confusion_matrix": [
+          [
+            169,
+            8,
+            0
+          ],
+          [
+            1,
+            90,
+            5
+          ],
+          [
+            0,
+            6,
+            21
+          ]
+        ]
+      },
+      "Zinc": {
+        "accuracy": 0.9433,
+        "precision_macro": 0.9267,
+        "recall_macro": 0.89,
+        "f1_macro": 0.9054,
+        "f1_weighted": 0.9433,
+        "roc_auc_ovr": 0.9938,
+        "confusion_matrix": [
+          [
+            199,
+            6,
+            0
+          ],
+          [
+            5,
+            66,
+            1
+          ],
+          [
+            0,
+            5,
+            18
+          ]
+        ]
+      },
+      "Magnesium": {
+        "accuracy": 0.8967,
+        "precision_macro": 0.8507,
+        "recall_macro": 0.8715,
+        "f1_macro": 0.8602,
+        "f1_weighted": 0.8984,
+        "roc_auc_ovr": 0.9789,
+        "confusion_matrix": [
+          [
+            158,
+            9,
+            0
+          ],
+          [
+            3,
+            76,
+            12
+          ],
+          [
+            0,
+            7,
+            35
+          ]
+        ]
+      },
+      "Vitamin B1": {
+        "accuracy": 0.93,
+        "precision_macro": 0.8706,
+        "recall_macro": 0.8012,
+        "f1_macro": 0.8259,
+        "f1_weighted": 0.9299,
+        "roc_auc_ovr": 0.9927,
+        "confusion_matrix": [
+          [
+            216,
+            10,
+            0
+          ],
+          [
+            6,
+            58,
+            1
+          ],
+          [
+            0,
+            4,
+            5
+          ]
+        ]
+      },
+      "Vitamin B2": {
+        "accuracy": 0.9667,
+        "precision_macro": 0.5855,
+        "recall_macro": 0.5631,
+        "f1_macro": 0.5736,
+        "f1_weighted": 0.9642,
+        "roc_auc_ovr": 0.9825,
+        "confusion_matrix": [
+          [
+            276,
+            3,
+            0
+          ],
+          [
+            6,
+            14,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "Vitamin B3": {
+        "accuracy": 0.89,
+        "precision_macro": 0.4791,
+        "recall_macro": 0.5087,
+        "f1_macro": 0.4921,
+        "f1_weighted": 0.8916,
+        "roc_auc_ovr": 0.9493,
+        "confusion_matrix": [
+          [
+            248,
+            18,
+            0
+          ],
+          [
+            13,
+            19,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ]
+        ]
+      },
+      "Vitamin B6": {
+        "accuracy": 0.9167,
+        "precision_macro": 0.8423,
+        "recall_macro": 0.7254,
+        "f1_macro": 0.763,
+        "f1_weighted": 0.9138,
+        "roc_auc_ovr": 0.9777,
+        "confusion_matrix": [
+          [
+            210,
+            8,
+            0
+          ],
+          [
+            11,
+            62,
+            1
+          ],
+          [
+            0,
+            5,
+            3
+          ]
+        ]
+      },
+      "Potassium": {
+        "accuracy": 0.9467,
+        "precision_macro": 0.9501,
+        "recall_macro": 0.9421,
+        "f1_macro": 0.9452,
+        "f1_weighted": 0.9468,
+        "roc_auc_ovr": 0.9942,
+        "confusion_matrix": [
+          [
+            104,
+            3,
+            0
+          ],
+          [
+            1,
+            107,
+            3
+          ],
+          [
+            0,
+            9,
+            73
+          ]
+        ]
+      },
+      "Selenium": {
+        "accuracy": 0.9367,
+        "precision_macro": 0.871,
+        "recall_macro": 0.8471,
+        "f1_macro": 0.8585,
+        "f1_weighted": 0.9356,
+        "roc_auc_ovr": 0.5,
+        "confusion_matrix": [
+          [
+            252,
+            8
+          ],
+          [
+            11,
+            29
+          ]
+        ]
+      },
+      "Iodine": {
+        "accuracy": 0.9767,
+        "precision_macro": 0.65,
+        "recall_macro": 0.6474,
+        "f1_macro": 0.6474,
+        "f1_weighted": 0.9775,
+        "roc_auc_ovr": 0.9908,
+        "confusion_matrix": [
+          [
+            283,
+            0,
+            0
+          ],
+          [
+            0,
+            9,
+            4
+          ],
+          [
+            0,
+            3,
+            1
+          ]
+        ]
+      }
+    }
+  }
+}

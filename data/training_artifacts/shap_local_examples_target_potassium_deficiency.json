@@ -1,0 +1,116 @@
+{
+  "high_risk_positive_case": {
+    "test_index": 27,
+    "predicted_probability": 0.36130857467651367,
+    "actual_label": 1,
+    "top_contributing_features": [
+      {
+        "feature": "demo_age_years",
+        "shap_value": -0.41366443037986755,
+        "feature_value": 27.0
+      },
+      {
+        "feature": "symptom_sleep_hours_weekend",
+        "shap_value": -0.08110180497169495,
+        "feature_value": 8.0
+      },
+      {
+        "feature": "lifestyle_vigorous_activity_minutes",
+        "shap_value": -0.05976277217268944,
+        "feature_value": 120.0
+      },
+      {
+        "feature": "demo_race_ethnicity",
+        "shap_value": 0.05066513642668724,
+        "feature_value": 7.0
+      },
+      {
+        "feature": "total_vitamin_b12_intake_mcg",
+        "shap_value": -0.049503229558467865,
+        "feature_value": 501.74
+      },
+      {
+        "feature": "diet_folate_dfe_mcg",
+        "shap_value": 0.04193218797445297,
+        "feature_value": 507.0
+      },
+      {
+        "feature": "diet_riboflavin_b2_mg",
+        "shap_value": -0.024727966636419296,
+        "feature_value": 1.2955
+      },
+      {
+        "feature": "demo_poverty_ratio",
+        "shap_value": -0.023632057011127472,
+        "feature_value": 5.0
+      },
+      {
+        "feature": "diet_folic_acid_mcg",
+        "shap_value": 0.017455970868468285,
+        "feature_value": 87.0
+      },
+      {
+        "feature": "diet_vitamin_d_mcg",
+        "shap_value": 0.014033306390047073,
+        "feature_value": 0.1
+      }
+    ]
+  },
+  "low_risk_negative_case": {
+    "test_index": 0,
+    "predicted_probability": 0.4483913779258728,
+    "actual_label": 0,
+    "top_contributing_features": [
+      {
+        "feature": "exam_pulse_rate",
+        "shap_value": -0.21359054744243622,
+        "feature_value": 57.0
+      },
+      {
+        "feature": "demo_race_ethnicity",
+        "shap_value": 0.06360640376806259,
+        "feature_value": 4.0
+      },
+      {
+        "feature": "demo_age_years",
+        "shap_value": 0.05410587787628174,
+        "feature_value": 44.0
+      },
+      {
+        "feature": "diet_carbohydrate_g",
+        "shap_value": -0.0431845560669899,
+        "feature_value": 105.10999999999999
+      },
+      {
+        "feature": "lifestyle_vigorous_activity_minutes",
+        "shap_value": -0.033404454588890076,
+        "feature_value": 30.0
+      },
+      {
+        "feature": "diet_vitamin_b12_mcg",
+        "shap_value": -0.026141097769141197,
+        "feature_value": 1.6549999999999998
+      },
+      {
+        "feature": "diet_riboflavin_b2_mg",
+        "shap_value": -0.02607332542538643,
+        "feature_value": 0.6605
+      },
+      {
+        "feature": "total_folate_intake_mcg",
+        "shap_value": -0.02531314641237259,
+        "feature_value": 104.5
+      },
+      {
+        "feature": "diet_folic_acid_mcg",
+        "shap_value": 0.02323615923523903,
+        "feature_value": 21.5
+      },
+      {
+        "feature": "demo_is_male",
+        "shap_value": -0.022803638130426407,
+        "feature_value": 1.0
+      }
+    ]
+  }
+}

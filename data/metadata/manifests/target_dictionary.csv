@@ -1,0 +1,10 @@
+target_name,target_type,primary_biomarker,source_table,clinical_cutoff,clinical_meaning,total_tested,positive_cases,negative_cases,prevalence_pct
+target_iron_deficiency,Binary Classification,Ferritin (LBXFER),FERTIN_L.xpt,< 30.0 ng/mL,Depleted bone marrow & reticuloendothelial iron stores (WHO / NIH),1950,750,1200,38.46
+target_iron_deficiency_anemia,Binary Classification,Ferritin (LBXFER) + Hemoglobin (LBXHGB),FERTIN_L.xpt + CBC_L.xpt,Ferritin < 30 ng/mL AND Hgb < 12.0 g/dL (F) / < 13.5 g/dL (M),Overt Iron Deficiency Anemia with compromised oxygen carrying capacity,1945,298,1647,15.32
+target_vitamin_d_deficiency,Binary Classification,25-Hydroxyvitamin D Total (LBXVIDMS),VID_L.xpt,< 50.0 nmol/L (< 20.0 ng/mL),Overt 25(OH)D Deficiency with bone mineral & immune risk (IOM / Endocrine Society),7307,1573,5734,21.53
+target_vitamin_d_insufficiency,Binary Classification,25-Hydroxyvitamin D Total (LBXVIDMS),VID_L.xpt,< 75.0 nmol/L (< 30.0 ng/mL),Suboptimal 25(OH)D Insufficiency (Endocrine Society Guideline),7307,3900,3407,53.37
+target_folate_deficiency,Binary Classification,RBC Folate (LBDRFO) / Serum Folate (LBDFOT),FOLATE_L.xpt + FOLFMS_L.xpt,RBC Folate < 305 nmol/L OR Serum Folate < 4.0 ng/mL,Inadequate tissue folate stores and risk of megaloblastic anemia / neural tube defect,7563,863,6700,11.41
+target_magnesium_deficiency,Binary Classification,Serum Magnesium (LBXMAGN),BIOPRO_L.xpt,< 1.8 mg/dL (< 0.74 mmol/L),Hypomagnesemia associated with neuromuscular irritability & cardiac dysrhythmias,6324,582,5742,9.2
+target_potassium_deficiency,Binary Classification,Serum Potassium (LBXSKSI),BIOPRO_L.xpt,< 3.5 mmol/L,"Hypokalemia with neuromuscular weakness, cramping & cardiac arrhythmia risk",6281,115,6166,1.83
+target_selenium_deficiency,Binary Classification,Whole Blood Selenium (LBXBSE),PBCD_L.xpt,< 140.0 mcg/L,Suboptimal whole blood selenium (< 2.5th US percentile; Mayo Clinic whole blood reference: 150-240 mcg/L),7586,257,7329,3.39
+target_calcium_deficiency,Binary Classification,Serum Total Calcium (LBXSCA),BIOPRO_L.xpt,< 8.5 mg/dL,Hypocalcemia with neuromuscular excitability and compromised bone mineralization,6362,46,6316,0.72

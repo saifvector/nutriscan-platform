@@ -1,0 +1,42 @@
+groups:
+  - name: nutriscan-platform-alerts
+    rules:
+      - alert: NutriScanHighErrorRate
+        expr: sum(rate(nutriscan_http_requests_total{status=~"5.."}[2m])) / sum(rate(nutriscan_http_requests_total[2m])) > 0.05
+        for: 2m
+        labels:
+          severity: critical
+          team: healthcare-platform
+        annotations:
+          summary: "High HTTP 5xx error rate detected on NutriScan API"
+          description: "Over 5% of all HTTP requests failed with server errors in the last 2 minutes."
+
+      - alert: NutriScanHighP95Latency
+        expr: histogram_quantile(0.95, sum(rate(nutriscan_http_request_duration_seconds_bucket[5m])) by (le)) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+          team: performance
+        annotations:
+          summary: "p95 API response latency exceeds 500ms SLA"
+          description: "95th percentile latency is {{ $value }}s on NutriScan screening endpoints."
+
+      - alert: NutriScanServiceDown
+        expr: up{job="nutriscan-api"} == 0
+        for: 1m
+        labels:
+          severity: page
+          team: oncall
+        annotations:
+          summary: "NutriScan API pod instance is down"
+          description: "Prometheus failed to scrape NutriScan API target for over 1 minute."
+
+      - alert: HighVolumeCriticalDeficiencySurge
+        expr: sum(increase(nutriscan_copilot_operations_total{operation="assessment_generation"}[10m])) > 200
+        for: 5m
+        labels:
+          severity: info
+          team: clinical-ops
+        annotations:
+          summary: "Surge in Clinical Copilot assessments requested"
+          description: "More than 200 clinical assessments generated in 10 minutes."

@@ -1,0 +1,83 @@
+file_name,cycle,category,records,variables,description
+ACQ_L.xpt,2021-2023,questionnaire,11372,5,Acculturation
+AGP_L.xpt,2021-2023,questionnaire,2564,3,NHANES Survey Questionnaire - AGP_L
+ALB_CR_L.xpt,2021-2023,laboratory,8493,8,Albumin & Creatinine - Urine
+ALQ_L.xpt,2021-2023,questionnaire,6337,9,Alcohol Use & Drinking Patterns
+AUQ_L.xpt,2021-2023,questionnaire,11744,14,Audiometry
+BAQ_L.xpt,2021-2023,questionnaire,6070,15,Balance
+BAX_L.xpt,2021-2023,questionnaire,4771,45,NHANES Survey Questionnaire - BAX_L
+BCHE_L.xpt,2021-2023,laboratory,8068,5,Butyrylcholinesterase
+BIOPRO_L.xpt,2021-2023,laboratory,7199,42,"Standard Biochemistry Profile (Electrolytes, Kidney/Liver Biomarkers)"
+BMX_L.xpt,2021-2023,examination,8860,22,"Body Measures (Anthropometry: Height, Weight, BMI, Waist)"
+BPQ_L.xpt,2021-2023,questionnaire,8501,6,Blood Pressure & Cholesterol History
+BPXO_L.xpt,2021-2023,examination,7801,12,Blood Pressure - Oscillometric Measurement
+CBC_L.xpt,2021-2023,laboratory,8727,23,"Complete Blood Count (Hemoglobin, Hematocrit, RBC, MCV, Platelets)"
+COT_L.xpt,2021-2023,laboratory,8493,5,Cotinine and Hydroxycotinine - Serum (Tobacco Smoke Exposure)
+DBQ_L.xpt,2021-2023,questionnaire,11933,27,Diet Behavior & Nutrition Questionnaire
+DEMO_L.xpt,2021-2023,demographics,11933,27,Demographic Variables & Sample Weights
+DEQ_L.xpt,2021-2023,questionnaire,4305,4,Dermatology & Skin Conditions
+DIQ_L.xpt,2021-2023,questionnaire,11744,9,Diabetes & Pre-Diabetes Screen
+DPQ_L.xpt,2021-2023,questionnaire,6337,11,Depression Screener (PHQ-9)
+DR1IFF_L.xpt,2021-2023,dietary,100116,84,"Dietary Interview - Individual Foods, Day 1"
+DR1TOT_L.xpt,2021-2023,dietary,8860,168,"Dietary Interview - Total Nutrient Intakes, Day 1"
+DR2IFF_L.xpt,2021-2023,dietary,88032,84,"Dietary Interview - Individual Foods, Day 2"
+DR2TOT_L.xpt,2021-2023,dietary,8860,85,"Dietary Interview - Total Nutrient Intakes, Day 2"
+DRXFCD_L.xpt,2021-2023,dietary,5432,3,Dietary Interview - Food Code Descriptions
+DSBI.xpt,Pre-Pandemic / Multi-Cycle,dietary,37061,6,Dietary Supplement Blend Information
+DSII.xpt,Pre-Pandemic / Multi-Cycle,dietary,188552,10,Dietary Supplement Ingredient Information
+DSPI.xpt,Pre-Pandemic / Multi-Cycle,dietary,20235,18,Dietary Supplement Product Information
+DSQIDS_L.xpt,2021-2023,dietary,11375,45,Dietary Supplements - Individual Dietary Supplement Details
+DSQTOT_L.xpt,2021-2023,dietary,8860,40,Dietary Supplements - Total Dietary Supplement Intakes
+ECQ_L.xpt,2021-2023,questionnaire,3432,7,Early Childhood
+FAR_L.xpt,2021-2023,questionnaire,8068,44,Physical Activity & Fitness Recall
+FASTQX_L.xpt,2021-2023,questionnaire,8727,19,Fasting Questionnaire
+FERTIN_L.xpt,2021-2023,laboratory,2564,4,Ferritin (Serum Reticuloendothelial Iron Stores)
+FFMR_L.xpt,2021-2023,questionnaire,8068,15,NHANES Survey Questionnaire - FFMR_L
+FNQ_L.xpt,2021-2023,questionnaire,10942,32,NHANES Survey Questionnaire - FNQ_L
+FOLATE_L.xpt,2021-2023,laboratory,8727,4,Folate - Serum (Erythrocyte Folate Pools)
+FOLFMS_L.xpt,2021-2023,laboratory,8727,16,"Folate Forms - Serum (5-Methyltetrahydrofolate, Folic Acid)"
+FSQ_L.xpt,2021-2023,questionnaire,11933,32,Food Security & Hunger Index
+GHB_L.xpt,2021-2023,laboratory,7199,3,Glycohemoglobin (HbA1c)
+GLU_L.xpt,2021-2023,laboratory,3996,4,Fasting Glucose & Oral Glucose Tolerance Test
+HDL_L.xpt,2021-2023,laboratory,8068,4,High-Density Lipoprotein Cholesterol (HDL)
+HEPA_L.xpt,2021-2023,laboratory,8611,3,Hepatitis A Antibody
+HEPB_S_L.xpt,2021-2023,laboratory,8611,3,Hepatitis B Surface Antibody
+HEPBD_L.xpt,2021-2023,laboratory,8068,5,Hepatitis B Core Antibody
+HEPC_L.xpt,2021-2023,laboratory,8068,5,Hepatitis C RNA & Antibody
+HEPE_L.xpt,2021-2023,laboratory,8068,4,Hepatitis E Antibody
+HEQ_L.xpt,2021-2023,questionnaire,10696,2,Hepatitis
+HIQ_L.xpt,2021-2023,questionnaire,11933,11,Health Insurance
+HOQ_L.xpt,2021-2023,questionnaire,11933,2,Housing Characteristics
+HSCRP_L.xpt,2021-2023,laboratory,8727,4,High-Sensitivity C-Reactive Protein (Systemic Inflammation)
+HSQ_L.xpt,2021-2023,questionnaire,6615,2,Current Health Status & Recent Illness
+HUQ_L.xpt,2021-2023,questionnaire,11933,6,Hospital Utilization & Access to Care
+IHGEM_L.xpt,2021-2023,laboratory,8727,11,"Blood Mercury (Inorganic, Methyl, Ethyl)"
+IMQ_L.xpt,2021-2023,questionnaire,11565,6,Immunization History
+INQ_L.xpt,2021-2023,questionnaire,11933,5,Income & Socioeconomic Indicators
+INS_L.xpt,2021-2023,laboratory,3996,5,Fasting Serum Insulin
+KIQ_U_L.xpt,2021-2023,questionnaire,7809,9,Kidney Conditions & Urology
+LUX_L.xpt,2021-2023,examination,7199,13,Liver Ultrasound Transient Elastography (FibroScan)
+MCQ_L.xpt,2021-2023,questionnaire,11744,35,Medical Conditions (Self-Reported Diagnoses)
+OCQ_L.xpt,2021-2023,questionnaire,8501,6,Occupation & Work Environment
+OHQ_L.xpt,2021-2023,examination,11744,8,Oral Health Examination
+PAQ_L.xpt,2021-2023,questionnaire,8153,8,Physical Activity (Adults)
+PAQY_L.xpt,2021-2023,questionnaire,3109,3,Physical Activity (Youth)
+PBCD_L.xpt,2021-2023,laboratory,8727,17,"Blood Lead, Cadmium, Total Mercury, Selenium & Manganese"
+PFAS_L.xpt,2021-2023,laboratory,3618,20,Perfluoroalkyl and Polyfluoroalkyl Substances
+PUQMEC_L.xpt,2021-2023,questionnaire,8068,3,Prescription & Medication Usage Screener
+RHQ_L.xpt,2021-2023,questionnaire,3917,13,Reproductive Health
+RXQ_RX_L.xpt,2021-2023,questionnaire,11933,3,Prescription Medications (Drug Names & NDC Codes)
+RXQASA_L.xpt,2021-2023,questionnaire,5725,4,Aspirin & NSAID Usage
+SLQ_L.xpt,2021-2023,questionnaire,8501,7,Sleep Disorders & Sleep Duration
+SMQ_L.xpt,2021-2023,questionnaire,9015,9,Smoking - Cigarette Use
+SMQFAM_L.xpt,2021-2023,questionnaire,11933,3,Smoking - Household & Secondhand Smoke
+SMQRTU_L.xpt,2021-2023,questionnaire,7199,21,Smoking - Recent Tobacco Use
+TCHOL_L.xpt,2021-2023,laboratory,8068,4,Total Cholesterol
+TFR_L.xpt,2021-2023,laboratory,2564,4,Transferrin Receptor (Serum Soluble TfR)
+TRIGLY_L.xpt,2021-2023,laboratory,3996,10,Triglycerides & Low-Density Lipoprotein Cholesterol (LDL)
+TST_L.xpt,2021-2023,laboratory,8493,35,Trichomoniasis - Urine
+UCPREG_L.xpt,2021-2023,questionnaire,1134,2,Urine Pregnancy Status
+VID_L.xpt,2021-2023,laboratory,8727,10,Vitamin D (Serum 25-Hydroxyvitamin D2 + D3)
+VOCWB_L.xpt,2021-2023,laboratory,3618,78,Volatile Organic Compounds in Whole Blood
+VTQ_L.xpt,2021-2023,questionnaire,3618,13,Visual Function & Eye Health
+WHQ_L.xpt,2021-2023,questionnaire,8501,5,Weight History & Weight Loss Attempts

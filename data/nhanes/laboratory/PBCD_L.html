@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm -->
+<html xml:lang="en" lang="en" xmlns="http://www.w3c.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <title>PBCD_L</title>
+    <meta name="title" content="NHANES August 2021-August 2023: Lead, Cadmium, Total Mercury, Selenium, &amp; Manganese – Blood  Data Documentation, Codebook, and Frequencies">
+    <link rel="stylesheet" href="./PBCD_L_files/documentation.css">
+  </head>
+  <body class="nhanes-doc">
+    <div id="toc">
+      <h3>Table of Contents</h3>
+      <div id="toc-scroll">
+        <ul>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#Component_Description">Component Description</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#Eligible_Sample">Eligible Sample</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#Description_of_Laboratory_Methodology">Description of Laboratory Methodology</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#Laboratory_Method_Files">Laboratory Method Files</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#Laboratory_Quality_Assurance_and_Monitoring">Laboratory Quality Assurance and Monitoring</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#Data_Processing_and_Editing">Data Processing and Editing</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#Analytic_Notes">Analytic Notes</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#References">References</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#Codebook">Codebook</a>
+            <ul id="CodebookLinks">
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#SEQN">SEQN - Respondent sequence number</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#WTPH2YR">WTPH2YR - Phlebotomy 2 Year Weight</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#LBXBPB">LBXBPB - Blood lead (ug/dL)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#LBDBPBSI">LBDBPBSI - Blood lead (umol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#LBDBPBLC">LBDBPBLC - Blood lead comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#LBXBCD">LBXBCD - Blood cadmium (ug/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#LBDBCDSI">LBDBCDSI - Blood cadmium (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#LBDBCDLC">LBDBCDLC - Blood cadmium comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#LBXTHG">LBXTHG - Blood mercury, total (ug/L) </a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#LBDTHGSI">LBDTHGSI - Blood mercury, total (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#LBDTHGLC">LBDTHGLC - Blood mercury, total comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#LBXBSE">LBXBSE - Blood selenium (ug/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#LBDBSESI">LBDBSESI - Blood selenium (umol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#LBDBSELC">LBDBSELC - Blood selenium comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#LBXBMN">LBXBMN - Blood manganese (ug/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#LBDBMNSI">LBDBMNSI - Blood manganese (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PBCD_L.htm#LBDBMNLC">LBDBMNLC - Blood manganese comment code</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="PageHeader">
+        <h1>National Health and Nutrition Examination Survey</h1>
+        <h2>August 2021-August 2023 Data Documentation, Codebook, and Frequencies</h2>
+        <h3>Lead, Cadmium, Total Mercury, Selenium, &amp; Manganese – Blood  (PBCD_L)</h3>
+        <h4> Data File: PBCD_L.xpt</h4>
+        <h5 class="left">First Published: September 2024</h5>
+        <h5 class="right">Last Revised: NA</h5>
+      </div>
+      <div id="Sections">
+        <h2 id="Component_Description">Component Description</h2><p><strong>Lead </strong></p>
+<p>Lead is a known environmental toxin that has been shown
+to affect deleteriously the nervous, hematopoietic, endocrine, renal, and
+reproductive systems. In young children, lead exposure is a particular hazard
+because children more readily absorb lead than adults, and children’s
+developing nervous systems also make them more susceptible to the effects of
+lead. The primary sources of exposure for children are lead-laden paint chips
+and dust as a result of deteriorating lead-based paint. The risk for lead exposure
+is disproportionately higher for children who are poor, non-Hispanic black,
+living in large metropolitan areas, or living in older housing. Among adults,
+the most common high exposure sources are occupational. Blood lead levels
+measured in previous NHANES cycles have been the cornerstone of lead exposure
+surveillance in the U.S. The data have been used to document the burden and
+dramatic decline of elevated blood lead levels, to promote the reduction of
+lead use, and to help to redefine national lead poisoning prevention
+guidelines, standards, and abatement activities. </p>
+<p><strong>Cadmium </strong></p>
+<p>Blood cadmium reflects both recent and
+cumulative exposures. Cadmium is absorbed via inhalation and ingestion.
+Occupational exposure is the most common cause of elevated cadmium levels.
+Inhalation of cigarette smoke is a predominant source of exposure in smokers
+whose blood cadmium levels have been observed to be about twice as high
+compared to nonsmokers. For nonsmokers who are not exposed to cadmium in the
+workplace, ingestion through food is the largest source of exposure. With
+chronic exposure, cadmium accumulates in the liver and kidneys where it is
+bound to metallothionein, an inducible metal binding protein. The kidney is a
+critical target and shows the earliest sign of cadmium toxicity. Cadmium can
+produce lung, pituitary gland and kidney tumors in animals and has been
+associated with lung cancer in humans in occupational epidemiologic studies.
+Both International Agency for Research on Cancer (IARC) and National Toxicology
+Program (NTP) consider cadmium a human carcinogen.</p>
+<p><strong>Manganese </strong></p>
+<p>The greatest demand for manganese is for the production
+of iron and steel. In addition, it is a key component of low-cost stainless
+steel and certain aluminum alloys. At low concentrations, it is used to
+decolorize glass, while at higher concentrations; it is used to make
+violet-colored glass. Manganese dioxide, besides being a useful pigment, is a
+catalyst and a component of certain dry cell batteries. Potassium permanganate
+is a potent oxidizer and disinfectant. Manganese (in the form of manganese
+ions) is an essential trace nutrient in all known forms of life. On the other
+hand, excess manganese is toxic. </p>
+<p><strong>Total Mercury </strong></p>
+<p>Uncertainties exist regarding levels of exposure to
+methyl mercury from fish consumption and potential health effects resulting
+from this exposure. Past estimates of exposure to methyl mercury have been
+obtained from results of food consumption surveys and measures of methyl
+mercury in fish. Measures of a biomarker of exposure are needed for improved
+exposure assessments. Blood mercury levels will be assessed in two
+subpopulations particularly vulnerable to the health effects from mercury
+exposure: children 1-5 years old and women of childbearing age. Blood measures
+of total and inorganic mercury will be important for evaluation of exposure
+from exposure to mercury in interior latex paints. </p>
+<p><strong>Selenium </strong></p>
+<p>Selenium salts are toxic in large amounts, but trace
+amounts are necessary for cellular function in many organisms, including all
+animals. Selenium is a component of the antioxidant enzymes glutathione
+peroxidase and thioredoxin reductase (which indirectly reduce certain oxidized
+molecules in animals and some plants). It is also found in three deiodinase
+enzymes, which convert one thyroid hormone to another. Selenium requirements in
+plants differ by species, with some plants requiring relatively large amounts,
+and others apparently requiring none.</p><h2 id="Eligible_Sample">Eligible Sample</h2><p>Examined participants aged 1 year and older were
+eligible. </p><h2 id="Description_of_Laboratory_Methodology">Description of Laboratory Methodology</h2><p>This method directly measures lead (Pb), cadmium (Cd),
+total mercury (Hg), manganese (Mn), and selenium (Se) content of whole blood
+specimens using mass spectrometry after a simple dilution sample preparation
+step.</p>
+<p>During the sample dilution step, a small volume of whole
+blood is extracted from a larger whole blood patient specimen after the entire
+specimen is mixed (vortexed) to create a uniform distribution of cellular
+components. This mixing step is important because some metals (e.g., Pb) are
+known to be associated mostly with the red blood cells in the specimen and a
+uniform distribution of this cellular material must be produced before a small
+volume extracted from the larger specimen will accurately reflect the average
+metal concentration of all fractions of the larger specimen. Coagulation is the
+process in which blood forms solid clots from its cellular components. If steps
+are not taken to prevent this process from occurring, i.e., addition of
+anti-coagulant reagents such as EDTA in the blood collection tube prior to
+blood collection, blood will immediately begin to form clots once leaving the
+body and entering the tube. These clots prevent the uniform distribution of
+cellular material in the blood specimen even after rigorous mixing, making a
+representative sub-sample of the larger specimen unattainable. It is important
+that prior to or during sample preparation the analyst identify any sample
+having clots or micro-clots (small clots). Clotted samples are not analyzed by
+this method due to the inhomogeneity concerns (i.e., all results for the sample
+are processed as “not reportable”). </p>
+<p>Dilution of the blood in the sample preparation step
+prior to analysis is a simple dilution of 1 part sample + 1 part water + 48 parts
+diluent. The effects of the chemicals in the diluent are to release metals
+bound to red blood cells making them available for ionization, reduce
+ionization suppression by the biological matrix, prevent clogging of the sample
+introduction system pathways by undissolved biological solids, and allow
+introduction of internal standards to be utilized in the analysis step.
+Tetramethylammonium hydroxide (TMAH, 0.4% v/v) and Triton X-100TM (0.05%) in
+the sample diluent solubilizes blood components. Triton X-100TM also helps
+prevent biological deposits on internal surfaces of the instrument’s sample
+introduction system and reduce collection of air bubbles in sample transport
+tubing. Ammonium pyrrolidine dithiocarbamate (APDC) in the sample diluent
+(0.01%) aids in solubilizing metals released from the biological matrix. Ethyl
+alcohol in the sample diluent (1%) aids solubility of blood components and aids
+in aerosol generation by reduction of the surface tension of the solution. The
+internal standards, rhodium, iridium, and tellurium, are at a constant
+concentration in all blanks, calibrators, QC, and samples. Monitoring the
+instrument signal ratio of a metal to its internal standard allows correction
+for instrument noise and drift, and sample-to-sample matrix differences. </p>
+<p>Liquid samples are introduced into the mass spectrometer
+through the inductively coupled plasma (ICP) ionization source. The liquid
+diluted blood sample is forced through a nebulizer, which converts the bulk
+liquid into small droplets in an argon aerosol. The smaller droplets from the
+aerosol are selectively passed through the spray chamber by a flowing argon
+stream into the ICP. By coupling radio-frequency power into flowing argon,
+plasma is created in which the predominant species are positive argon ions and
+electrons and has a temperature of 6000-8000 K. The small aerosol droplets pass
+through a region of the plasma and the thermal energy vaporizes the liquid
+droplets, atomizes the molecules of the sample and then ionizes the atoms. The
+ions, along with the argon, enter the mass spectrometer through an interface
+that separates the ICP (at atmospheric pressure, ~760 torr) from the mass
+spectrometer (operating at a pressure of 10-5 torr). The ions first pass
+through a focusing region, then the dynamic reaction cell (DRC), the quadrupole
+mass filter, and finally are selectively counted in rapid sequence at the
+detector allowing individual isotopes of an element to be determined. </p>
+<p>Generally, the DRC operates in one of two modes. In
+‘vented’ (or ‘standard’) mode the cell is not pressurized and ions pass through
+the cell to the quadrupole mass filter unaffected. In ‘DRC’ mode, the cell is
+pressurized with a gas for the purpose of causing collisions and/or reactions
+between the fill gas and the incoming ions. In general, collisions or reactions
+with the incoming ions selectively occur to either eliminate an interfering
+ion, change the ion of interest to a new mass, which is free from interference,
+or collisions between ions in the beam and the DRC gas can focus the ion beam
+to the middle of the cell and increase the ion signal. In this method, the
+instrument is operated in DRC mode when analyzing for manganese, mercury, and
+selenium. For selenium, the DRC is pressurized with methane gas (CH4, 99.999%)
+which reduces the signal from 40Ar2+ while allowing the 80Se+ ions to pass
+relatively unaffected through the DRC on toward the analytical quadrupole and
+detector. Manganese and mercury are both measured when the DRC is pressurized
+with oxygen gas (O2, 99.999%). They are analyzed at the same flow rate of
+oxygen to the DRC cell to avoid lengthening analysis time due to pause delays
+that would be necessary if different gas flows were used for the two analytes.
+The oxygen reduces the ion signal from several interfering ions (37Cl18O+,
+40Ar15N+, 38Ar16O1H+, 54Fe1H+) while allowing the Mn+ ion stream to pass
+relatively unaffected through the DRC on toward the analytical quadrupole and
+detector. In the case of mercury, collisional focusing of the mercury ions
+occurs, increasing the observed mercury signal at the detector by approximately
+a factor of two (2x). </p>
+<p>Once ions pass through the DRC cell and electrically
+selected for passage through the analytical quadrupole, electrical signals
+resulting from the ions striking the discrete dynode detector are processed
+into digital information that is used to indicate the intensity of the ions.
+The intensity of ions detected while aspirating an unknown sample is correlated
+to an elemental concentration through comparison of the analyte: internal
+standard signal ratio with that obtained when aspirating calibration standards.
+This method was originally based on the method by Lutz (Lutz et. al., 1991).
+The DRC portions of the method are based on work published by Tanner (Tanner,
+et. al., 1999; 2002). </p>
+<p>Refer to the Laboratory Method Files section for a
+detailed description of the laboratory methods used. </p>
+<p>There were no changes to the lab equipment or lab site
+for this component, however there was a change to the lab methods for the August
+2021–August 2023 cycle.<br>
+</p><h2 id="Laboratory_Method_Files">Laboratory Method Files</h2>
+        <p>
+          <a target="_blank" href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/labmethods/PBCD-L-MET-508.pdf">Blood Lead, Cadmium, Total Mercury, Selenium and Manganese</a>
+          <span> (September 2024)</span>
+        </p>
+        <h2 id="Laboratory_Quality_Assurance_and_Monitoring">Laboratory Quality Assurance and Monitoring</h2><p>Whole blood specimens were processed, stored, and shipped
+to the National Center for Environmental Health, Centers for Disease Control
+and Prevention, Atlanta, GA for analysis. </p>
+<p>Detailed instructions on specimen collection and
+processing are discussed in the <a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/manuals/2021-Laboratory-Procedures-508.pdf">NHANES Laboratory Procedures Manual (LPM)</a>. Vials are stored under
+appropriate frozen (–30°C) conditions until they are shipped to National Center
+for Environmental Health for testing. </p>
+<p>The NHANES quality assurance and quality control (QA/QC)
+protocols meet the 1988 Clinical Laboratory Improvement Amendments&nbsp;mandates. Detailed
+QA/QC instructions are discussed in the <a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/manuals/2021-Laboratory-Procedures-508.pdf">NHANES LPM.</a> </p>
+<p><strong>Mobile Examination Centers (MECs) </strong></p>
+<p>Laboratory team performance is monitored using several
+techniques. NCHS and contract consultants use a structured competency
+assessment evaluation during visits to evaluate both the quality of the
+laboratory work and the QC procedures. Each laboratory staff member is observed
+for equipment operation, specimen collection and preparation; testing
+procedures and constructive feedback are given to each staff member. Formal
+retraining sessions are conducted annually to ensure that required skill levels
+were maintained. <br>
+<br>
+<strong>Analytical Laboratories </strong></p>
+<p>NHANES uses several methods to monitor the quality of the
+analyses performed by the contract laboratories. In the MEC, these methods
+include performing blind split samples collected on “dry run” sessions. In
+addition, contract laboratories randomly perform repeat testing on 2% of all
+specimens. <br>
+<br>
+NCHS developed and distributed a QC protocol for all the contract laboratories,
+which outlined the use of Westgard rules (Westgard et. al., 1981) when testing
+NHANES specimens. Progress reports containing any problems encountered during
+shipping or receipt of specimens, summary statistics for each control pool, QC
+graphs, instrument calibration, reagents, and any special considerations are
+submitted to NCHS quarterly. The reports are reviewed for trends or shifts in
+the data. The laboratories are required to explain any identified areas of
+concern. <br>
+<br>
+All QC procedures recommended by the manufacturers were followed. Reported
+results for all assays meet the Division of Environmental
+Health&nbsp;Laboratory Sciences QA/QC performance criteria for accuracy and
+precision, similar to the Westgard rules (Caudill, et. al., 2008).</p><h2 id="Data_Processing_and_Editing">Data Processing and Editing</h2><p>The data were reviewed. Incomplete data or improbable
+values were sent to the performing laboratory for confirmation. </p>
+<p>Five additional variables were created for this data
+file. The variables were created using the following formulas:</p>
+<p><strong>LBDBCDSI:</strong>&nbsp; The analyte cadmium value in µg/L
+(LBXBCD) was converted to nmol/L (LBDBCDSI) by multiplying LBXBCD by 8.897
+(Round 3 decimal points). </p>
+<p><strong>LBDBPBSI:</strong>&nbsp; The analyte lead value in µg/dL
+(LBXBPB) was converted to µmol/L (LBDBPBSI) by multiplying LBXBPB by 0.0483 (Round
+3 decimal points).</p>
+<p><strong>LBDBMNSI:</strong>&nbsp; The analyte manganese value in µg/L
+(LBXBMN) was converted to nmol/L (LBDBMNSI) by multiplying LBXBMN by 18.202 (Round
+2 decimal points).</p>
+<p><strong>LBDBSESI:</strong>&nbsp; The analyte selenium value in µg/L
+(LBXBSE) was converted to µmol/L (LBDBSESI) by multiplying LBXBSE by 0.0127
+(Round 1 decimal points).</p>
+<p><strong>LBDTHGSI:</strong>&nbsp; The analyte mercury value in µg/L
+(LBXTHG) was converted to nmol/L (LBDTHGSI) by multiplying LBXTHG by 4.99
+(Round 2 decimal points).</p><h2 id="Analytic_Notes">Analytic Notes</h2><p>There are over 800
+laboratory tests performed on NHANES participants. However, not all
+participants provided biospecimens or enough volume for all the tests to be
+performed. The specimen availability can also vary by age or other population
+characteristics. Analysts should evaluate the extent of
+missing data in the dataset related to the outcome of interest as well as any
+predictor variables used in the analyses to determine whether additional
+re-weighting for item non-response is necessary. </p>
+<p>Please refer to the NHANES <a href="https://wwwn.cdc.gov/nchs/nhanes/analyticguidelines.aspx">Analytic Guidelines</a> and the on-line <a href="https://wwwn.cdc.gov/nchs/nhanes/tutorials/">NHANES Tutorial</a>
+for further details on the use of sample weights and other analytic issues.</p>
+<p><strong>Phlebotomy Weights</strong>
+</p>
+<p>For the August 2021-August 2023 cycle, analysis of nonresponse patterns for the phlebotomy component in the MEC examination revealed differences by age group and race/ethnicity, among other characteristics. For example, approximately 67% of children aged 1-17 years who were examined in the MEC provided a blood specimen through phlebotomy, while 95% of examined adults aged 18 and older provided a blood specimen. Therefore, an additional phlebotomy weight, WTPH2YR, has been included in this data release to address possible nonresponse bias. Participants who are eligible but did not provide a blood specimen have their phlebotomy weight assigned a value of “0” in their records. The phlebotomy weight should be used for analyses that use variables derived from blood analytes, and is included in all relevant data files.
+</p>
+<p><strong>Demographic and Other Related Variables </strong></p>
+<p>The analysis of NHANES laboratory data must be conducted
+using the appropriate survey design and demographic variables. The <a href="https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Demographics&amp;Cycle=2021-2023">NHANES August 2021–August 2023
+Demographics File</a> contains demographic data, health indicators, and
+other related information collected during household interviews as well as the
+sample design variables. The recommended procedure for variance estimation
+requires use of stratum and PSU variables (SDMVSTRA and SDMVPSU, respectively)
+in the demographic data file. </p>
+<p>The <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FASTQX_L.htm">Fasting
+Questionnaire File</a> includes auxiliary information, such as fasting
+status, length of fast, and the time of venipuncture. </p>
+<p>This laboratory data file can be linked to the other
+NHANES data files using the unique survey participant identifier (i.e., SEQN). </p>
+<p><strong>Detection Limits </strong></p>
+<p>The detection limits were constant for all of the
+analytes in the data set. Two variables are provided for each of these
+analytes. The variable name ending in “LC” (ex., LBDBCDLC) indicates whether
+the result was below the limit of detection: the value “0” means that the
+result was at or above the limit of detection, “1” indicates that the result
+was below the limit of detection. The other variable prefixed URX (ex., LBXBCD)
+provides the analytic result for the analyte. For analytes with analytic
+results below the lower limit of detection (ex. LBDBCDLC=1), an imputed fill
+value was placed in the analyte results field. This value is the lower limit of
+detection divided by the square root of 2 (LLOD/sqrt[2]). <br>
+The lower limit of detection (LLOD, in µg/L) for cadmium, manganese, total
+mercury and selenium, and (LLOD, in ug/dL) for lead: </p>
+<table border="1" cellspacing="0" cellpadding="0">
+    <thead>
+        <tr>
+            <td valign="top">
+            <p style="text-align: center;"><strong>Variable Name</strong><strong></strong></p>
+            </td>
+            <td valign="top">
+            <p style="text-align: center;"><strong>Analyte Description</strong><strong></strong></p>
+            </td>
+            <td valign="top">
+            <p style="text-align: center;"><strong>LLOD</strong><strong></strong></p>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td valign="top">
+            <p>LBXBCD</p>
+            </td>
+            <td valign="top">
+            <p>Cadmium, blood</p>
+            </td>
+            <td valign="top">
+            <p>0.065</p>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+            <p>LBXBPB</p>
+            </td>
+            <td valign="top">
+            <p>Lead, blood</p>
+            </td>
+            <td valign="top">
+            <p>0.049</p>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+            <p>LBXMN</p>
+            </td>
+            <td valign="top">
+            <p>Manganese, blood</p>
+            </td>
+            <td valign="top">
+            <p>0.52</p>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+            <p>LBXTHG</p>
+            </td>
+            <td valign="top">
+            <p>Mercury, total,
+            blood</p>
+            </td>
+            <td valign="top">
+            <p>0.17</p>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+            <p>LBXBSE</p>
+            </td>
+            <td valign="top">
+            <p>Selenium, blood</p>
+            </td>
+            <td valign="top">
+            <p>9.90</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br></div>
+      <div id="References">
+        <h2>References</h2>
+        <ul>
+          <li>Caudill, S.P., Schleicher, R.L., Pirkle, J.L. Multi-rule quality control for the age-related eye disease study. Statist. Med. (2008) 27(20):4094-40106.</li>
+          <li>Lutz, T.M., P.M.V. Nirel, and B. Schmidt, Whole-blood analysis by ICP-MS. Applications of Plasma Source Mass Spectrometry, ed. G. Holland and A.N. Eaton. 1991, Cambridge: Royal Soc Chemistry. 96-100.</li>
+          <li>Tanner, S.D., Baranov, Vladimir I, Theory, Design, and Operation of a Dynamic Reaction Cell for ICP-MS. Atomic Spectroscopy, 1999. 20(2): p. 45-52.</li>
+          <li>Tanner, S.D., V.I. Baranov, and D.R. Bandura, Reaction cells and collision cells for ICP-MS: a tutorial review. Spectrochimica Acta Part B-Atomic Spectroscopy, 2002. 57(9): p. 1361-1452.</li>
+          <li>Westgard J.O., Barry P.L., Hunt M.R., Groth T. A multi-rule Shewhart chart for quality control in clinical chemistry. Clin Chem. 1981 Mar; 27(3):493-501.</li>
+        </ul>
+      </div>
+      <div id="Codebook">
+        <h2>Codebook and Frequencies</h2>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SEQN">SEQN - Respondent sequence number</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SEQN</dd>
+            <dt>SAS Label: </dt>
+            <dd>Respondent sequence number</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Respondent sequence number</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="WTPH2YR">WTPH2YR - Phlebotomy 2 Year Weight</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">WTPH2YR</dd>
+            <dt>SAS Label: </dt>
+            <dd>Phlebotomy 2 Year Weight</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Phlebotomy 2 Year Weight</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">4391.8220579 to 253478.77765</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7626</td>
+                <td class="values" align="right">7626</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">No blood sample provided</td>
+                <td class="values" align="right">1101</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXBPB">LBXBPB - Blood lead (ug/dL)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXBPB</dd>
+            <dt>SAS Label: </dt>
+            <dd>Blood lead (ug/dL)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Blood lead (ug/dL)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.085 to 48.07</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7586</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1141</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDBPBSI">LBDBPBSI - Blood lead (umol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDBPBSI</dd>
+            <dt>SAS Label: </dt>
+            <dd>Blood lead (umol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Blood lead (umol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.004 to 2.322</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7586</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1141</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDBPBLC">LBDBPBLC - Blood lead comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDBPBLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Blood lead comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Blood lead comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">7586</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1141</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXBCD">LBXBCD - Blood cadmium (ug/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXBCD</dd>
+            <dt>SAS Label: </dt>
+            <dd>Blood cadmium (ug/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Blood cadmium (ug/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.046 to 8.379</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7586</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1141</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDBCDSI">LBDBCDSI - Blood cadmium (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDBCDSI</dd>
+            <dt>SAS Label: </dt>
+            <dd>Blood cadmium (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Blood cadmium (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.409 to 74.548</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7586</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1141</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDBCDLC">LBDBCDLC - Blood cadmium comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDBCDLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Blood cadmium comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Blood cadmium comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">7257</td>
+                <td class="values" align="right">7257</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">329</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1141</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXTHG">LBXTHG - Blood mercury, total (ug/L) </h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXTHG</dd>
+            <dt>SAS Label: </dt>
+            <dd>Blood mercury, total (ug/L) </dd>
+            <dt>English Text: </dt>
+            <dd class="info">Blood mercury, total (ug/L) </dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.12 to 42.49</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7586</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1141</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDTHGSI">LBDTHGSI - Blood mercury, total (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDTHGSI</dd>
+            <dt>SAS Label: </dt>
+            <dd>Blood mercury, total (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Blood mercury, total (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.6 to 212.03</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7586</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1141</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDTHGLC">LBDTHGLC - Blood mercury, total comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDTHGLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Blood mercury, total comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Blood mercury, total comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">5610</td>
+                <td class="values" align="right">5610</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">1976</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1141</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXBSE">LBXBSE - Blood selenium (ug/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXBSE</dd>
+            <dt>SAS Label: </dt>
+            <dd>Blood selenium (ug/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Blood selenium(ug/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">86 to 867.7</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7586</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1141</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDBSESI">LBDBSESI - Blood selenium (umol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDBSESI</dd>
+            <dt>SAS Label: </dt>
+            <dd>Blood selenium (umol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Blood selenium (umol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1.09 to 11.02</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7586</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1141</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDBSELC">LBDBSELC - Blood selenium comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDBSELC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Blood selenium comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Blood selenium comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">7586</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1141</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXBMN">LBXBMN - Blood manganese (ug/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXBMN</dd>
+            <dt>SAS Label: </dt>
+            <dd>Blood manganese (ug/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Blood manganese (ug/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">2.48 to 63.17</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7586</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1141</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDBMNSI">LBDBMNSI - Blood manganese (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDBMNSI</dd>
+            <dt>SAS Label: </dt>
+            <dd>Blood manganese (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Blood manganese (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">45.14 to 1149.82</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7586</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1141</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDBMNLC">LBDBMNLC - Blood manganese comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDBMNLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Blood manganese comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Blood manganese comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">7586</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7586</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1141</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+<div id="extension-mmplj"></div></body></html>

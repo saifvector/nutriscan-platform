@@ -1,0 +1,24 @@
+file_name,category,file_format,size_bytes,description
+ods_fact_sheets/Calcium - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,544981,NIH Office of Dietary Supplements clinical evidence & guidance for Calcium
+ods_fact_sheets/Dietary Supplements for Exercise and Athletic Performance - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,1619037,NIH Office of Dietary Supplements clinical evidence & guidance for Dietary Supplements for Exercise and Athletic Performance
+dsid/DSID4 Data Files Documentation FINAL.pdf,DSID (Dietary Supplement Ingredient Database),PDF,393828,NIH DSID 4.0 dietary supplement chemical composition & label-to-analytical models
+dsid/DSID4AppendixA_DSIDIngredientsandUnits.xls,DSID (Dietary Supplement Ingredient Database),XLS,29696,NIH DSID 4.0 dietary supplement chemical composition & label-to-analytical models
+dsid/DSID4AppendixB_DSIDProductCategories.xls,DSID (Dietary Supplement Ingredient Database),XLS,35328,NIH DSID 4.0 dietary supplement chemical composition & label-to-analytical models
+dsid/DSID4CombinedDataFiles.xlsx,DSID (Dietary Supplement Ingredient Database),XLSX,1895683,NIH DSID 4.0 dietary supplement chemical composition & label-to-analytical models
+ods_fact_sheets/Folate - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,1174820,NIH Office of Dietary Supplements clinical evidence & guidance for Folate
+ods_fact_sheets/Iodine - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,1016152,NIH Office of Dietary Supplements clinical evidence & guidance for Iodine
+ods_fact_sheets/Iron - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,555238,NIH Office of Dietary Supplements clinical evidence & guidance for Iron
+ods_fact_sheets/Magnesium - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,455569,NIH Office of Dietary Supplements clinical evidence & guidance for Magnesium
+ods_fact_sheets/Niacin - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,782535,NIH Office of Dietary Supplements clinical evidence & guidance for Niacin
+ods_fact_sheets/Potassium - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,897379,NIH Office of Dietary Supplements clinical evidence & guidance for Potassium
+ods_fact_sheets/Riboflavin - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,689619,NIH Office of Dietary Supplements clinical evidence & guidance for Riboflavin
+ods_fact_sheets/Selenium - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,577841,NIH Office of Dietary Supplements clinical evidence & guidance for Selenium
+ods_fact_sheets/Thiamin - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,712806,NIH Office of Dietary Supplements clinical evidence & guidance for Thiamin
+ods_fact_sheets/Vitamin A and Carotenoids - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,862897,NIH Office of Dietary Supplements clinical evidence & guidance for Vitamin A and Carotenoids
+ods_fact_sheets/Vitamin B12 - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,560301,NIH Office of Dietary Supplements clinical evidence & guidance for Vitamin B12
+ods_fact_sheets/Vitamin B6 - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,702914,NIH Office of Dietary Supplements clinical evidence & guidance for Vitamin B6
+ods_fact_sheets/Vitamin C - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,522842,NIH Office of Dietary Supplements clinical evidence & guidance for Vitamin C
+ods_fact_sheets/Vitamin D - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,714880,NIH Office of Dietary Supplements clinical evidence & guidance for Vitamin D
+ods_fact_sheets/Vitamin E - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,749040,NIH Office of Dietary Supplements clinical evidence & guidance for Vitamin E
+ods_fact_sheets/Zinc - Health Professional Fact Sheet.pdf,ODS Health Professional Fact Sheet,PDF,556752,NIH Office of Dietary Supplements clinical evidence & guidance for Zinc
+reference_ranges/nih_rda_ai_ul_reference_intakes.csv,NIH Dietary Reference Intakes (DRI),CSV,1271,"NIH RDA, AI, UL, and clinical deficiency biomarker cutoffs for 18 nutrients"

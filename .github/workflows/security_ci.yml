@@ -1,0 +1,122 @@
+name: NutriScan DevSecOps & Security Gate Pipeline
+
+on:
+  push:
+    branches: [ main, master, release/* ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    - cron: '0 2 * * *'  # Nightly security scan at 02:00 UTC
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  dependency-vulnerability-audit:
+    name: Dependency Vulnerability Audit (CVE Scan)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Pip-Audit
+        run: |
+          python -m pip install --upgrade pip
+          pip install pip-audit
+
+      - name: Scan Dependencies for Known CVEs
+        run: |
+          pip-audit -r requirements.txt --desc on
+
+  static-application-security-testing:
+    name: Static Application Security Testing (SAST)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Bandit SAST Scanner
+        run: |
+          python -m pip install --upgrade pip
+          pip install bandit
+
+      - name: Execute Bandit Security Audit (Block High/Critical)
+        run: |
+          bandit -r backend/app -ll -ii -f screen --exclude backend/app/tests
+
+  secret-detection:
+    name: Secret & Credential Leak Scanning
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run Secret Leak Auditor
+        run: |
+          python -c "from scripts.run_security_pipeline import SecurityPipelineAuditor; findings = SecurityPipelineAuditor.run_secret_scan(); assert len(findings) == 0, f'Found hardcoded secrets: {findings}'"
+
+  dynamic-api-security-suite:
+    name: Dynamic API Security & Penetration Suite
+    runs-on: ubuntu-latest
+    needs: [dependency-vulnerability-audit, static-application-security-testing, secret-detection]
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest httpx
+
+      - name: Execute Enterprise Security & Revocation Test Suite
+        env:
+          PYTHONPATH: backend
+        run: |
+          python -m pytest backend/test_advanced_security.py backend/test_security_extended.py -v --tb=short
+
+  security-gate-verdict:
+    name: DevSecOps Merge Policy Enforcement
+    runs-on: ubuntu-latest
+    needs: [dependency-vulnerability-audit, static-application-security-testing, secret-detection, dynamic-api-security-suite]
+    if: always()
+    steps:
+      - name: Evaluate Pipeline Status
+        run: |
+          if [ "${{ needs.dependency-vulnerability-audit.result }}" != "success" ] || \
+             [ "${{ needs.static-application-security-testing.result }}" != "success" ] || \
+             [ "${{ needs.secret-detection.result }}" != "success" ] || \
+             [ "${{ needs.dynamic-api-security-suite.result }}" != "success" ]; then
+            echo "[!] Security gate check failed. Merging blocked by enterprise security policy."
+            exit 1
+          fi
+          echo "[✓] All security gates successfully passed. PR approved for merge."

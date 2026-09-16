@@ -1,0 +1,116 @@
+{
+  "high_risk_positive_case": {
+    "test_index": 0,
+    "predicted_probability": 0.19353971892922664,
+    "actual_label": 1,
+    "top_contributing_features": [
+      {
+        "feature": "diet_thiamin_b1_mg",
+        "shap_value": 0.11979609576505643,
+        "feature_value": 0.671
+      },
+      {
+        "feature": "supp_folate_dfe_mcg",
+        "shap_value": 0.10264993024448302,
+        "feature_value": 0.0
+      },
+      {
+        "feature": "diet_folic_acid_mcg",
+        "shap_value": 0.0721491874106811,
+        "feature_value": 4.5
+      },
+      {
+        "feature": "demo_poverty_ratio",
+        "shap_value": 0.06556617320939402,
+        "feature_value": 0.66
+      },
+      {
+        "feature": "exam_bmi",
+        "shap_value": -0.0390213143925985,
+        "feature_value": null
+      },
+      {
+        "feature": "exam_waist_height_ratio",
+        "shap_value": 0.030174741180638676,
+        "feature_value": null
+      },
+      {
+        "feature": "nar_vitamin_d",
+        "shap_value": 0.018761576581560413,
+        "feature_value": 0.16000000000000003
+      },
+      {
+        "feature": "total_calcium_intake_mg",
+        "shap_value": 0.009314558199648406,
+        "feature_value": 414.0
+      },
+      {
+        "feature": "exam_systolic_bp",
+        "shap_value": -0.007611037238957121,
+        "feature_value": null
+      },
+      {
+        "feature": "exam_height_cm",
+        "shap_value": 0.0066769894062893905,
+        "feature_value": null
+      }
+    ]
+  },
+  "low_risk_negative_case": {
+    "test_index": 1,
+    "predicted_probability": 0.13851829478293037,
+    "actual_label": 0,
+    "top_contributing_features": [
+      {
+        "feature": "supp_folate_dfe_mcg",
+        "shap_value": 0.08801105582081868,
+        "feature_value": 0.0
+      },
+      {
+        "feature": "exam_systolic_bp",
+        "shap_value": -0.039112220356489716,
+        "feature_value": 135.33333333333334
+      },
+      {
+        "feature": "demo_race_ethnicity",
+        "shap_value": -0.02462810893394584,
+        "feature_value": 3.0
+      },
+      {
+        "feature": "diet_folic_acid_mcg",
+        "shap_value": -0.02429578792573002,
+        "feature_value": 300.0
+      },
+      {
+        "feature": "demo_poverty_ratio",
+        "shap_value": -0.022953382861177575,
+        "feature_value": 2.73
+      },
+      {
+        "feature": "supp_vitamin_c_mg",
+        "shap_value": -0.00895227272083814,
+        "feature_value": 4.5
+      },
+      {
+        "feature": "exam_bmi",
+        "shap_value": 0.008627552462734342,
+        "feature_value": 27.6
+      },
+      {
+        "feature": "exam_waist_height_ratio",
+        "shap_value": -0.0060075027784216055,
+        "feature_value": 0.5951276102088167
+      },
+      {
+        "feature": "exam_height_cm",
+        "shap_value": 0.005546462248652582,
+        "feature_value": 172.4
+      },
+      {
+        "feature": "diet_thiamin_b1_mg",
+        "shap_value": -0.005502152648375561,
+        "feature_value": 1.8014999999999999
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nutriscan-api-service
+  namespace: nutriscan-clinical
+  labels:
+    app.kubernetes.io/name: nutriscan-ai
+    app.kubernetes.io/component: api-server
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: nutriscan-ai
+    app.kubernetes.io/component: api-server

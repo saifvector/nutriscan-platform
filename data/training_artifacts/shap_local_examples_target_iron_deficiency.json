@@ -1,0 +1,116 @@
+{
+  "high_risk_positive_case": {
+    "test_index": 0,
+    "predicted_probability": 0.5146428035131605,
+    "actual_label": 1,
+    "top_contributing_features": [
+      {
+        "feature": "exam_height_cm",
+        "shap_value": -0.07118879034734915,
+        "feature_value": 176.7
+      },
+      {
+        "feature": "demo_education_level",
+        "shap_value": -0.0589180486146219,
+        "feature_value": 5.0
+      },
+      {
+        "feature": "demo_race_ethnicity",
+        "shap_value": -0.05231608571683789,
+        "feature_value": 3.0
+      },
+      {
+        "feature": "diet_vitamin_b6_mg",
+        "shap_value": 0.03622262947091022,
+        "feature_value": null
+      },
+      {
+        "feature": "total_vitamin_c_intake_mg",
+        "shap_value": 0.03535735117400917,
+        "feature_value": 0.0
+      },
+      {
+        "feature": "exam_waist_height_ratio",
+        "shap_value": 0.03392767873256814,
+        "feature_value": 0.4385964912280702
+      },
+      {
+        "feature": "diet_niacin_b3_mg",
+        "shap_value": 0.032284884843787075,
+        "feature_value": null
+      },
+      {
+        "feature": "diet_total_fat_g",
+        "shap_value": -0.03181994238662437,
+        "feature_value": null
+      },
+      {
+        "feature": "nar_selenium",
+        "shap_value": 0.03007522756945399,
+        "feature_value": 0.0
+      },
+      {
+        "feature": "history_arthritis",
+        "shap_value": -0.029965220632703213,
+        "feature_value": 0.0
+      }
+    ]
+  },
+  "low_risk_negative_case": {
+    "test_index": 1,
+    "predicted_probability": 0.3682371613283625,
+    "actual_label": 0,
+    "top_contributing_features": [
+      {
+        "feature": "nar_zinc",
+        "shap_value": -0.11415265824385501,
+        "feature_value": 2.0
+      },
+      {
+        "feature": "supp_zinc_mg",
+        "shap_value": -0.10201542203094606,
+        "feature_value": 14.667
+      },
+      {
+        "feature": "diet_zinc_mg",
+        "shap_value": -0.09064020488177196,
+        "feature_value": 12.075
+      },
+      {
+        "feature": "total_zinc_intake_mg",
+        "shap_value": -0.07588523992904131,
+        "feature_value": 26.741999999999997
+      },
+      {
+        "feature": "diet_magnesium_mg",
+        "shap_value": 0.06836360726401927,
+        "feature_value": 228.0
+      },
+      {
+        "feature": "diet_protein_g",
+        "shap_value": -0.06575924889630735,
+        "feature_value": 99.29000000000002
+      },
+      {
+        "feature": "total_folate_intake_mcg",
+        "shap_value": -0.05725160812731586,
+        "feature_value": 285.0
+      },
+      {
+        "feature": "diet_fiber_g",
+        "shap_value": 0.045432591884998784,
+        "feature_value": 14.849999999999998
+      },
+      {
+        "feature": "nar_vitamin_d",
+        "shap_value": -0.04009085097288521,
+        "feature_value": 2.0
+      },
+      {
+        "feature": "demo_education_level",
+        "shap_value": -0.04002974414825074,
+        "feature_value": 5.0
+      }
+    ]
+  }
+}

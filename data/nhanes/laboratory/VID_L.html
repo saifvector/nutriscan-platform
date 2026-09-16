@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm -->
+<html xml:lang="en" lang="en" xmlns="http://www.w3c.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <title>VID_L</title>
+    <meta name="title" content="NHANES August 2021-August 2023: Vitamin D Data Documentation, Codebook, and Frequencies">
+    <link rel="stylesheet" href="./VID_L_files/documentation.css">
+  </head>
+  <body class="nhanes-doc">
+    <div id="toc">
+      <h3>Table of Contents</h3>
+      <div id="toc-scroll">
+        <ul>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#Component_Description">Component Description</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#Eligible_Sample">Eligible Sample</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#Description_of_Laboratory_Methodology">Description of Laboratory Methodology</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#Laboratory_Method_Files">Laboratory Method Files</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#Laboratory_Quality_Assurance_and_Monitoring">Laboratory Quality Assurance and Monitoring</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#Data_Processing_and_Editing">Data Processing and Editing</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#Analytic_Notes">Analytic Notes</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#References">References</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#Codebook">Codebook</a>
+            <ul id="CodebookLinks">
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#SEQN">SEQN - Respondent sequence number</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#WTPH2YR">WTPH2YR - Phlebotomy 2 Year Weight</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#LBXVIDMS">LBXVIDMS - 25OHD2+25OHD3 (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#LBDVIDLC">LBDVIDLC - 25OHD2+25OHD3 comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#LBXVD2MS">LBXVD2MS - 25OHD2 (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#LBDVD2LC">LBDVD2LC - 25OHD2 comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#LBXVD3MS">LBXVD3MS - 25OHD3 (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#LBDVD3LC">LBDVD3LC - 25OHD3 comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#LBXVE3MS">LBXVE3MS - epi-25OHD3 (nmol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/VID_L.htm#LBDVE3LC">LBDVE3LC - epi-25OHD3 comment code</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="PageHeader">
+        <h1>National Health and Nutrition Examination Survey</h1>
+        <h2>August 2021-August 2023 Data Documentation, Codebook, and Frequencies</h2>
+        <h3>Vitamin D (VID_L)</h3>
+        <h4> Data File: VID_L.xpt</h4>
+        <h5 class="left">First Published: September 2024</h5>
+        <h5 class="right">Last Revised: NA</h5>
+      </div>
+      <div id="Sections">
+        <h2 id="Component_Description">Component Description</h2><p>Vitamin D is functionally a hormone rather than a vitamin, and in conjunction with parathyroid hormone and calcitonin, it is one of the most important biological regulators of calcium metabolism. Vitamin D and its main metabolites may be categorized into two families of secosteroids:  cholecalciferol (vitamin D3) and ergocalciferol (vitamin D2). Both vitamins D3 and D2 are enzymatically hydroxylated in the liver to 25-hydroxy forms and then further metabolized in the kidney to the bioactive 1,25-dihydroxy forms. Although 25-hydroxyvitamin D (25OHD) is not the bioactive form, it is the predominant circulating form of vitamin D, and thus, it is considered to be the most reliable index of vitamin D status (Olkowski, 2003; Saenger, 2006). Vitamin D3 is a naturally occurring form of vitamin D that is produced in the skin after 7-dehydrocholesterol is exposed to UV-B radiation. Commercially, vitamin D2 is produced by UV irradiation of plant-derived ergosterol. The two forms differ in the structures of their side chains, but they are metabolized identically. Good sources of vitamin D3 are fatty fish, while mushrooms provide a good source of vitamin D2. Both forms are used for fortification of a limited selection of foods including milk, juice, margarines, cheese and nutrition bars. Because these two parent compounds provide various contributions to vitamin D status, it is informative when both forms are measured separately (Olkowski, 2003; Saenger, 2006).</p>
+<p>The measurement of 25OHD is becoming increasingly important in the management of patients with various disorders of calcium metabolism associated with rickets, osteomalacia, nutritional and renal osteodystrophy, hypoparathyroidism, and postmenopausal osteoporosis (Holick, 2005). These data will be used to estimate deficiencies and toxicities of specific nutrients in the population and subgroup, to provide population reference data, and to estimate the contribution of diet, supplements, and other factors to serum levels of nutrients. Data will be used in research to further define nutrient requirements as well as optimal levels for disease prevention and health promotion.</p><h2 id="Eligible_Sample">Eligible Sample</h2><p>Examined participants aged 1 year and older were eligible.</p><h2 id="Description_of_Laboratory_Methodology">Description of Laboratory Methodology</h2><p>The test principle for the CDC method utilizes high
+performance liquid chromatography-tandem mass spectrometry (HPLC-MS/MS) for the
+quantitative detection of 25-hydroxyvitamin D3 (25OHD3),
+3-epi-25-hydroxyvitamin D3 (epi-25OHD3), and 25-hydroxyvitamin D2 (25OHD2) in
+human serum. The analytes are chromatographically separated generally on one of
+three pentaflurophenyl (PFP) columns. Mobile phase composition for optimized
+chromatography varies slightly for the three columns but is between 69% and 72%
+methanol in water. The composition of the solution added to the serum prior to
+extraction, the solution used for reconstitution, and the needle wash should
+match that used for the mobile phase.&nbsp;&nbsp;&nbsp; </p>
+<p>Refer to the Laboratory Method Files section for a detailed
+description of the methods used.</p>
+<p>There were no changes to the lab method, lab equipment,
+or lab site for this component during the NHANES August
+2021-August 2023 cycle. </p><h2 id="Laboratory_Method_Files">Laboratory Method Files</h2>
+        <p>
+          <a target="_blank" href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/labmethods/VID-L-MET-508.pdf">Vitamin D</a>
+          <span> (September 2024)</span>
+        </p>
+        <h2 id="Laboratory_Quality_Assurance_and_Monitoring">Laboratory Quality Assurance and Monitoring</h2><p>Serum specimens were processed, stored, and shipped to
+the Division of Laboratory Sciences, National Center for Environmental Health,
+Centers for Disease Control and Prevention, Atlanta, GA for analysis.</p>
+<p>Detailed instructions on specimen collection and
+processing are discussed in the <a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/manuals/2021-Laboratory-Procedures-508.pdf">NHANES Laboratory Procedures Manual (LPM)</a>. Vials are stored under appropriate frozen (–30°C) conditions until they
+are shipped to the National Center for Environmental Health for testing. </p>
+<p>The NHANES quality assurance and quality control (QA/QC)
+protocols meet the 1988 Clinical Laboratory Improvement Amendments mandates.
+Detailed QA/QC instructions are discussed in the <a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/manuals/2021-Laboratory-Procedures-508.pdf">NHANES LPM</a>. </p>
+<p><strong>Mobile Examination Centers (MECs) </strong></p>
+<p>Laboratory team performance is monitored using several
+techniques. NCHS and contract consultants use a structured competency
+assessment evaluation during&nbsp;visits to evaluate both the quality of the
+laboratory work and the QC procedures. Each laboratory staff member is observed
+for equipment operation, specimen collection and preparation; testing
+procedures and constructive feedback are given to each staff member. Formal
+retraining sessions are conducted annually to ensure that required skill levels
+are maintained. </p>
+<p><strong>Analytical Laboratories </strong></p>
+<p>NHANES uses several methods to monitor the quality of the
+analyses performed by the laboratories. In the MEC, these methods include
+performing blind split samples collected on “dry run” sessions. In addition,
+contract laboratories randomly perform repeat testing on 2% of all specimens. </p>
+<p>NCHS developed and distributed a QC protocol for all the contract
+laboratories, which outlined the use of Westgard rules (Westgard, et. al.,
+1981) when testing NHANES specimens. Progress reports containing any problems
+encountered during shipping or receipt of specimens, summary statistics for
+each control pool, QC graphs, instrument calibration, reagents, and any special
+considerations are submitted to NCHS periodically. The reports are reviewed for
+trends or shifts in the data. The laboratories are required to explain any
+areas of concern. </p>
+<p>All QC procedures recommended by the manufacturers were
+followed. Reported results for all assays meet the Division of Laboratory
+Science’s QA/QC performance criteria for accuracy and precision, similar to the
+Westgard rules (Caudill, et. al., 2008). </p><h2 id="Data_Processing_and_Editing">Data Processing and Editing</h2><p>The data were reviewed. Incomplete data or improbable values were sent to the performing laboratory for confirmation.</p><h2 id="Analytic_Notes">Analytic Notes</h2><p>There are over 800 laboratory tests performed on NHANES participants. However, not all participants provided biospecimens or enough volume for all the tests to be performed. The specimen availability can also vary by age or other population characteristics. Analysts should evaluate the extent of missing data in the dataset related to the outcome of interest as well as any predictor variables used in the analyses to determine whether additional re-weighting for item non-response is necessary.</p>
+<p>Please refer to the NHANES <a href="https://wwwn.cdc.gov/nchs/nhanes/analyticguidelines.aspx">Analytic Guidelines</a> and the on-line <a href="https://wwwn.cdc.gov/nchs/nhanes/tutorials/">NHANES Tutorial</a> for details
+on the use of sample weights and other analytic issues.</p>
+<p><strong>Phlebotomy Weights</strong> <br>
+<br>
+For the August 2021-August 2023 cycle, analysis of nonresponse patterns for the phlebotomy component in the MEC examination revealed differences by age group and race/ethnicity, among other characteristics. For example, approximately 67% of children aged 1-17 years who were examined in the MEC provided a blood specimen through phlebotomy, while 95% of examined adults aged 18 and older provided a blood specimen. Therefore, an additional phlebotomy weight, WTPH2YR, has been included in this data release to address possible nonresponse bias. Participants who are eligible but did not provide a blood specimen have their phlebotomy weight assigned a value of “0” in their records. The phlebotomy weight should be used for analyses that use variables derived from blood analytes, and is included in all relevant data files.</p>
+<p><strong>Demographic and Other Related Variables </strong></p>
+<p>The analysis of NHANES laboratory data must be conducted
+using the appropriate survey design and demographic variables. The <a href="https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Demographics&amp;Cycle=2021-2023">NHANES August 2021-August 2023 Demographics File</a> contains demographic data, health indicators, and other related
+information collected during household interviews as well as the sample design
+variables. The recommended procedure for variance estimation requires use of
+stratum and PSU variables (SDMVSTRA and SDMVPSU, respectively) in the
+demographic data file.</p>
+<p>The <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FASTQX_L.htm">Fasting Questionnaire File</a> includes auxiliary information such as fasting status, the time of
+venipuncture, and the conditions precluding venipuncture. </p>
+<p>This laboratory data file can be linked to the other
+NHANES data files using the unique survey participant identifier (i.e., SEQN). </p>
+<p><strong>Detection Limits </strong></p>
+<p>The detection limits were constant for all of the
+analytes in the data set. The SAS variable name ending in LC (ex., LBXVD2LC)
+indicates whether the result was below the limit of detection: the value “0”
+means that the result was at or above the limit of detection, “1” indicates
+that the result was below the limit of detection. The other variable prefixed
+LBX (ex., LBXVIDMS) provides the result for the analyte. For analytes with
+analytic results below the lower limit of detection (ex., LBXVIDLC=1), an imputed
+fill value was placed in the analyte results field. This value is the lower
+limit of detection divided by the square root of 2 (LLOD/sqrt (2)). </p>
+<p>The lower limits of detection (LLOD in nmol/L) for
+Vitamin D metabolites are:</p>
+<table bordercolor="#000000" border="1">
+    <thead>
+        <tr>
+            <th>Variable Name</th>
+            <th>Analyte Description</th>
+            <th>&nbsp;LLOD</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>LBXVD2MS</td>
+            <td>25-hydroxyvitamin D2</td>
+            <td>2.216 nmol/L</td>
+        </tr>
+        <tr>
+            <td>LBXVD3MS</td>
+            <td>25-hydroxyvitamin D3</td>
+            <td>0.439 nmol/L</td>
+        </tr>
+        <tr>
+            <td>LBXVE3MS</td>
+            <td>epi-25-hydroxyvitamin D3</td>
+            <td>0.755 nmol/L</td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<p><strong>Analysis of
+25-Hydroxyvitamin D Data from NHANES III (1988-1994) and NHANES 2001-2006, with
+NHANES data collected since 2007</strong>
+</p>
+<p>The LC-MS/MS-equivalent 25-Hydroxyvitamin D data are
+recommended for all analyses, but especially for analyzing secular trends for serum
+vitamin D involving NHANES III (1988-1994), NHANES 2001-2006 and NHANES data
+collected since 2007. Users are strongly encouraged to review the <a href="https://wwwn.cdc.gov/nchs/nhanes/vitamind/analyticalnote.aspx?b=2009&amp;e=2010&amp;d=VID_F&amp;x=XPT">Analytical
+Note for 25-Hydroxyvitamin D Data Analysis (cdc.gov)</a>
+prior to the analysis.</p></div>
+      <div id="References">
+        <h2>References</h2>
+        <ul>
+          <li>Caudill, S.P., Schleicher, R.L., Pirkle, J.L. Multi-rule quality control for the age-related eye disease study. Statist. Med. (2008) 27(20):4094-40106.</li>
+          <li>Holick MF.  The influence of vitamin D on bone health across the life cycle.  J Nutr, 2005;135:2726S-2727S.</li>
+          <li>Holick MF.  The vitamin D epidemic and its health consequences.  J Nutr 2005:2739S-2748S.</li>
+          <li>Olkowski AA, Aranda-Osorio G, and McKinnon J.  Rapid HPLC method for measurement of vitamin D3 and 25(OH)D3 in blood plasma.  Int J Vitam Nutr Res,.2003;73(1):15-18.</li>
+          <li>Saenger AK, Laha TJ, Bremner DE, and Sadrzadh SMH.&nbsp; Quantification of serum 25-hydroxyvitamin D2
+and D3 using HPLC-tandem mass spectrometry and examination of reference
+intervals for diagnosis of vitamin D deficiency.&nbsp; Am J Clin Pathol, 2006;125:914-920.</li>
+          <li>Westgard J.O., Barry P.L., Hunt M.R., Groth T. A multi-rule Shewhart chart for quality control in clinical chemistry. Clin Chem (1981) 27:493-501.</li>
+        </ul>
+      </div>
+      <div id="Codebook">
+        <h2>Codebook and Frequencies</h2>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SEQN">SEQN - Respondent sequence number</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SEQN</dd>
+            <dt>SAS Label: </dt>
+            <dd>Respondent sequence number</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Respondent sequence number.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="WTPH2YR">WTPH2YR - Phlebotomy 2 Year Weight</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">WTPH2YR</dd>
+            <dt>SAS Label: </dt>
+            <dd>Phlebotomy 2 Year Weight</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Phlebotomy 2 Year Weight</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">4391.8220579 to 253478.77765</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7626</td>
+                <td class="values" align="right">7626</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">No blood sample provided</td>
+                <td class="values" align="right">1101</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXVIDMS">LBXVIDMS - 25OHD2+25OHD3 (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXVIDMS</dd>
+            <dt>SAS Label: </dt>
+            <dd>25OHD2+25OHD3 (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">25-hydroxyvitamin D2 + D3  </dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">7.97 to 424</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7307</td>
+                <td class="values" align="right">7307</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1420</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDVIDLC">LBDVIDLC - 25OHD2+25OHD3 comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDVIDLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>25OHD2+25OHD3 comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">25-hydroxyvitamin D2 + D3 comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">7307</td>
+                <td class="values" align="right">7307</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7307</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1420</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXVD2MS">LBXVD2MS - 25OHD2 (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXVD2MS</dd>
+            <dt>SAS Label: </dt>
+            <dd>25OHD2 (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">25-hydroxyvitamin D2 (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1.57 to 239</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7307</td>
+                <td class="values" align="right">7307</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1420</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDVD2LC">LBDVD2LC - 25OHD2 comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDVD2LC</dd>
+            <dt>SAS Label: </dt>
+            <dd>25OHD2 comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">25-hydroxyvitamin D2 comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">1447</td>
+                <td class="values" align="right">1447</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">5860</td>
+                <td class="values" align="right">7307</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1420</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXVD3MS">LBXVD3MS - 25OHD3 (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXVD3MS</dd>
+            <dt>SAS Label: </dt>
+            <dd>25OHD3 (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">25-hydroxyvitamin D3 (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">4.1 to 422</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7308</td>
+                <td class="values" align="right">7308</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1419</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDVD3LC">LBDVD3LC - 25OHD3 comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDVD3LC</dd>
+            <dt>SAS Label: </dt>
+            <dd>25OHD3 comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">25-hydroxyvitamin D3 comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">7308</td>
+                <td class="values" align="right">7308</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">7308</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1419</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBXVE3MS">LBXVE3MS - epi-25OHD3 (nmol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBXVE3MS</dd>
+            <dt>SAS Label: </dt>
+            <dd>epi-25OHD3 (nmol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">epi-25-hydroxyvitamin D3 (nmol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.54 to 62.8</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">7238</td>
+                <td class="values" align="right">7238</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1489</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="LBDVE3LC">LBDVE3LC - epi-25OHD3 comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">LBDVE3LC</dd>
+            <dt>SAS Label: </dt>
+            <dd>epi-25OHD3 comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">epi-25-hydroxyvitamin D3 comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 1 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">7168</td>
+                <td class="values" align="right">7168</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">70</td>
+                <td class="values" align="right">7238</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1489</td>
+                <td class="values" align="right">8727</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+<div id="extension-mmplj"></div></body></html>

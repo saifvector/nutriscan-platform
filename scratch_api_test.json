@@ -1,0 +1,88 @@
+{
+  "phase1_mock_data": [],
+  "phase2_data_pipelines": {},
+  "phase3_prediction_tests": {},
+  "phase4_recommendations": {},
+  "phase5_meal_planner": {},
+  "phase6_forecasting": {},
+  "phase7_copilot": {},
+  "phase8_database": {
+    "health": {
+      "status": "HEALTHY",
+      "service": "Nutrient Deficiency AI Screening Platform",
+      "version": "1.0.0",
+      "prediction_engine_ready": true,
+      "database": {
+        "status": "DISCONNECTED",
+        "connected": false,
+        "error": "Multiple exceptions: [Errno 10061] Connect call failed ('::1', 5432, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 5432)",
+        "pool_size": 20
+      }
+    }
+  },
+  "phase9_api_status": {
+    "/health": {
+      "status": 200,
+      "ok": true
+    },
+    "GET /predictions/rules/interactions": {
+      "status": 200,
+      "response_snippet": "{'total_rules': 13, 'interaction_catalog': [{'nutrient_pair': ['Vitamin D', 'Calcium'], 'interaction_type': 'SYNERGISTIC_ABSORPTION', 'description': 'Vitamin D induces synthesis of calbindin, dramatically boosting intestinal calcium absorption. Co-deficiency accelerates bone demineralization and sec"
+    },
+    "GET /predictions/models": {
+      "status": 200,
+      "response_snippet": "{'status': 'READY', 'model_suite_version': 'v10.3.0-prod', 'total_registered_models': 9, 'registry_path': 'C:\\\\Users\\\\saifu\\\\Desktop\\\\Nutrient deficiency\\\\models', 'last_reloaded': '2026-09-15T03:42:45.947033Z', 'models': [{'target': 'target_calcium_deficiency', 'target_name': 'Calcium Deficiency', "
+    },
+    "POST /predict": {
+      "status": 200,
+      "response_snippet": "{'assessment_id': '86e2860f-57d2-4d8d-98d2-087a0b50bf1c', 'overall_risk': 'LOW', 'overall_risk_score': 3.5, 'overall_severity': 'LOW', 'inference_latency_ms': 168.03, 'nutrient_predictions': [{'nutrient': 'Potassium', 'nutrient_code': 'POTASSIUM', 'risk_level': 'MODERATE', 'probability': 0.98, 'conf"
+    },
+    "POST /predictions/predict": {
+      "status": 200,
+      "response_snippet": "{'prediction_id': '457921a0-3d7d-4f7e-bab3-3f9f1e7a3121', 'timestamp': '2026-09-15T06:10:39.568716Z', 'model_suite_version': 'v10.3.0-prod', 'overall_risk_tier': 'HIGH', 'overall_risk_score': 25.1, 'total_deficiencies_detected': 2, 'priority_ranking': ['Iron Deficiency', 'Vitamin D Insufficiency', '"
+    },
+    "GET /analytics/health-score": {
+      "status": 200,
+      "response_snippet": "{'user_id': '0d9c2666-3054-4840-b306-5d3aea5c065e', 'current_score': 76, 'category': 'GOOD', 'breakdown': {'baseline_score': 100.0, 'nutrient_risk_deduction': 22.5, 'interaction_penalty': 4.5, 'lifestyle_modifier': 3.0, 'confidence_adjustment': 1.5, 'deficiency_count': 1, 'protective_factor_count': "
+    },
+    "GET /progress/summary": {
+      "status": 200,
+      "response_snippet": "{'user_id': 'de107859-995a-47ae-9925-f6a11274ad38', 'current_health_score': 76, 'baseline_health_score': 62, 'health_score_delta': 14, 'health_score_improvement_pct': 22.6, 'recovery_velocity_pts_per_week': 3.27, 'deficiencies_resolved_count': 3, 'emerging_risks_count': 0, 'most_improved_nutrient': "
+    },
+    "POST /personalization/dashboard": {
+      "status": 404,
+      "response_snippet": "{'detail': 'Not Found'}"
+    },
+    "POST /recommendations/generate": {
+      "status": 405,
+      "response_snippet": "{'detail': 'Method Not Allowed'}"
+    },
+    "POST /meal-plan/generate": {
+      "status": 404,
+      "response_snippet": "{'detail': 'Not Found'}"
+    },
+    "POST /forecast/biomarker": {
+      "status": 404,
+      "response_snippet": "{'detail': 'Not Found'}"
+    },
+    "POST /copilot/chat": {
+      "status": 404,
+      "response_snippet": "{'detail': 'Not Found'}"
+    },
+    "GET /knowledge-graph/entities": {
+      "status": 200,
+      "response_snippet": "[{'id': 'SYSTEM_CARDIOVASCULAR', 'name': 'Cardiovascular & Hematological System', 'entity_type': 'BIOLOGICAL_SYSTEM', 'category': 'Physiological System', 'description': 'Erythrocyte oxygenation, vascular endothelial tone, myocardial contractility, and cardiac action potential repolarization.', 'meta"
+    },
+    "GET /governance/drift/status": {
+      "status": 404,
+      "response_snippet": "{'detail': 'Not Found'}"
+    },
+    "GET /reports/summary/latest": {
+      "status": 404,
+      "response_snippet": "{'detail': 'Not Found'}"
+    }
+  },
+  "phase10_e2e_scenario": {},
+  "phase11_clinical_safety": {},
+  "phase12_production_readiness": {}
+}

@@ -1,0 +1,18 @@
+nutrient,unit,male_rda_ai,female_rda_ai,upper_limit_ul,deficiency_biomarker,clinical_deficiency_cutoff
+Vitamin D,mcg,15.0,15.0,100.0,Serum 25(OH)D,< 20.0 ng/mL (< 50 nmol/L)
+Vitamin B12,mcg,2.4,2.4,None,Serum B12,< 200.0 pg/mL
+Folate,mcg_DFE,400.0,400.0,1000.0,Serum Folate,< 4.0 ng/mL
+Iron,mg,8.0,18.0,45.0,Serum Ferritin,< 30.0 ng/mL
+Calcium,mg,1000.0,1000.0,2500.0,Serum Calcium,< 8.5 mg/dL
+Magnesium,mg,420.0,320.0,350.0 (suppl),RBC Magnesium,< 4.5 mg/dL
+Zinc,mg,11.0,8.0,40.0,Serum Zinc,< 70.0 mcg/dL
+Vitamin C,mg,90.0,75.0,2000.0,Serum Ascorbate,< 0.2 mg/dL (11.4 umol/L)
+Vitamin A,mcg_RAE,900.0,700.0,3000.0,Serum Retinol,< 0.70 umol/L (20 mcg/dL)
+Vitamin E,mg,15.0,15.0,1000.0,Serum Alpha-Tocopherol,< 12.0 umol/L (5.0 mcg/mL)
+Thiamin (B1),mg,1.2,1.1,None,Erythrocyte Transketolase ETKAC,> 1.25 activation coef
+Riboflavin (B2),mg,1.3,1.1,None,Erythrocyte Glutathione Reductase,> 1.40 activation coef
+Niacin (B3),mg_NE,16.0,14.0,35.0,Urinary N-methylnicotinamide,< 5.8 umol/day
+Vitamin B6,mg,1.7,1.5,100.0,Plasma Pyridoxal 5-Phosphate (PLP),< 20.0 nmol/L
+Potassium,mg,3400.0,2600.0,None,Serum Potassium,< 3.5 mmol/L
+Iodine,mcg,150.0,150.0,1100.0,Urinary Iodine Concentration,< 100.0 mcg/L
+Selenium,mcg,55.0,55.0,400.0,Serum Selenium,< 70.0 mcg/L

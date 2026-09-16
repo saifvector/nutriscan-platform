@@ -1,0 +1,2718 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm -->
+<html xml:lang="en" lang="en" xmlns="http://www.w3c.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <title>FNQ_L</title>
+    <meta name="title" content="NHANES August 2021-August 2023: Functioning   Data Documentation, Codebook, and Frequencies">
+    <link rel="stylesheet" href="./FNQ_L_files/documentation.css">
+  </head>
+  <body class="nhanes-doc">
+    <div id="toc">
+      <h3>Table of Contents</h3>
+      <div id="toc-scroll">
+        <ul>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#Component_Description">Component Description</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#Eligible_Sample">Eligible Sample</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#Interview_Setting_and_Mode_of_Administration">Interview Setting and Mode of Administration</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#Quality_Assurance_&amp;_Quality_Control">Quality Assurance &amp; Quality Control</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#Data_Processing_and_Editing">Data Processing and Editing</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#Analytic_Notes">Analytic Notes</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#References">References</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#Codebook">Codebook</a>
+            <ul id="CodebookLinks">
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#SEQN">SEQN - Respondent sequence number</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ005">FNQ005 - CHECK ITEM</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ021">FNQ021 - Difficulty seeing even w/glasses</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ041">FNQ041 - Difficulty hearing even w/hearing aids</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ050">FNQ050 - Use equip or assistance for walking</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ060">FNQ060 - Difficulty walking 100 yds w/o equipment</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ080">FNQ080 - Difficulty walking 100 yards</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ160">FNQ160 - Difficulty with self-care</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ100">FNQ100 - Difficulty being understood inside HH</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ110">FNQ110 - Difficulty being understood outside HH</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ120">FNQ120 - Difficulty learning things</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ170">FNQ170 - Difficulty remembering things</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ180">FNQ180 - Difficulty concentrating</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ190">FNQ190 - Difficulty accepting change</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ130">FNQ130 - Difficulty controlling behavior</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ200">FNQ200 - Difficulty making friends</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ140">FNQ140 - How often very anxious/nervous/worried</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ150">FNQ150 - How often very sad/depressed</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNDCDI">FNDCDI - CFM Disability Indicator for 5-17 years</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ410">FNQ410 - Difficulty seeing even w/glasses</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ430">FNQ430 - Difficulty hearing even w/hearing aids</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ440">FNQ440 - Difficulty walking or climbing steps</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ450">FNQ450 - Difficulty communicating</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ460">FNQ460 - Difficulty remembering or concentrating</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ470">FNQ470 - Difficulty with self-care</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ480">FNQ480 - Difficulty raising a 2-liter bottle</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ490">FNQ490 - Difficulty using hands and fingers</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ510">FNQ510 - How often feel worried/nervous/anxious</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ520">FNQ520 - Level of feeling worried/nervous/anxious</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ530">FNQ530 - How often feel depressed</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNQ540">FNQ540 - Level of feeling depressed</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNDADI">FNDADI - WG-SS Disability Indicator 18+</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/FNQ_L.htm#FNDAEDI">FNDAEDI - WG-SS Enhanced Disability Indicator 18+</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="PageHeader">
+        <h1>National Health and Nutrition Examination Survey</h1>
+        <h2>August 2021-August 2023 Data Documentation, Codebook, and Frequencies</h2>
+        <h3>Functioning   (FNQ_L)</h3>
+        <h4> Data File: FNQ_L.xpt</h4>
+        <h5 class="left">First Published: September 2024</h5>
+        <h5 class="right">Last Revised: NA</h5>
+      </div>
+      <div id="Sections">
+        <h2 id="Component_Description">Component Description</h2><p>The Functioning questionnaire (variable name prefix FNQ) section provides respondent-level interview data on difficulties across a series of basic functional domains. The questions asked in the FNQ are part of sets of international standard measures developed, tested and endorsed by the <a href="https://www.washingtongroup-disability.com/" target="_blank">Washington Group on Disability Statistics (WG)</a> and the United Nations Children’s Fund (UNICEF) (for the children’s module). The FNQ included 16 questions from the <a href="https://www.washingtongroup-disability.com/question-sets/wg-unicef-child-functioning-module-cfm/" target="_blank">Child Functioning Module (CFM)</a> collecting information for participants aged 5 to 17 years. For adults 18 years and older, both <a href="https://www.washingtongroup-disability.com/question-sets/wg-short-set-on-functioning-wg-ss/" target="_blank">the Short Set on Functioning (WG-SS)</a>, comprising 6 questions, and the <a href="https://www.washingtongroup-disability.com/question-sets/wg-short-set-on-functioning-enhanced-wg-ss-enhanced/" target="_blank">Short Set on Functioning – Enhanced (WG-SS Enhanced)</a>, comprising the WG-SS 6 questions plus an additional 6 questions, were included.</p>
+<p>The WG is a city group established in 2001 under the United Nations Statistical Commission to address the need for population-based measures of functioning and disability. The WG promotes and coordinates international cooperation in the area of health statistics focusing on disability data collection tools suitable for censuses and national surveys. The major objective is to provide necessary information on disability that is comparable throughout the world by identifying individuals with functional limitations in basic actions, regardless of nationality or culture. Question development for the WG-SS, WG-SS Enhanced, and CFM involved international subject matter experts, and collaboration with national statistical offices and organizations of people with disabilities. The questions were cognitively tested, and field tested across countries by regional and international data collection programs. They have been endorsed by United Nations (UN) agencies and the international disability community for use to collect data on functioning in adults and children.</p>
+<p>The questions reflect advances in the conceptualization of disability and use the World Health Organization’s International Classification of Functioning, Disability, and Health (ICF) and the ICF – Children and Youth (ICF-CY) version as conceptual frameworks. The intended use of these questions is to describe the functional status of adults and children and, when used with other questions on the survey, to assess whether people with functional limitations have achieved similar levels of participation and inclusion as people without functional limitations. These questions do not capture all aspects of difficulty in functioning, but rather focus on domains of functioning that are likely to identify the majority of the subpopulation at risk of participation restrictions in an unaccommodating environment.</p>
+<p>CFM questions ask about the child’s level of difficulty (no difficulty, some difficulty, a lot of difficulty, or cannot do at all) in 13 basic domains of functioning, including seeing, hearing, walking, self-care, communication, learning, cognition (remembering and concentrating), accepting change, behavior, relationships, and about the frequency (daily, weekly, monthly, a few times a year, never) of experiencing anxiety and depression. In addition, a question about the use of equipment or assistance with walking is also included, and children who use aids are asked about their difficulty walking without equipment or assistance.&nbsp;</p>
+<p>WG-SS questions ask about the adult’s level of difficulty (no difficulty, some difficulty, a lot of difficulty, or cannot do at all) in six basic domains of functioning, including seeing, hearing, walking, communication, cognition, and self-care. The WG-SS Enhanced adds two additional domains: upper body functioning and affect (anxiety and depression). For both anxiety and depression, two questions are asked capturing frequency and intensity of anxiety and depression symptoms.</p>
+<p>The FNQ data can be analyzed separately, by domain, or combined across domains. Composite disability status indicators were derived and included in the dataset to identify people with and without disabilities (one for children and two for adults): the CFM Disability Indicator for 5-17 years (FNDCDI), the WG-SS Disability Indicator for 18+ years (FNDADI), and the WG-SS Enhanced Disability Indicator for 18+ years (FNDAEDI). Please see the Data Processing and Editing section for details.</p>
+<p>The disability indicators identify people who are at greater risk than the general population for experiencing restrictions in participation because of difficulties doing certain universal, basic actions. Consult the WG website for guidance on the creation of these indicators. Use of the functioning and disability data should be tailored to meet the needs of the analysis. It is important to note that changing the threshold for either the number of domains with which a respondent has difficulty or the degree of difficulty in any given domain can create different identifiers that will capture different populations. For example, a recode that includes the response of “some difficulty” to any of the domains will capture a greater proportion of the population than a recode that includes only people with the response of “cannot do at all” to any of the domains. In this example, the functional abilities of the larger group will be much more heterogeneous than that of the smaller group. Analytic guidelines written for each of the questions sets, including recommended disability identifiers, may be obtained from the <a href="https://www.washingtongroup-disability.com/" target="_blank">WG website</a>.</p><h2 id="Eligible_Sample">Eligible Sample</h2><p>Questions asked varied by age group. Participants aged 5-17 years were eligible for 16 questions in the FNQ. Participants 18 years or older were eligible for 12 questions in the FNQ. Please refer to the questionnaire and codebook for details.</p><h2 id="Interview_Setting_and_Mode_of_Administration">Interview Setting and Mode of Administration</h2><p>These questions were asked by trained interviewers using the Computer-Assisted Personal Interview (CAPI) system in the participant’s home or by telephone.</p>
+<p>Participants 16 years of age and older and emancipated minors were interviewed directly. A proxy provided information for survey participants who were under 16 and for those who could not answer the questions themselves.</p>
+<p>The NHANES FNQ is available on the NHANES website: <a href="https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/questionnaires.aspx?Cycle=2021-2023" target="_blank">NHANES August 2021-August 2023 Questionnaire Instruments (cdc.gov)</a>.</p><h2 id="Quality_Assurance_&amp;_Quality_Control">Quality Assurance &amp; Quality Control</h2><p>The CAPI system is programmed with built-in consistency checks to reduce data entry errors and online help screens to assist interviewers in defining key terms. During the August 2021-August 2023 data collection cycle, periodic QC checks were performed on the FNQ data being collected; and interviewer-specific feedback and retraining was performed as appropriate.</p><h2 id="Data_Processing_and_Editing">Data Processing and Editing</h2><p>Questionnaire interview responses were entered into a tablet and then uploaded into a computerized database in the same manner as other sections of the Survey Participant Questionnaire. The data were then edited for completeness, consistency, and illogical values.&nbsp;</p>
+<p>A Child Functioning Module (CFM) Disability Indicator (variable: FNDCDI) was derived and included in the dataset for participants 5-17 years to identify whether the youth participant is with or without disabilities. Participants who were reported to have “a lot of difficulty” or “cannot do at all” to at least one of the 14 questions for the first 11 domains: seeing (FNQ021), hearing (FNQ041), mobility (FNQ050, FNQ060, FNQ080), self-care (FNQ160), communication (FNQ100, FNQ110), learning (FNQ120), remembering (FNQ170), concentrating (FNQ180), accepting change (FNQ190), controlling behavior (FNQ130), and making friends (FNQ200); or “daily” to the last 2 questions for the final 2 domains: anxiety (FNQ140) and depression (FNQ150) are classified in the “with disabilities” category. Participants with responses of “missing”, “Don’t Know”, or “Refused” in all 16 questions have FNDCDI coded as “missing”.&nbsp;</p>
+<p>Two dichotomous variables were derived and included in the dataset for adults 18 years and older to identify people with and without disabilities. The Washington Group Short Set (WG-SS) Disability Indicator (variable: FNDADI) is defined by the reported level of difficulty in 6 core functioning domains: seeing (FNQ410), hearing (FNQ430), mobility (FNQ440), communication (FNQ450), cognition (FNQ460), and self-care (FNQ470). Adults who reported having “a lot of difficulty” or “cannot do at all” to at least one domain of functioning are classified in the “with disabilities” category. Participants with responses of “missing”, “Don’t Know”, or “Refused” in all 6 questions have FNDADI coded as “missing”. The WG-SS Enhanced Disability Indicator (variable: FNDAEDI) is defined by the same 6 core domains as used for FNDADI plus 3 additional functional domains in upper body (FNQ480, FNQ490), anxiety (FNQ510, FNQ520), and depression (FNQ530, FNQ540). Participants who reported: 1) having “a lot of difficulty” or “cannot do at all” to at least one of the first 7 domains; or 2) having anxiety “daily” AND at the level of “a lot”; or 3) feeling depressed “daily” AND at the level of “a lot” are classified in the “with disabilities” category. Participants with responses of “missing”, “Don’t Know”, or “Refused” in all 8 questions in the first 7 domains and have these responses for at least one of the anxiety questions as well as one of the depression questions have their FNDAEDI coded as “missing”.</p><h2 id="Analytic_Notes">Analytic Notes</h2><p>There are differences between the CFM Disability Indicator (FNDCDI) included in the present dataset and the standard Washington Group/UNICEF indicator of disability using the CFM – Ages 5-17 years. While both indicators are defined by responses in the same 13 core functional domains, the standard WG/UNICEF CFM 5-17 asks more questions than NHANES in 3 of the 13 domains:</p>
+<ul style="margin-left: 40px;">
+    <li>Seeing: While both modules ask about difficulty in seeing with glasses (if wearing glasses), WG/UNICEF CFM 5-17 uses a 3-question set with skip patterns incorporated, while NHANES employs a single question with conditional phrase “even if wearing glasses or contact lenses” included.&nbsp;</li>
+    <li>Hearing: Similar to the domain in seeing, while both modules ask about difficulty in hearing with hearing aid (if a hearing aid is used), WG/UNICEF CFM 5-17 uses a 3-question set with skip patterns incorporated, while NHANES employs a single question with conditional phrase “even if using a hearing aid” included.</li>
+    <li>Mobility: WG/UNICEF CFM 5-17 includes more detailed questions on two different levels of mobility (i.e., difficulties in walking 100 and 500 yards with or without equipment/assistance), while NHANES only asks about difficulty in walking 100 yards without equipment/assistance.&nbsp;<br>
+    </li>
+</ul>
+<p>Therefore, estimates produced using the CFM 5-17 Disability Indicator in NHANES may not be directly comparable with estimates produced using the standard WG/UNICEF CFM 5-17 Disability Indicator.&nbsp;</p>
+<p>The FNQ data were collected as part of the household questionnaire and, therefore, the full sample NHANES interview weights WTINT2YR should be used for statistical analysis. However, if the FNQ data are merged with the MEC exam or laboratory data, then the NHANES examination sample weights WTMEC2YR should be used for analyses.</p>
+<p>Please refer to the&nbsp;<a href="https://wwwn.cdc.gov/nchs/nhanes/analyticguidelines.aspx" target="_blank">NHANES Analytic Guidelines</a> and the on-line&nbsp;<a href="https://wwwn.cdc.gov/nchs/nhanes/tutorials/" target="_blank">NHANES Tutorial</a> for further details on the use of sample weights and other analytic issues.</p></div>
+      <div id="References">
+        <h2>References</h2>
+        <ul>
+          <li>Washington Group on Disability Statistics. The Washington Group Short Set of Functioning – Enhanced (WG_SS Enhanced), 2022. Available from: <a href="https://www.washingtongroup-disability.com/fileadmin/uploads/wg/Washington_Group_Questionnaire__3_-_WG_Short_Set_on_Functioning_-_Enhanced__October_2022_.pdf">https://www.washingtongroup-disability.com/fileadmin/uploads/wg/Washington_Group_Questionnaire__3_-_WG_Short_Set_on_Functioning_-_Enhanced__October_2022_.pdf</a>
+          </li>
+          <li>Washington Group on Disability Statistics. The Washington Group Short Set of Functioning (WG_SS), 2022. Available from: <a href="https://www.washingtongroup-disability.com/fileadmin/uploads/wg/Washington_Group_Questionnaire__1_-_WG_Short_Set_on_Functioning__October_2022_.pdf">https://www.washingtongroup-disability.com/fileadmin/uploads/wg/Washington_Group_Questionnaire__1_-_WG_Short_Set_on_Functioning__October_2022_.pdf</a>
+          </li>
+          <li>Washington Group on Disability Statistics. The Washington Group/UNICEF Child Functioning Module (CF)-Ages 5-17 years, 2020. Available from:&nbsp; <a href="https://www.washingtongroup-disability.com/fileadmin/uploads/wg/Documents/Washington_Group_Questionnaire__5_-_WG-UNICEF_Child_Functioning_Module__ages_5-17_.pdf">https://www.washingtongroup-disability.com/fileadmin/uploads/wg/Documents/Washington_Group_Questionnaire__5_-_WG-UNICEF_Child_Functioning_Module__ages_5-17_.pdf</a>
+          </li>
+        </ul>
+      </div>
+      <div id="Codebook">
+        <h2>Codebook and Frequencies</h2>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SEQN">SEQN - Respondent sequence number</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SEQN</dd>
+            <dt>SAS Label: </dt>
+            <dd>Respondent sequence number</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Respondent sequence number.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ005">FNQ005 - CHECK ITEM</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ005</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">CHECK ITEM FNQ.005  IF SP AGE = 18 YEARS OR OLDER, GO TO FNQ.410. ELSE, CONTINUE.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ021">FNQ021 - Difficulty seeing even w/glasses</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ021</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty seeing even w/glasses</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Please look at card FNQ1. I would like to ask you some questions about difficulties {you/SP} may have.
+{Do you/Does SP} have difficulty seeing even if wearing glasses or contact lenses? Would you say {you have/SP has}: no difficulty, some difficulty, a lot of difficulty, or cannot do at all?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">2337</td>
+                <td class="values" align="right">2337</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">411</td>
+                <td class="values" align="right">2748</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">34</td>
+                <td class="values" align="right">2782</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2782</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2782</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don’t know</td>
+                <td class="values" align="right">5</td>
+                <td class="values" align="right">2787</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8155</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ041">FNQ041 - Difficulty hearing even w/hearing aids</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ041</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty hearing even w/hearing aids</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Do you/Does SP} have difficulty hearing sounds like peoples' voices or music even if using a hearing aid? [Would you say {you have/SP has}: no difficulty, some difficulty, a lot of difficulty, or cannot do at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">2647</td>
+                <td class="values" align="right">2647</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">126</td>
+                <td class="values" align="right">2773</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">9</td>
+                <td class="values" align="right">2782</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">2783</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2783</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">2787</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8155</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ050">FNQ050 - Use equip or assistance for walking</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ050</dd>
+            <dt>SAS Label: </dt>
+            <dd>Use equip or assistance for walking</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Do you/Does SP} use any equipment or receive assistance for walking?</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">22</td>
+                <td class="values" align="right">22</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">2764</td>
+                <td class="values" align="right">2786</td>
+                <td class="values">FNQ080</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2786</td>
+                <td class="values">FNQ080</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">2787</td>
+                <td class="values">FNQ080</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8155</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ060">FNQ060 - Difficulty walking 100 yds w/o equipment</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ060</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty walking 100 yds w/o equipment</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Please look at card FNQ2. Without {your/his/her/SP's} equipment or assistance, {do you/does SP} have difficulty walking 100 yards/meters on level ground? That would be about the length of 1 football field. Would you say {you have/SP has}: some difficulty, a lot of difficulty, or cannot do at all?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ2</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">11</td>
+                <td class="values" align="right">11</td>
+                <td class="values">FNQ160</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">5</td>
+                <td class="values" align="right">16</td>
+                <td class="values">FNQ160</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">6</td>
+                <td class="values" align="right">22</td>
+                <td class="values">FNQ160</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">22</td>
+                <td class="values">FNQ160</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">22</td>
+                <td class="values">FNQ160</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">10920</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ080">FNQ080 - Difficulty walking 100 yards</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ080</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty walking 100 yards</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Please look at card FNQ1, again. Compared with children of the same age, {do you/does SP} have difficulty walking 100 yards/meters on level ground? That would be about the length of 1 football field. [Would you say {you have/SP has}: no difficulty, some difficulty, a lot of difficulty, or cannot do at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">2662</td>
+                <td class="values" align="right">2662</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">83</td>
+                <td class="values" align="right">2745</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">16</td>
+                <td class="values" align="right">2761</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">2762</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2762</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">2765</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8177</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ160">FNQ160 - Difficulty with self-care</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ160</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty with self-care</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Turn back to card FNQ1.} {Do you/Does SP} have difficulty with self-care such as feeding or dressing {yourself/himself/herself/SP}? [Would you say {you have/SP has}: no difficulty, some difficulty, a lot of difficulty, or cannot do at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1.  CAPI INSTRUCTIONS; DISPLAY "Turn back to card FNQ1." IF FNQ.050 = 1.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">2660</td>
+                <td class="values" align="right">2660</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">104</td>
+                <td class="values" align="right">2764</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">17</td>
+                <td class="values" align="right">2781</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">5</td>
+                <td class="values" align="right">2786</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2786</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">2787</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8155</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ100">FNQ100 - Difficulty being understood inside HH</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ100</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty being understood inside HH</dd>
+            <dt>English Text: </dt>
+            <dd class="info">When {you speak/SP speaks}, {do you/does he/does she/does SP} have difficulty being understood by people inside of this household? [Would you say {you have/SP has}: no difficulty, some difficulty, a lot of difficulty, or cannot do at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">2523</td>
+                <td class="values" align="right">2523</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">225</td>
+                <td class="values" align="right">2748</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">28</td>
+                <td class="values" align="right">2776</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">10</td>
+                <td class="values" align="right">2786</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2786</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">2787</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8155</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ110">FNQ110 - Difficulty being understood outside HH</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ110</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty being understood outside HH</dd>
+            <dt>English Text: </dt>
+            <dd class="info">When {you speak/SP speaks}, {do you/does he/does she/does SP} have difficulty being understood by people outside of this household? [Would you say {you have/SP has}: no difficulty, some difficulty, a lot of difficulty, or cannot do at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">2402</td>
+                <td class="values" align="right">2402</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">318</td>
+                <td class="values" align="right">2720</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">54</td>
+                <td class="values" align="right">2774</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">11</td>
+                <td class="values" align="right">2785</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2785</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">2787</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8155</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ120">FNQ120 - Difficulty learning things</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ120</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty learning things</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Compared with children of the same age, {do you/does SP} have difficulty learning things? [Would you say {you have/SP has}: no difficulty, some difficulty, a lot of difficulty, or cannot do at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">2241</td>
+                <td class="values" align="right">2241</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">428</td>
+                <td class="values" align="right">2669</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">112</td>
+                <td class="values" align="right">2781</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">2785</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2785</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">2787</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8155</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ170">FNQ170 - Difficulty remembering things</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ170</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty remembering things</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Compared with children of the same age, {do you/does SP} have difficulty remembering things? [Would you say {you have/SP has}: no difficulty, some difficulty, a lot of difficulty, or cannot do at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">2195</td>
+                <td class="values" align="right">2195</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">505</td>
+                <td class="values" align="right">2700</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">81</td>
+                <td class="values" align="right">2781</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">2783</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2783</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">2787</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8155</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ180">FNQ180 - Difficulty concentrating</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ180</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty concentrating</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Do you/Does SP} have difficulty concentrating on an activity that {you enjoy/he enjoys/she enjoys/SP enjoys} doing? [Would you say {you have/SP has}: no difficulty, some difficulty, a lot of difficulty, or cannot do at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">2342</td>
+                <td class="values" align="right">2342</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">358</td>
+                <td class="values" align="right">2700</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">83</td>
+                <td class="values" align="right">2783</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">2785</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2785</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">2787</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8155</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ190">FNQ190 - Difficulty accepting change</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ190</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty accepting change</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Do you/Does SP} have difficulty accepting changes in {your/his/her/SP's} routine? [Would you say {you have/SP has}: no difficulty, some difficulty, a lot of difficulty, or cannot do at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">1764</td>
+                <td class="values" align="right">1764</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">832</td>
+                <td class="values" align="right">2596</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">184</td>
+                <td class="values" align="right">2780</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">5</td>
+                <td class="values" align="right">2785</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2785</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">2787</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8155</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ130">FNQ130 - Difficulty controlling behavior</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ130</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty controlling behavior</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Compared with children of the same age, {do you/does SP} have difficulty controlling {your/his/her/SP's} behavior? [Would you say {you have/SP has}: no difficulty, some difficulty, a lot of difficulty, or cannot do at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">2050</td>
+                <td class="values" align="right">2050</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">589</td>
+                <td class="values" align="right">2639</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">145</td>
+                <td class="values" align="right">2784</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2784</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">2785</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">2787</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8155</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ200">FNQ200 - Difficulty making friends</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ200</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty making friends</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Do you/Does SP} have difficulty making friends? [Would you say {you have/SP has}: no difficulty, some difficulty, a lot of difficulty, or cannot do at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">2292</td>
+                <td class="values" align="right">2292</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">394</td>
+                <td class="values" align="right">2686</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">93</td>
+                <td class="values" align="right">2779</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">5</td>
+                <td class="values" align="right">2784</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">2785</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">2787</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8155</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ140">FNQ140 - How often very anxious/nervous/worried</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ140</dd>
+            <dt>SAS Label: </dt>
+            <dd>How often very anxious/nervous/worried</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How often {do you feel/does SP seem} very anxious, nervous or worried? Would you say daily, weekly, monthly, a few times a year or never?</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Daily</td>
+                <td class="values" align="right">220</td>
+                <td class="values" align="right">220</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Weekly</td>
+                <td class="values" align="right">428</td>
+                <td class="values" align="right">648</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Monthly</td>
+                <td class="values" align="right">314</td>
+                <td class="values" align="right">962</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">A few times a year</td>
+                <td class="values" align="right">890</td>
+                <td class="values" align="right">1852</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Never</td>
+                <td class="values" align="right">931</td>
+                <td class="values" align="right">2783</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">2784</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">2787</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8155</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ150">FNQ150 - How often very sad/depressed</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ150</dd>
+            <dt>SAS Label: </dt>
+            <dd>How often very sad/depressed</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How often {do you feel/does SP seem} very sad or depressed? Would you say daily, weekly, monthly, a few times a year or never?</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Daily</td>
+                <td class="values" align="right">52</td>
+                <td class="values" align="right">52</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Weekly</td>
+                <td class="values" align="right">170</td>
+                <td class="values" align="right">222</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Monthly</td>
+                <td class="values" align="right">248</td>
+                <td class="values" align="right">470</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">A few times a year</td>
+                <td class="values" align="right">913</td>
+                <td class="values" align="right">1383</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Never</td>
+                <td class="values" align="right">1401</td>
+                <td class="values" align="right">2784</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">2785</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">2787</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8155</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNDCDI">FNDCDI - CFM Disability Indicator for 5-17 years</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNDCDI</dd>
+            <dt>SAS Label: </dt>
+            <dd>CFM Disability Indicator for 5-17 years</dd>
+            <dt>English Text: </dt>
+            <dd class="info">CFM Disability Indicator for 5-17 years</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Washington Group/United Nations Children’s Fund (UNICEF) – Child Functioning Module (CFM) Disability Indicator-Ages 5-17 – Derived Variable</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 5 YEARS -
+			17 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">With disabilities</td>
+                <td class="values" align="right">529</td>
+                <td class="values" align="right">529</td>
+                <td class="values">End of Section</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Without disabilities</td>
+                <td class="values" align="right">2257</td>
+                <td class="values" align="right">2786</td>
+                <td class="values">End of Section</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">8156</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ410">FNQ410 - Difficulty seeing even w/glasses</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ410</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty seeing even w/glasses</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Please look at card FNQ1. The next questions ask about difficulties {you/SP} may have doing certain activities because of a health problem. {Do you/Does SP} have difficulty seeing even if wearing glasses or contact lenses? Would you say no difficulty, some difficulty, a lot of difficulty, or {you/he/she/SP} cannot do this at all?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">4933</td>
+                <td class="values" align="right">4933</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">2834</td>
+                <td class="values" align="right">7767</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">351</td>
+                <td class="values" align="right">8118</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">18</td>
+                <td class="values" align="right">8136</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">8139</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">8142</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2800</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ430">FNQ430 - Difficulty hearing even w/hearing aids</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ430</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty hearing even w/hearing aids</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Do you/Does SP} have difficulty hearing even if using a hearing aid? [Would you say no difficulty, some difficulty, a lot of difficulty, or {you/he/she/SP} cannot do this at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">6147</td>
+                <td class="values" align="right">6147</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">1731</td>
+                <td class="values" align="right">7878</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">224</td>
+                <td class="values" align="right">8102</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">15</td>
+                <td class="values" align="right">8117</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">8119</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">24</td>
+                <td class="values" align="right">8143</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2799</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ440">FNQ440 - Difficulty walking or climbing steps</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ440</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty walking or climbing steps</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Do you/Does SP} have difficulty walking or climbing steps? [Would you say no difficulty, some difficulty, a lot of difficulty, or {you/he/she/SP} cannot do this at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">5478</td>
+                <td class="values" align="right">5478</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">1876</td>
+                <td class="values" align="right">7354</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">685</td>
+                <td class="values" align="right">8039</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">99</td>
+                <td class="values" align="right">8138</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">8139</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">8142</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2800</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ450">FNQ450 - Difficulty communicating</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ450</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty communicating</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Using {your/his/her/SP's} usual language, {do you/does SP} have difficulty communicating, for example, understanding or being understood? [Would you say no difficulty, some difficulty, a lot of difficulty, or {you/he/she/SP} cannot do this at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">6915</td>
+                <td class="values" align="right">6915</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">1075</td>
+                <td class="values" align="right">7990</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">136</td>
+                <td class="values" align="right">8126</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">14</td>
+                <td class="values" align="right">8140</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">8140</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">8142</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2800</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ460">FNQ460 - Difficulty remembering or concentrating</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ460</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty remembering or concentrating</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Do you/Does SP} have difficulty remembering or concentrating? [Would you say no difficulty, some difficulty, a lot of difficulty, or {you/he/she/SP} cannot do this at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">4352</td>
+                <td class="values" align="right">4352</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">3242</td>
+                <td class="values" align="right">7594</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">531</td>
+                <td class="values" align="right">8125</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">12</td>
+                <td class="values" align="right">8137</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">8140</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">8142</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2800</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ470">FNQ470 - Difficulty with self-care</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ470</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty with self-care</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Do you/Does SP} have difficulty with self-care, such as washing all over and dressing? [Would you say no difficulty, some difficulty, a lot of difficulty, or {you/he/she/SP} cannot do this at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">7421</td>
+                <td class="values" align="right">7421</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">594</td>
+                <td class="values" align="right">8015</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">95</td>
+                <td class="values" align="right">8110</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">28</td>
+                <td class="values" align="right">8138</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">8140</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">8141</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2801</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ480">FNQ480 - Difficulty raising a 2-liter bottle</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ480</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty raising a 2-liter bottle</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Do you/Does SP} have difficulty raising a 2 liter bottle of water or soda from waist to eye level? [Would you say no difficulty, some difficulty, a lot of difficulty, or {you/he/she/SP} cannot do this at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">7471</td>
+                <td class="values" align="right">7471</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">492</td>
+                <td class="values" align="right">7963</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">120</td>
+                <td class="values" align="right">8083</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">53</td>
+                <td class="values" align="right">8136</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">8138</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">8141</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2801</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ490">FNQ490 - Difficulty using hands and fingers</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ490</dd>
+            <dt>SAS Label: </dt>
+            <dd>Difficulty using hands and fingers</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Do you/Does SP} have difficulty using {your/his/her/SP's} hands and fingers, such as picking up small objects, for example, a button or pencil, or opening or closing containers or bottles? [Would you say no difficulty, some difficulty, a lot of difficulty, or {you/he/she/SP} cannot do this at all?]</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD FNQ1</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">No difficulty</td>
+                <td class="values" align="right">6651</td>
+                <td class="values" align="right">6651</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Some difficulty</td>
+                <td class="values" align="right">1191</td>
+                <td class="values" align="right">7842</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">A lot of difficulty</td>
+                <td class="values" align="right">277</td>
+                <td class="values" align="right">8119</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Cannot do at all</td>
+                <td class="values" align="right">19</td>
+                <td class="values" align="right">8138</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">8140</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">8141</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2801</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ510">FNQ510 - How often feel worried/nervous/anxious</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ510</dd>
+            <dt>SAS Label: </dt>
+            <dd>How often feel worried/nervous/anxious</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How often {do you/does SP} feel worried, nervous, or anxious? Would you say. . .</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Daily</td>
+                <td class="values" align="right">1712</td>
+                <td class="values" align="right">1712</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Weekly</td>
+                <td class="values" align="right">1614</td>
+                <td class="values" align="right">3326</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Monthly</td>
+                <td class="values" align="right">961</td>
+                <td class="values" align="right">4287</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">A few times a year</td>
+                <td class="values" align="right">2326</td>
+                <td class="values" align="right">6613</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Never</td>
+                <td class="values" align="right">1511</td>
+                <td class="values" align="right">8124</td>
+                <td class="values">FNQ530</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">6</td>
+                <td class="values" align="right">8130</td>
+                <td class="values">FNQ530</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">10</td>
+                <td class="values" align="right">8140</td>
+                <td class="values">FNQ530</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2802</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ520">FNQ520 - Level of feeling worried/nervous/anxious</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ520</dd>
+            <dt>SAS Label: </dt>
+            <dd>Level of feeling worried/nervous/anxious</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Thinking about the last time {you/SP} felt worried, nervous, or anxious, how would {you/he/she/SP} describe the level of these feelings? Would you say . . .</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">A little</td>
+                <td class="values" align="right">2328</td>
+                <td class="values" align="right">2328</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">A lot</td>
+                <td class="values" align="right">859</td>
+                <td class="values" align="right">3187</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Somewhere in between a little and a lot</td>
+                <td class="values" align="right">3418</td>
+                <td class="values" align="right">6605</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">6606</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">7</td>
+                <td class="values" align="right">6613</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">4329</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ530">FNQ530 - How often feel depressed</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ530</dd>
+            <dt>SAS Label: </dt>
+            <dd>How often feel depressed</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How often {do you/does SP} feel depressed? Would you say. . .</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Daily</td>
+                <td class="values" align="right">580</td>
+                <td class="values" align="right">580</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Weekly</td>
+                <td class="values" align="right">808</td>
+                <td class="values" align="right">1388</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Monthly</td>
+                <td class="values" align="right">852</td>
+                <td class="values" align="right">2240</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">A few times a year</td>
+                <td class="values" align="right">2770</td>
+                <td class="values" align="right">5010</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Never</td>
+                <td class="values" align="right">3105</td>
+                <td class="values" align="right">8115</td>
+                <td class="values">FNDADI</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">6</td>
+                <td class="values" align="right">8121</td>
+                <td class="values">FNDADI</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">17</td>
+                <td class="values" align="right">8138</td>
+                <td class="values">FNDADI</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2804</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNQ540">FNQ540 - Level of feeling depressed</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNQ540</dd>
+            <dt>SAS Label: </dt>
+            <dd>Level of feeling depressed</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Thinking about the last time {you/SP} felt depressed, how depressed did {you/he/she/SP} feel? Would you say. . .</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">A little</td>
+                <td class="values" align="right">2042</td>
+                <td class="values" align="right">2042</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">A lot</td>
+                <td class="values" align="right">714</td>
+                <td class="values" align="right">2756</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Somewhere in between a little and a lot</td>
+                <td class="values" align="right">2245</td>
+                <td class="values" align="right">5001</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">5002</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">8</td>
+                <td class="values" align="right">5010</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">5932</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNDADI">FNDADI - WG-SS Disability Indicator 18+</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNDADI</dd>
+            <dt>SAS Label: </dt>
+            <dd>WG-SS Disability Indicator 18+</dd>
+            <dt>English Text: </dt>
+            <dd class="info">WG-SS Disability Indicator 18+</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Washington Group – Short Set on Functioning Questionnaire (WG-SS) Adult Disability Indicator – Derived Variable</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">With disabilities</td>
+                <td class="values" align="right">1544</td>
+                <td class="values" align="right">1544</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Without disabilities</td>
+                <td class="values" align="right">6599</td>
+                <td class="values" align="right">8143</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2799</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="FNDAEDI">FNDAEDI - WG-SS Enhanced Disability Indicator 18+</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">FNDAEDI</dd>
+            <dt>SAS Label: </dt>
+            <dd>WG-SS Enhanced Disability Indicator 18+</dd>
+            <dt>English Text: </dt>
+            <dd class="info">WG-SS Enhanced Disability Indicator 18+</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">Washington Group Short Set on Functioning – Enhanced Questionnaire (WG-SS Enhanced)-Adult Enhanced Disability Indicator – Derived Variable</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">With disabilities</td>
+                <td class="values" align="right">1900</td>
+                <td class="values" align="right">1900</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Without disabilities</td>
+                <td class="values" align="right">6243</td>
+                <td class="values" align="right">8143</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2799</td>
+                <td class="values" align="right">10942</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+<div id="extension-mmplj"></div></body></html>

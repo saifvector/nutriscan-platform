@@ -1,0 +1,116 @@
+{
+  "high_risk_positive_case": {
+    "test_index": 7,
+    "predicted_probability": 0.564789074666737,
+    "actual_label": 1,
+    "top_contributing_features": [
+      {
+        "feature": "exam_waist_height_ratio",
+        "shap_value": 0.11920573150344084,
+        "feature_value": 0.742142398973701
+      },
+      {
+        "feature": "history_anemia",
+        "shap_value": 0.08057567407991778,
+        "feature_value": 1.0
+      },
+      {
+        "feature": "exam_pulse_rate",
+        "shap_value": -0.07602742016054664,
+        "feature_value": null
+      },
+      {
+        "feature": "history_thyroid_problem",
+        "shap_value": -0.07431275374228104,
+        "feature_value": 1.0
+      },
+      {
+        "feature": "lifestyle_smoked_100_cigarettes",
+        "shap_value": -0.0742734863530888,
+        "feature_value": 0.0
+      },
+      {
+        "feature": "exam_bmi",
+        "shap_value": 0.07315606846103243,
+        "feature_value": 35.4
+      },
+      {
+        "feature": "lifestyle_moderate_activity_minutes",
+        "shap_value": 0.05776291546045053,
+        "feature_value": null
+      },
+      {
+        "feature": "history_arthritis",
+        "shap_value": 0.053020953060983866,
+        "feature_value": 1.0
+      },
+      {
+        "feature": "history_liver_condition",
+        "shap_value": -0.04992537862537952,
+        "feature_value": 1.0
+      },
+      {
+        "feature": "demo_age_years",
+        "shap_value": 0.045688678536312755,
+        "feature_value": 70.0
+      }
+    ]
+  },
+  "low_risk_negative_case": {
+    "test_index": 0,
+    "predicted_probability": 0.46105320407048467,
+    "actual_label": 0,
+    "top_contributing_features": [
+      {
+        "feature": "demo_age_years",
+        "shap_value": -0.12585629299407783,
+        "feature_value": 24.0
+      },
+      {
+        "feature": "exam_pulse_rate",
+        "shap_value": -0.10903132618701604,
+        "feature_value": 66.66666666666667
+      },
+      {
+        "feature": "demo_poverty_ratio",
+        "shap_value": 0.10347830798710354,
+        "feature_value": 1.17
+      },
+      {
+        "feature": "lifestyle_smoked_100_cigarettes",
+        "shap_value": -0.09975739897499121,
+        "feature_value": 0.0
+      },
+      {
+        "feature": "exam_bmi",
+        "shap_value": -0.09808713339476749,
+        "feature_value": 29.4
+      },
+      {
+        "feature": "demo_race_ethnicity",
+        "shap_value": -0.09101747039883408,
+        "feature_value": 1.0
+      },
+      {
+        "feature": "symptom_poor_appetite",
+        "shap_value": 0.0887690482166977,
+        "feature_value": 1.0
+      },
+      {
+        "feature": "exam_waist_height_ratio",
+        "shap_value": -0.08226002514317475,
+        "feature_value": 0.60078607523863
+      },
+      {
+        "feature": "nar_calcium",
+        "shap_value": 0.08017114087473434,
+        "feature_value": 0.265
+      },
+      {
+        "feature": "lifestyle_moderate_activity_minutes",
+        "shap_value": 0.055290610449174174,
+        "feature_value": null
+      }
+    ]
+  }
+}

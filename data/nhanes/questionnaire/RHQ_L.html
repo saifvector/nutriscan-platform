@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm -->
+<html xml:lang="en" lang="en" xmlns="http://www.w3c.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <title>RHQ_L</title>
+    <meta name="title" content="NHANES August 2021-August 2023: Reproductive Health Data Documentation, Codebook, and Frequencies">
+    <link rel="stylesheet" href="./RHQ_L_files/documentation.css">
+  </head>
+  <body class="nhanes-doc">
+    <div id="toc">
+      <h3>Table of Contents</h3>
+      <div id="toc-scroll">
+        <ul>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#Component_Description">Component Description</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#Eligible_Sample">Eligible Sample</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#Interview_Setting_and_Mode_of_Administration">Interview Setting and Mode of Administration</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#Quality_Assurance_&amp;_Quality_Control">Quality Assurance &amp; Quality Control</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#Data_Processing_and_Editing">Data Processing and Editing</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#Analytic_Notes">Analytic Notes</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#Codebook">Codebook</a>
+            <ul id="CodebookLinks">
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#SEQN">SEQN - Respondent sequence number</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#RHQ010">RHQ010 - Age when first menstrual period occurred</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#RHQ031">RHQ031 - Had regular periods in past 12 months</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#RHD043">RHD043 - Reason not having regular periods</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#RHQ060">RHQ060 - Age at last menstrual period</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#RHQ078">RHQ078 - Ever treated for a pelvic infection/PID?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#RHQ131">RHQ131 - Ever been pregnant?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#RHD143">RHD143 - Are you pregnant now?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#RHD167">RHD167 - Total number of deliveries</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#RHQ200">RHQ200 - Now breastfeeding a child?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#RHD280">RHD280 - Had a hysterectomy?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#RHQ305">RHQ305 - Had both ovaries removed?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/RHQ_L.htm#RHQ332">RHQ332 - Age when both ovaries removed</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="PageHeader">
+        <h1>National Health and Nutrition Examination Survey</h1>
+        <h2>August 2021-August 2023 Data Documentation, Codebook, and Frequencies</h2>
+        <h3>Reproductive Health (RHQ_L)</h3>
+        <h4> Data File: RHQ_L.xpt</h4>
+        <h5 class="left">First Published: September 2024</h5>
+        <h5 class="right">Last Revised: NA</h5>
+      </div>
+      <div id="Sections">
+        <h2 id="Component_Description">Component Description</h2><p>The reproductive health questionnaire (variable name prefix RHQ) contains questions for females only. Questions on reproductive health include menstrual history, pregnancy history, current breastfeeding, and other reproductive conditions.</p><h2 id="Eligible_Sample">Eligible Sample</h2><p>&nbsp;Female participants aged 12 years and older were eligible.&nbsp; </p><h2 id="Interview_Setting_and_Mode_of_Administration">Interview Setting and Mode of Administration</h2><p>These questions were asked at the Mobile Examination Center (MEC) during the MEC Interview using the Audio Computer-Assisted Self-Interview (ACASI) system, in English and Spanish only. The interview was not administered to proxy informants due to the sensitive nature of the questions. In previous NHANES cycles, reproductive health questions were asked face-to-face using the Computer Assisted Personal Interview system.</p><h2 id="Quality_Assurance_&amp;_Quality_Control">Quality Assurance &amp; Quality Control</h2><p>The ACASI system is programmed with built-in consistency checks to reduce data entry errors. ACASI also uses online help screens to assist interviewers in defining key terms used in the questionnaire.
+</p><h2 id="Data_Processing_and_Editing">Data Processing and Editing</h2><p>&nbsp;Edits were made to ensure the completeness, consistency, and analytic usefulness of the data. </p><h2 id="Analytic_Notes">Analytic Notes</h2><p>This public use data file excludes select variables related to pregnancy and hysterectomy for females aged 12-19 and older than 44 years due to disclosure risks. A data file with all reproductive health related variables for all females 12 years and older is available in the <a href="https://www.cdc.gov/rdc/" target="_blank">NCHS Research Data Center</a>.</p>
+<p>Several questions were dropped in NHANES August 2021-August 2023 and are not included in this data file: RHQ.018, RHQ.020, RHQ.070, RHQ.071, RHQ.073A—RHQ.073N, RHQ.074, RHQ.076, RHQ.160, RHQ.162, RHQ.171, RHQ.172, RHQ.180, RHQ.190, RHQ.197, RHQ.421, RHQ.540,RHQ.542A—RHQ542D, RHQ.554. RHQ.570. </p>
+<p>RHD143: Current pregnancy status from question: “are you pregnant now?” Please note that these responses may differ from the pregnancy status variable RIDEXPRG in the DEMO data file. </p>
+<p>Please refer to the <a href="https://wwwn.cdc.gov/nchs/nhanes/analyticguidelines.aspx" target="_blank">NHANES Analytic Guidelines</a> and the on-line <a href="https://wwwn.cdc.gov/nchs/nhanes/tutorials/" target="_blank">NHANES Tutorial</a> for further details on the use of sample weights and other analytic issues.</p></div>
+      <div id="Codebook">
+        <h2>Codebook and Frequencies</h2>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SEQN">SEQN - Respondent sequence number</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SEQN</dd>
+            <dt>SAS Label: </dt>
+            <dd>Respondent sequence number</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Respondent sequence number.</dd>
+            <dt>Target: </dt>
+            <dd> Females only 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="RHQ010">RHQ010 - Age when first menstrual period occurred</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">RHQ010</dd>
+            <dt>SAS Label: </dt>
+            <dd>Age when first menstrual period occurred</dd>
+            <dt>English Text: </dt>
+            <dd class="info">The next series of questions are about {your/SP's} reproductive history.  I will begin by asking about {your/SP's} periods or menstrual cycles.  How old {were you/was SP} when {you/SP} had {your/her} first menstrual period?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">CODE "0" IF HAVEN'T STARTED YET.  CAPI INSTRUCTION: SOFT EDIT VALUES: 8-25 YEARS.  HARD EDIT VALUES:  AGE OF 1ST PERIOD CANNOT BE GREATER THAN CURRENT AGE.  ENTER AGE IN YEARS.</dd>
+            <dt>Target: </dt>
+            <dd> Females only 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">6 to 19</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">3336</td>
+                <td class="values" align="right">3336</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">Hasn't started yet</td>
+                <td class="values" align="right">28</td>
+                <td class="values" align="right">3364</td>
+                <td class="values">End of Section</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">20</td>
+                <td class="values">20 years or older</td>
+                <td class="values" align="right">5</td>
+                <td class="values" align="right">3369</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">777</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">3371</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">999</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">9</td>
+                <td class="values" align="right">3380</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">537</td>
+                <td class="values" align="right">3917</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="RHQ031">RHQ031 - Had regular periods in past 12 months</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">RHQ031</dd>
+            <dt>SAS Label: </dt>
+            <dd>Had regular periods in past 12 months</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Have you/Has SP} had at least one menstrual period in the past 12 months? (Please do not include bleedings caused by medical conditions, hormone therapy, or surgeries.)</dd>
+            <dt>Target: </dt>
+            <dd> Females only 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">1496</td>
+                <td class="values" align="right">1496</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">1854</td>
+                <td class="values" align="right">3350</td>
+                <td class="values">RHD043</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">3351</td>
+                <td class="values">RHQ060</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">3355</td>
+                <td class="values">RHQ060</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">562</td>
+                <td class="values" align="right">3917</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="RHD043">RHD043 - Reason not having regular periods</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">RHD043</dd>
+            <dt>SAS Label: </dt>
+            <dd>Reason not having regular periods</dd>
+            <dt>English Text: </dt>
+            <dd class="info">What is the reason that {you have/SP has} not had a period in the past 12 months?</dd>
+            <dt>Target: </dt>
+            <dd> Females only 20 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Pregnancy</td>
+                <td class="values" align="right">6</td>
+                <td class="values" align="right">6</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Breast feeding</td>
+                <td class="values" align="right">6</td>
+                <td class="values" align="right">12</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Hysterectomy</td>
+                <td class="values" align="right">502</td>
+                <td class="values" align="right">514</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Menopause/Change of life</td>
+                <td class="values" align="right">1136</td>
+                <td class="values" align="right">1650</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Other</td>
+                <td class="values" align="right">177</td>
+                <td class="values" align="right">1827</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">1830</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">1834</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2083</td>
+                <td class="values" align="right">3917</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="RHQ060">RHQ060 - Age at last menstrual period</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">RHQ060</dd>
+            <dt>SAS Label: </dt>
+            <dd>Age at last menstrual period</dd>
+            <dt>English Text: </dt>
+            <dd class="info">About how old {were you/was SP} when {you/SP} had {your/her} last menstrual period?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">ENTER AGE IN YEARS.</dd>
+            <dt>Target: </dt>
+            <dd> Females only 12 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">20 to 59</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">1774</td>
+                <td class="values" align="right">1774</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">19</td>
+                <td class="values">19 years or under</td>
+                <td class="values" align="right">30</td>
+                <td class="values" align="right">1804</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">60</td>
+                <td class="values">60 years or older</td>
+                <td class="values" align="right">29</td>
+                <td class="values" align="right">1833</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">777</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">1833</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">999</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">6</td>
+                <td class="values" align="right">1839</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2078</td>
+                <td class="values" align="right">3917</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="RHQ078">RHQ078 - Ever treated for a pelvic infection/PID?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">RHQ078</dd>
+            <dt>SAS Label: </dt>
+            <dd>Ever treated for a pelvic infection/PID?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Have you/Has SP} ever been treated for an infection in {your/her} fallopian tubes, uterus or ovaries, also called a pelvic infection, pelvic inflammatory disease, or PID?</dd>
+            <dt>Target: </dt>
+            <dd> Females only 18 YEARS -
+			59 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">76</td>
+                <td class="values" align="right">76</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">1587</td>
+                <td class="values" align="right">1663</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">1663</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">1663</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2254</td>
+                <td class="values" align="right">3917</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="RHQ131">RHQ131 - Ever been pregnant?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">RHQ131</dd>
+            <dt>SAS Label: </dt>
+            <dd>Ever been pregnant?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">The next questions are about {your/SP's} pregnancy history. {Have you/Has SP ever been pregnant? Please include (current pregnancy,) live births, miscarriages, stillbirths, tubal pregnancies and abortions.</dd>
+            <dt>Target: </dt>
+            <dd> Females only 20 YEARS -
+			59 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">1114</td>
+                <td class="values" align="right">1114</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">429</td>
+                <td class="values" align="right">1543</td>
+                <td class="values">RHD280</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">1543</td>
+                <td class="values">RHD280</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">1543</td>
+                <td class="values">RHD280</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2374</td>
+                <td class="values" align="right">3917</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="RHD143">RHD143 - Are you pregnant now?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">RHD143</dd>
+            <dt>SAS Label: </dt>
+            <dd>Are you pregnant now?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Are you/Is SP} pregnant now?</dd>
+            <dt>Target: </dt>
+            <dd> Females only 20 YEARS -
+			44 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">30</td>
+                <td class="values" align="right">30</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">536</td>
+                <td class="values" align="right">566</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">566</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">567</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">3350</td>
+                <td class="values" align="right">3917</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="RHD167">RHD167 - Total number of deliveries</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">RHD167</dd>
+            <dt>SAS Label: </dt>
+            <dd>Total number of deliveries</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How many deliveries {have you/has SP} had?  (Please count all vaginal and Cesarean deliveries and count stillbirths as well as live births.)</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">COUNT THE NUMBER OF DELIVERIES, NOT THE NUMBER OF LIVE-BORN CHILDREN. FOR EXAMPLE, IF SP DELIVERED TWINS OR HAD ANY OTHER MULTIPLE BIRTH, COUNT AS A SINGLE DELIVERY.</dd>
+            <dt>Target: </dt>
+            <dd> Females only 20 YEARS -
+			59 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 4</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">1047</td>
+                <td class="values" align="right">1047</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">5 or more</td>
+                <td class="values" align="right">67</td>
+                <td class="values" align="right">1114</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">1114</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">1114</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2803</td>
+                <td class="values" align="right">3917</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="RHQ200">RHQ200 - Now breastfeeding a child?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">RHQ200</dd>
+            <dt>SAS Label: </dt>
+            <dd>Now breastfeeding a child?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Are you/Is SP} now breast feeding a child?</dd>
+            <dt>Target: </dt>
+            <dd> Females only 20 YEARS -
+			44 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">28</td>
+                <td class="values" align="right">28</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">498</td>
+                <td class="values" align="right">526</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">526</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">526</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">3391</td>
+                <td class="values" align="right">3917</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="RHD280">RHD280 - Had a hysterectomy?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">RHD280</dd>
+            <dt>SAS Label: </dt>
+            <dd>Had a hysterectomy?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Have you/Has SP} had a hysterectomy that is, surgery to remove {your/her} uterus or womb?</dd>
+            <dt>Target: </dt>
+            <dd> Females only 20 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">653</td>
+                <td class="values" align="right">653</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">2198</td>
+                <td class="values" align="right">2851</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2851</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">2853</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1064</td>
+                <td class="values" align="right">3917</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="RHQ305">RHQ305 - Had both ovaries removed?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">RHQ305</dd>
+            <dt>SAS Label: </dt>
+            <dd>Had both ovaries removed?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">{Have you/Has SP} had both of {your/her} ovaries removed (either when {you/she} had {your/her} uterus removed or at another time)?</dd>
+            <dt>Target: </dt>
+            <dd> Females only 20 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">359</td>
+                <td class="values" align="right">359</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">2485</td>
+                <td class="values" align="right">2844</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">2846</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">2850</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1067</td>
+                <td class="values" align="right">3917</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="RHQ332">RHQ332 - Age when both ovaries removed</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">RHQ332</dd>
+            <dt>SAS Label: </dt>
+            <dd>Age when both ovaries removed</dd>
+            <dt>English Text: </dt>
+            <dd class="info">How old {were you/was SP} when {you/she} had {your/her} ovaries removed or last ovary removed if removed at different times?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">ENTER AGE IN YEARS.</dd>
+            <dt>Target: </dt>
+            <dd> Females only 20 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">22 to 59</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">308</td>
+                <td class="values" align="right">308</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">19</td>
+                <td class="values">19 years or under</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">309</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">60</td>
+                <td class="values">60 years or older</td>
+                <td class="values" align="right">46</td>
+                <td class="values" align="right">355</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">777</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">355</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">999</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">359</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">3558</td>
+                <td class="values" align="right">3917</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+<div id="extension-mmplj"></div></body></html>

@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm -->
+<html xml:lang="en" lang="en" xmlns="http://www.w3c.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <title>ALQ_L</title>
+    <meta name="title" content="NHANES August 2021-August 2023: Alcohol Use Data Documentation, Codebook, and Frequencies">
+    <link rel="stylesheet" href="./ALQ_L_files/documentation.css">
+  </head>
+  <body class="nhanes-doc">
+    <div id="toc">
+      <h3>Table of Contents</h3>
+      <div id="toc-scroll">
+        <ul>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm#Component_Description">Component Description</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm#Eligible_Sample">Eligible Sample</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm#Interview_Setting_and_Mode_of_Administration">Interview Setting and Mode of Administration</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm#Quality_Assurance_&amp;_Quality_Control">Quality Assurance &amp; Quality Control</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm#Data_Processing_and_Editing">Data Processing and Editing</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm#Analytic_Notes">Analytic Notes</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm#Codebook">Codebook</a>
+            <ul id="CodebookLinks">
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm#SEQN">SEQN - Respondent sequence number</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm#ALQ111">ALQ111 - Ever had a drink of any kind of alcohol</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm#ALQ121">ALQ121 - Past 12 mos how often drink alc bev</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm#ALQ130">ALQ130 - Avg # alcoholic drinks/day/past 12 mos</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm#ALQ142">ALQ142 - # days have 4/5 drinks/past 12 mos</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm#ALQ270">ALQ270 - # times 4/5 drinks in 2hrs/past 12 mos</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm#ALQ280">ALQ280 - # times 8+ drinks in 1 day/past 12 mos</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm#ALQ151">ALQ151 - Ever have 4/5 or more drinks every day</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALQ_L.htm#ALQ170">ALQ170 - # times 4/5 drinks on occasion/past mo</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="PageHeader">
+        <h1>National Health and Nutrition Examination Survey</h1>
+        <h2>August 2021-August 2023 Data Documentation, Codebook, and Frequencies</h2>
+        <h3>Alcohol Use (ALQ_L)</h3>
+        <h4> Data File: ALQ_L.xpt</h4>
+        <h5 class="left">First Published: September 2024</h5>
+        <h5 class="right">Last Revised: NA</h5>
+      </div>
+      <div id="Sections">
+        <h2 id="Component_Description">Component Description</h2><p>The alcohol use questionnaire (variable name prefix ALQ_L) file provides data on lifetime and current use (i.e., past 12 months, past 30 days). Questions are not specific to the type of alcohol used.</p><h2 id="Eligible_Sample">Eligible Sample</h2><p>All participants ages 12 years and older in the August 2021-August 2023 sample were eligible; however, only data from participants who were ages 18 and over are included in this file.</p>
+<p>A special use data file for participants ages 12-17, ALQY_L_R, is available through the <a href="https://www.cdc.gov/rdc/" target="_blank">NCHS Research Data Center (RDC)</a>.</p><h2 id="Interview_Setting_and_Mode_of_Administration">Interview Setting and Mode of Administration</h2><p>The ALQ section was administered at the Mobile Examination Center (MEC) during the MEC Interview, including a question on binge drinking frequency in the past 30 days (i.e., ALQ170), which was previously asked at the end of the in-person dietary interview in the MEC. For adults 18 years and older, questions were self-administered using the Audio-Computer Assisted Self-Interview (ACASI) system. The ACASI enables participants to hear questions through headphones as well as read questions on the computer screen. Participants move at their own speed and touch the screen to indicate their response. For adolescents 12 to 17 whose data are available via the NCHS RDC, questions were also self-administered using the ACASI system.&nbsp;</p>
+<p>The NHANES <a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/questionnaires/ALQ-ACASI-L-508.pdf" target="_blank">August 2021-August 2023</a> ALQ is available on the NHANES website.&nbsp;</p><h2 id="Quality_Assurance_&amp;_Quality_Control">Quality Assurance &amp; Quality Control</h2><p>The ACASI system is programmed with built-in consistency checks to reduce data entry errors. ACASI also uses online help screens to assist participants in defining key terms used in the questionnaire.</p>
+<p>For details on the QA/QC process for this component, please refer to the August 2021-August 2023 <a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/manuals/2021-Dec-MEC-ACASI-Procedures-508.pdf" target="_blank">MEC ACASI Procedures Manual</a> on the <a href="https://www.cdc.gov/nchs/nhanes/" target="_blank">NHANES website</a>.<br>
+</p><h2 id="Data_Processing_and_Editing">Data Processing and Editing</h2><p>The data were edited for completeness, consistency, and illogical values. Because the data are based on self-reports, not all inconsistencies could be resolved. It is recommended that analysts review the data carefully prior to analysis.</p><h2 id="Analytic_Notes">Analytic Notes</h2><p>The NHANES alcohol use questions for adults were not changed between the 2017-March 2020 and August 2021-August 2023 data collection cycles. However, question ALQ290 (i.e., “During the past 12 months, about how often did {you/SP} have 12 or more drinks in a single day?”) was removed from the August 2021-August 2023 questionnaire.</p>
+<p>The NHANES August 2021-August 2023 alcohol use data were collected in the MEC; therefore, exam sample weights should be used for the analyses. Please refer to the <a href="https://wwwn.cdc.gov/nchs/nhanes/analyticguidelines.aspx" target="_blank">NHANES Analytic Guidelines</a> and the on-line <a href="https://wwwn.cdc.gov/nchs/nhanes/tutorials/" target="_blank">NHANES Tutorial</a> for details on the use of sample weights and other analytic issues.<br>
+</p></div>
+      <div id="Codebook">
+        <h2>Codebook and Frequencies</h2>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SEQN">SEQN - Respondent sequence number</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SEQN</dd>
+            <dt>SAS Label: </dt>
+            <dd>Respondent sequence number</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Respondent sequence number.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="ALQ111">ALQ111 - Ever had a drink of any kind of alcohol</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">ALQ111</dd>
+            <dt>SAS Label: </dt>
+            <dd>Ever had a drink of any kind of alcohol</dd>
+            <dt>English Text: </dt>
+            <dd class="info">In your entire life, have you had at least 1 drink of any kind of alcohol, not counting small tastes or sips? By a drink, I mean a 12 oz. beer, a 5 oz. glass of wine, or one and a half ounces of liquor.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">4918</td>
+                <td class="values" align="right">4918</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">558</td>
+                <td class="values" align="right">5476</td>
+                <td class="values">End of Section</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">5476</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">5</td>
+                <td class="values" align="right">5481</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">856</td>
+                <td class="values" align="right">6337</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="ALQ121">ALQ121 - Past 12 mos how often drink alc bev</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">ALQ121</dd>
+            <dt>SAS Label: </dt>
+            <dd>Past 12 mos how often drink alc bev</dd>
+            <dt>English Text: </dt>
+            <dd class="info">During the past 12 months, about how often did you drink any type of alcoholic beverage?
+PROBE: In other words, how many days per week, per month, or per year did you drink?
+</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">Never in the last year</td>
+                <td class="values" align="right">836</td>
+                <td class="values" align="right">836</td>
+                <td class="values">ALQ151</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Every day</td>
+                <td class="values" align="right">163</td>
+                <td class="values" align="right">999</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Nearly every day</td>
+                <td class="values" align="right">301</td>
+                <td class="values" align="right">1300</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">3 to 4 times a week</td>
+                <td class="values" align="right">458</td>
+                <td class="values" align="right">1758</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">2 times a week</td>
+                <td class="values" align="right">483</td>
+                <td class="values" align="right">2241</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Once a week</td>
+                <td class="values" align="right">420</td>
+                <td class="values" align="right">2661</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">6</td>
+                <td class="values">2 to 3 times a month</td>
+                <td class="values" align="right">574</td>
+                <td class="values" align="right">3235</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Once a month</td>
+                <td class="values" align="right">362</td>
+                <td class="values" align="right">3597</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">8</td>
+                <td class="values">7 to 11 times in the last year</td>
+                <td class="values" align="right">261</td>
+                <td class="values" align="right">3858</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">3 to 6 times in the last year</td>
+                <td class="values" align="right">517</td>
+                <td class="values" align="right">4375</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">10</td>
+                <td class="values">1 to 2 times in the last year</td>
+                <td class="values" align="right">542</td>
+                <td class="values" align="right">4917</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">4919</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">4922</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1415</td>
+                <td class="values" align="right">6337</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="ALQ130">ALQ130 - Avg # alcoholic drinks/day/past 12 mos</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">ALQ130</dd>
+            <dt>SAS Label: </dt>
+            <dd>Avg # alcoholic drinks/day/past 12 mos</dd>
+            <dt>English Text: </dt>
+            <dd class="info">During the past 12 months, on those days that you drank alcoholic beverages, on average, how many drinks did you have? (By a drink, I mean a 12 oz. beer, a 5 oz. glass of wine, or one and a half ounces of liquor.)</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD ALQ1 
+IF LESS THAN 1 DRINK, ENTER '1'.  IF 95 DRINKS OR MORE, ENTER '95'.
+ CAPI INSTRUCTION: SOFT EDIT:  IF RESPONSE &gt;=20, THEN DISPLAY "YOU SAID ON THE DAYS THAT YOU DRINK YOU HAVE ON AVERAGE {DISPLAY QUANTITY} DRINKS, IS THAT CORRECT?"
+HARD EDIT:  Range - 1-95
+ENTER # OF DRINKS</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+            <dt>Hard Edits: </dt>
+            <dd class="info">1 to 14</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1 to 14</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">4035</td>
+                <td class="values" align="right">4035</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">15</td>
+                <td class="values">15 drinks or more</td>
+                <td class="values" align="right">20</td>
+                <td class="values" align="right">4055</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">777</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">4059</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">999</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">10</td>
+                <td class="values" align="right">4069</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2268</td>
+                <td class="values" align="right">6337</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="ALQ142">ALQ142 - # days have 4/5 drinks/past 12 mos</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">ALQ142</dd>
+            <dt>SAS Label: </dt>
+            <dd># days have 4/5 drinks/past 12 mos</dd>
+            <dt>English Text: </dt>
+            <dd class="info">During the past 12 months, about how often did you have {DISPLAY NUMBER} or more drinks of any alcoholic beverage? PROBE: In other words, how many days per week, per month, or per year did you have {DISPLAY NUMBER} or more drinks in a single day?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD ALQ2
+INTERVIEWER INSTRUCTION: IF SP ANSWERS NONE, PLEASE CODE '0', NEVER IN THE LAST YEAR.
+CAPI INSTRUCTION:
+IF SP = MALE, DISPLAY = 5
+IF SP = FEMALE, DISPLAY = 4
+HARD EDIT: ALQ142 CANNOT HAVE A LOWER CODED VALUE THAN ALQ121, UNLESS ALQ142 IS CODED '0'.
+ERROR MESSAGE: "SP HAS REPORTED DRINKING MORE TIMES IN THIS QUESTION THAN WAS PREVIOUSLY REPORTED IN ALQ121."</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">Never in the last year</td>
+                <td class="values" align="right">1709</td>
+                <td class="values" align="right">1709</td>
+                <td class="values">ALQ151</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Every day</td>
+                <td class="values" align="right">39</td>
+                <td class="values" align="right">1748</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Nearly every day</td>
+                <td class="values" align="right">63</td>
+                <td class="values" align="right">1811</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">3 to 4 times a week</td>
+                <td class="values" align="right">122</td>
+                <td class="values" align="right">1933</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">2 times a week</td>
+                <td class="values" align="right">114</td>
+                <td class="values" align="right">2047</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Once a week</td>
+                <td class="values" align="right">207</td>
+                <td class="values" align="right">2254</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">6</td>
+                <td class="values">2 to 3 times a month</td>
+                <td class="values" align="right">249</td>
+                <td class="values" align="right">2503</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Once a month</td>
+                <td class="values" align="right">290</td>
+                <td class="values" align="right">2793</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">8</td>
+                <td class="values">7 to 11 times in the last year</td>
+                <td class="values" align="right">142</td>
+                <td class="values" align="right">2935</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">3 to 6 times in the last year</td>
+                <td class="values" align="right">398</td>
+                <td class="values" align="right">3333</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">10</td>
+                <td class="values">1 to 2 times in the last year</td>
+                <td class="values" align="right">729</td>
+                <td class="values" align="right">4062</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">8</td>
+                <td class="values" align="right">4070</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">12</td>
+                <td class="values" align="right">4082</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2255</td>
+                <td class="values" align="right">6337</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="ALQ270">ALQ270 - # times 4/5 drinks in 2hrs/past 12 mos</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">ALQ270</dd>
+            <dt>SAS Label: </dt>
+            <dd># times 4/5 drinks in 2hrs/past 12 mos</dd>
+            <dt>English Text: </dt>
+            <dd class="info">During the past 12 months, about how often did you have {DISPLAY NUMBER} or more drinks in a period of two hours or less?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD ALQ2
+CAPI INSTRUCTION:
+IF SP = MALE, DISPLAY = 5
+IF SP= FEMALE, DISPLAY = 4
+HARD EDIT: ALQ270 CANNOT HAVE A LOWER CODED VALUE THAN ALQ121, UNLESS ALQ.270 IS CODED '0'.
+ERROR MESSAGE:  "SP HAS REPORTED DRINKING MORE TIMES IN THIS QUESTION THAN WAS PREVIOUSLY REPORTED IN ALQ121."</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">Never in the last year</td>
+                <td class="values" align="right">1020</td>
+                <td class="values" align="right">1020</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Every day</td>
+                <td class="values" align="right">12</td>
+                <td class="values" align="right">1032</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Nearly every day</td>
+                <td class="values" align="right">34</td>
+                <td class="values" align="right">1066</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">3 to 4 times a week</td>
+                <td class="values" align="right">57</td>
+                <td class="values" align="right">1123</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">2 times a week</td>
+                <td class="values" align="right">71</td>
+                <td class="values" align="right">1194</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Once a week</td>
+                <td class="values" align="right">99</td>
+                <td class="values" align="right">1293</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">6</td>
+                <td class="values">2 to 3 times a month</td>
+                <td class="values" align="right">128</td>
+                <td class="values" align="right">1421</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Once a month</td>
+                <td class="values" align="right">183</td>
+                <td class="values" align="right">1604</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">8</td>
+                <td class="values">7 to 11 times in the last year</td>
+                <td class="values" align="right">79</td>
+                <td class="values" align="right">1683</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">3 to 6 times in the last year</td>
+                <td class="values" align="right">163</td>
+                <td class="values" align="right">1846</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">10</td>
+                <td class="values">1 to 2 times in the last year</td>
+                <td class="values" align="right">507</td>
+                <td class="values" align="right">2353</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">2357</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">9</td>
+                <td class="values" align="right">2366</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">3971</td>
+                <td class="values" align="right">6337</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="ALQ280">ALQ280 - # times 8+ drinks in 1 day/past 12 mos</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">ALQ280</dd>
+            <dt>SAS Label: </dt>
+            <dd># times 8+ drinks in 1 day/past 12 mos</dd>
+            <dt>English Text: </dt>
+            <dd class="info">During the past 12 months, about how often did you have 8 or more drinks in a single day?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">HAND CARD ALQ2
+
+HARD EDIT: ALQ280 CANNOT HAVE A LOWER CODED VALUE THAN ALQ121, UNLESS ALQ.280 IS CODED '0'.
+ERROR MESSAGE:  "SP HAS REPORTED DRINKING MORE TIMES IN THIS QUESTION THAN WAS PREVIOUSLY REPORTED IN ALQ121."</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">Never in the last year</td>
+                <td class="values" align="right">1391</td>
+                <td class="values" align="right">1391</td>
+                <td class="values">ALQ151</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Every day</td>
+                <td class="values" align="right">12</td>
+                <td class="values" align="right">1403</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Nearly every day</td>
+                <td class="values" align="right">21</td>
+                <td class="values" align="right">1424</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">3 to 4 times a week</td>
+                <td class="values" align="right">36</td>
+                <td class="values" align="right">1460</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">2 times a week</td>
+                <td class="values" align="right">49</td>
+                <td class="values" align="right">1509</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Once a week</td>
+                <td class="values" align="right">74</td>
+                <td class="values" align="right">1583</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">6</td>
+                <td class="values">2 to 3 times a month</td>
+                <td class="values" align="right">82</td>
+                <td class="values" align="right">1665</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Once a month</td>
+                <td class="values" align="right">122</td>
+                <td class="values" align="right">1787</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">8</td>
+                <td class="values">7 to 11 times in the last year</td>
+                <td class="values" align="right">80</td>
+                <td class="values" align="right">1867</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">3 to 6 times in the last year</td>
+                <td class="values" align="right">114</td>
+                <td class="values" align="right">1981</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">10</td>
+                <td class="values">1 to 2 times in the last year</td>
+                <td class="values" align="right">371</td>
+                <td class="values" align="right">2352</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">77</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">2355</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">99</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">7</td>
+                <td class="values" align="right">2362</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">3975</td>
+                <td class="values" align="right">6337</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="ALQ151">ALQ151 - Ever have 4/5 or more drinks every day</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">ALQ151</dd>
+            <dt>SAS Label: </dt>
+            <dd>Ever have 4/5 or more drinks every day</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Was there ever a time or times in your life when you drank {DISPLAY NUMBER} or more drinks of any kind of alcoholic beverage almost every day?</dd>
+            <dt class="info">English Instructions: </dt>
+            <dd class="info">CAPI INSTRUCTION:
+IF SP = MALE, DISPLAY = 5
+IF SP = FEMALE, DISPLAY = 4</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">916</td>
+                <td class="values" align="right">916</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">3979</td>
+                <td class="values" align="right">4895</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">4896</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">5</td>
+                <td class="values" align="right">4901</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1436</td>
+                <td class="values" align="right">6337</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="ALQ170">ALQ170 - # times 4/5 drinks on occasion/past mo</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">ALQ170</dd>
+            <dt>SAS Label: </dt>
+            <dd># times 4/5 drinks on occasion/past mo</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Considering all types of alcoholic beverages, during the past 30 days, how many times did you have {DISPLAY NUMBER} or more drinks on an occasion?</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 18 YEARS -
+			150 YEARS</dd>
+            <dt>Hard Edits: </dt>
+            <dd class="info">0 to 20</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 20</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">2309</td>
+                <td class="values" align="right">2309</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">30</td>
+                <td class="values">More than 20 times</td>
+                <td class="values" align="right">43</td>
+                <td class="values" align="right">2352</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">777</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">2355</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">999</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">2358</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">3979</td>
+                <td class="values" align="right">6337</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+<div id="extension-mmplj"></div></body></html>

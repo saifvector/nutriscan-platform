@@ -1,0 +1,2925 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm -->
+<html xml:lang="en" lang="en" xmlns="http://www.w3c.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <title>BAX_L</title>
+    <meta name="title" content="NHANES August 2021-August 2023: Balance  Data Documentation, Codebook, and Frequencies">
+    <link rel="stylesheet" href="./BAX_L_files/documentation.css">
+  </head>
+  <body class="nhanes-doc">
+    <div id="toc">
+      <h3>Table of Contents</h3>
+      <div id="toc-scroll">
+        <ul>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#Component_Description">Component Description</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#Eligible_Sample">Eligible Sample</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#Protocol_and_Procedure">Protocol and Procedure</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#Quality_Assurance_&amp;_Quality_Control">Quality Assurance &amp; Quality Control</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#Data_Processing_and_Editing">Data Processing and Editing</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#Analytic_Notes">Analytic Notes</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#References">References</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#Codebook">Codebook</a>
+            <ul id="CodebookLinks">
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#SEQN">SEQN - Respondent sequence number</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXMSTAT">BAXMSTAT - MRT exam status</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXRXNC">BAXRXNC - Reason for partial MRT exam</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXRXND">BAXRXND - Reason for not done MRT exam</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAX5STAT">BAX5STAT - Eligibility for Condition 5</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAQ110">BAQ110 - Can stand on your own?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAQ121">BAQ121 - Are you currently wearing a leg brace?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAQ125">BAQ125 - Injury to foot, leg, or hip</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAQ132">BAQ132 - Problems with dizzy, past 24 hours</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAQ140">BAQ140 - Last 12 months, fallen due to dizziness</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAQ150">BAQ150 - Do you have neck pain now?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAQ160">BAQ160 - Have you ever had surgery on your neck?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAQ170">BAQ170 - Neck problem lasted more than 6 weeks</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAQ201">BAQ201 - Can you move head 30 degrees left/right?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAQ173">BAQ173 - Are you okay to begin this balance test?</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXPF11">BAXPF11 - MRT cond. 1, trial 1, eyes open</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXTC11">BAXTC11 - MRT cond. 1, trial 1, time</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAARFC11">BAARFC11 - MRT cond. 1, trial 1, reason stopped</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXPF12">BAXPF12 - MRT cond. 1, trial 2, eyes open</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXTC12">BAXTC12 - MRT cond. 1, trial 2, time</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAARFC12">BAARFC12 - MRT cond. 1, trial 2, reason stopped</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXPF21">BAXPF21 - MRT cond. 2, trial 1, eyes closed</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXTC21">BAXTC21 - MRT cond. 2, trial 1, time</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAARFC21">BAARFC21 - MRT cond. 2, trial 1, reason stopped</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXPF22">BAXPF22 - MRT cond. 2, trial 2, eyes closed</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXTC22">BAXTC22 - MRT cond. 2, trial 2, time</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAARFC22">BAARFC22 - MRT cond. 2, trial 2, reason stopped</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXPF31">BAXPF31 - MRT cond. 3, trial 1, eyes open</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXTC31">BAXTC31 - MRT cond. 3, trial 1, time</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAARFC31">BAARFC31 - MRT cond. 3, trial 1, reason stopped</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXPF32">BAXPF32 - MRT cond. 3, trial 2, eyes open</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXTC32">BAXTC32 - MRT cond. 3, trial 2, time</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAARFC32">BAARFC32 - MRT cond. 3, trial 2, reason stopped</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXPF41">BAXPF41 - MRT cond. 4, trial 1, eyes closed</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXTC41">BAXTC41 - MRT cond. 4, trial 1, time</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAARFC41">BAARFC41 - MRT cond. 4, trial 1, reason stopped</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXPF42">BAXPF42 - MRT cond. 4, trial 2, eyes closed</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXTC42">BAXTC42 - MRT cond. 4, trial 2, time</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAARFC42">BAARFC42 - MRT cond. 4, trial 2, reason stopped</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXPF51">BAXPF51 - MRT cond. 5, trial 1, eyes closed</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXTC51">BAXTC51 - MRT cond. 5, trial 1, time</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAARFC51">BAARFC51 - MRT cond. 5, trial 1, reason stopped</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXPF52">BAXPF52 - MRT cond. 5, trial 2, eyes closed</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAXTC52">BAXTC52 - MRT cond. 5, trial 2, time</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BAX_L.htm#BAARFC52">BAARFC52 - MRT cond. 5, trial 2, reason stopped</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="PageHeader">
+        <h1>National Health and Nutrition Examination Survey</h1>
+        <h2>August 2021-August 2023 Data Documentation, Codebook, and Frequencies</h2>
+        <h3>Balance  (BAX_L)</h3>
+        <h4> Data File: BAX_L.xpt</h4>
+        <h5 class="left">First Published: October 2024</h5>
+        <h5 class="right">Last Revised: NA</h5>
+      </div>
+      <div id="Sections">
+        <h2 id="Component_Description">Component Description</h2><p>The ability to maintain balance is essential to nearly all activities associated with daily living. The balance system enables us to sense where we are in space and to maintain our posture and equilibrium while we are still or moving. Impairment of the balance system can be a major disabling condition for those who are affected. The control of balance requires the integration of information from multiple sensory and motor systems by the central nervous system (CNS). Balance receptors in the inner ear (the vestibular system) provide information to the CNS about head and body movements. The eyes (visual system) provide input regarding the body’s orientation within the environment and about motion within the environment. The position and motion sensors of the muscles and joints, and the touch receptors of the extremities (proprioceptive system), send signals regarding bodily position, particularly in relation to the support surface. The CNS integrates all this information, determines the body’s spatial orientation, and sends appropriate neural messages to the motor system to activate movements that will maintain equilibrium and keep our vision clear when we are moving. </p>
+<p>In NHANES August 2021–August 2023, the modified Romberg Test of Standing Balance on Firm and Complaint Support Surfaces (MRT) (Weber, 1993) was included.
+</p><h2 id="Eligible_Sample">Eligible Sample</h2><p>Participants aged 20 to 69 years were eligible. Participants were excluded if they: 1) had vision so poor that they needed assistance to find their way to the test room; 2) were pregnant; 3) had an amputation of the leg or feet (other than toes); 4) weighed more than 315 pounds, since the foam used to stand on during the test may become too compressed to provide a suitable surface; 5) were unable to stand on their own; 6) had a prosthetic device below the waist; 7) stated that they are unable to do the MRT because of a recent injury or surgery to the legs, ankles, or feet; 8) were experiencing both current symptoms of dizziness, lightheadedness or feeling faint and had fallen in the past 12 months because of problems with dizziness or balance; 9) were wearing shoes with heels 3 inches or more; 10) had a body size either too small or too large (determined when the safety belt was put on) to accommodate proper fitting of the safety belt; or 11) said that they were not okay to begin the balance test and either wished to speak to a physician (physician referral) or did not wish to speak to a physician. In addition, participants were excluded only from Condition 5 of the MRT if they: 1) had neck pain at time of exam; 2) ever had neck surgery; 3) ever had a neck problem that lasted more than 6 weeks; or 4) could not move their head and neck in the range of motion required for the condition.</p><h2 id="Protocol_and_Procedure">Protocol and Procedure</h2><p>The MRT included a maximum of five test conditions of increasing difficulty, and participants were permitted up to two trials for each condition. Because each successive condition was progressively more difficult than the condition preceding it, the MRT testing ended whenever a subject failed to pass a test condition after two attempted trials. Participants were asked to wear a gait belt with handles (i.e., a device worn to help people with mobility problems) around their waists so the technician could help stabilize them, if needed. While most participants were in MEC-provided slip-resistant socks, if wearing shoes, the participants continued if the heel was less than 3 inches. </p>
+<p>In all MRT conditions, the participants were asked to stand with feet together (with allowances made as needed for orthopedic conditions) and arms crossed at the chest. In Condition 1, the participant stood on the bare floor with eyes open. Condition 2 involved standing on the bare floor with eyes closed. Condition 3 involved standing on a dense foam surface with eyes open. Condition 4 involved standing on a dense foam surface with eyes closed. Condition 5 involved standing on a dense foam surface with eyes closed and moving the head slowly side-to-side.  </p>
+<p>For all conditions, the participant passed the condition if they were able to maintain balance for a requisite period of time. The technician monitored the SP for failure to maintain balance, such as movement of the feet, significant movement of the arms, opening the eyes (for Conditions 2, 4, or 5), or a need for technician intervention due to excessive torso motion (e.g., sway) while attempting to maintain balance. A failure for the condition was documented if the SP failed to maintain balance for the requisite time interval.  </p>
+<p>The requisite time intervals differed across conditions. The time interval for Conditions 1-2 was 15 seconds; and 15 seconds was considered a passing score. The time interval for Conditions 3-5 was 30 seconds, but 20 seconds was considered a passing score. For Conditions 3-5, participants who passed Trial 1 with a score of 20-29 seconds were offered Trail 2 of the condition. For Conditions 3-5, the time interval was 30 seconds to match previous data collection (NHANES 1999-2004). However, to match current research on falls risk assessment, a “pass” was established if the participant was able to maintain balance for 20 seconds (2019, Cohen).  </p>
+<p>Did not pass (DNP) was defined as any occurrence of any of the following before 15 seconds for Conditions 1 and 2, or 20 seconds for Conditions 3–5: 1) movement of the participant’s feet from the initial test position (falling, side stepping, hopping, pivoting, etc.); 2) movement of the participant’s arms off of the chest (or waist); 3) participant’s eyes open during an eyes-closed condition (i.e., Conditions 2 , 4, and 5); 4) touching the wall; or 5) any intervention by the examiner to stop the participant from falling. </p>
+<p>Additional details on the protocol are described in the<a href="https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/manuals.aspx?Cycle=2021-2023"> NHANES August 2021–August 2023  procedure manuals</a>. </p><h2 id="Quality_Assurance_&amp;_Quality_Control">Quality Assurance &amp; Quality Control</h2><p>Technicians were trained in the testing protocols and technicians were periodically observed to verify that standard balance testing procedures were being strictly followed. All data were directly entered by NHANES technicians into ISIS, a computerized database information system. Quality control procedures were performed to check for completeness and data validity and to identify logical inconsistencies. Health technician performance was also monitored using data reviews. </p><h2 id="Data_Processing_and_Editing">Data Processing and Editing</h2><p>Prior to data release, NHANES staff reviewed data for completeness and logical inconsistencies and cross-checked with other available data for verification and reviewed free-text comments noted by MEC staff and made edits or corrections as appropriate. </p>
+<p>The balance exam status code (BAXMSTAT) was created and indicates the following for each participant: </p>
+<p>1 = Complete exam (i.e., completed the maximum duration for all eligible conditions or attempted both trials of all eligible conditions). <br>
+2 = Partial exam (i.e., started the exam but did not complete because of refusal; limited time during exam visit; physical limitation or ill/emergency; equipment failure or error; or other). <br>
+3 = Not done (i.e., did not start the exam because of refusal; limited time during exam visit; physical limitation or ill/emergency; equipment failure or error; or other). <br>
+4 = Ineligible for all MRT conditions (see eligibility criteria above). </p>
+<p>The BAXMSTAT variable identifies all participants who are ineligible for the balance exam (BAXMSTAT=4). Additionally, some variables for common reasons for ineligibility to the balance exam are included in this file (i.e., BAQ110, BAQ125, BAQ132, BAQ140, BAQ150, BAQ160, BAQ170), but other variables for ineligibility are not separately included on the datafile primarily due to potential disclosure concerns. Although exclusion criteria for Conditions 1-4 applied to Condition 5, there were additional exclusion criteria for Condition 5 and a status code for Condition 5 (BAX5STAT) was created. Reason codes for partial exams (BAXRXNC) and exams not done (BAXRXND) were created from MEC staff comments and included in this data release. </p><h2 id="Analytic_Notes">Analytic Notes</h2><p>NHANES conducted an MRT in 1999-2004, but there are differences between the 1999-2004 and the protocol implemented during 2019-March 2020 and August 2021–August 2023. Differences include the following: targeted age range; exclusion criteria; Conditions 3 and Condition 4 required 30 seconds, rather than 20 seconds to pass in 1999-2004; and Condition 5 was not assessed in 1999-2004. In 1999-2004, the dataset included a failure time for participants who “did not pass” a condition, but in 2019-March 2020 and August 2021–August 2023, the dataset includes duration time for participants who attempted a condition. Thus, if an analyst wanted to compare more directly the 1999-2004 and August 2021–August 2023 data files, they may consider recoding the participants in August 2021–August 2023 who passed Condition 3 or Condition 4 with a duration of 20-29 seconds as “did not pass”. To alert data users to differences between 1999-2004 and August 2021–August 2023, the variables corresponding to “pass”/”did not pass” have a modified naming convention (i.e., BAXPFC11 in 1999-2004 and  BAXPF11 in August 2021–August 2023 for Condition 1, Trial 1). Similarly, the variables corresponding to time or duration have a modified naming convention (i.e., BAXFTC11  in 1999-2004 and BAXTC11 in  August 2021–August 2023 for Condition 1, Trial 1). </p>
+<p>Exam sample weights should be used for analyses. Please refer to the <a href="https://wwwn.cdc.gov/nchs/nhanes/analyticguidelines.aspx">NHANES Analytic Guidelines</a> and the on-line <a href="https://wwwn.cdc.gov/nchs/nhanes/tutorials/">NHANES Tutorial</a> for further details on the use of sample weights and other analytic issues. </p></div>
+      <div id="References">
+        <h2>References</h2>
+        <ul>
+          <li>Cohen HS, Mulavara AP, Stitz J, Sangi-Haghpeykar H, Williams SP, Peters BT, Bloomberg JJ (2019).  Screening for vestibular disorders using the modified clinical test of sensory interaction and balance and tandem walking with eyes closed.  Otol Neurotol, 40, 658-665.  DOI: 10.1097/MAO.0000000000002173.</li>
+          <li>Weber PC, Cass SP. Clinical assessment of postural stability. Am J Otol. 1993;14:566-9.</li>
+        </ul>
+      </div>
+      <div id="Codebook">
+        <h2>Codebook and Frequencies</h2>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SEQN">SEQN - Respondent sequence number</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SEQN</dd>
+            <dt>SAS Label: </dt>
+            <dd>Respondent sequence number</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Respondent sequence number.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXMSTAT">BAXMSTAT - MRT exam status</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXMSTAT</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT exam status</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT exam status</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Complete</td>
+                <td class="values" align="right">3732</td>
+                <td class="values" align="right">3732</td>
+                <td class="values">BAX5STAT</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Partial</td>
+                <td class="values" align="right">219</td>
+                <td class="values" align="right">3951</td>
+                <td class="values">BAXRXNC</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Not done</td>
+                <td class="values" align="right">213</td>
+                <td class="values" align="right">4164</td>
+                <td class="values">BAXRXND</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Ineligible for all MRT conditions</td>
+                <td class="values" align="right">607</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">BAX5STAT</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXRXNC">BAXRXNC - Reason for partial MRT exam</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXRXNC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Reason for partial MRT exam</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Reason for partial MRT exam</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">SP refusal</td>
+                <td class="values" align="right">176</td>
+                <td class="values" align="right">176</td>
+                <td class="values">BAX5STAT</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Limited time</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">177</td>
+                <td class="values">BAX5STAT</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Physical limitation or SP ill/emergency</td>
+                <td class="values" align="right">5</td>
+                <td class="values" align="right">182</td>
+                <td class="values">BAX5STAT</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Equipment failure or error (technician/software/supply)</td>
+                <td class="values" align="right">17</td>
+                <td class="values" align="right">199</td>
+                <td class="values">BAX5STAT</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Other</td>
+                <td class="values" align="right">5</td>
+                <td class="values" align="right">204</td>
+                <td class="values">BAX5STAT</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">4567</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXRXND">BAXRXND - Reason for not done MRT exam</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXRXND</dd>
+            <dt>SAS Label: </dt>
+            <dd>Reason for not done MRT exam</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Reason for not done MRT exam</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">SP refusal</td>
+                <td class="values" align="right">9</td>
+                <td class="values" align="right">9</td>
+                <td class="values">BAX5STAT</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Limited time</td>
+                <td class="values" align="right">103</td>
+                <td class="values" align="right">112</td>
+                <td class="values">BAX5STAT</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Physical limitation or SP ill/emergency</td>
+                <td class="values" align="right">26</td>
+                <td class="values" align="right">138</td>
+                <td class="values">BAX5STAT</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Equipment failure or error (technician/software/supply)</td>
+                <td class="values" align="right">5</td>
+                <td class="values" align="right">143</td>
+                <td class="values">BAX5STAT</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Other</td>
+                <td class="values" align="right">70</td>
+                <td class="values" align="right">213</td>
+                <td class="values">BAX5STAT</td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">4558</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAX5STAT">BAX5STAT - Eligibility for Condition 5</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAX5STAT</dd>
+            <dt>SAS Label: </dt>
+            <dd>Eligibility for Condition 5</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Eligibility for Condition 5</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Eligible  for Condition 5</td>
+                <td class="values" align="right">3248</td>
+                <td class="values" align="right">3248</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Ineligible for Condition 5</td>
+                <td class="values" align="right">1317</td>
+                <td class="values" align="right">4565</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">206</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAQ110">BAQ110 - Can stand on your own?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAQ110</dd>
+            <dt>SAS Label: </dt>
+            <dd>Can stand on your own?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Can stand on your own?</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">4305</td>
+                <td class="values" align="right">4305</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">58</td>
+                <td class="values" align="right">4363</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">4363</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">4363</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">408</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAQ121">BAQ121 - Are you currently wearing a leg brace?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAQ121</dd>
+            <dt>SAS Label: </dt>
+            <dd>Are you currently wearing a leg brace?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Are you currently wearing a leg brace?</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">25</td>
+                <td class="values" align="right">25</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">4279</td>
+                <td class="values" align="right">4304</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">4305</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">4305</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">466</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAQ125">BAQ125 - Injury to foot, leg, or hip</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAQ125</dd>
+            <dt>SAS Label: </dt>
+            <dd>Injury to foot, leg, or hip</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Injury to foot, leg, or hip</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">253</td>
+                <td class="values" align="right">253</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">4024</td>
+                <td class="values" align="right">4277</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">4277</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">4279</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">492</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAQ132">BAQ132 - Problems with dizzy, past 24 hours</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAQ132</dd>
+            <dt>SAS Label: </dt>
+            <dd>Problems with dizzy, past 24 hours</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Problems with dizzy, past 24 hours</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">200</td>
+                <td class="values" align="right">200</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">3822</td>
+                <td class="values" align="right">4022</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">4023</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">4024</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">747</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAQ140">BAQ140 - Last 12 months, fallen due to dizziness</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAQ140</dd>
+            <dt>SAS Label: </dt>
+            <dd>Last 12 months, fallen due to dizziness</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Last 12 months, fallen due to dizziness</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">261</td>
+                <td class="values" align="right">261</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">3760</td>
+                <td class="values" align="right">4021</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">4022</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">4024</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">747</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAQ150">BAQ150 - Do you have neck pain now?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAQ150</dd>
+            <dt>SAS Label: </dt>
+            <dd>Do you have neck pain now?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Do you have neck pain now?</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">354</td>
+                <td class="values" align="right">354</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">3618</td>
+                <td class="values" align="right">3972</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3972</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3972</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">799</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAQ160">BAQ160 - Have you ever had surgery on your neck?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAQ160</dd>
+            <dt>SAS Label: </dt>
+            <dd>Have you ever had surgery on your neck?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Have you ever had surgery on your neck?</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">103</td>
+                <td class="values" align="right">103</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">3515</td>
+                <td class="values" align="right">3618</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3618</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3618</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1153</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAQ170">BAQ170 - Neck problem lasted more than 6 weeks</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAQ170</dd>
+            <dt>SAS Label: </dt>
+            <dd>Neck problem lasted more than 6 weeks</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Neck problem lasted more than 6 weeks</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">228</td>
+                <td class="values" align="right">228</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">3287</td>
+                <td class="values" align="right">3515</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3515</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3515</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1256</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAQ201">BAQ201 - Can you move head 30 degrees left/right?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAQ201</dd>
+            <dt>SAS Label: </dt>
+            <dd>Can you move head 30 degrees left/right?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Can you move head 30 degrees left/right?</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">3259</td>
+                <td class="values" align="right">3259</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">28</td>
+                <td class="values" align="right">3287</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3287</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3287</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">1484</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAQ173">BAQ173 - Are you okay to begin this balance test?</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAQ173</dd>
+            <dt>SAS Label: </dt>
+            <dd>Are you okay to begin this balance test?</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Are you okay to begin this balance test?</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Yes</td>
+                <td class="values" align="right">3964</td>
+                <td class="values" align="right">3964</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">No</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">3968</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3968</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">9</td>
+                <td class="values">Don't know</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3968</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">803</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXPF11">BAXPF11 - MRT cond. 1, trial 1, eyes open</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXPF11</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 1, trial 1, eyes open</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 1, trial 1, eyes open</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Pass</td>
+                <td class="values" align="right">3902</td>
+                <td class="values" align="right">3902</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">DNP (did not pass)</td>
+                <td class="values" align="right">49</td>
+                <td class="values" align="right">3951</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">3951</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">820</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXTC11">BAXTC11 - MRT cond. 1, trial 1, time</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXTC11</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 1, trial 1, time</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 1, trial 1, time</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 15</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">3950</td>
+                <td class="values" align="right">3950</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">821</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAARFC11">BAARFC11 - MRT cond. 1, trial 1, reason stopped</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAARFC11</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 1, trial 1, reason stopped</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 1, trial 1, reason stopped</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Feet moved</td>
+                <td class="values" align="right">14</td>
+                <td class="values" align="right">14</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Arms moved off waist</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">18</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Eyes opened</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">18</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Tech intervention</td>
+                <td class="values" align="right">28</td>
+                <td class="values" align="right">46</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Grab/touch wall</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">49</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">4722</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXPF12">BAXPF12 - MRT cond. 1, trial 2, eyes open</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXPF12</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 1, trial 2, eyes open</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 1, trial 2, eyes open</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Pass</td>
+                <td class="values" align="right">43</td>
+                <td class="values" align="right">43</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">DNP (did not pass)</td>
+                <td class="values" align="right">5</td>
+                <td class="values" align="right">48</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">48</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">4723</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXTC12">BAXTC12 - MRT cond. 1, trial 2, time</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXTC12</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 1, trial 2, time</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 1, trial 2, time</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">2 to 15</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">48</td>
+                <td class="values" align="right">48</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">4723</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAARFC12">BAARFC12 - MRT cond. 1, trial 2, reason stopped</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAARFC12</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 1, trial 2, reason stopped</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 1, trial 2, reason stopped</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Feet moved</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">1</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Arms moved off waist</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">2</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Eyes opened</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Tech intervention</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">4</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Grab/touch wall</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">5</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">4766</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXPF21">BAXPF21 - MRT cond. 2, trial 1, eyes closed</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXPF21</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 2, trial 1, eyes closed</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 2, trial 1, eyes closed</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Pass</td>
+                <td class="values" align="right">3846</td>
+                <td class="values" align="right">3846</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">DNP (did not pass)</td>
+                <td class="values" align="right">96</td>
+                <td class="values" align="right">3942</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">3943</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">828</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXTC21">BAXTC21 - MRT cond. 2, trial 1, time</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXTC21</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 2, trial 1, time</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 2, trial 1, time</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 15</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">3942</td>
+                <td class="values" align="right">3942</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">829</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAARFC21">BAARFC21 - MRT cond. 2, trial 1, reason stopped</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAARFC21</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 2, trial 1, reason stopped</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 2, trial 1, reason stopped</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Feet moved</td>
+                <td class="values" align="right">29</td>
+                <td class="values" align="right">29</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Arms moved off waist</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">33</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Eyes opened</td>
+                <td class="values" align="right">42</td>
+                <td class="values" align="right">75</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Tech intervention</td>
+                <td class="values" align="right">9</td>
+                <td class="values" align="right">84</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Grab/touch wall</td>
+                <td class="values" align="right">10</td>
+                <td class="values" align="right">94</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">4677</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXPF22">BAXPF22 - MRT cond. 2, trial 2, eyes closed</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXPF22</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 2, trial 2, eyes closed</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 2, trial 2,  eyes closed</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Pass</td>
+                <td class="values" align="right">69</td>
+                <td class="values" align="right">69</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">DNP (did not pass)</td>
+                <td class="values" align="right">26</td>
+                <td class="values" align="right">95</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">97</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">4674</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXTC22">BAXTC22 - MRT cond. 2, trial 2, time</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXTC22</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 2, trial 2, time</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 2, trial 2, time</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 15</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">94</td>
+                <td class="values" align="right">94</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">4677</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAARFC22">BAARFC22 - MRT cond. 2, trial 2, reason stopped</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAARFC22</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 2, trial 2, reason stopped</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 2, trial 2, reason stopped</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Feet moved</td>
+                <td class="values" align="right">11</td>
+                <td class="values" align="right">11</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Arms moved off waist</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">14</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Eyes opened</td>
+                <td class="values" align="right">7</td>
+                <td class="values" align="right">21</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Tech intervention</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">22</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Grab/touch wall</td>
+                <td class="values" align="right">4</td>
+                <td class="values" align="right">26</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">4745</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXPF31">BAXPF31 - MRT cond. 3, trial 1, eyes open</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXPF31</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 3, trial 1, eyes open</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 3, trial 1,  eyes open</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Pass</td>
+                <td class="values" align="right">3820</td>
+                <td class="values" align="right">3820</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">DNP (did not pass)</td>
+                <td class="values" align="right">66</td>
+                <td class="values" align="right">3886</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">11</td>
+                <td class="values" align="right">3897</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">874</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXTC31">BAXTC31 - MRT cond. 3, trial 1, time</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXTC31</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 3, trial 1, time</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 3, trial 1, time</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1 to 30</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">3882</td>
+                <td class="values" align="right">3882</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">889</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAARFC31">BAARFC31 - MRT cond. 3, trial 1, reason stopped</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAARFC31</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 3, trial 1, reason stopped</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 3, trial 1, reason stopped</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Feet moved</td>
+                <td class="values" align="right">24</td>
+                <td class="values" align="right">24</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Arms moved off waist</td>
+                <td class="values" align="right">13</td>
+                <td class="values" align="right">37</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Eyes opened</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">37</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Tech intervention</td>
+                <td class="values" align="right">21</td>
+                <td class="values" align="right">58</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Grab/touch wall</td>
+                <td class="values" align="right">22</td>
+                <td class="values" align="right">80</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">4691</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXPF32">BAXPF32 - MRT cond. 3, trial 2, eyes open</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXPF32</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 3, trial 2, eyes open</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 3, trial 2, eyes open</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Pass</td>
+                <td class="values" align="right">63</td>
+                <td class="values" align="right">63</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">DNP (did not pass)</td>
+                <td class="values" align="right">16</td>
+                <td class="values" align="right">79</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">80</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">4691</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXTC32">BAXTC32 - MRT cond. 3, trial 2, time</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXTC32</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 3, trial 2, time</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 3, trial 2, time</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1 to 30</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">79</td>
+                <td class="values" align="right">79</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">4692</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAARFC32">BAARFC32 - MRT cond. 3, trial 2, reason stopped</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAARFC32</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 3, trial 2, reason stopped</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 3, trial 2, reason stopped</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Feet moved</td>
+                <td class="values" align="right">8</td>
+                <td class="values" align="right">8</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Arms moved off waist</td>
+                <td class="values" align="right">1</td>
+                <td class="values" align="right">9</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Eyes opened</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">9</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Tech intervention</td>
+                <td class="values" align="right">3</td>
+                <td class="values" align="right">12</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Grab/touch wall</td>
+                <td class="values" align="right">8</td>
+                <td class="values" align="right">20</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">4751</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXPF41">BAXPF41 - MRT cond. 4, trial 1, eyes closed</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXPF41</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 4, trial 1, eyes closed</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 4, trial 1, eyes closed</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Pass</td>
+                <td class="values" align="right">2591</td>
+                <td class="values" align="right">2591</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">DNP (did not pass)</td>
+                <td class="values" align="right">1260</td>
+                <td class="values" align="right">3851</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">12</td>
+                <td class="values" align="right">3863</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">908</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXTC41">BAXTC41 - MRT cond. 4, trial 1, time</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXTC41</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 4, trial 1, time</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 4, trial 1, time</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 30</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">3850</td>
+                <td class="values" align="right">3850</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">921</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAARFC41">BAARFC41 - MRT cond. 4, trial 1, reason stopped</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAARFC41</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 4, trial 1, reason stopped</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 4, trial 1, reason stopped</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Feet moved</td>
+                <td class="values" align="right">366</td>
+                <td class="values" align="right">366</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Arms moved off waist</td>
+                <td class="values" align="right">103</td>
+                <td class="values" align="right">469</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Eyes opened</td>
+                <td class="values" align="right">372</td>
+                <td class="values" align="right">841</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Tech intervention</td>
+                <td class="values" align="right">143</td>
+                <td class="values" align="right">984</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Grab/touch wall</td>
+                <td class="values" align="right">406</td>
+                <td class="values" align="right">1390</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">3381</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXPF42">BAXPF42 - MRT cond. 4, trial 2, eyes closed</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXPF42</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 4, trial 2, eyes closed</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 4, trial 2,  eyes closed</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Pass</td>
+                <td class="values" align="right">690</td>
+                <td class="values" align="right">690</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">DNP (did not pass)</td>
+                <td class="values" align="right">631</td>
+                <td class="values" align="right">1321</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">65</td>
+                <td class="values" align="right">1386</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">3385</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXTC42">BAXTC42 - MRT cond. 4, trial 2, time</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXTC42</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 4, trial 2, time</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 4, trial 2, time</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 30</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">1319</td>
+                <td class="values" align="right">1319</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">3452</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAARFC42">BAARFC42 - MRT cond. 4, trial 2, reason stopped</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAARFC42</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 4, trial 2, reason stopped</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 4, trial 2, reason stopped</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Feet moved</td>
+                <td class="values" align="right">174</td>
+                <td class="values" align="right">174</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Arms moved off waist</td>
+                <td class="values" align="right">55</td>
+                <td class="values" align="right">229</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Eyes opened</td>
+                <td class="values" align="right">142</td>
+                <td class="values" align="right">371</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Tech intervention</td>
+                <td class="values" align="right">88</td>
+                <td class="values" align="right">459</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Grab/touch wall</td>
+                <td class="values" align="right">245</td>
+                <td class="values" align="right">704</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">4067</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXPF51">BAXPF51 - MRT cond. 5, trial 1, eyes closed</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXPF51</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 5, trial 1, eyes closed</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 5, trial 1, eyes closed</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Pass</td>
+                <td class="values" align="right">1501</td>
+                <td class="values" align="right">1501</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">DNP (did not pass)</td>
+                <td class="values" align="right">1119</td>
+                <td class="values" align="right">2620</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">15</td>
+                <td class="values" align="right">2635</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2136</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXTC51">BAXTC51 - MRT cond. 5, trial 1, time</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXTC51</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 5, trial 1, time</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 5, trial 1, time</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 30</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">2595</td>
+                <td class="values" align="right">2595</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">2176</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAARFC51">BAARFC51 - MRT cond. 5, trial 1, reason stopped</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAARFC51</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 5, trial 1, reason stopped</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 5, trial 1, reason stopped</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Feet moved</td>
+                <td class="values" align="right">444</td>
+                <td class="values" align="right">444</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Arms moved off waist</td>
+                <td class="values" align="right">106</td>
+                <td class="values" align="right">550</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Eyes opened</td>
+                <td class="values" align="right">184</td>
+                <td class="values" align="right">734</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Tech intervention</td>
+                <td class="values" align="right">151</td>
+                <td class="values" align="right">885</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Grab/touch wall</td>
+                <td class="values" align="right">402</td>
+                <td class="values" align="right">1287</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">3484</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXPF52">BAXPF52 - MRT cond. 5, trial 2, eyes closed</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXPF52</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 5, trial 2, eyes closed</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 5, trial 2, eyes closed</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Pass</td>
+                <td class="values" align="right">541</td>
+                <td class="values" align="right">541</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">DNP (did not pass)</td>
+                <td class="values" align="right">683</td>
+                <td class="values" align="right">1224</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">7</td>
+                <td class="values">Refused</td>
+                <td class="values" align="right">24</td>
+                <td class="values" align="right">1248</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">3523</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAXTC52">BAXTC52 - MRT cond. 5, trial 2, time</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAXTC52</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 5, trial 2, time</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 5, trial 2, time</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 30</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">1223</td>
+                <td class="values" align="right">1223</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">3548</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="BAARFC52">BAARFC52 - MRT cond. 5, trial 2, reason stopped</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">BAARFC52</dd>
+            <dt>SAS Label: </dt>
+            <dd>MRT cond. 5, trial 2, reason stopped</dd>
+            <dt>English Text: </dt>
+            <dd class="info">MRT cond. 5, trial 2, reason stopped</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 20 YEARS -
+			69 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Feet moved</td>
+                <td class="values" align="right">256</td>
+                <td class="values" align="right">256</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">2</td>
+                <td class="values">Arms moved off waist</td>
+                <td class="values" align="right">55</td>
+                <td class="values" align="right">311</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">3</td>
+                <td class="values">Eyes opened</td>
+                <td class="values" align="right">92</td>
+                <td class="values" align="right">403</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">4</td>
+                <td class="values">Tech intervention</td>
+                <td class="values" align="right">125</td>
+                <td class="values" align="right">528</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">5</td>
+                <td class="values">Grab/touch wall</td>
+                <td class="values" align="right">262</td>
+                <td class="values" align="right">790</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">3981</td>
+                <td class="values" align="right">4771</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+<div id="extension-mmplj"></div></body></html>

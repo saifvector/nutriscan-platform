@@ -1,0 +1,85 @@
+# Default values for NutriScan AI Helm Chart
+replicaCount: 3
+
+image:
+  repository: ghcr.io/nutriscan/nutriscan-api
+  pullPolicy: IfNotPresent
+  tag: "1.0.0"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: "nutriscan"
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: "nutriscan-sa"
+
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/path: "/metrics"
+  prometheus.io/port: "8000"
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 10001
+  runAsGroup: 10001
+  fsGroup: 10001
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: false
+  capabilities:
+    drop:
+      - ALL
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  hosts:
+    - host: api.nutriscan.ai
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: nutriscan-tls-cert
+      hosts:
+        - api.nutriscan.ai
+
+resources:
+  limits:
+    cpu: 2000m
+    memory: 2Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+env:
+  ENVIRONMENT: "production"
+  PROJECT_NAME: "NutriScan AI Clinical Copilot & Precision Nutrition Platform"
+  LOG_LEVEL: "INFO"
+
+probes:
+  liveness:
+    path: /health
+    initialDelaySeconds: 20
+    periodSeconds: 15
+  readiness:
+    path: /health
+    initialDelaySeconds: 10
+    periodSeconds: 10

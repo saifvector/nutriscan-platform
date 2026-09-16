@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm -->
+<html xml:lang="en" lang="en" xmlns="http://www.w3c.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <title>ALB_CR_L</title>
+    <meta name="title" content="NHANES August 2021-August 2023: Albumin &amp; Creatinine - Urine Data Documentation, Codebook, and Frequencies">
+    <link rel="stylesheet" href="./ALB_CR_L_files/documentation.css">
+  </head>
+  <body class="nhanes-doc">
+    <div id="toc">
+      <h3>Table of Contents</h3>
+      <div id="toc-scroll">
+        <ul>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#Component_Description">Component Description</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#Eligible_Sample">Eligible Sample</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#Description_of_Laboratory_Methodology">Description of Laboratory Methodology</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#Laboratory_Method_Files">Laboratory Method Files</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#Laboratory_Quality_Assurance_and_Monitoring">Laboratory Quality Assurance and Monitoring</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#Data_Processing_and_Editing">Data Processing and Editing</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#Analytic_Notes">Analytic Notes</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#References">References</a>
+          </li>
+          <li>
+            <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#Codebook">Codebook</a>
+            <ul id="CodebookLinks">
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#SEQN">SEQN - Respondent sequence number</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#URXUMA">URXUMA - Albumin, urine (ug/mL)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#URXUMS">URXUMS - Albumin, urine (mg/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#URDUMALC">URDUMALC - Albumin, urine comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#URXUCR">URXUCR - Creatinine, urine (mg/dL)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#URXCRS">URXCRS - Creatinine, urine (umol/L)</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#URDUCRLC">URDUCRLC - Creatinine, urine comment code</a>
+              </li>
+              <li>
+                <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/ALB_CR_L.htm#URDACT">URDACT - Albumin creatinine ratio (mg/g)</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="PageHeader">
+        <h1>National Health and Nutrition Examination Survey</h1>
+        <h2>August 2021-August 2023 Data Documentation, Codebook, and Frequencies</h2>
+        <h3>Albumin &amp; Creatinine - Urine (ALB_CR_L)</h3>
+        <h4> Data File: ALB_CR_L.xpt</h4>
+        <h5 class="left">First Published: September 2025</h5>
+        <h5 class="right">Last Revised: NA</h5>
+      </div>
+      <div id="Sections">
+        <h2 id="Component_Description">Component Description</h2><p>Albumin is the most abundant plasma protein in healthy individuals. Human serum albumin is synthesized by the liver and serves many important roles in human physiology such as, maintaining oncotic pressure, and transport of various hormones, vitamins, and drugs throughout the body. Kidney elimination of serum albumin may be observed in severe kidney disease. Following the urinary albumin excretion has been shown to be a diagnostic and prognostic marker for kidney and cardiovascular events. Unfortunately, this marker displays variable correlation between diagnostic vendors. The correlation deviations are attributed to calibration and assay differences between platforms.</p>
+<p>Creatinine is a breakdown product of creatine phosphate in muscle and is usually produced at a fairly constant rate by the body, depending on muscle mass. Creatinine is excreted by glomerular filtration during normal kidney function. Creatinine may be measured in both serum and urine. Creatinine measurement is useful in the diagnosis and treatment of kidney diseases, in monitoring kidney dialysis, and as a calculation basis for other urinary analytes (e.g. total protein, microalbumin).</p><h2 id="Eligible_Sample">Eligible Sample</h2><p>Examined participants aged 3 years and older were eligible.</p><h2 id="Description_of_Laboratory_Methodology">Description of Laboratory Methodology</h2><p><strong>Urinary Albumin</strong></p>
+<p>The liquid chromatography tandem mass spectrometry (LC-MS/MS) assay quantifies albumin concentrations in human urine following enzymatic digestion. This measurement procedure utilizes proteolysis with trypsin, targeting a peptide specific to human serum albumin.<br>
+<br>
+The lab method used in August 2021-August 2023 to quantify urinary albumin is different from the fluorescent immunoassay method used in previous cycles. Please see additional information in the Analytic Notes section regarding the data comparison between cycles.</p>
+<p><strong>Urinary Creatinine</strong></p>
+<p>Creatinine is produced by creatine and creatinine phosphate as a result of muscle metabolic processes. It is then excreted by glomerular filtration during normal kidney function. Creatinine may be measured in both serum and urine. Creatinine measurement is useful in the diagnosis and treatment of kidney diseases, in monitoring kidney dialysis, and as a calculation basis for other urinary analytes (e.g., total protein, microalbumin).</p>
+<p>In this enzymatic method creatinine is converted to creatine under the activity of creatininase. Creatine is then acted upon by creatinase to form sarcosine and urea. Sarcosine oxidase converts sarcosine to glycine and hydrogen peroxide, and the hydrogen peroxide reacts with a chromophore in the presence of peroxidase to produce a colored product that is measured at 546 nm (secondary wavelength = 700 nm). This is an endpoint reaction that agrees well with recognized high-performance liquid chromatography methods, and it has the advantage over Jaffe picric acid-based methods that are susceptible to interferences from non-creatinine chromogens.</p>
+<p>There were no changes to the lab method in the NHANES August 2021-August 2023 cycle for urinary creatinine measurement. However, the lab equipment used for the measurement was updated from the Cobas 6000 Analyzer to Cobas 8000. Please refer to the Analytic Notes section for additional information.</p>
+<p>Refer to the Laboratory Method Files section for a detailed description of the laboratory methods used.<br>
+</p><h2 id="Laboratory_Method_Files">Laboratory Method Files</h2>
+        <p>
+          <a target="_blank" href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/labmethods/ALB-CR-L-MET-Albumin-508.pdf">Urine Albumin</a>
+          <span> (September 2025)</span>
+        </p>
+        <p>
+          <a target="_blank" href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/labmethods/ALB-CR-L-MET-Creatinine-508.pdf">Urine Creatinine</a>
+          <span> (September 2025)</span>
+        </p>
+        <h2 id="Laboratory_Quality_Assurance_and_Monitoring">Laboratory Quality Assurance and Monitoring</h2><p>Urine specimens were
+processed, stored, and shipped to University of Minnesota- Advanced Research
+Diagnostics Laboratory (ARDL), Minneapolis, MN for analysis. </p>
+<p>Detailed
+instructions on specimen collection and processing are discussed in the <a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/manuals/2021-Laboratory-Procedures-508.pdf">NHANES Laboratory Procedures Manuals (LPM)</a>. Vials are stored under appropriate frozen (-30°C) conditions until they are
+shipped to University of Minnesota for testing.</p>
+<p>The NHANES quality
+assurance and quality control (QA/QC) protocols meet the 1988 Clinical
+Laboratory Improvement Amendments mandates. Detailed QA/QC instructions are
+discussed in the <a href="https://wwwn.cdc.gov/nchs/data/nhanes/public/2021/manuals/2021-Laboratory-Procedures-508.pdf">NHANES LPMs</a>.</p>
+<p><strong>Mobile Examination
+Centers (MECs)</strong></p>
+<p>Laboratory team
+performance is monitored using several techniques. NCHS and contract
+consultants use a structured competency assessment evaluation during visits to
+evaluate both the quality of the laboratory work and the QC procedures. Each
+laboratory staff member is observed for equipment operation, specimen
+collection and preparation; testing procedures and constructive feedback are
+given to each staff member. Formal retraining sessions are conducted annually
+to ensure that required skill levels were maintained.</p>
+<p><strong>Analytical
+Laboratories</strong></p>
+<p>NHANES uses
+several methods to monitor the quality of the analyses performed by the
+contract laboratories. In the MEC, these methods include performing blind split
+samples collected on “dry run” sessions. In addition, contract laboratories
+randomly perform repeat testing on 2% of all specimens.</p>
+<p>NCHS developed and
+distributed a QC protocol for all CDC and contract laboratories, which outlined
+the use of Westgard rules (Westgard et al., 1981) when testing NHANES
+specimens. Progress reports containing any problems encountered during shipping
+or receipt of specimens, summary statistics for each control pool, QC graphs,
+instrument calibration, reagents, and any special considerations are submitted
+to NCHS quarterly. The reports are reviewed for trends or shifts in the data.
+The laboratories are required to explain any identified areas of concern.</p><h2 id="Data_Processing_and_Editing">Data Processing and Editing</h2><p>The data were
+reviewed. Incomplete data or improbable values were sent to the performing
+laboratory for confirmation.</p>
+<p>Three variables were
+created in this data file. The variables were created using the following
+formulas:</p>
+<p><strong>URXUMA and URXUMS:</strong></p>
+<p>The urine albumin
+value in µg/mL (URXUMA) was converted to mg/L (URXUMS) by multiplying by 1.00
+(rounded 2 decimals).</p>
+<p><strong>URXUCR and URXCRS:</strong></p>
+<p>The urine
+creatinine value in mg/dL (URXUCR) was converted to µmol/L (URXCRS) by
+multiplying by 88.4 (rounded 1 decimal).</p>
+<p><strong>URDACT:</strong></p>
+<p>The urine
+albumin/creatinine ratio in mg/g (URDACT) was calculated by dividing &nbsp;URXUMA by URXUCR and multiplying by 100 (rounded
+2 decimal places).</p><h2 id="Analytic_Notes">Analytic Notes</h2><p>There are over 800 laboratory tests performed on NHANES participants. However, not all participants provided biospecimens or enough volume for all the tests to be performed. The specimen availability can also vary by age or other population characteristics. Analysts should evaluate the extent of missing data in the dataset related to the outcome of interest as well as any predictor variables used in the analyses to determine whether additional re-weighting for item non-response is necessary.</p>
+<p>Please refer to the NHANES&nbsp;<a href="https://wwwn.cdc.gov/nchs/nhanes/analyticguidelines.aspx">Analytic Guidelines</a>&nbsp;and the on-line&nbsp;<a href="https://wwwn.cdc.gov/nchs/nhanes/tutorials/">NHANES Tutorial</a>&nbsp;for details on the use of sample weights and other analytic issues.</p>
+<p><strong>Demographic and Other Related Variables</strong></p>
+<p>The analysis of NHANES&nbsp;laboratory data must be conducted using the appropriate survey design and demographic variables. The&nbsp;<a href="https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Demographics&amp;Cycle=2021-2023">NHANES August 2021–August 2023 Demographics File</a>&nbsp;contains demographic data, health indicators, and other related information collected during household interviews as well as the sample design variables. The recommended procedure for variance estimation requires use of stratum and PSU variables (SDMVSTRA and SDMVPSU, respectively) in the demographic file.&nbsp;</p>
+<p>This laboratory
+data file can be linked to the other NHANES data files using the unique survey
+participant identifier (i.e., SEQN).</p>
+<p><strong>Detection Limits</strong></p>
+<p>The detection
+limits were constant for all of the analytes in the data set. Two variables are
+provided for each of these analytes. The variable name ending in “LC” (ex.,
+URXUMALC) indicates whether the result was below the limit of detection: the
+value “0” means that the result was at or above the limit of detection, “1”
+indicates that the result was below the limit of detection. The other variable
+prefixed URX (ex., URXUMA) provides the analytic result for that analyte.&nbsp;
+For analytes with analytic results below the lower limit of detection (ex.,
+URXUMALC=1), an imputed fill value was placed in the analyte results field.
+This value is the lower limit of detection divided by the square root of 2
+(LLOD/sqrt[2]).&nbsp; </p>
+<p>The lower limit of
+detection (LLOD) in ug/ml for URXUMA and in mg/dL for URXUCR:</p>
+<table bordercolor="#000000" border="1">
+    <thead>
+        <tr>
+            <th>Variable Name&nbsp;</th>
+            <th>Analyte description&nbsp;</th>
+            <th>&nbsp;LLOD</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>&nbsp;URXUMA</td>
+            <td>&nbsp;Albumin, Urine</td>
+            <td>&nbsp;0.02 mg/L</td>
+        </tr>
+        <tr>
+            <td>&nbsp;URXUCR</td>
+            <td>&nbsp;Creatinine, urine (mg/dL)</td>
+            <td>&nbsp;1.1 mg/dL</td>
+        </tr>
+    </tbody>
+</table>
+&nbsp; &nbsp;
+<p><strong>Albumin regression equations to compare 2017-March 2020 and August
+2021-August 2023 data:</strong></p>
+<p>In August 2021-August 2023, urinary albumin was quantified using
+the liquid chromatography tandem mass spectrometry method instead of the fluorescein
+immunoassay method used in previous cycles. A method validation (bridging) study
+was performed to compare results from this method change. Randomly selected urine
+samples (n=195) from previous NHANES were measured using both methods and the
+results were used to conduct the analysis. On average, urine albumin values
+measured with the new method used in August 2021-August 2023 were 6.20% higher
+than values measured with the old method used in 2017-March 2020 (p = 0.0001).
+Data from the bridging study indicated the correlation coefficient (r) between
+the measurements was 0.982. Regression analyses were performed using
+Analyse-it, v4.30.4. Given that the data showed proportional differences in
+variability, a weighted Deming regression was chosen to describe the relation
+between the urine albumin results (mg/L) from the two methods as below:</p>
+<p><span style="text-decoration: underline;">Forward</span>: URXUMA<sub>New Method</sub> = 1.381 +
+0.8407 * URXUMA<sub>Old Method</sub>; 95% CI of intercept (1.164 to 1.598) and slope
+(0.8187 to 0.8627).</p>
+<p><span style="text-decoration: underline;">Backward</span>: URXUMA<sub>Old Method</sub> = -1.643 +
+1.189 * URXUMA<sub>New Method</sub>; 95% CI of intercept (-1.930 to -1.355) and
+slope (1.158 to 1.221).</p>
+<p>These regression equations are provided for
+analytic use and should be applied according to the analytic aims and
+interests. The backwards equation can be used to ensure comparability between
+the August 2021-August 2023 cycle and previous years that were measured using
+the fluorescein immunoassay method (such as in 2017-March 2020). The forward
+equation may be used if the interest is ensuring comparability with data
+collected using the liquid chromatography tandem mass spectrometry method in August
+2021-August 2023 when comparing or combining the August 2021-August 2023 values
+with previous years of data. For more detailed information on the albumin data
+in the previous cycles, please refer to the documentations accompanying these
+datasets.</p>
+<p><strong>No Correction Needed for Urinary
+Creatinine Results for NHANES August 2021-August 2023</strong></p>
+<p>A method validation (bridging) study was performed to
+compare results from a laboratory instrument change that occurred for the
+August 2021–August 2023 survey cycle. The Cobas 6000 Analyzer was updated to
+Cobas 8000. Randomly selected urine samples (n=195) from previous NHANES were
+measured using both instruments and the results were used to conduct the
+analysis. A statistically significant differences of 3% was observed between
+the values from the two instruments, however, the known variability between urine
+creatinine measurements, as stated in Westgard’s Desirable Biological Variation
+Database is 12.2% (Westgard, 2014) for repeatability or inaccuracy. Data from
+the bridging study also indicated the correlation coefficient (r) between the
+measurements was 0.999. Therefore, no adjustment to the urine creatinine value
+(URXUCR) is recommended for the NHANES August 2021–August 2023 data.</p></div>
+      <div id="References">
+        <h2>References</h2>
+        <ul>
+          <li>Chavers BM, Simonson J, Michael AF. A solid-phase fluorescent immunoassay for the measurement of human urinary albumin. Kidney Int. 1984;25:576–578.</li>
+          <li>Westgard J.O., Barry P.L., Hunt M.R., Groth T. A multi-rule Shewhart chart for quality control in clinical chemistry. Clin Chem (1981) 27:493-501.</li>
+          <li>Westgard QC (2014). Desirable Biological Variation Database specifications. Accessed from Desirable Biological Variation Database specifications – Westgard on August 5, 2024.</li>
+        </ul>
+      </div>
+      <div id="Codebook">
+        <h2>Codebook and Frequencies</h2>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SEQN">SEQN - Respondent sequence number</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SEQN</dd>
+            <dt>SAS Label: </dt>
+            <dd>Respondent sequence number</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Respondent sequence number.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="URXUMA">URXUMA - Albumin, urine (ug/mL)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">URXUMA</dd>
+            <dt>SAS Label: </dt>
+            <dd>Albumin, urine (ug/mL)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Albumin, urine (ug/mL)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.01 to 7942.47</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">8153</td>
+                <td class="values" align="right">8153</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">340</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="URXUMS">URXUMS - Albumin, urine (mg/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">URXUMS</dd>
+            <dt>SAS Label: </dt>
+            <dd>Albumin, urine (mg/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Albumin, urine (mg/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.01 to 7942.47</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">8153</td>
+                <td class="values" align="right">8153</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">340</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="URDUMALC">URDUMALC - Albumin, urine comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">URDUMALC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Albumin, urine comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Albumin, urine comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">7665</td>
+                <td class="values" align="right">7665</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">488</td>
+                <td class="values" align="right">8153</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">340</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="URXUCR">URXUCR - Creatinine, urine (mg/dL)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">URXUCR</dd>
+            <dt>SAS Label: </dt>
+            <dd>Creatinine, urine (mg/dL)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Creatinine, urine (mg/dL)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">4 to 873</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">8154</td>
+                <td class="values" align="right">8154</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">339</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="URXCRS">URXCRS - Creatinine, urine (umol/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">URXCRS</dd>
+            <dt>SAS Label: </dt>
+            <dd>Creatinine, urine (umol/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Creatinine, urine (umol/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">353.6 to 77173.2</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">8154</td>
+                <td class="values" align="right">8154</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">339</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="URDUCRLC">URDUCRLC - Creatinine, urine comment code</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">URDUCRLC</dd>
+            <dt>SAS Label: </dt>
+            <dd>Creatinine, urine comment code</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Creatinine, urine comment code</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">8154</td>
+                <td class="values" align="right">8154</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">8154</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">339</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="URDACT">URDACT - Albumin creatinine ratio (mg/g)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">URDACT</dd>
+            <dt>SAS Label: </dt>
+            <dd>Albumin creatinine ratio (mg/g)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Albumin creatinine ratio (mg/g)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 14708.28</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">8153</td>
+                <td class="values" align="right">8153</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">340</td>
+                <td class="values" align="right">8493</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+<div id="extension-mmplj"></div></body></html>
