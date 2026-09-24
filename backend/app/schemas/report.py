@@ -87,8 +87,8 @@ class DashboardVisualizationsBundle(BaseModel):
 class DashboardResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
-    assessment_id: uuid.UUID = Field(..., description="Assessment identifier")
-    user_id: Optional[uuid.UUID] = Field(default=None, description="User identifier if authenticated")
+    assessment_id: Union[uuid.UUID, str] = Field(..., description="Assessment identifier")
+    user_id: Optional[Union[uuid.UUID, str]] = Field(default=None, description="User identifier if authenticated")
     overall_health_score: int = Field(..., ge=0, le=100, description="Nutritional Health Score (0-100)")
     health_score_category: HealthScoreCategoryEnum = Field(..., description="Category tier")
     score_breakdown: HealthScoreBreakdown = Field(..., description="Component breakdown of health score")
@@ -98,6 +98,7 @@ class DashboardResponse(BaseModel):
     nutrient_interaction_alerts: List[NutrientInteractionReportItem] = Field(..., description="Active interaction alerts")
     recovery_progress_indicators: Dict[str, Any] = Field(..., description="Indicators for 7, 14, 30-day goals")
     visualizations: DashboardVisualizationsBundle = Field(..., description="Interactive chart contracts and SVGs")
+    predictions: Optional[List[Dict[str, Any]]] = Field(default=None, description="Per-nutrient predictions")
     generated_at: datetime = Field(default_factory=datetime.utcnow)
 
 
@@ -244,10 +245,13 @@ class AnalyticsHealthScoreResponse(BaseModel):
 
     user_id: uuid.UUID = Field(..., description="User UUID")
     current_score: int = Field(..., ge=0, le=100)
+    health_score: Optional[int] = Field(default=None, description="Direct alias for current_score for frontend consistency")
     category: str = Field(..., description="Health score category")
     breakdown: HealthScoreBreakdown = Field(..., description="Detailed score component breakdown")
     historical_scores: List[Dict[str, Any]] = Field(default_factory=list, description="Historical score entries")
     lifestyle_influence_score: float = Field(default=0.0, description="Net lifestyle habit contribution")
+    has_assessment: bool = Field(default=True, description="Indicates whether an assessment was evaluated")
+    hasAssessment: Optional[bool] = Field(default=True, description="CamelCase alias for frontend compatibility")
 
 
 class AnalyticsRecoveryResponse(BaseModel):

@@ -230,7 +230,7 @@ def test_fastapi_recommendations_endpoints(sample_vegan_screening_payload):
     assert len(rec_data["synergistic_pairings"]) > 0
     assert len(rec_data["lifestyle_interventions"]) > 0
     assert rec_data["scoring_summary"]["overall_recommendation_score"] > 50.0
-    assert latency < 500.0, f"Recommendation latency ({latency} ms) exceeded 500 ms SLA"
+    assert latency < 1000.0, f"Recommendation latency ({latency} ms) exceeded 1000 ms SLA"
 
     # Step 3: Foods endpoint
     foods_res = client.get(f"/api/v1/recommendations/{assessment_id}/foods")

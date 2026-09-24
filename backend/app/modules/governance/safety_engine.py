@@ -9,6 +9,7 @@ Evaluates:
 - Automated Intervention Blocking & Quarantine
 """
 
+import re
 import logging
 from typing import Dict, Any, List, Optional
 from ...schemas.phase12_governance import (
@@ -98,6 +99,27 @@ class ClinicalSafetyEngine:
             "severity": SafetySeverity.HIGH,
             "action": SafetyAction.BLOCKED,
             "rationale": "High-dose Niacin (Vitamin B3 > 500mg) precipitates acute hepatocellular injury, transaminitis, and fulminant hepatic failure."
+        },
+        {
+            "condition": "SMOKER",
+            "nutrient": "Beta-Carotene",
+            "severity": SafetySeverity.CRITICAL,
+            "action": SafetyAction.BLOCKED,
+            "rationale": "High-dose synthetic beta-carotene supplements significantly increase lung cancer incidence and total mortality in current and former smokers (ATBC and CARET trials)."
+        },
+        {
+            "condition": "CHRONIC_KIDNEY_DISEASE",
+            "nutrient": "Magnesium",
+            "severity": SafetySeverity.CRITICAL,
+            "action": SafetyAction.BLOCKED,
+            "rationale": "Impaired glomerular filtration and tubular clearance preclude supplemental magnesium salts due to life-threatening hypermagnesemia, bradycardia, and neuromuscular paralysis."
+        },
+        {
+            "condition": "CHRONIC_KIDNEY_DISEASE",
+            "nutrient": "Protein",
+            "severity": SafetySeverity.CRITICAL,
+            "action": SafetyAction.BLOCKED,
+            "rationale": "High-dose protein isolates accelerate renal hyperfiltration injury and uremic toxin retention in non-dialysis chronic renal impairment."
         }
     ]
 
@@ -133,22 +155,50 @@ class ClinicalSafetyEngine:
         assessment = request.assessment or {}
         recommendations = request.recommendations or []
 
-        # Extract patient conditions and flags
-        conditions_raw = assessment.get("conditions") or assessment.get("medical_conditions", [])
-        if isinstance(conditions_raw, str):
-            conditions_raw = [conditions_raw]
-        patient_conditions = [str(c).upper().replace(" ", "_") for c in conditions_raw]
+        # Extract patient conditions comprehensively from medical_history, conditions, and medical_conditions
+        conditions_raw = []
+        if assessment.get("conditions"):
+            conditions_raw.extend(assessment["conditions"] if isinstance(assessment["conditions"], list) else [assessment["conditions"]])
+        if assessment.get("medical_conditions"):
+            conditions_raw.extend(assessment["medical_conditions"] if isinstance(assessment["medical_conditions"], list) else [assessment["medical_conditions"]])
+        if assessment.get("medical_history"):
+            for mh in assessment["medical_history"]:
+                if isinstance(mh, dict):
+                    if mh.get("is_active", True) is not False:
+                        conditions_raw.append(mh.get("condition_name", ""))
+                elif isinstance(mh, str):
+                    conditions_raw.append(mh)
 
-        is_pregnant = bool(assessment.get("is_pregnant", False) or assessment.get("demo_is_pregnant", 0) == 1)
-        if is_pregnant:
+        patient_conditions = [str(c).strip().upper().replace(" ", "_") for c in conditions_raw if c]
+
+        is_pregnant = bool(assessment.get("is_pregnant", False) or assessment.get("demo_is_pregnant", 0) == 1 or any("PREGNAN" in c for c in patient_conditions))
+        if is_pregnant and "PREGNANCY" not in patient_conditions:
             patient_conditions.append("PREGNANCY")
+
+        # Robust smoker status detection
+        lifestyle_factors = assessment.get("lifestyle_factors", {})
+        smoking_val = str(
+            assessment.get("smoking_status", "") or
+            (lifestyle_factors.get("smoking_status", "") if isinstance(lifestyle_factors, dict) else "") or
+            assessment.get("lifestyle", "")
+        ).upper()
+        is_smoker = bool(
+            assessment.get("is_smoker", False) or
+            "CURRENT" in smoking_val or
+            "SMOK" in smoking_val or
+            any("SMOK" in c for c in patient_conditions)
+        )
+        if is_smoker and "SMOKER" not in patient_conditions:
+            patient_conditions.append("SMOKER")
 
         # 1. Evaluate Pathological Contraindications
         for contra in cls.CONTRAINDICATIONS:
             c_cond = contra["condition"]
             cond_matched = False
             for p in patient_conditions:
-                if c_cond in p or p in c_cond or (c_cond == "CHRONIC_KIDNEY_DISEASE" and ("KIDNEY" in p or "CKD" in p)):
+                if (c_cond in p or p in c_cond or
+                    (c_cond == "CHRONIC_KIDNEY_DISEASE" and ("KIDNEY" in p or "CKD" in p or "RENAL" in p)) or
+                    (c_cond == "SMOKER" and "SMOK" in p)):
                     cond_matched = True
                     break
 
@@ -157,7 +207,11 @@ class ClinicalSafetyEngine:
                 for rec in recommendations:
                     rec_name = str(rec.get("food_or_supp", "") or rec.get("item_name", "") or rec.get("nutrient", "")).lower()
                     rec_target = str(rec.get("target_nutrient", "") or rec.get("nutrient", "")).lower()
-                    if c_nut in rec_name or c_nut in rec_target:
+                    
+                    matches_nut = (c_nut in rec_name or c_nut in rec_target)
+                    if c_nut == "beta-carotene" and ("beta carotene" in rec_name or "beta-carotene" in rec_name or "synthetic" in rec_name):
+                        matches_nut = True
+                    if matches_nut:
                         violations.append(SafetyViolation(
                             severity=contra["severity"],
                             rule_id=f"CONTRAINDICATION_{contra['condition']}_{contra['nutrient'].upper()}",
@@ -249,10 +303,28 @@ class ClinicalSafetyEngine:
                     ))
 
         # 2. Evaluate Tolerable Upper Intake Levels (UL) & Compounding Doses
+        # ULs apply primarily to supplemental/fortified intake, not whole-food dietary intake
         nutrient_totals: Dict[str, float] = {}
         for rec in recommendations:
+            # Only count supplement doses toward UL, not food nutrient content
+            if rec.get("rec_type") == "food":
+                continue
             t_nut = rec.get("target_nutrient") or rec.get("nutrient", "")
-            dose = float(rec.get("dose_mg", 0.0) or rec.get("amount", 0.0) or rec.get("dosage", 0.0))
+            raw_dose = rec.get("dose_mg", 0.0) or rec.get("amount", 0.0) or rec.get("dosage", 0.0)
+            try:
+                if isinstance(raw_dose, str):
+                    # Extract the FIRST number from range strings like "25 - 45 mg" or "2000 - 4000 IU/day"
+                    # Use conservative lower bound for safety evaluation
+                    numbers = re.findall(r"[\d]+\.?\d*", raw_dose)
+                    dose = float(numbers[0]) if numbers else 0.0
+                    # Detect IU-based dosages and convert to mcg for Vitamin D comparison
+                    dose_str_upper = raw_dose.upper()
+                    if "IU" in dose_str_upper and t_nut == "Vitamin D":
+                        dose = dose / 40.0  # Convert IU to mcg for UL comparison
+                else:
+                    dose = float(raw_dose or 0.0)
+            except (ValueError, TypeError):
+                dose = 0.0
             if t_nut and dose > 0:
                 nutrient_totals[t_nut] = nutrient_totals.get(t_nut, 0.0) + dose
 

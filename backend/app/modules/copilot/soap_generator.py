@@ -124,11 +124,13 @@ class SOAPNoteGenerator:
         }
 
         # --- Formatted Clipboard Text (EMR Standard) ---
+        import re
+        clean_soap_name = re.sub(r'^(patient\s+)+', '', (p.full_name or 'Unknown Patient').strip(), flags=re.IGNORECASE).strip() or 'Unknown Patient'
         date_str = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
         formatted = f"""================================================================================
 CLINICAL SOAP NOTE — NUTRISCAN AI CLINICAL COPILOT
 Date/Time: {date_str}
-Patient: {p.full_name} | ID: {p.patient_id} | Age: {p.age} | Gender: {p.gender} | BMI: {p.bmi}
+Patient: {clean_soap_name} | ID: {p.patient_id} | Age: {p.age} | Gender: {p.gender} | BMI: {p.bmi}
 ================================================================================
 
 SUBJECTIVE:

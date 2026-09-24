@@ -6,10 +6,15 @@
 import { useState, useMemo, memo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Activity, AlertTriangle, TrendingUp, Zap, Link2, ChevronDown, ChevronUp } from 'lucide-react'
-import { PALETTE, RISK_COLORS, getAggregateStats } from './NetworkData'
+import { PALETTE, RISK_COLORS, getAggregateStats, getFilteredNetworkData, type RiskLevel } from './NetworkData'
 
-function NetworkStatsInner() {
-  const stats = useMemo(() => getAggregateStats(), [])
+interface NetworkStatsProps {
+  riskFilter?: RiskLevel | null
+}
+
+function NetworkStatsInner({ riskFilter }: NetworkStatsProps = {}) {
+  const filteredData = useMemo(() => getFilteredNetworkData(riskFilter), [riskFilter])
+  const stats = useMemo(() => getAggregateStats(filteredData.visibleNodes, filteredData.visibleEdges), [filteredData])
   const [expanded, setExpanded] = useState(true)
 
   const items = [

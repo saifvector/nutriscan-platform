@@ -74,17 +74,23 @@ class RecommendationService:
             if persisted_pred:
                 pred_result = persisted_pred
 
-        # If payload is still None, fail with error
+        # If payload is still None, attempt fallback to most recent assessment
         if payload is None:
-            if assessment_id:
+            recent_assessments = PersistenceRepository.list_assessments(limit=1)
+            if recent_assessments:
+                latest_id = recent_assessments[0]["id"]
+                payload = PersistenceRepository.get_assessment(latest_id)
+                pred_result = PersistenceRepository.get_predictions(latest_id)
+            if payload is None:
                 raise ValueError(f"Assessment record for ID '{id_str}' not found.")
-            raise ValueError("No active assessment specified. Please provide a valid assessment ID.")
 
         if pred_result is None:
-            engine = PredictionService.get_engine()
-            pred_result = engine.screen_patient(payload, compute_explainability=True)
-            if id_str:
-                ExplainabilityService.register_prediction_run(id_str, payload, pred_result)
+            # Generate snapshot once if completely missing
+            try:
+                a_uuid = uuid.UUID(id_str)
+            except Exception:
+                a_uuid = uuid.uuid4()
+            pred_result = PredictionService.predict_assessment(payload, assessment_id=a_uuid)
 
         # 3. Extract Dietary Pattern and Restrictions
         diet_habits = payload.get("dietary_habits", {})
@@ -101,22 +107,16 @@ class RecommendationService:
         if payload.get("has_gluten_free") and "gluten-free" not in restrictions:
             restrictions.append("gluten-free")
 
-        preds = pred_result.get("nutrient_predictions", [])
-        elevated_nutrients = [p["nutrient"] for p in preds if p.get("risk_level") in ["HIGH", "MODERATE"]]
-        
-        # Phase 10C: Incorporate verified clinical deficiency predictions
-        try:
-            clinical_res = PredictionService.predict_clinical(payload)
-            for cp in clinical_res.predictions:
-                if str(cp.risk_tier) in ["HIGH", "MODERATE", "ClinicalRiskTier.HIGH", "ClinicalRiskTier.MODERATE"]:
-                    nut_clean = cp.target_name.replace(" Deficiency", "").replace(" Insufficiency", "").replace(" Anemia", "").strip()
-                    if nut_clean and nut_clean not in elevated_nutrients:
-                        elevated_nutrients.append(nut_clean)
-        except Exception as e:
-            logger.debug(f"Clinical recommendation enrichment note: {e}")
-
-        if not elevated_nutrients:
-            elevated_nutrients = [p["nutrient"] for p in preds[:3]]
+        # 4. Extract Elevated Nutrients Directly from Authoritative Snapshot (Zero Runtime Re-Inference)
+        preds = pred_result.get("predictions", pred_result.get("nutrient_predictions", []))
+        elevated_nutrients = []
+        for p in preds:
+            lvl = str(p.get("risk_tier", p.get("risk_level", "LOW"))).upper()
+            if "HIGH" in lvl or "MODERATE" in lvl:
+                name = p.get("target_name", p.get("nutrient", ""))
+                nut_clean = name.replace(" Deficiency", "").replace(" Insufficiency", "").replace(" Anemia", "").strip()
+                if nut_clean and nut_clean not in elevated_nutrients:
+                    elevated_nutrients.append(nut_clean)
 
         # 4. Generate Core Recommendations
         ranked_foods = PersonalizedRecommendationEngine.generate_food_recommendations(
@@ -129,49 +129,77 @@ class RecommendationService:
         priority_2 = ranked_foods["priority_2"]
         priority_3 = ranked_foods["priority_3"]
 
-        # Phase 12: Intercept candidate recommendations with ClinicalSafetyEngine
+        # 5. Generate Targeted Supplements within NIH Upper Tolerable Limits
+        supplements = PersonalizedRecommendationEngine.generate_supplement_recommendations(
+            elevated_nutrients=elevated_nutrients,
+            dietary_pattern=dietary_pattern,
+            patient_intake=payload
+        )
+
+        # Intercept candidate recommendations and supplements with ClinicalSafetyEngine
         try:
             from ..governance.safety_engine import ClinicalSafetyEngine
-            candidate_list = [f.model_dump() if hasattr(f, "model_dump") else dict(f) for f in (priority_1 + priority_2 + priority_3)]
+            candidate_list = []
+            for f in (priority_1 + priority_2 + priority_3):
+                fd = f.model_dump() if hasattr(f, "model_dump") else dict(f)
+                fd["rec_type"] = "food"  # Tag as food for UL check exclusion
+                candidate_list.append(fd)
+            for s in supplements:
+                sc = dict(s)
+                sc["rec_type"] = "supplement"
+                candidate_list.append(sc)
             safety_eval = ClinicalSafetyEngine.evaluate_safety(
                 patient_intake=payload,
                 proposed_recommendations=candidate_list,
                 predictions=preds
             )
-            blocked_nutrients = set()
+            blocked_nutrients_clinical = set()  # Clinical safety blocks - block entire nutrient
+            blocked_food_nutrients = set()  # Dietary compliance blocks - block food items only
             for v in safety_eval.violations:
-                v_act = getattr(v, "action", None)
-                if v_act == "BLOCKED" or str(v_act).endswith("BLOCKED"):
-                    blocked_nutrients.add(getattr(v, "nutrient", ""))
+                v_act = getattr(v, "action_taken", getattr(v, "action", None))
+                if str(v_act).endswith("BLOCKED") or v_act == "BLOCKED":
+                    rule_id = getattr(v, "rule_id", "")
+                    if "DIETARY_VIOLATION" in rule_id:
+                        # Dietary compliance: only remove the offending food, not supplements
+                        blocked_food_nutrients.add(getattr(v, "nutrient", ""))
+                    else:
+                        # Clinical safety: block entire nutrient including supplements
+                        blocked_nutrients_clinical.add(getattr(v, "nutrient", ""))
 
-            if blocked_nutrients:
-                priority_1 = [f for f in priority_1 if f.target_nutrient not in blocked_nutrients]
-                priority_2 = [f for f in priority_2 if f.target_nutrient not in blocked_nutrients]
-                priority_3 = [f for f in priority_3 if f.target_nutrient not in blocked_nutrients]
-                logger.info(f"Clinical Safety Engine intercepted and pruned recommendations for: {blocked_nutrients}")
+            # Apply clinical blocks to both foods and supplements
+            if blocked_nutrients_clinical:
+                priority_1 = [f for f in priority_1 if f.target_nutrient not in blocked_nutrients_clinical]
+                priority_2 = [f for f in priority_2 if f.target_nutrient not in blocked_nutrients_clinical]
+                priority_3 = [f for f in priority_3 if f.target_nutrient not in blocked_nutrients_clinical]
+                supplements = [s for s in supplements if s.get("target_nutrient") not in blocked_nutrients_clinical]
+                logger.info(f"Clinical Safety Engine blocked nutrients: {blocked_nutrients_clinical}")
+
+            # Apply dietary compliance blocks to foods only (preserves supplements)
+            if blocked_food_nutrients:
+                # Remove food items that violate dietary pattern but keep supplements
+                all_blocked = blocked_nutrients_clinical | blocked_food_nutrients
+                for nut in blocked_food_nutrients:
+                    priority_1 = [f for f in priority_1 if not (f.target_nutrient == nut and any(
+                        m in (getattr(f, 'food_name', '') or '').lower()
+                        for m in ['salmon','sardine','mackerel','tuna','beef','chicken','meat','pork','liver','fish','milk','cheese','yogurt','whey','egg','honey']
+                    ))]
+                logger.info(f"Dietary compliance pruned food items for: {blocked_food_nutrients}")
         except Exception as e:
             logger.warning(f"Clinical safety evaluation note: {e}")
 
-        # 5. Generate Biochemical Synergy Pairings
+        # 6. Generate Biochemical Synergy Pairings
         synergies = PersonalizedRecommendationEngine.generate_synergy_pairings(
             elevated_nutrients=elevated_nutrients,
             dietary_pattern=dietary_pattern
         )
 
-        # 6. Generate Lifestyle Interventions
+        # 7. Generate Lifestyle Interventions
         flat_patient = dict(payload)
         if isinstance(payload.get("lifestyle_factors"), dict):
             flat_patient.update(payload["lifestyle_factors"])
         lifestyle = PersonalizedRecommendationEngine.generate_lifestyle_interventions(
             nutrient_predictions=preds,
             patient_data=flat_patient
-        )
-
-        # 7. Generate Targeted Supplements within NIH Upper Tolerable Limits
-        supplements = PersonalizedRecommendationEngine.generate_supplement_recommendations(
-            elevated_nutrients=elevated_nutrients,
-            dietary_pattern=dietary_pattern,
-            patient_intake=payload
         )
 
         # 8. Generate Laboratory Monitoring & Re-Testing Protocol
@@ -204,6 +232,8 @@ class RecommendationService:
             f"Addresses primary flagged risks: {', '.join(elevated_nutrients[:3])}. "
             f"Overall Strategy Score: {scores.overall_recommendation_score}/100."
         )
+        from .supplement_assembler import SupplementRegimenAssembler
+        supplements = SupplementRegimenAssembler.assemble_regimen(supplements, patient_intake=payload)
 
         response = PersonalizedRecommendationsResponse(
             assessment_id=assessment_id,
@@ -234,6 +264,32 @@ class RecommendationService:
             logger.warning(f"Persistence save note for recommendations: {e}")
 
         return response
+
+    @classmethod
+    def generate_recommendations_for_payload(
+        cls,
+        payload: Dict[str, Any],
+        assessment_id: Optional[str] = None
+    ) -> PersonalizedRecommendationsResponse:
+        """
+        Directly generates recommendation package from an assessment dictionary payload.
+        """
+        if assessment_id is None:
+            id_obj = uuid.uuid4()
+        elif isinstance(assessment_id, uuid.UUID):
+            id_obj = assessment_id
+        else:
+            try:
+                id_obj = uuid.UUID(str(assessment_id))
+            except Exception:
+                id_obj = uuid.uuid4()
+        id_str = str(id_obj)
+        from ..explainability.service import ExplainabilityService
+        from ..prediction.service import PredictionService
+        engine = PredictionService.get_engine()
+        pred_result = engine.screen_patient(payload, compute_explainability=True)
+        ExplainabilityService.register_prediction_run(id_str, payload, pred_result)
+        return cls.get_recommendations(id_obj)
 
     @classmethod
     def get_food_recommendations(

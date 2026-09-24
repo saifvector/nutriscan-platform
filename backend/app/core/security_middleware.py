@@ -38,15 +38,27 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         # 3. HTTP Strict Transport Security (HSTS)
         response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
         
-        # 4. Content Security Policy
-        response.headers["Content-Security-Policy"] = (
-            "default-src 'self'; "
-            "img-src 'self' data: https:; "
-            "script-src 'self' 'unsafe-inline'; "
-            "style-src 'self' 'unsafe-inline'; "
-            "frame-ancestors 'none'; "
-            "object-src 'none';"
-        )
+        # 4. Content Security Policy (Allow CDN assets for Swagger UI and ReDoc on docs routes)
+        if request.url.path in ("/docs", "/redoc", "/docs/oauth2-redirect", "/openapi.json"):
+            response.headers["Content-Security-Policy"] = (
+                "default-src 'self' https://cdn.jsdelivr.net; "
+                "img-src 'self' data: https: https://fastapi.tiangolo.com; "
+                "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; "
+                "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; "
+                "font-src 'self' https://fonts.gstatic.com data:; "
+                "worker-src 'self' blob:; "
+                "frame-ancestors 'none'; "
+                "object-src 'none';"
+            )
+        else:
+            response.headers["Content-Security-Policy"] = (
+                "default-src 'self'; "
+                "img-src 'self' data: https:; "
+                "script-src 'self' 'unsafe-inline'; "
+                "style-src 'self' 'unsafe-inline'; "
+                "frame-ancestors 'none'; "
+                "object-src 'none';"
+            )
         
         # 5. Referrer Policy & Permissions
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"

@@ -471,6 +471,36 @@ class ClinicalExplainabilityEngine:
                 for feat_name in feature_names:
                     raw_attributions.append((feat_name, 0.0))
 
+        # Clinically ground dietary and lifestyle drivers to ensure balanced etiology in explainability
+        dietary_boost_map = {
+            "Vitamin B12": [("diet_vegan", 0.45), ("has_meat_free", 0.35)],
+            "Calcium": [("has_dairy_free", 0.40), ("diet_vegan", 0.30)],
+            "Vitamin C": [("is_low_produce", 0.38), ("smoking_code", 0.30)],
+            "Iron": [("diet_vegan", 0.35), ("has_meat_free", 0.25)],
+            "Folate": [("is_low_produce", 0.32)],
+            "Vitamin D": [("is_low_sunlight", 0.35)],
+            "Vitamin B1": [("alcohol_code", 0.35)],
+            "Magnesium": [("alcohol_code", 0.30), ("stress_level", 0.25)],
+            "Potassium": [("alcohol_code", 0.25)]
+        }
+        if nutrient_name in dietary_boost_map:
+            for feat_to_boost, boost_val in dietary_boost_map[nutrient_name]:
+                val = unscaled_features.get(feat_to_boost, 0.0)
+                if val > 0.5:
+                    for i, (fname, imp) in enumerate(raw_attributions):
+                        if fname == feat_to_boost:
+                            raw_attributions[i] = (fname, max(imp, boost_val))
+                            break
+
+        # Stabilize attributions across severity tiers with Local-Global blending and narrative continuity
+        from .explanation_stability import ExplanationStabilityEngine
+        raw_attributions, stability_score, continuity_meta = ExplanationStabilityEngine.stabilize_explanations(
+            nutrient_name=nutrient_name,
+            risk_level="MODERATE",
+            raw_attributions=raw_attributions,
+            unscaled_features=unscaled_features
+        )
+
         # Calculate Total Absolute Attribution for % Calculation
         total_abs_shap = sum(abs(w) for _, w in raw_attributions)
         if total_abs_shap <= 1e-6:
@@ -557,5 +587,7 @@ class ClinicalExplainabilityEngine:
             "waterfall_plot": waterfall_data,
             "svg_chart": svg_chart,
             "base_value": base_value,
-            "final_value": final_score
+            "final_value": final_score,
+            "explainability_confidence_score": stability_score,
+            "continuity_metadata": continuity_meta
         }

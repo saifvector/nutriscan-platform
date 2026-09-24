@@ -11,7 +11,7 @@ Endpoints:
 
 import uuid
 from typing import Optional, Any, Union
-from fastapi import APIRouter, HTTPException, Depends, status, Response
+from fastapi import APIRouter, HTTPException, Depends, status, Response, Path
 from fastapi.responses import JSONResponse
 
 from .service import ReportingService
@@ -188,7 +188,7 @@ async def get_dashboard_unlinked() -> Any:
     description="Returns high-level health score, risk distribution, priority rankings, active interaction alerts, recovery milestones, and 6 visualization contracts (Radar, Bar, Priority, SHAP, Interaction Graph, Timeline) with standalone SVGs."
 )
 async def get_dashboard(
-    assessment_id: uuid.UUID,
+    assessment_id: str = Path(..., min_length=1, max_length=64, description="Assessment unique identifier"),
     current_user: Optional[AuthenticatedUser] = Depends(get_current_user_optional)
 ) -> DashboardResponse:
     try:
@@ -227,8 +227,6 @@ async def get_progress_summary(
     user_id: Optional[uuid.UUID] = None,
     assessment_id: Optional[uuid.UUID] = None
 ) -> Any:
-    if not assessment_id:
-        return {"hasAssessment": False, "data": None}
     try:
         return ReportingService.get_progress_summary(user_id=user_id, assessment_id=assessment_id)
     except Exception as e:
@@ -311,10 +309,8 @@ async def get_analytics_health_score(
     user_id: Optional[uuid.UUID] = None,
     assessment_id: Optional[str] = None
 ) -> Any:
-    if not assessment_id:
-        return {"hasAssessment": False, "data": None}
     try:
-        return ReportingService.get_analytics_health_score(user_id=user_id)
+        return ReportingService.get_analytics_health_score(user_id=user_id, assessment_id=assessment_id)
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -332,10 +328,8 @@ async def get_analytics_recovery(
     user_id: Optional[uuid.UUID] = None,
     assessment_id: Optional[str] = None
 ) -> Any:
-    if not assessment_id:
-        return {"hasAssessment": False, "data": None}
     try:
-        return ReportingService.get_analytics_recovery(user_id=user_id)
+        return ReportingService.get_analytics_recovery(user_id=user_id, assessment_id=assessment_id)
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,

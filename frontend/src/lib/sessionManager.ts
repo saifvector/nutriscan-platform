@@ -8,12 +8,14 @@
 
 export interface ClinicalSession {
   active_assessment_id: string | null
+  active_patient_name?: string | null
   assessment_created_at: string | null
   assessment_status: 'draft' | 'completed' | 'archived' | null
 }
 
 const STORAGE_KEYS = {
   ACTIVE_ID: 'nutriscan_active_assessment_id',
+  ACTIVE_PATIENT_NAME: 'nutriscan_active_patient_name',
   ACTIVE_CREATED_AT: 'nutriscan_assessment_created_at',
   ACTIVE_STATUS: 'nutriscan_assessment_status',
   LAST_KNOWN_ID: 'nutriscan_last_known_assessment_id',
@@ -31,6 +33,7 @@ class SessionManager {
 
       return {
         active_assessment_id: activeId,
+        active_patient_name: sessionStorage.getItem(STORAGE_KEYS.ACTIVE_PATIENT_NAME),
         assessment_created_at: sessionStorage.getItem(STORAGE_KEYS.ACTIVE_CREATED_AT),
         assessment_status: (sessionStorage.getItem(STORAGE_KEYS.ACTIVE_STATUS) as ClinicalSession['assessment_status']) || 'completed',
       }
@@ -42,12 +45,16 @@ class SessionManager {
   /**
    * Sets the active assessment session and persists to last-known historical record.
    */
-  setActiveSession(id: string, createdAt?: string, status: ClinicalSession['assessment_status'] = 'completed'): void {
+  setActiveSession(id: string, createdAt?: string, status: ClinicalSession['assessment_status'] = 'completed', patientName?: string | null): void {
     try {
       const dateStr = createdAt || new Date().toISOString()
       sessionStorage.setItem(STORAGE_KEYS.ACTIVE_ID, id)
       sessionStorage.setItem(STORAGE_KEYS.ACTIVE_CREATED_AT, dateStr)
       sessionStorage.setItem(STORAGE_KEYS.ACTIVE_STATUS, status || 'completed')
+
+      if (patientName && patientName.trim()) {
+        sessionStorage.setItem(STORAGE_KEYS.ACTIVE_PATIENT_NAME, patientName.trim())
+      }
 
       // Store in localStorage purely as a historical pointer for "Resume Previous Assessment"
       localStorage.setItem(STORAGE_KEYS.LAST_KNOWN_ID, id)
@@ -79,6 +86,7 @@ class SessionManager {
   clearActiveSession(): void {
     try {
       sessionStorage.removeItem(STORAGE_KEYS.ACTIVE_ID)
+      sessionStorage.removeItem(STORAGE_KEYS.ACTIVE_PATIENT_NAME)
       sessionStorage.removeItem(STORAGE_KEYS.ACTIVE_CREATED_AT)
       sessionStorage.removeItem(STORAGE_KEYS.ACTIVE_STATUS)
       sessionStorage.removeItem('prediction_result')

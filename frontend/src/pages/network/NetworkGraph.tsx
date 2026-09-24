@@ -8,8 +8,8 @@ import { useRef, useEffect, useCallback, memo } from 'react'
 import * as d3 from 'd3'
 import {
   NODES, EDGES, PALETTE, RISK_COLORS, EDGE_COLORS,
-  getNodeRadius, getConnectedGraph,
-  type NutrientNode, type NutrientEdge, type ConnectedGraph,
+  getNodeRadius, getConnectedGraph, getFilteredNetworkData,
+  type NutrientNode, type NutrientEdge, type ConnectedGraph, type RiskLevel,
 } from './NetworkData'
 
 /* ─── Constants ─── */
@@ -35,6 +35,7 @@ const CONSTELLATION_LINKS = [
 
 /* ─── Props ─── */
 interface NetworkGraphProps {
+  riskFilter?: RiskLevel | null
   selectedId: string | null
   hoveredId: string | null
   onNodeClick: (node: NutrientNode) => void
@@ -47,7 +48,7 @@ interface NetworkGraphProps {
    ═══════════════════════════════════════════════════════════════════════════ */
 
 function NetworkGraph({
-  selectedId, hoveredId, onNodeClick, onNodeHover, onEdgeClick,
+  riskFilter = null, selectedId, hoveredId, onNodeClick, onNodeHover, onEdgeClick,
 }: NetworkGraphProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
@@ -90,7 +91,7 @@ function NetworkGraph({
   // Synchronize selection state without tearing down graph
   useEffect(() => {
     stateRef.current.selectedId = selectedId
-    stateRef.current.connected = selectedId ? getConnectedGraph(selectedId) : null
+    stateRef.current.connected = selectedId ? getConnectedGraph(selectedId, stateRef.current.edges) : null
 
     // Spawn directional particles only for connected edges
     if (selectedId && stateRef.current.connected) {
@@ -403,16 +404,27 @@ function NetworkGraph({
     const rModerate = 175 * radFactor
     const rLow = 300 * radFactor
 
-    // Radial pre-distribution: eliminates chaotic initial scatter
+    // Retrieve strictly visible nodes and edges based on active risk filter
+    const { visibleNodes, visibleEdges } = getFilteredNetworkData(riskFilter)
+
+    // Dynamic counts for radial angle distribution
+    const highCount = visibleNodes.filter(n => (n.risk_level || n.risk) === 'HIGH').length || 1
+    const modCount = visibleNodes.filter(n => (n.risk_level || n.risk) === 'MODERATE').length || 1
+    const lowCount = visibleNodes.filter(n => (n.risk_level || n.risk) === 'LOW').length || 1
     let highIdx = 0, modIdx = 0, lowIdx = 0
-    const nodes: NutrientNode[] = NODES.map(n => {
+
+    const nodes: NutrientNode[] = visibleNodes.map(n => {
       let r = 0, angle = 0
-      if (n.risk === 'HIGH') {
-        r = 60; angle = (2 * Math.PI * highIdx++) / 3
-      } else if (n.risk === 'MODERATE') {
-        r = rModerate; angle = (2 * Math.PI * modIdx++) / 6
+      const risk = n.risk_level || n.risk
+      if (risk === 'HIGH') {
+        r = riskFilter ? 80 * radFactor : 60
+        angle = (2 * Math.PI * highIdx++) / highCount
+      } else if (risk === 'MODERATE') {
+        r = riskFilter ? 120 * radFactor : rModerate
+        angle = (2 * Math.PI * modIdx++) / modCount
       } else {
-        r = rLow; angle = (2 * Math.PI * lowIdx++) / 9
+        r = riskFilter ? 160 * radFactor : rLow
+        angle = (2 * Math.PI * lowIdx++) / lowCount
       }
       return {
         ...n,
@@ -420,7 +432,7 @@ function NetworkGraph({
         y: H / 2 + Math.sin(angle) * r,
       }
     })
-    const edges: NutrientEdge[] = EDGES.map(e => ({ ...e }))
+    const edges: NutrientEdge[] = visibleEdges.map(e => ({ ...e }))
     stateRef.current.nodes = nodes
     stateRef.current.edges = edges
 
@@ -434,15 +446,17 @@ function NetworkGraph({
       }).strength(0.45))
       .force('charge', d3.forceManyBody().strength(d => {
         const n = d as NutrientNode
-        return (n.risk === 'HIGH' ? -820 : n.risk === 'MODERATE' ? -600 : -440) * radFactor
+        const risk = n.risk_level || n.risk
+        return (risk === 'HIGH' ? -820 : risk === 'MODERATE' ? -600 : -440) * radFactor
       }))
-      .force('center', d3.forceCenter(W / 2, H / 2).strength(0.05))
+      .force('center', d3.forceCenter(W / 2, H / 2).strength(riskFilter ? 0.08 : 0.05))
       .force('collision', d3.forceCollide<NutrientNode>(d => getNodeRadius(d.probability) + 34 * Math.min(1.25, radFactor)))
       .force('x', d3.forceX(W / 2).strength(0.028 / Math.max(1, aspect * 0.6)))
       .force('y', d3.forceY(H / 2).strength(0.038 * Math.max(1, aspect * 0.7)))
       .force('radial', d3.forceRadial<NutrientNode>(d => {
-        return d.risk === 'HIGH' ? 0 : d.risk === 'MODERATE' ? rModerate : rLow
-      }, W / 2, H / 2).strength(0.085))
+        const risk = d.risk_level || d.risk
+        return risk === 'HIGH' ? 0 : risk === 'MODERATE' ? (riskFilter ? 120 * radFactor : rModerate) : (riskFilter ? 160 * radFactor : rLow)
+      }, W / 2, H / 2).strength(riskFilter ? 0.04 : 0.085))
     stateRef.current.sim = sim
 
     /* ── Layer 4: Render Soft Risk Heat Regions ── */
@@ -893,7 +907,7 @@ function NetworkGraph({
       cancelAnimationFrame(animRef.current)
       if (zoomRaf) cancelAnimationFrame(zoomRaf)
     }
-  }, []) // STRICTLY EMPTY DEPENDENCIES: NEVER INVALIDATES!
+  }, [riskFilter])
 
   // Mount setupGraph once; handle resize cleanly
   useEffect(() => {

@@ -40,18 +40,36 @@ class ClinicalCopilotService:
             inner.update(data)
             data = inner
         asmnt_id = data.get("assessment_id") or data.get("patient_id") or data.get("id")
-        if (not data.get("age") or not data.get("dietary_pattern")) and asmnt_id:
-            from ...core.persistence import PersistenceRepository
+        from ...core.persistence import PersistenceRepository
+        persisted = None
+        if asmnt_id:
             persisted = PersistenceRepository.get_assessment(str(asmnt_id))
-            if persisted:
-                merged = dict(persisted)
-                merged.update(data)
-                return merged
-            else:
-                if not data.get("age") and not data.get("dietary_pattern"):
+
+        if persisted:
+            merged = dict(persisted)
+            merged.update(data)
+            # Ensure name fields are preserved from persisted if not provided in incoming data
+            resolved_name = (
+                data.get("name")
+                or data.get("patient_name")
+                or data.get("full_name")
+                or data.get("patientName")
+                or data.get("display_name")
+                or persisted.get("patient_name")
+                or persisted.get("name")
+                or persisted.get("full_name")
+            )
+            if resolved_name and not str(resolved_name).startswith("Patient ("):
+                merged["name"] = str(resolved_name).strip()
+                merged["patient_name"] = str(resolved_name).strip()
+                merged["full_name"] = str(resolved_name).strip()
+            return merged
+        else:
+            if not data.get("age") and not data.get("dietary_pattern"):
+                if asmnt_id:
                     raise ValueError(f"Patient assessment record for ID '{asmnt_id}' not found.")
-        elif not data.get("age") and not data.get("dietary_pattern") and not asmnt_id:
-            raise ValueError("Missing clinical intake data. A valid assessment payload or existing assessment_id is required.")
+                else:
+                    raise ValueError("Missing clinical intake data. A valid assessment payload or existing assessment_id is required.")
         return data
 
     @classmethod

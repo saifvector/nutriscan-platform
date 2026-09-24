@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import React, { useState, useEffect, useMemo } from 'react'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { motion, type Variants } from 'framer-motion'
 import {
   Sparkles,
@@ -22,6 +22,9 @@ import FoodSwapExplorer from './intelligence/FoodSwapExplorer'
 import SupplementGuidanceCenter from './intelligence/SupplementGuidanceCenter'
 import RecoverySimulator from './intelligence/RecoverySimulator'
 import ActionPlanCenter from './intelligence/ActionPlanCenter'
+import AssessmentRequiredState from '../components/common/AssessmentRequiredState'
+import { ResumeAssessmentModal } from '../components/session/ResumeAssessmentModal'
+import { sessionManager } from '../lib/sessionManager'
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -31,7 +34,13 @@ const stagger: Variants = { visible: { transition: { staggerChildren: 0.06 } } }
 
 export default function NutritionIntelligencePage() {
   const { assessmentId } = useParams()
-  const id = assessmentId || 'demo'
+  const navigate = useNavigate()
+  const [activeSession, setActiveSession] = useState(() => sessionManager.getActiveSession())
+  const [showResumeModal, setShowResumeModal] = useState(false)
+  const storedPrevious = useMemo(() => sessionManager.getStoredPreviousAssessment(), [])
+
+  const effectiveId = activeSession?.active_assessment_id || (assessmentId && assessmentId !== 'demo' ? assessmentId : null)
+  const id = effectiveId
 
   const [activeTab, setActiveTab] = useState<'gaps' | 'meals' | 'swaps' | 'supplements' | 'projections' | 'action-plan'>('gaps')
   const [loading, setLoading] = useState<boolean>(true)
@@ -44,6 +53,7 @@ export default function NutritionIntelligencePage() {
   const [cuisine, setCuisine] = useState<string>('MEDITERRANEAN')
 
   const fetchIntelligencePlan = async (currentDiet = diet, currentBudget = budget, currentCuisine = cuisine) => {
+    if (!id) return
     try {
       setLoading(true)
       setError(null)
@@ -74,8 +84,46 @@ export default function NutritionIntelligencePage() {
   }
 
   useEffect(() => {
-    fetchIntelligencePlan(diet, budget, cuisine)
+    if (id) {
+      fetchIntelligencePlan(diet, budget, cuisine)
+    }
   }, [id])
+
+  if (!effectiveId) {
+    return (
+      <>
+        <AssessmentRequiredState
+          title="Clinical Decision Support Assessment Required"
+          description="Autonomous clinical intelligence plans, USDA nutrient gap analysis, and precision meal planning require an active nutritional assessment. Complete an assessment to generate your personalized clinical protocol."
+          actionLabel="Start Assessment"
+          onAction={() => navigate('/assessment')}
+          secondaryActionLabel={storedPrevious ? "Resume Previous Assessment" : undefined}
+          onSecondaryAction={storedPrevious ? () => setShowResumeModal(true) : undefined}
+          icon={BrainCircuit}
+        />
+
+        {storedPrevious && (
+          <ResumeAssessmentModal
+            isOpen={showResumeModal}
+            assessmentId={storedPrevious.id}
+            assessmentDate={storedPrevious.date}
+            onResume={() => {
+              sessionManager.setActiveSession(storedPrevious.id, storedPrevious.date, 'completed')
+              setActiveSession(sessionManager.getActiveSession())
+              setShowResumeModal(false)
+            }}
+            onStartNew={() => {
+              sessionManager.clearActiveSession()
+              setActiveSession(null)
+              setShowResumeModal(false)
+              navigate('/assessment')
+            }}
+            onClose={() => setShowResumeModal(false)}
+          />
+        )}
+      </>
+    )
+  }
 
   const handleFilterChange = (newDiet: string, newBudget: string, newCuisine: string) => {
     setDiet(newDiet)

@@ -24,6 +24,7 @@ import {
 import { sessionManager } from '../lib/sessionManager'
 import { ResumeAssessmentModal } from '../components/session/ResumeAssessmentModal'
 import { AssessmentRequiredState } from '../components/common/AssessmentRequiredState'
+import { PediatricSafetyBanner } from '../components/safety/PediatricSafetyBanner'
 
 import HealthScoreCard from '../components/reporting/HealthScoreCard'
 import ProgressOverview from '../components/reporting/ProgressOverview'
@@ -60,6 +61,7 @@ export default function ReportsPage() {
   const [recoveryItems, setRecoveryItems] = useState<any[]>([])
   const [assessmentHistory, setAssessmentHistory] = useState<HistoryEntry[]>([])
   const [timelineCoordinates, setTimelineCoordinates] = useState<any[]>([])
+  const [safetyData, setSafetyData] = useState<{ patientAge?: number; safetyWarnings?: any[]; quarantinedItems?: string[] }>({})
 
   // Fetch live data from API
   useEffect(() => {
@@ -67,20 +69,60 @@ export default function ReportsPage() {
 
     const fetchReportData = async () => {
       try {
-        const [hsRes, histRes, trendRes] = await Promise.allSettled([
+        const [hsRes, histRes, trendRes, predRes] = await Promise.allSettled([
           fetch(`/api/v1/analytics/health-score?assessment_id=${effectiveId}`),
           fetch('/api/v1/reports/history'),
-          fetch('/api/v1/progress/trends')
+          fetch('/api/v1/progress/trends'),
+          fetch(`/api/v1/predictions/${effectiveId}`)
         ])
 
         if (hsRes.status === 'fulfilled' && hsRes.value.ok) {
           const hsData = await hsRes.value.json()
-          if (hsData.hasAssessment !== false) {
-            if (hsData.health_score != null) setHealthScore(hsData.health_score)
-            if (hsData.category) setHealthCategory(hsData.category)
+          if (hsData.hasAssessment !== false && hsData.has_assessment !== false) {
+            // Support all valid score fields with safe numeric parsing
+            const rawScore =
+              hsData.health_score ??
+              hsData.current_score ??
+              hsData.overall_health_score ??
+              hsData.breakdown?.final_score
+
+            let parsedScore: number | null = null
+            if (typeof rawScore === 'number' && !isNaN(rawScore)) {
+              parsedScore = Math.round(rawScore)
+            } else if (typeof rawScore === 'string') {
+              const num = parseFloat(rawScore)
+              if (!isNaN(num)) parsedScore = Math.round(num)
+            }
+
+            if (parsedScore != null && parsedScore >= 0) {
+              setHealthScore(parsedScore)
+            }
+
+            const rawCat =
+              hsData.category ??
+              hsData.health_category ??
+              hsData.breakdown?.category
+            if (rawCat) {
+              setHealthCategory(typeof rawCat === 'object' ? rawCat.value : String(rawCat))
+            }
+
             if (hsData.breakdown) setScoreBreakdown(hsData.breakdown)
             if (hsData.recovery_items?.length) setRecoveryItems(hsData.recovery_items)
           }
+        }
+
+        if (predRes.status === 'fulfilled' && predRes.value.ok) {
+          const pData = await predRes.value.json()
+          const age = pData?.demographics?.age ?? pData?.age
+          const warnings = [
+            ...(pData?.safety_warnings || []),
+            ...(pData?.safety_violations || [])
+          ]
+          setSafetyData({
+            patientAge: age,
+            safetyWarnings: warnings,
+            quarantinedItems: pData?.quarantined_items || []
+          })
         }
 
         if (histRes.status === 'fulfilled' && histRes.value.ok) {
@@ -227,6 +269,13 @@ export default function ReportsPage() {
             </button>
           </div>
         </div>
+
+        {/* Pediatric Clinical Safety Alert */}
+        <PediatricSafetyBanner
+          patientAge={safetyData.patientAge}
+          safetyWarnings={safetyData.safetyWarnings}
+          quarantinedItems={safetyData.quarantinedItems}
+        />
 
         {/* Navigation Tabs */}
         <div style={{

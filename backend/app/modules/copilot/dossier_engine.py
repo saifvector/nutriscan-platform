@@ -42,7 +42,31 @@ class DossierEngine:
         pid = str(patient_data.get("patient_id") or patient_data.get("id") or patient_data.get("assessment_id") or "PT-CLINICAL")
         age = int(patient_data.get("age", 40))
         gender = str(patient_data.get("gender", "FEMALE")).upper()
-        pname = patient_data.get("full_name") or patient_data.get("name") or f"Patient ({age}yo {gender.capitalize()})"
+        raw_name = (
+            patient_data.get("name")
+            or patient_data.get("patient_name")
+            or patient_data.get("full_name")
+            or patient_data.get("patientName")
+            or patient_data.get("display_name")
+        )
+
+        if not raw_name and pid and pid != "PT-CLINICAL":
+            try:
+                from ...core.persistence import PersistenceRepository
+                p_rec = PersistenceRepository.get_patient(pid)
+                if p_rec and p_rec.get("name"):
+                    raw_name = p_rec["name"]
+                if not raw_name:
+                    asmnt = PersistenceRepository.get_assessment(pid)
+                    if asmnt:
+                        raw_name = asmnt.get("patient_name") or asmnt.get("name") or asmnt.get("full_name")
+            except Exception:
+                pass
+
+        if raw_name and not str(raw_name).strip().startswith("Patient (") and str(raw_name).strip() != "Active Patient":
+            pname = str(raw_name).strip()
+        else:
+            pname = "Unknown Patient"
 
         weight = float(patient_data.get("weight_kg") or 68.0)
         height = float(patient_data.get("height_cm") or 168.0)

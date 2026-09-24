@@ -17,9 +17,32 @@ interface HealthScoreCardProps {
 }
 
 export default function HealthScoreCard({ score, category, breakdown }: HealthScoreCardProps) {
-  // Category styling based on 5-tier standard
-  const getCategoryConfig = (cat: string, scoreVal: number) => {
-    if (scoreVal >= 90 || cat === 'EXCELLENT') {
+  // Validate whether score has been computed (> 0 and valid number)
+  const isScoreValid = typeof score === 'number' && !isNaN(score) && score > 0
+  const effectiveScore = isScoreValid ? Math.min(100, Math.max(0, Math.round(score))) : 0
+
+  // Category styling based on 5-tier standard, strictly synchronized with score
+  const getCategoryConfig = (cat: string, scoreVal: number, valid: boolean) => {
+    // Uninitialized / missing score handling
+    if (!valid || scoreVal <= 0) {
+      return {
+        label: 'Awaiting Calculation',
+        color: 'var(--c-muted)',
+        bg: 'rgba(148, 163, 184, 0.12)',
+        border: 'rgba(148, 163, 184, 0.25)',
+        icon: Activity,
+      }
+    }
+
+    const normCat = (cat || '').toUpperCase()
+
+    // 5-tier standard synchronized with OverallNutritionalHealthScorer:
+    // 90 - 100: EXCELLENT
+    // 70 - 89:  GOOD
+    // 50 - 69:  MODERATE_RISK
+    // 30 - 49:  HIGH_RISK
+    // < 30:     CRITICAL
+    if (scoreVal >= 90 || (normCat === 'EXCELLENT' && scoreVal >= 85)) {
       return {
         label: 'Excellent Status',
         color: 'var(--c-success)',
@@ -28,7 +51,7 @@ export default function HealthScoreCard({ score, category, breakdown }: HealthSc
         icon: CheckCircle
       }
     }
-    if (scoreVal >= 75 || cat === 'GOOD') {
+    if (scoreVal >= 70 || (normCat === 'GOOD' && scoreVal >= 65)) {
       return {
         label: 'Good Foundation',
         color: 'var(--c-primary)',
@@ -37,7 +60,7 @@ export default function HealthScoreCard({ score, category, breakdown }: HealthSc
         icon: Shield
       }
     }
-    if (scoreVal >= 60 || cat === 'MODERATE_RISK') {
+    if (scoreVal >= 50 || (normCat === 'MODERATE_RISK' && scoreVal >= 45)) {
       return {
         label: 'Moderate Risk',
         color: 'var(--c-warning)',
@@ -46,7 +69,7 @@ export default function HealthScoreCard({ score, category, breakdown }: HealthSc
         icon: Activity
       }
     }
-    if (scoreVal >= 40 || cat === 'HIGH_RISK') {
+    if (scoreVal >= 30 || (normCat === 'HIGH_RISK' && scoreVal >= 25)) {
       return {
         label: 'High Risk',
         color: '#F97316',
@@ -64,14 +87,16 @@ export default function HealthScoreCard({ score, category, breakdown }: HealthSc
     }
   }
 
-  const config = getCategoryConfig(category, score)
+  const config = getCategoryConfig(category, effectiveScore, isScoreValid)
   const CatIcon = config.icon
 
   // Radial progress calculations
   const radius = 54
   const strokeWidth = 8
   const circumference = 2 * Math.PI * radius
-  const strokeDashoffset = circumference - (score / 100) * circumference
+  const strokeDashoffset = isScoreValid
+    ? circumference - (effectiveScore / 100) * circumference
+    : circumference
 
   return (
     <motion.div
@@ -140,16 +165,16 @@ export default function HealthScoreCard({ score, category, breakdown }: HealthSc
             }}>
               <span style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: '2.25rem',
+                fontSize: isScoreValid ? '2.25rem' : '1.75rem',
                 fontWeight: 800,
                 letterSpacing: '-0.03em',
-                color: 'var(--c-text)',
+                color: isScoreValid ? 'var(--c-text)' : 'var(--c-muted)',
                 lineHeight: 1,
               }}>
-                {score}
+                {isScoreValid ? effectiveScore : '—'}
               </span>
               <span style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--c-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginTop: 4 }}>
-                / 100
+                {isScoreValid ? '/ 100' : 'PENDING'}
               </span>
             </div>
           </div>
@@ -181,7 +206,7 @@ export default function HealthScoreCard({ score, category, breakdown }: HealthSc
         </div>
 
         {/* Right: Breakdown Decomposition Bars */}
-        {breakdown && (
+        {isScoreValid && breakdown ? (
           <div style={{
             display: 'flex',
             flexDirection: 'column',
@@ -203,32 +228,52 @@ export default function HealthScoreCard({ score, category, breakdown }: HealthSc
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem' }}>
-              <span style={{ color: 'var(--c-danger)' }}>Nutrient Deficiencies ({breakdown.deficiency_count || 1}):</span>
-              <span style={{ fontWeight: 600, color: 'var(--c-danger)' }}>-{breakdown.nutrient_risk_deduction} pts</span>
+              <span style={{ color: 'var(--c-danger)' }}>Nutrient Deficiencies ({breakdown.deficiency_count ?? 0}):</span>
+              <span style={{ fontWeight: 600, color: 'var(--c-danger)' }}>-{Math.abs(breakdown.nutrient_risk_deduction ?? 0).toFixed(1)} pts</span>
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem' }}>
               <span style={{ color: '#F97316' }}>Biochemical Interactions:</span>
-              <span style={{ fontWeight: 600, color: '#F97316' }}>-{breakdown.interaction_penalty} pts</span>
+              <span style={{ fontWeight: 600, color: '#F97316' }}>-{Math.abs(breakdown.interaction_penalty ?? 0).toFixed(1)} pts</span>
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem' }}>
-              <span style={{ color: 'var(--c-success)' }}>Protective Lifestyle ({breakdown.protective_factor_count || 4} habits):</span>
-              <span style={{ fontWeight: 600, color: 'var(--c-success)' }}>+{breakdown.lifestyle_modifier} pts</span>
+              <span style={{ color: 'var(--c-success)' }}>Protective Lifestyle ({breakdown.protective_factor_count ?? 0} habits):</span>
+              <span style={{ fontWeight: 600, color: 'var(--c-success)' }}>
+                {(breakdown.lifestyle_modifier ?? 0) >= 0 ? '+' : ''}{(breakdown.lifestyle_modifier ?? 0).toFixed(1)} pts
+              </span>
             </div>
 
             {breakdown.confidence_adjustment && breakdown.confidence_adjustment > 0 ? (
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem' }}>
                 <span style={{ color: 'var(--c-primary)' }}>Confidence Weighting:</span>
-                <span style={{ fontWeight: 600, color: 'var(--c-primary)' }}>+{breakdown.confidence_adjustment} pts</span>
+                <span style={{ fontWeight: 600, color: 'var(--c-primary)' }}>+{breakdown.confidence_adjustment.toFixed(1)} pts</span>
               </div>
             ) : null}
           </div>
+        ) : (
+          !isScoreValid && (
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              minWidth: 280,
+              flex: 1,
+              background: 'var(--c-surface-alt)',
+              padding: '16px 20px',
+              borderRadius: 14,
+              border: '1px dashed var(--c-border-light)',
+            }}>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--c-muted)', margin: 0, textAlign: 'center', lineHeight: 1.5 }}>
+                Nutritional scoring engine waiting for assessment screening data. Complete or select an active assessment to view factor decomposition.
+              </p>
+            </div>
+          )
         )}
       </div>
 
       {/* Bottom Clinical Interpretation */}
-      {breakdown?.interpretation && (
+      {isScoreValid && breakdown?.interpretation && (
         <div style={{
           marginTop: 20,
           paddingTop: 16,

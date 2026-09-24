@@ -312,6 +312,76 @@ def initialize_database():
                 conn.execute("ALTER TABLE users ADD COLUMN token_valid_after TEXT;")
             if "jwt_version" not in user_cols:
                 conn.execute("ALTER TABLE users ADD COLUMN jwt_version INTEGER DEFAULT 1;")
+
+            # Dynamic column migration: ensure snapshot columns on predictions
+            cur.execute("PRAGMA table_info(predictions);")
+            pred_cols = [r["name"] for r in cur.fetchall()]
+            if "health_score" not in pred_cols:
+                conn.execute("ALTER TABLE predictions ADD COLUMN health_score INTEGER;")
+            if "category" not in pred_cols:
+                conn.execute("ALTER TABLE predictions ADD COLUMN category TEXT;")
+            if "confidence" not in pred_cols:
+                conn.execute("ALTER TABLE predictions ADD COLUMN confidence REAL;")
+            if "evidence_grade" not in pred_cols:
+                conn.execute("ALTER TABLE predictions ADD COLUMN evidence_grade TEXT;")
+
+            # Longitudinal Clinical History: Patients Table
+            conn.execute("""
+            CREATE TABLE IF NOT EXISTS patients (
+                id TEXT PRIMARY KEY,
+                name TEXT NOT NULL COLLATE NOCASE,
+                gender TEXT,
+                current_age INTEGER,
+                height_cm REAL,
+                weight_kg REAL,
+                dietary_pattern TEXT,
+                medical_history_json TEXT DEFAULT '[]',
+                lifestyle_json TEXT DEFAULT '{}',
+                created_at TEXT NOT NULL,
+                updated_at TEXT NOT NULL
+            );
+            """)
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_patients_name ON patients (name);")
+
+            # Dynamic column migration: ensure patient_id and patient_name on assessments
+            if "patient_id" not in cols:
+                conn.execute("ALTER TABLE assessments ADD COLUMN patient_id TEXT;")
+                conn.execute("CREATE INDEX IF NOT EXISTS idx_assessments_patient_id ON assessments (patient_id);")
+            if "patient_name" not in cols:
+                conn.execute("ALTER TABLE assessments ADD COLUMN patient_name TEXT;")
+                conn.execute("CREATE INDEX IF NOT EXISTS idx_assessments_patient_name ON assessments (patient_name);")
+
+            # Automatic backfill of real historical predicted assessments if patients table is empty
+            cur.execute("SELECT COUNT(*) FROM patients;")
+            p_count = cur.fetchone()[0]
+            if p_count == 0:
+                cur.execute("""
+                    SELECT a.id, a.created_at, a.age, a.gender, a.dietary_pattern, a.payload_json
+                    FROM assessments a
+                    JOIN predictions pr ON pr.assessment_id = a.id
+                    WHERE a.patient_id IS NULL
+                """)
+                for r in cur.fetchall():
+                    a_id = r["id"]
+                    c_at = r["created_at"]
+                    age = r["age"]
+                    gen = r["gender"]
+                    diet_pat = r["dietary_pattern"]
+                    try:
+                        p_load = json.loads(r["payload_json"])
+                    except Exception:
+                        p_load = {}
+                    p_name = f"Patient REC-{a_id[:8].upper()}"
+                    p_id = str(uuid.uuid4())
+                    h = p_load.get("height_cm", 170.0)
+                    w = p_load.get("weight_kg", 70.0)
+                    med = json.dumps(p_load.get("medical_history", []), default=str)
+                    life = json.dumps(p_load.get("lifestyle_factors", {}), default=str)
+                    conn.execute("""
+                        INSERT INTO patients (id, name, gender, current_age, height_cm, weight_kg, dietary_pattern, medical_history_json, lifestyle_json, created_at, updated_at)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """, (p_id, p_name, gen, age, h, w, diet_pat, med, life, c_at, c_at))
+                    conn.execute("UPDATE assessments SET patient_id = ?, patient_name = ? WHERE id = ?", (p_id, p_name, a_id))
         logger.info(f"NutriScan persistence database initialized at: {DB_PATH}")
     finally:
         conn.close()
@@ -395,20 +465,77 @@ class PersistenceRepository:
                     gender = str(gender_raw)
 
                 effective_user_id = user_id or payload.get("user_id") or None
+                age = payload.get("age")
+                height_cm = payload.get("height_cm")
+                weight_kg = payload.get("weight_kg")
+                med_hist = payload.get("medical_history", [])
+                lifestyle = payload.get("lifestyle_factors", {})
+
+                # Longitudinal Clinical Patient Tracking Resolution
+                raw_patient_name = payload.get("patient_name") or payload.get("name")
+                patient_id = payload.get("patient_id")
+
+                if raw_patient_name and str(raw_patient_name).strip():
+                    patient_name = str(raw_patient_name).strip()
+                else:
+                    patient_name = f"Patient #{str(assessment_id)[:8].upper()}"
+
                 with conn:
+                    cur = conn.cursor()
+                    # Resolve patient_id if not explicitly provided
+                    if not patient_id:
+                        cur.execute("SELECT id FROM patients WHERE name = ? COLLATE NOCASE", (patient_name,))
+                        existing_p = cur.fetchone()
+                        if existing_p:
+                            patient_id = str(existing_p["id"])
+                        else:
+                            patient_id = str(uuid.uuid4())
+
+                    # Upsert Patient record
+                    cur.execute("SELECT id FROM patients WHERE id = ?", (patient_id,))
+                    p_row = cur.fetchone()
+                    if p_row:
+                        conn.execute(
+                            """
+                            UPDATE patients
+                            SET name = ?, gender = ?, current_age = ?, height_cm = ?, weight_kg = ?,
+                                dietary_pattern = ?, medical_history_json = ?, lifestyle_json = ?, updated_at = ?
+                            WHERE id = ?
+                            """,
+                            (
+                                patient_name, gender, age, height_cm, weight_kg,
+                                diet, json.dumps(med_hist, default=str), json.dumps(lifestyle, default=str), now,
+                                patient_id
+                            )
+                        )
+                    else:
+                        conn.execute(
+                            """
+                            INSERT INTO patients (id, name, gender, current_age, height_cm, weight_kg, dietary_pattern, medical_history_json, lifestyle_json, created_at, updated_at)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            """,
+                            (
+                                patient_id, patient_name, gender, age, height_cm, weight_kg,
+                                diet, json.dumps(med_hist, default=str), json.dumps(lifestyle, default=str), now, now
+                            )
+                        )
+
+                    # Insert Assessment record linked to patient
                     conn.execute(
                         """
-                        INSERT OR REPLACE INTO assessments (id, created_at, age, gender, dietary_pattern, payload_json, user_id)
-                        VALUES (?, ?, ?, ?, ?, ?, ?)
+                        INSERT OR REPLACE INTO assessments (id, created_at, age, gender, dietary_pattern, payload_json, user_id, patient_id, patient_name)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                         """,
                         (
                             str(assessment_id),
                             now,
-                            payload.get("age"),
+                            age,
                             gender,
                             diet,
                             json.dumps(payload, default=str),
-                            str(effective_user_id) if effective_user_id else None
+                            str(effective_user_id) if effective_user_id else None,
+                            patient_id,
+                            patient_name
                         )
                     )
             finally:
@@ -419,39 +546,632 @@ class PersistenceRepository:
         conn = get_connection()
         try:
             cur = conn.cursor()
-            cur.execute("SELECT dietary_pattern, age, gender, payload_json, user_id FROM assessments WHERE id = ?", (str(assessment_id),))
+            cur.execute("SELECT dietary_pattern, age, gender, payload_json, user_id, patient_id, patient_name FROM assessments WHERE id = ?", (str(assessment_id),))
             row = cur.fetchone()
             if row:
                 res = json.loads(row["payload_json"])
-                if "dietary_pattern" not in res and row["dietary_pattern"]:
+                if not res.get("dietary_pattern") and row["dietary_pattern"]:
                     res["dietary_pattern"] = row["dietary_pattern"]
-                if "age" not in res and row["age"] is not None:
+                if res.get("age") is None and row["age"] is not None:
                     res["age"] = row["age"]
-                if "gender" not in res and row["gender"]:
+                if not res.get("gender") and row["gender"]:
                     res["gender"] = row["gender"]
-                if "user_id" not in res and row["user_id"]:
+                if not res.get("user_id") and row["user_id"]:
                     res["user_id"] = row["user_id"]
+                if not res.get("patient_id") and row["patient_id"]:
+                    res["patient_id"] = row["patient_id"]
+                if not res.get("patient_name") and row["patient_name"]:
+                    res["patient_name"] = row["patient_name"]
+
+                # If patient_name is missing or placeholder, look up from patients table
+                p_id = res.get("patient_id") or row["patient_id"]
+                if (not res.get("patient_name") or str(res.get("patient_name", "")).startswith("Patient #")) and p_id:
+                    cur.execute("SELECT name FROM patients WHERE id = ?", (str(p_id),))
+                    p_row = cur.fetchone()
+                    if p_row and p_row["name"]:
+                        res["patient_name"] = p_row["name"]
+
+                resolved_pname = res.get("patient_name") or res.get("name")
+                if resolved_pname and not str(resolved_pname).startswith("Patient ("):
+                    res["patient_name"] = str(resolved_pname).strip()
+                    res["name"] = str(resolved_pname).strip()
+                    res["full_name"] = str(resolved_pname).strip()
+
                 return res
             return None
         finally:
             conn.close()
 
     @classmethod
+    def search_patients(cls, query: Optional[str] = None, limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
+        conn = get_connection()
+        try:
+            cur = conn.cursor()
+            if query and query.strip():
+                q_term = f"%{query.strip()}%"
+                cur.execute(
+                    """
+                    SELECT p.*, COUNT(a.id) as assessment_count, MAX(a.created_at) as latest_assessment_date
+                    FROM patients p
+                    LEFT JOIN assessments a ON a.patient_id = p.id
+                    WHERE p.name LIKE ? OR p.id LIKE ?
+                    GROUP BY p.id
+                    ORDER BY latest_assessment_date DESC, p.updated_at DESC
+                    LIMIT ? OFFSET ?
+                    """,
+                    (q_term, q_term, limit, offset)
+                )
+            else:
+                cur.execute(
+                    """
+                    SELECT p.*, COUNT(a.id) as assessment_count, MAX(a.created_at) as latest_assessment_date
+                    FROM patients p
+                    LEFT JOIN assessments a ON a.patient_id = p.id
+                    GROUP BY p.id
+                    ORDER BY latest_assessment_date DESC, p.updated_at DESC
+                    LIMIT ? OFFSET ?
+                    """,
+                    (limit, offset)
+                )
+            rows = cur.fetchall()
+            results = []
+            for r in rows:
+                p_id = r["id"]
+                cur.execute(
+                    """
+                    SELECT pr.overall_risk, pr.overall_risk_score, pr.predictions_json, a.id as assessment_id
+                    FROM assessments a
+                    JOIN predictions pr ON pr.assessment_id = a.id
+                    WHERE a.patient_id = ?
+                    ORDER BY a.created_at DESC
+                    LIMIT 1
+                    """,
+                    (p_id,)
+                )
+                pred_row = cur.fetchone()
+                latest_risk_score = None
+                latest_risk_level = None
+                flagged_count = 0
+                latest_assessment_id = None
+                if pred_row:
+                    latest_risk_score = round(float(pred_row["overall_risk_score"]), 1)
+                    latest_risk_level = str(pred_row["overall_risk"]).upper()
+                    latest_assessment_id = pred_row["assessment_id"]
+                    try:
+                        preds = json.loads(pred_row["predictions_json"])
+                        pred_items = preds.get("predictions", []) if isinstance(preds, dict) else (preds if isinstance(preds, list) else [])
+                        flagged_count = sum(1 for item in pred_items if item.get("risk_level") in ["HIGH", "MODERATE"] or (item.get("probability") or 0) >= 0.4)
+                    except Exception:
+                        flagged_count = 0
+
+                h = r["height_cm"] or 0
+                w = r["weight_kg"] or 0
+                bmi = round(w / ((h / 100) ** 2), 1) if h > 0 and w > 0 else None
+
+                results.append({
+                    "id": p_id,
+                    "name": r["name"],
+                    "gender": r["gender"],
+                    "age": r["current_age"],
+                    "height_cm": r["height_cm"],
+                    "weight_kg": r["weight_kg"],
+                    "bmi": bmi,
+                    "dietary_pattern": r["dietary_pattern"],
+                    "created_at": r["created_at"],
+                    "updated_at": r["updated_at"],
+                    "assessment_count": r["assessment_count"] or 0,
+                    "latest_assessment_date": r["latest_assessment_date"],
+                    "latest_assessment_id": latest_assessment_id,
+                    "latest_risk_score": latest_risk_score,
+                    "latest_risk_level": latest_risk_level,
+                    "flagged_nutrients_count": flagged_count,
+                })
+            return results
+        finally:
+            conn.close()
+
+    @classmethod
+    def get_patient(cls, patient_id: str) -> Optional[Dict[str, Any]]:
+        conn = get_connection()
+        try:
+            cur = conn.cursor()
+            cur.execute("SELECT * FROM patients WHERE id = ? OR name = ? COLLATE NOCASE", (patient_id, patient_id))
+            row = cur.fetchone()
+            if not row:
+                return None
+
+            p_id = row["id"]
+            cur.execute(
+                "SELECT id, created_at, payload_json FROM assessments WHERE patient_id = ? ORDER BY created_at DESC LIMIT 1",
+                (p_id,)
+            )
+            latest_a = cur.fetchone()
+            latest_payload = json.loads(latest_a["payload_json"]) if latest_a else {}
+
+            h = row["height_cm"] or latest_payload.get("height_cm", 0)
+            w = row["weight_kg"] or latest_payload.get("weight_kg", 0)
+            bmi = round(w / ((h / 100) ** 2), 1) if h > 0 and w > 0 else None
+
+            med_history = []
+            try:
+                med_history = json.loads(row["medical_history_json"] or "[]")
+            except Exception:
+                med_history = latest_payload.get("medical_history", [])
+
+            lifestyle = {}
+            try:
+                lifestyle = json.loads(row["lifestyle_json"] or "{}")
+            except Exception:
+                lifestyle = latest_payload.get("lifestyle_factors", {})
+
+            return {
+                "id": p_id,
+                "name": row["name"],
+                "gender": row["gender"] or latest_payload.get("gender"),
+                "age": row["current_age"] or latest_payload.get("age"),
+                "height_cm": h,
+                "weight_kg": w,
+                "bmi": bmi,
+                "dietary_pattern": row["dietary_pattern"] or latest_payload.get("dietary_pattern"),
+                "medical_history": med_history,
+                "lifestyle_factors": lifestyle,
+                "created_at": row["created_at"],
+                "updated_at": row["updated_at"],
+                "latest_assessment_id": latest_a["id"] if latest_a else None,
+                "latest_payload": latest_payload,
+            }
+        finally:
+            conn.close()
+
+    @classmethod
+    def get_patient_timeline(cls, patient_id: str) -> Optional[Dict[str, Any]]:
+        conn = get_connection()
+        try:
+            cur = conn.cursor()
+            cur.execute("SELECT * FROM patients WHERE id = ? OR name = ? COLLATE NOCASE", (patient_id, patient_id))
+            p_row = cur.fetchone()
+            if not p_row:
+                return None
+
+            real_pid = p_row["id"]
+            cur.execute(
+                """
+                SELECT a.id, a.created_at, a.age, a.gender, a.dietary_pattern, a.payload_json,
+                       pr.overall_risk, pr.overall_risk_score, pr.predictions_json,
+                       rc.safety_score, rc.safety_tier, rc.recommendations_json
+                FROM assessments a
+                LEFT JOIN predictions pr ON pr.assessment_id = a.id
+                LEFT JOIN recommendations rc ON rc.assessment_id = a.id
+                WHERE a.patient_id = ?
+                ORDER BY a.created_at ASC
+                """,
+                (real_pid,)
+            )
+            rows = cur.fetchall()
+
+            timeline = []
+            risk_scores_history = []
+            dates_history = []
+
+            for r in rows:
+                a_id = r["id"]
+                a_date = r["created_at"]
+                dates_history.append(a_date.split("T")[0] if "T" in a_date else a_date)
+                risk_score = round(float(r["overall_risk_score"]), 1) if r["overall_risk_score"] is not None else 50.0
+                risk_scores_history.append(risk_score)
+                risk_level = str(r["overall_risk"] or "MODERATE").upper()
+
+                flagged_deficiencies = []
+                if r["predictions_json"]:
+                    try:
+                        p_data = json.loads(r["predictions_json"])
+                        items = p_data.get("predictions", []) if isinstance(p_data, dict) else (p_data if isinstance(p_data, list) else [])
+                        for item in items:
+                            r_lvl = item.get("risk_level", "LOW")
+                            prob = float(item.get("probability", 0.0))
+                            if r_lvl in ["HIGH", "MODERATE"] or prob >= 0.4:
+                                flagged_deficiencies.append({
+                                    "nutrient": item.get("nutrient_name") or item.get("nutrient", "Unknown"),
+                                    "risk_level": r_lvl,
+                                    "probability": round(prob, 2),
+                                    "confidence": round(float(item.get("confidence", 0.85)), 2),
+                                    "status": item.get("clinical_status", "Flagged"),
+                                })
+                    except Exception:
+                        pass
+
+                treatments = []
+                if r["recommendations_json"]:
+                    try:
+                        rec_data = json.loads(r["recommendations_json"])
+                        foods = rec_data.get("food_recommendations", []) or rec_data.get("foods", [])
+                        for f in foods[:4]:
+                            treatments.append({
+                                "type": "DIETARY",
+                                "title": f.get("food_name") or f.get("name", "Nutrient-Dense Food"),
+                                "reason": f.get("target_deficiency") or f.get("rationale", "Nutritional Support"),
+                            })
+                        supps = rec_data.get("supplement_recommendations", []) or rec_data.get("supplements", [])
+                        for s in supps[:3]:
+                            treatments.append({
+                                "type": "SUPPLEMENT",
+                                "title": s.get("supplement_name") or s.get("name", "Supplement"),
+                                "reason": s.get("dosage", "Recommended dosage"),
+                            })
+                    except Exception:
+                        pass
+
+                timeline.append({
+                    "assessment_id": a_id,
+                    "date": a_date,
+                    "formatted_date": a_date.split("T")[0] if "T" in a_date else a_date,
+                    "age_at_assessment": r["age"],
+                    "risk_score": risk_score,
+                    "risk_level": risk_level,
+                    "flagged_deficiencies": flagged_deficiencies,
+                    "flagged_count": len(flagged_deficiencies),
+                    "treatments": treatments,
+                })
+
+            trajectory = "STABLE"
+            if len(risk_scores_history) >= 2:
+                first = risk_scores_history[0]
+                latest = risk_scores_history[-1]
+                delta = latest - first
+                if delta <= -5:
+                    trajectory = "IMPROVING"
+                elif delta >= 5:
+                    trajectory = "ELEVATED"
+                else:
+                    trajectory = "STABLE"
+            elif len(risk_scores_history) == 1:
+                latest = risk_scores_history[0]
+                trajectory = "ELEVATED" if latest >= 70 else ("STABLE" if latest >= 40 else "OPTIMAL")
+
+            h = p_row["height_cm"] or 0
+            w = p_row["weight_kg"] or 0
+            bmi = round(w / ((h / 100) ** 2), 1) if h > 0 and w > 0 else None
+
+            return {
+                "patient": {
+                    "id": real_pid,
+                    "name": p_row["name"],
+                    "gender": p_row["gender"],
+                    "age": p_row["current_age"],
+                    "height_cm": p_row["height_cm"],
+                    "weight_kg": p_row["weight_kg"],
+                    "bmi": bmi,
+                    "dietary_pattern": p_row["dietary_pattern"],
+                    "created_at": p_row["created_at"],
+                    "updated_at": p_row["updated_at"],
+                },
+                "summary": {
+                    "total_screenings": len(timeline),
+                    "latest_risk_score": risk_scores_history[-1] if risk_scores_history else None,
+                    "latest_risk_level": timeline[-1]["risk_level"] if timeline else "UNKNOWN",
+                    "active_deficiencies_count": timeline[-1]["flagged_count"] if timeline else 0,
+                    "trajectory": trajectory,
+                },
+                "trends": {
+                    "dates": dates_history,
+                    "risk_scores": risk_scores_history,
+                },
+                "timeline": list(reversed(timeline)),
+            }
+        finally:
+            conn.close()
+
+    @classmethod
+    def upsert_patient(cls, patient_data: Dict[str, Any]) -> str:
+        with cls._write_lock:
+            conn = get_connection()
+            try:
+                now = datetime.utcnow().isoformat()
+                patient_id = patient_data.get("id") or str(uuid.uuid4())
+                name = patient_data.get("name", "Unnamed Patient")
+                gender = patient_data.get("gender")
+                age = patient_data.get("age")
+                h = patient_data.get("height_cm")
+                w = patient_data.get("weight_kg")
+                diet = patient_data.get("dietary_pattern")
+                med = json.dumps(patient_data.get("medical_history", []), default=str)
+                lifestyle = json.dumps(patient_data.get("lifestyle_factors", {}), default=str)
+
+                with conn:
+                    cur = conn.cursor()
+                    cur.execute("SELECT id FROM patients WHERE id = ?", (patient_id,))
+                    if cur.fetchone():
+                        conn.execute(
+                            """
+                            UPDATE patients
+                            SET name = ?, gender = ?, current_age = ?, height_cm = ?, weight_kg = ?,
+                                dietary_pattern = ?, medical_history_json = ?, lifestyle_json = ?, updated_at = ?
+                            WHERE id = ?
+                            """,
+                            (name, gender, age, h, w, diet, med, lifestyle, now, patient_id)
+                        )
+                    else:
+                        conn.execute(
+                            """
+                            INSERT INTO patients (id, name, gender, current_age, height_cm, weight_kg, dietary_pattern, medical_history_json, lifestyle_json, created_at, updated_at)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            """,
+                            (patient_id, name, gender, age, h, w, diet, med, lifestyle, now, now)
+                        )
+                return patient_id
+            finally:
+                conn.close()
+
+    @classmethod
+    def delete_patient(cls, patient_id: str, deleted_by: Optional[str] = None) -> Optional[Dict[str, Any]]:
+        """
+        Atomically deletes a patient and all cascaded clinical records across:
+        - ground_truth_outcomes
+        - clinician_reviews
+        - reports
+        - forecasts
+        - meal_plans
+        - recommendations
+        - predictions
+        - assessments
+        - patients
+        Also purges in-memory caches and logs an immutable cryptographically chained audit event.
+        """
+        with cls._write_lock:
+            conn = get_connection()
+            try:
+                cur = conn.cursor()
+                cur.execute("SELECT * FROM patients WHERE id = ? OR name = ? COLLATE NOCASE", (patient_id, patient_id))
+                p_row = cur.fetchone()
+                if not p_row:
+                    return None
+
+                real_pid = p_row["id"]
+                p_name = p_row["name"]
+
+                # Find all assessments associated with this patient
+                cur.execute(
+                    "SELECT id FROM assessments WHERE patient_id = ? OR patient_name = ? COLLATE NOCASE",
+                    (real_pid, p_name)
+                )
+                a_rows = cur.fetchall()
+                assessment_ids = [r["id"] for r in a_rows]
+
+                # Perform transactional deletion
+                with conn:
+                    if assessment_ids:
+                        placeholders = ",".join(["?"] * len(assessment_ids))
+                        conn.execute(
+                            f"DELETE FROM ground_truth_outcomes WHERE patient_id = ? OR assessment_id IN ({placeholders})",
+                            [real_pid] + assessment_ids
+                        )
+                        conn.execute(
+                            f"DELETE FROM clinician_reviews WHERE assessment_id IN ({placeholders})",
+                            assessment_ids
+                        )
+                        conn.execute(
+                            f"DELETE FROM reports WHERE assessment_id IN ({placeholders})",
+                            assessment_ids
+                        )
+                        conn.execute(
+                            f"DELETE FROM forecasts WHERE assessment_id IN ({placeholders})",
+                            assessment_ids
+                        )
+                        conn.execute(
+                            f"DELETE FROM meal_plans WHERE assessment_id IN ({placeholders})",
+                            assessment_ids
+                        )
+                        conn.execute(
+                            f"DELETE FROM recommendations WHERE assessment_id IN ({placeholders})",
+                            assessment_ids
+                        )
+                        conn.execute(
+                            f"DELETE FROM predictions WHERE assessment_id IN ({placeholders})",
+                            assessment_ids
+                        )
+                        conn.execute(
+                            f"DELETE FROM assessments WHERE id IN ({placeholders})",
+                            assessment_ids
+                        )
+                    else:
+                        conn.execute("DELETE FROM ground_truth_outcomes WHERE patient_id = ?", (real_pid,))
+
+                    conn.execute("DELETE FROM assessments WHERE patient_id = ? OR patient_name = ? COLLATE NOCASE", (real_pid, p_name))
+                    conn.execute("DELETE FROM patients WHERE id = ?", (real_pid,))
+
+                # Purge in-memory caches
+                try:
+                    from ..modules.explainability.service import ExplainabilityService
+                    for aid in assessment_ids:
+                        ExplainabilityService._active_payload_cache.pop(aid, None)
+                        ExplainabilityService._active_predictions_cache.pop(aid, None)
+                except Exception as e:
+                    logger.warning(f"Could not purge in-memory cache for deleted assessments: {e}")
+
+                # Log immutable cryptographically chained audit event
+                now_str = datetime.utcnow().isoformat()
+                cls.log_audit_event(
+                    module="PATIENT_REGISTRY",
+                    action="PATIENT_DELETED",
+                    severity="WARNING",
+                    user_id=deleted_by or "system",
+                    details={
+                        "action": "PATIENT_DELETED",
+                        "patient_id": real_pid,
+                        "patient_name": p_name,
+                        "deleted_at": now_str,
+                        "deleted_by": deleted_by or "system",
+                        "deleted_assessments_count": len(assessment_ids),
+                        "deleted_assessment_ids": assessment_ids,
+                    }
+                )
+
+                logger.info(f"Permanently deleted patient {p_name} ({real_pid}) and {len(assessment_ids)} assessments.")
+                return {
+                    "success": True,
+                    "patient_id": real_pid,
+                    "patient_name": p_name,
+                    "deleted_assessments_count": len(assessment_ids),
+                    "message": f"Patient '{p_name}' and all associated clinical records permanently deleted."
+                }
+            finally:
+                conn.close()
+
+    @classmethod
+    def delete_all_patients(cls, deleted_by: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Permanently and transactionally deletes ALL patient records and all cascaded clinical entities:
+        - ground_truth_outcomes
+        - clinician_reviews
+        - reports
+        - forecasts
+        - meal_plans
+        - recommendations
+        - predictions
+        - clinical_history (if exists)
+        - longitudinal_tracking (if exists)
+        - assessments
+        - patients
+        Purges in-memory caches, logs an immutable audit event, and rolls back atomically on failure.
+        """
+        with cls._write_lock:
+            conn = get_connection()
+            try:
+                cur = conn.cursor()
+
+                # 1. Capture counts before atomic wipe
+                cur.execute("SELECT COUNT(*) FROM patients")
+                p_count_row = cur.fetchone()
+                deleted_patients = p_count_row[0] if p_count_row else 0
+
+                cur.execute("SELECT COUNT(*) FROM assessments")
+                a_count_row = cur.fetchone()
+                deleted_assessments = a_count_row[0] if a_count_row else 0
+
+                cur.execute("SELECT COUNT(*) FROM predictions")
+                pr_count_row = cur.fetchone()
+                deleted_predictions = pr_count_row[0] if pr_count_row else 0
+
+                cur.execute("SELECT COUNT(*) FROM reports")
+                r_count_row = cur.fetchone()
+                deleted_reports = r_count_row[0] if r_count_row else 0
+
+                # 2. Check for dynamic/optional tables in sqlite or postgres
+                existing_tables = set()
+                try:
+                    cur.execute("SELECT name FROM sqlite_master WHERE type='table'")
+                    existing_tables = {row[0].lower() for row in cur.fetchall()}
+                except Exception:
+                    try:
+                        cur.execute("SELECT table_name FROM information_schema.tables WHERE table_schema='public'")
+                        existing_tables = {row[0].lower() for row in cur.fetchall()}
+                    except Exception:
+                        pass
+
+                # 3. Transactional cascade deletion: child tables first, then assessments, then patients
+                with conn:
+                    # Child tables
+                    if "ground_truth_outcomes" in existing_tables or not existing_tables:
+                        conn.execute("DELETE FROM ground_truth_outcomes")
+                    if "clinician_reviews" in existing_tables or not existing_tables:
+                        conn.execute("DELETE FROM clinician_reviews")
+                    if "reports" in existing_tables or not existing_tables:
+                        conn.execute("DELETE FROM reports")
+                    if "forecasts" in existing_tables or not existing_tables:
+                        conn.execute("DELETE FROM forecasts")
+                    if "meal_plans" in existing_tables or not existing_tables:
+                        conn.execute("DELETE FROM meal_plans")
+                    if "recommendations" in existing_tables or not existing_tables:
+                        conn.execute("DELETE FROM recommendations")
+                    if "predictions" in existing_tables or not existing_tables:
+                        conn.execute("DELETE FROM predictions")
+                    if "clinical_history" in existing_tables:
+                        conn.execute("DELETE FROM clinical_history")
+                    if "longitudinal_tracking" in existing_tables:
+                        conn.execute("DELETE FROM longitudinal_tracking")
+
+                    # Parent tables
+                    if "assessments" in existing_tables or not existing_tables:
+                        conn.execute("DELETE FROM assessments")
+                    if "patients" in existing_tables or not existing_tables:
+                        conn.execute("DELETE FROM patients")
+
+                # 4. Purge in-memory caches
+                try:
+                    from ..modules.explainability.service import ExplainabilityService
+                    ExplainabilityService._active_payload_cache.clear()
+                    ExplainabilityService._active_predictions_cache.clear()
+                except Exception as e:
+                    logger.warning(f"Could not purge explainability cache during delete all: {e}")
+
+                try:
+                    from ..modules.reporting.service import ReportingService
+                    ReportingService.invalidate_cache()
+                except Exception as e:
+                    logger.warning(f"Could not invalidate reporting cache during delete all: {e}")
+
+                # 5. Log immutable cryptographically chained audit event
+                now_str = datetime.utcnow().isoformat()
+                cls.log_audit_event(
+                    module="PATIENT_REGISTRY",
+                    action="ALL_PATIENTS_DELETED",
+                    severity="CRITICAL",
+                    user_id=deleted_by or "system",
+                    details={
+                        "action": "ALL_PATIENTS_DELETED",
+                        "deleted_at": now_str,
+                        "deleted_by": deleted_by or "system",
+                        "deleted_patients": deleted_patients,
+                        "deleted_assessments": deleted_assessments,
+                        "deleted_predictions": deleted_predictions,
+                        "deleted_reports": deleted_reports,
+                    }
+                )
+
+                logger.warning(
+                    f"CRITICAL: All patient records wiped by {deleted_by or 'system'}. "
+                    f"Patients: {deleted_patients}, Assessments: {deleted_assessments}, "
+                    f"Predictions: {deleted_predictions}, Reports: {deleted_reports}"
+                )
+
+                return {
+                    "success": True,
+                    "deleted_patients": deleted_patients,
+                    "deleted_assessments": deleted_assessments,
+                    "deleted_predictions": deleted_predictions,
+                    "deleted_reports": deleted_reports,
+                    "message": "All patient data deleted successfully"
+                }
+            finally:
+                conn.close()
+
+    @classmethod
     def save_predictions(cls, assessment_id: str, prediction_result: Dict[str, Any]) -> None:
         conn = get_connection()
         try:
             now = datetime.utcnow().isoformat()
+            health_score = int(prediction_result.get("health_score", 100))
+            category = str(prediction_result.get("category", "EXCELLENT"))
+            confidence = float(prediction_result.get("confidence", 0.90))
+            evidence_grade = str(prediction_result.get("evidence_grade", "Grade A"))
             with conn:
                 conn.execute(
                     """
-                    INSERT OR REPLACE INTO predictions (assessment_id, created_at, overall_risk, overall_risk_score, predictions_json)
-                    VALUES (?, ?, ?, ?, ?)
+                    INSERT OR REPLACE INTO predictions (
+                        assessment_id, created_at, overall_risk, overall_risk_score,
+                        health_score, category, confidence, evidence_grade, predictions_json
+                    )
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
                         str(assessment_id),
                         now,
                         str(prediction_result.get("overall_risk", "LOW")),
                         float(prediction_result.get("overall_risk_score", 0.0)),
+                        health_score,
+                        category,
+                        confidence,
+                        evidence_grade,
                         json.dumps(prediction_result, default=str)
                     )
                 )

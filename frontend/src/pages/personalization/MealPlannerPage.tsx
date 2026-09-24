@@ -128,30 +128,9 @@ export default function MealPlannerPage() {
   const storedPrevious = useMemo(() => sessionManager.getStoredPreviousAssessment(), [])
   const effectiveId = activeSession?.active_assessment_id
 
-  const [schedule, setSchedule] = useState<Record<string, Record<'Breakfast' | 'Lunch' | 'Snack' | 'Dinner', CalendarMeal>>>(() => {
-    try {
-      const raw = localStorage.getItem('nutriscan_active_assessment')
-      if (raw) {
-        const parsed = JSON.parse(raw)
-        const pat = (parsed.dietary_pattern || parsed.dietaryPattern || '').toLowerCase()
-        if (pat.includes('veg')) return VEGETARIAN_WEEK_SCHEDULE
-      }
-    } catch { /* ignore */ }
-    return WEEK_SCHEDULE
-  })
-
+  const [schedule, setSchedule] = useState<Record<string, Record<'Breakfast' | 'Lunch' | 'Snack' | 'Dinner', CalendarMeal>>>(WEEK_SCHEDULE)
   const [selectedDay, setSelectedDay] = useState('Monday')
-  const [selectedMeal, setSelectedMeal] = useState<CalendarMeal>(() => {
-    try {
-      const raw = localStorage.getItem('nutriscan_active_assessment')
-      if (raw) {
-        const parsed = JSON.parse(raw)
-        const pat = (parsed.dietary_pattern || parsed.dietaryPattern || '').toLowerCase()
-        if (pat.includes('veg')) return VEGETARIAN_WEEK_SCHEDULE['Monday']['Lunch']
-      }
-    } catch { /* ignore */ }
-    return WEEK_SCHEDULE['Monday']['Lunch']
-  })
+  const [selectedMeal, setSelectedMeal] = useState<CalendarMeal>(WEEK_SCHEDULE['Monday']['Lunch'])
 
   const [nutritionCoverage, setNutritionCoverage] = useState<Array<{ name: string; pct: number; color: string }>>([
     { name: 'Vitamin D', pct: 104, color: 'var(--c-primary)' },
@@ -161,31 +140,13 @@ export default function MealPlannerPage() {
     { name: 'Folate', pct: 125, color: 'var(--c-primary)' }
   ])
 
-  const [shoppingItems, setShoppingItems] = useState<string[]>(() => {
-    try {
-      const raw = localStorage.getItem('nutriscan_active_assessment')
-      if (raw) {
-        const parsed = JSON.parse(raw)
-        const pat = (parsed.dietary_pattern || parsed.dietaryPattern || '').toLowerCase()
-        if (pat.includes('veg')) {
-          return [
-            'Calcium-Set Organic Tofu (2 blocks)',
-            'Baby Spinach & Steamed Greens (2 lbs)',
-            'Raw Shelled Brazil Nuts (1 pouch)',
-            'Whole Brown Lentils & Quinoa (1 lb)',
-            'Fortified Soy / Almond Milk (2 qts)'
-          ]
-        }
-      }
-    } catch { /* ignore */ }
-    return [
-      'Wild Atlantic Salmon (3 x 6oz)',
-      'Calcium-Set Organic Tofu (2 blocks)',
-      'Baby Spinach & Steamed Greens (2 lbs)',
-      'Raw Shelled Brazil Nuts (1 pouch)',
-      'Whole Brown Lentils & Quinoa (1 lb)'
-    ]
-  })
+  const [shoppingItems, setShoppingItems] = useState<string[]>([
+    'Wild Atlantic Salmon (3 x 6oz)',
+    'Calcium-Set Organic Tofu (2 blocks)',
+    'Baby Spinach & Steamed Greens (2 lbs)',
+    'Raw Shelled Brazil Nuts (1 pouch)',
+    'Whole Brown Lentils & Quinoa (1 lb)'
+  ])
 
   const [costPacing, setCostPacing] = useState({ daily: 14.10, weekly: 98.70 })
 

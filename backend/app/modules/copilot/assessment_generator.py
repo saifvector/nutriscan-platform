@@ -40,8 +40,17 @@ class AssessmentGenerator:
         else:
             risk_desc = "identified favorable baseline micronutrient sufficiency with no acute high-risk deficiencies"
 
+        import re
+        clean_name = (patient.full_name or "").strip()
+        stripped_name = re.sub(r'^(patient\s+)+', '', clean_name, flags=re.IGNORECASE).strip()
+
+        if not stripped_name or stripped_name.lower() in ["unknown patient", "active patient"] or stripped_name.startswith("("):
+            patient_intro = "The patient"
+        else:
+            patient_intro = f"Patient {stripped_name}"
+
         exec_summary = (
-            f"Patient {patient.full_name}, a {patient.age}-year-old {patient.gender.lower()} presenting with a "
+            f"{patient_intro}, a {patient.age}-year-old {patient.gender.lower()} presenting with a "
             f"dietary profile of {patient.dietary_pattern.lower()} and {sym_desc}. "
             f"Machine learning screening integrated with biochemical profiling {risk_desc}. "
             f"Overall nutritional vulnerability index is computed at {dossier.composite_risk_score}/100. "

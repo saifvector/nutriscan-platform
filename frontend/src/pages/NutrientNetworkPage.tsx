@@ -4,23 +4,27 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 import { useState, useEffect, useCallback, useRef, useMemo, memo } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Info, ChevronDown, ChevronUp, Gauge, Network, PlusCircle, RotateCcw } from 'lucide-react'
 import NetworkGraph from './network/NetworkGraph'
 import { HoverCard, NodeDetailPanel, EdgeDetailPanel } from './network/NetworkPanel'
 import { CommandPalette, NetworkToolbar, GraphControls } from './network/NetworkToolbar'
 import KnowledgeGraphExplorer from './network/KnowledgeGraphExplorer'
-import { PALETTE, RISK_COLORS, type NutrientNode, type NutrientEdge, type RiskLevel } from './network/NetworkData'
+import { PALETTE, RISK_COLORS, updateNodesWithPredictions, validateNetworkConsistency, type NutrientNode, type NutrientEdge, type RiskLevel } from './network/NetworkData'
 import { sessionManager } from '../lib/sessionManager'
 import { ResumeAssessmentModal } from '../components/session/ResumeAssessmentModal'
 import { AssessmentRequiredState } from '../components/common/AssessmentRequiredState'
+import api from '../lib/api'
 
 export default function NutrientNetworkPage() {
   const navigate = useNavigate()
+  const { assessmentId: routeAssessmentId } = useParams<{ assessmentId?: string }>()
   const [activeSession, setActiveSession] = useState(() => sessionManager.getActiveSession())
   const [showResumeModal, setShowResumeModal] = useState(false)
   const storedPrevious = useMemo(() => sessionManager.getStoredPreviousAssessment(), [])
+
+  const effectiveAssessmentId = routeAssessmentId || activeSession?.active_assessment_id
 
   /* ─── State ─── */
   const [selectedNode, setSelectedNode] = useState<NutrientNode | null>(null)
@@ -32,6 +36,28 @@ export default function NutrientNetworkPage() {
   const [riskFilter, setRiskFilter] = useState<RiskLevel | null>(null)
   const [showDiagnostics, setShowDiagnostics] = useState(false)
   const [workspaceMode, setWorkspaceMode] = useState<'biochemical' | 'knowledge'>('biochemical')
+  const [dataVersion, setDataVersion] = useState<number>(0)
+
+  // Fetch patient assessment predictions dynamically from backend to ground node probabilities
+  useEffect(() => {
+    if (!effectiveAssessmentId) return
+    let isMounted = true
+    const fetchPatientData = async () => {
+      try {
+        const res = await api.get(`/predictions/${effectiveAssessmentId}`)
+        const rawPreds = res.data?.nutrient_predictions || res.data?.predictions || (Array.isArray(res.data) ? res.data : [])
+        if (isMounted && Array.isArray(rawPreds) && rawPreds.length > 0) {
+          updateNodesWithPredictions(rawPreds)
+          validateNetworkConsistency(rawPreds)
+          setDataVersion(v => v + 1)
+        }
+      } catch (err) {
+        console.warn('Could not load assessment predictions for network overlay:', err)
+      }
+    }
+    fetchPatientData()
+    return () => { isMounted = false }
+  }, [effectiveAssessmentId])
 
   /* ─── State Refs for Stable Callbacks ─── */
   const selectedIdRef = useRef<string | null>(null)
@@ -82,6 +108,16 @@ export default function NutrientNetworkPage() {
 
   const handleOpenSearch = useCallback(() => setSearchOpen(true), [])
 
+  const handleRiskFilterChange = useCallback((newFilter: RiskLevel | null) => {
+    setRiskFilter(newFilter)
+    if (selectedNodeRef.current && newFilter && (selectedNodeRef.current.risk_level || selectedNodeRef.current.risk) !== newFilter) {
+      setSelectedNode(null)
+      setSelectedId(null)
+      setSelectedEdge(null)
+      setHoveredNode(null)
+    }
+  }, [])
+
   /* ─── Keyboard Shortcuts ─── */
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -103,7 +139,7 @@ export default function NutrientNetworkPage() {
     return () => window.removeEventListener('keydown', handler)
   }, [searchOpen, handleClose])
 
-  if (!activeSession?.active_assessment_id) {
+  if (!effectiveAssessmentId) {
     return (
       <>
         <AssessmentRequiredState
@@ -152,7 +188,7 @@ export default function NutrientNetworkPage() {
         onWorkspaceModeChange={setWorkspaceMode}
         onOpenSearch={handleOpenSearch}
         riskFilter={riskFilter}
-        onRiskFilterChange={setRiskFilter}
+        onRiskFilterChange={handleRiskFilterChange}
       />
 
       {workspaceMode === 'knowledge' ? (
@@ -164,6 +200,8 @@ export default function NutrientNetworkPage() {
         <div style={{ flex: 1, minHeight: 0, position: 'relative', overflow: 'hidden' }}>
           {/* Graph Canvas (100% of space) */}
           <NetworkGraph
+            key={`${dataVersion}-${riskFilter || 'ALL'}`}
+            riskFilter={riskFilter}
             selectedId={selectedId}
             hoveredId={hoveredNode?.id ?? null}
             onNodeClick={handleNodeClick}

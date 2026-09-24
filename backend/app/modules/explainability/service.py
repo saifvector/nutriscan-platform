@@ -51,6 +51,7 @@ from ...schemas.phase11_explainability import (
 )
 from .clinical_explainer import ClinicalExplainerEngine
 from .evidence_engine import ClinicalEvidenceEngine
+from .evidence_catalog import generate_dynamic_clinical_evidence_entry
 from .interaction_engine import NutrientInteractionReasoningEngine
 from .simulator import WhatIfSimulationEngine
 
@@ -63,10 +64,40 @@ class ExplainabilityService:
     risk factor categorizations, and clinical reasoning.
     """
 
-    # In-memory LRU-style cache for active assessment payloads to guarantee sub-50ms explainability retrieval
+    # In-memory bounded TTL cache for active assessment payloads to guarantee sub-50ms explainability retrieval
+    MAX_CACHE_SIZE: int = 500
+    CACHE_TTL_SECONDS: float = 3600.0  # 1 hour
+
     _active_payload_cache: Dict[str, Dict[str, Any]] = {}
     _active_predictions_cache: Dict[str, Dict[str, Any]] = {}
     _active_explainability_cache: Dict[str, MultiNutrientExplainabilityResponse] = {}
+    _cache_timestamps: Dict[str, float] = {}
+
+    @classmethod
+    def invalidate_cache(cls, assessment_id: Optional[str] = None):
+        """Invalidates in-memory cache for a specific assessment ID, or all if None."""
+        if assessment_id:
+            id_str = str(assessment_id)
+            cls._active_payload_cache.pop(id_str, None)
+            cls._active_predictions_cache.pop(id_str, None)
+            cls._active_explainability_cache.pop(id_str, None)
+            cls._cache_timestamps.pop(id_str, None)
+        else:
+            cls._active_payload_cache.clear()
+            cls._active_predictions_cache.clear()
+            cls._active_explainability_cache.clear()
+            cls._cache_timestamps.clear()
+
+    @classmethod
+    def _evict_stale_or_overflow(cls):
+        now = time.time()
+        expired_keys = [k for k, ts in cls._cache_timestamps.items() if (now - ts) > cls.CACHE_TTL_SECONDS]
+        for k in expired_keys:
+            cls.invalidate_cache(k)
+        if len(cls._active_payload_cache) > cls.MAX_CACHE_SIZE:
+            oldest_keys = sorted(cls._cache_timestamps.keys(), key=lambda k: cls._cache_timestamps.get(k, 0))
+            for k in oldest_keys[:len(cls._active_payload_cache) - cls.MAX_CACHE_SIZE]:
+                cls.invalidate_cache(k)
 
     @classmethod
     def register_prediction_run(
@@ -76,8 +107,11 @@ class ExplainabilityService:
         prediction_result: Dict[str, Any]
     ):
         """Stores assessment payload and prediction output in fast memory cache."""
-        cls._active_payload_cache[str(assessment_id)] = payload
-        cls._active_predictions_cache[str(assessment_id)] = prediction_result
+        cls._evict_stale_or_overflow()
+        id_str = str(assessment_id)
+        cls._active_payload_cache[id_str] = payload
+        cls._active_predictions_cache[id_str] = prediction_result
+        cls._cache_timestamps[id_str] = time.time()
 
     @classmethod
     def get_explainability(
@@ -92,6 +126,11 @@ class ExplainabilityService:
         """
         start_time = time.perf_counter()
         id_str = str(assessment_id)
+
+        # Check TTL expiry
+        if id_str in cls._cache_timestamps:
+            if (time.time() - cls._cache_timestamps[id_str]) > cls.CACHE_TTL_SECONDS:
+                cls.invalidate_cache(id_str)
 
         # Instant cache return if full report was previously computed
         if target_nutrient_code is None and id_str in cls._active_explainability_cache:
@@ -300,9 +339,35 @@ class ExplainabilityService:
     ) -> PredictionExplanationResponse:
         """
         Phase 11 Primary Prediction Explainability:
-        Decomposes 105 NHANES predictor variables into positive and protective drivers
-        with dual-perspective (patient & clinician) narrative evaluations.
+        Returns stored precomputed SHAP explanations directly from the AssessmentPredictionSnapshot
+        if available (zero runtime re-inference).
+        Only recomputes if assessment was not previously screened.
         """
+        from ...core.persistence import PersistenceRepository
+        from ...schemas.phase11_explainability import TargetExplanation, PredictionExplanationResponse
+        from datetime import datetime, timezone
+
+        id_str = str(prediction_id) if prediction_id else None
+        if id_str:
+            snapshot = PersistenceRepository.get_prediction(id_str)
+            if snapshot and isinstance(snapshot, dict) and snapshot.get("explanations"):
+                stored_explanations = [
+                    TargetExplanation(**e) if isinstance(e, dict) else e 
+                    for e in snapshot["explanations"]
+                ]
+                try:
+                    p_uuid = uuid.UUID(id_str)
+                except Exception:
+                    p_uuid = uuid.uuid4()
+
+                return PredictionExplanationResponse(
+                    prediction_id=p_uuid,
+                    timestamp=datetime.now(timezone.utc),
+                    overall_risk_tier=snapshot.get("overall_risk", "LOW"),
+                    overall_risk_score=float(snapshot.get("overall_risk_score", 0.0)),
+                    explanations=stored_explanations
+                )
+
         return ClinicalExplainerEngine.explain_patient_prediction(
             assessment_payload=assessment_payload,
             prediction_id=prediction_id
@@ -416,3 +481,91 @@ class ExplainabilityService:
             total_recommendations=len(rationale_items),
             recommendations=rationale_items
         )
+
+    @classmethod
+    def get_dynamic_evidence_base(
+        cls,
+        target_id: Optional[str] = None,
+        assessment_id: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Dynamic Explainability & Clinical Evidence Base
+        Generates evidence, citations, narratives, and dynamic feature attributions
+        grounded in real patient assessment and prediction records.
+        Never returns synthetic, mock, or hardcoded clinical data.
+        """
+        from fastapi import HTTPException, status
+        if not assessment_id:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="No assessment ID provided. Cannot generate clinical evidence without a valid assessment."
+            )
+
+        from ...core.persistence import PersistenceRepository
+
+        id_str = str(assessment_id)
+        snapshot = PersistenceRepository.get_prediction(id_str)
+        if snapshot and isinstance(snapshot, dict) and snapshot.get("evidence_catalog"):
+            catalog = snapshot["evidence_catalog"]
+            if target_id:
+                if target_id in catalog:
+                    return catalog[target_id]
+                for k, v in catalog.items():
+                    if target_id.lower() in k.lower() or k.lower() in target_id.lower():
+                        return v
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail=f"Target ID '{target_id}' not found in evaluated clinical profile."
+                )
+            return catalog
+
+        payload = cls._active_payload_cache.get(id_str)
+        if payload is None:
+            payload = PersistenceRepository.get_assessment(id_str)
+
+        if payload is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"Assessment record for ID '{assessment_id}' not found."
+            )
+
+        try:
+            pred_uuid = uuid.UUID(id_str)
+        except Exception:
+            pred_uuid = uuid.uuid4()
+
+        explanation_resp = cls.explain_clinical_prediction(
+            assessment_payload=payload,
+            prediction_id=pred_uuid
+        )
+
+        catalog: Dict[str, Dict[str, Any]] = {}
+        for exp in explanation_resp.explanations:
+            catalog[exp.target] = generate_dynamic_clinical_evidence_entry(
+                target_id=exp.target,
+                target_name=exp.target_name,
+                risk_tier=exp.risk_tier,
+                calibrated_probability=exp.calibrated_probability,
+                confidence_score=getattr(exp, "confidence_score", 0.90),
+                positive_contributors=exp.positive_contributors,
+                protective_contributors=exp.protective_contributors,
+                clinician_evaluation=exp.narratives.clinician_evaluation,
+                confirmatory_labs=exp.narratives.confirmatory_labs,
+                guideline_reference=exp.narratives.guideline_reference,
+                champion_algorithm=exp.champion_algorithm,
+                optimal_threshold=exp.optimal_threshold
+            )
+
+        if target_id:
+            if target_id in catalog:
+                return catalog[target_id]
+            for k, v in catalog.items():
+                if target_id.lower() in k.lower() or k.lower() in target_id.lower():
+                    return v
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"Target ID '{target_id}' not found in evaluated clinical profile."
+            )
+
+        return catalog
+

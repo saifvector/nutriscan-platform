@@ -126,7 +126,7 @@ class RecoveryStatusResponse(BaseModel):
     recovery_velocity_pts_per_week: float
     recovery_status: str  # RAPID_RECOVERY, STEADY_RECOVERY, PLATEAU, REGRESSION
     days_in_protocol: int
-    projected_full_recovery_date: str
+    projected_full_recovery_date: Optional[str] = None
     overall_improvement_percentage: float
     clinical_progress_summary: str
 

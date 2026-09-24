@@ -4,7 +4,7 @@ Phase 3: Multi-Nutrient Prediction Engine Development
 """
 
 from enum import Enum
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Union
 from pydantic import BaseModel, Field
 import uuid
 from datetime import datetime
@@ -36,25 +36,35 @@ class RiskFactorDetail(BaseModel):
 
 class NutrientPredictionItem(BaseModel):
     """
-    Standardized per-nutrient prediction item matching Phase 3 specs.
-    Example:
+    Standardized per-nutrient prediction item matching target contract.
+    Target schema:
     {
       "nutrient": "Vitamin D",
       "risk_level": "HIGH",
-      "probability": 0.87,
-      "confidence": 0.92
+      "deficiency_probability": 0.87,
+      "confidence": 0.92,
+      "score": 85.0,
+      "probability_distribution": {
+        "low": 0.05,
+        "moderate": 0.15,
+        "high": 0.80
+      }
     }
     """
     nutrient: str = Field(..., description="Nutrient name, e.g., 'Vitamin D', 'Iron', 'Vitamin B12'")
-    nutrient_code: str = Field(..., description="Canonical code, e.g. 'VITAMIN_D', 'IRON'")
+    nutrient_code: Optional[str] = Field(default=None, description="Canonical code, e.g. 'VITAMIN_D', 'IRON'")
     risk_level: str = Field(..., description="'LOW', 'MODERATE', or 'HIGH'")
-    probability: float = Field(..., ge=0.0, le=1.0, description="Calibrated deficiency probability score")
+    deficiency_probability: float = Field(..., ge=0.0, le=1.0, description="Calibrated deficiency probability: P(MODERATE) + P(HIGH)")
+    probability: float = Field(..., ge=0.0, le=1.0, description="Calibrated deficiency probability (alias)")
     confidence: float = Field(..., ge=0.0, le=1.0, description="Mathematical model certainty / confidence score")
     confidence_level: Optional[str] = Field(default="High Confidence", description="'High Confidence', 'Medium Confidence', 'Low Confidence'")
     priority_rank: Optional[int] = Field(default=None, description="Triage priority rank (1 = highest urgency)")
-    score: Optional[float] = Field(default=None, description="Continuous risk score 0.0 - 100.0")
+    score: float = Field(default=0.0, ge=0.0, le=100.0, description="Continuous risk score 0.0 - 100.0")
     confidence_interval: Optional[Dict[str, float]] = Field(default=None, description="Low/high confidence interval")
-    probability_distribution: Optional[List[float]] = Field(default=None, description="[p_low, p_mod, p_high]")
+    probability_distribution: Union[Dict[str, float], List[float]] = Field(
+        default_factory=lambda: {"low": 0.0, "moderate": 0.0, "high": 0.0},
+        description="Probability distribution: {'low': float, 'moderate': float, 'high': float}"
+    )
     risk_factors: Optional[List[RiskFactorDetail]] = Field(default_factory=list, description="Top SHAP driving factors")
 
 
@@ -87,6 +97,7 @@ class MultiNutrientPredictionResponse(BaseModel):
     overall_severity: Optional[str] = None
     inference_latency_ms: float = Field(..., description="Inference execution time in milliseconds (< 500 ms)")
     nutrient_predictions: List[NutrientPredictionItem]
+    predictions: Optional[List[NutrientPredictionItem]] = None
     priority_ranking: List[str] = Field(..., description="Nutrient names ordered by priority 1 to 11")
     nutrient_interactions: Optional[List[NutrientInteractionItem]] = Field(default_factory=list)
     screening_metadata: Optional[Dict[str, Any]] = None

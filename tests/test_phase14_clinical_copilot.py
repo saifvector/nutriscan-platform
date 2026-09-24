@@ -337,3 +337,63 @@ def test_backward_compatibility_governance():
     data = response.json()
     assert "safety_score" in data
     assert "safety_tier" in data
+
+
+# ==============================================================================
+# 12. Patient Name Preservation & Anti-Duplication Tests
+# ==============================================================================
+
+def test_copilot_preserves_real_patient_name():
+    """Verify that copilot endpoints use the actual patient name and do not produce 'Patient Patient'."""
+    payload = {
+        "patient_name": "subba",
+        "age": 30,
+        "gender": "MALE",
+        "height_cm": 180.0,
+        "weight_kg": 75.0,
+        "dietary_pattern": "OMNIVORE"
+    }
+    # 1. Patient Intelligence Dossier
+    r1 = client.post("/api/v1/copilot/patient-intelligence", json=payload)
+    assert r1.status_code == 200, r1.text
+    demo = r1.json()["demographics"]
+    assert demo["full_name"] == "subba"
+    assert "Patient (" not in demo["full_name"]
+
+    # 2. Clinical Assessment Narrative
+    r2 = client.post("/api/v1/copilot/clinical-assessment", json=payload)
+    assert r2.status_code == 200, r2.text
+    summary = r2.json()["executive_summary"]
+    assert "Patient subba, a 30-year-old male" in summary
+    assert "Patient Patient" not in summary
+    assert "Patient (" not in summary
+
+    # 3. SOAP Note
+    r3 = client.post("/api/v1/copilot/soap-note", json=payload)
+    assert r3.status_code == 200, r3.text
+    soap = r3.json()
+    assert soap["patient_name"] == "subba"
+    assert "Patient: subba |" in soap["formatted_text"]
+    assert "Patient Patient" not in soap["formatted_text"]
+
+
+def test_copilot_fallback_to_unknown_patient():
+    """Verify that when patient name is completely missing, it falls back to 'Unknown Patient' without duplicate 'Patient Patient'."""
+    payload = {
+        "age": 30,
+        "gender": "MALE",
+        "dietary_pattern": "OMNIVORE"
+    }
+    r1 = client.post("/api/v1/copilot/patient-intelligence", json=payload)
+    assert r1.status_code == 200, r1.text
+    demo = r1.json()["demographics"]
+    assert demo["full_name"] == "Unknown Patient"
+    assert "Patient (" not in demo["full_name"]
+
+    r2 = client.post("/api/v1/copilot/clinical-assessment", json=payload)
+    assert r2.status_code == 200, r2.text
+    summary = r2.json()["executive_summary"]
+    assert "The patient, a 30-year-old male" in summary
+    assert "Patient Patient" not in summary
+    assert "Patient (" not in summary
+

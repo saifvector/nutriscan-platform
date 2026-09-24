@@ -40,10 +40,10 @@ router = APIRouter(prefix="", tags=["Multi-Nutrient Prediction Engine"])
 
 @router.post(
     "/predict",
-    response_model=MultiNutrientPredictionResponse,
+    response_model=Any,
     status_code=status.HTTP_200_OK,
-    summary="Screen Patient & Predict Multi-Nutrient Deficiencies",
-    description="Simultaneously predicts deficiency probabilities across all 11 target nutrients, assesses confidence, evaluates interactions, and triages priority ranking with <500ms latency."
+    summary="Screen Patient & Predict Clinical Deficiencies (Authoritative Single Source of Truth)",
+    description="Simultaneously evaluates 9 calibrated NHANES clinical targets via ClinicalRiskEngine, generates AssessmentPredictionSnapshot, and persists single source of truth."
 )
 async def predict_deficiencies(
     payload: HealthAssessmentCreate,
@@ -266,7 +266,7 @@ async def get_model_benchmarks():
     include_in_schema=False
 )
 async def get_prediction_by_id(
-    prediction_id: uuid.UUID = Path(..., description="Unique UUID of prediction record or assessment"),
+    prediction_id: str = Path(..., min_length=1, max_length=64, description="Unique identifier of prediction record or assessment"),
     current_user: Optional[AuthenticatedUser] = Depends(get_current_user_optional)
 ):
     """

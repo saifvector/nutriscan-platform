@@ -12,6 +12,7 @@ Transforms statistical SHAP values and model feature weights into:
 
 from typing import Dict, Any, List, Optional
 from .constants import TARGET_NUTRIENTS, NUTRIENT_CODES, CLINICAL_URGENCY_WEIGHTS
+from .sanitization import safe_float, safe_int, safe_bool
 
 
 class ClinicalReasoningEngine:
@@ -294,7 +295,7 @@ class ClinicalReasoningEngine:
             })
 
         raw_fv = flat.get("daily_fruit_vegetable_servings") or flat.get("fruit_veg_servings") or flat.get("produce_servings")
-        fruit_veg = float(raw_fv) if raw_fv is not None else 3.0
+        fruit_veg = safe_float(raw_fv, default=3.0)
         if fruit_veg <= 1.5:
             categories["dietary_factors"].append({
                 "factor_id": "low_produce",
@@ -312,7 +313,7 @@ class ClinicalReasoningEngine:
 
         # --- 2. LIFESTYLE FACTORS ---
         raw_sun = flat.get("sunlight_exposure_min_per_day") or flat.get("sunlight_minutes")
-        sun_mins = float(raw_sun) if raw_sun is not None else 30.0
+        sun_mins = safe_float(raw_sun, default=30.0)
         if sun_mins < 20:
             categories["lifestyle_factors"].append({
                 "factor_id": "low_sunlight",
@@ -457,11 +458,12 @@ class ClinicalReasoningEngine:
 
         # --- 6. PHYSIOLOGICAL / DEMOGRAPHIC FACTORS ---
         raw_bmi = flat.get("bmi")
-        if raw_bmi is not None:
-            bmi = float(raw_bmi)
+        bmi_val = safe_float(raw_bmi, default=None)
+        if bmi_val is not None and bmi_val > 0:
+            bmi = bmi_val
         else:
-            h_m = float(flat.get("height_cm") or 170.0) / 100.0
-            w_kg = float(flat.get("weight_kg") or 70.0)
+            h_m = safe_float(flat.get("height_cm"), default=170.0) / 100.0
+            w_kg = safe_float(flat.get("weight_kg"), default=70.0)
             bmi = w_kg / (h_m ** 2) if h_m > 0 else 23.0
 
         if bmi >= 30.0:

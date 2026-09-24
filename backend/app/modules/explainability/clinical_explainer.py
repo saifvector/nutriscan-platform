@@ -70,7 +70,8 @@ class ClinicalExplainerEngine:
         df_features: Any,
         calibrated_prob: float,
         optimal_threshold: float,
-        model_bundle: Dict[str, Any]
+        model_bundle: Dict[str, Any],
+        confidence_score: float = 0.90
     ) -> TargetExplanation:
         """
         Decomposes feature contributions for a single target into positive vs protective factors
@@ -103,6 +104,8 @@ class ClinicalExplainerEngine:
             fname = p["feature_name"]
             mean_weight = float(p.get("mean_abs_shap", 0.05))
             obs_val = df_features[fname].values[0] if fname in df_features.columns else None
+            if obs_val is not None and hasattr(obs_val, "item") and callable(getattr(obs_val, "item", None)):
+                obs_val = obs_val.item()
 
             # Determine sign and direction
             # For intake features: lower than median indicates risk (positive contribution to risk)
@@ -214,6 +217,7 @@ class ClinicalExplainerEngine:
             optimal_threshold=round(optimal_threshold, 4),
             positive_contributors=pos_list,
             protective_contributors=prot_list,
+            confidence_score=round(confidence_score, 2),
             narratives=narratives
         )
 
@@ -248,7 +252,8 @@ class ClinicalExplainerEngine:
                 df_features=df_105,
                 calibrated_prob=pred_item.calibrated_probability,
                 optimal_threshold=pred_item.optimal_threshold,
-                model_bundle=bundle
+                model_bundle=bundle,
+                confidence_score=getattr(pred_item, "confidence_score", 0.90)
             )
             explanations.append(expl)
 

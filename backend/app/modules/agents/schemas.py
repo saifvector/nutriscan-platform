@@ -61,8 +61,11 @@ class ConsensusProtocol(BaseModel):
     patient_id: str
     patient_name: str
     timestamp: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
-    consensus_status: str = "UNANIMOUS_CONSENSUS"  # UNANIMOUS_CONSENSUS, MAJORITY_CONSENSUS, COMPROMISE_REACHED
+    consensus_status: str = "UNANIMOUS_CONSENSUS"  # UNANIMOUS_CONSENSUS, SUPERMAJORITY_RATIFIED, MAJORITY_CONSENSUS, DIVERGENT_DELIBERATION
     overall_confidence: float = Field(ge=0.0, le=1.0)
+    agreement_percentage: float = Field(default=100.0, ge=0.0, le=100.0)
+    supporting_agent_count: int = Field(default=5, ge=0)
+    total_agent_count: int = Field(default=5, ge=1)
     participating_agents: List[str]
     unified_action_plan: List[Dict[str, Any]]
     dissenting_views: List[Dict[str, str]] = Field(default_factory=list)

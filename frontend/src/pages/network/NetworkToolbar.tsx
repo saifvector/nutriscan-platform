@@ -10,7 +10,7 @@ import {
   AlertTriangle, Utensils, Activity,
 } from 'lucide-react'
 import {
-  PALETTE, RISK_COLORS, searchNodesRich, getAggregateStats,
+  PALETTE, RISK_COLORS, searchNodesRich, getAggregateStats, getFilteredNetworkData,
   type NutrientNode, type RiskLevel, type SearchResult,
 } from './NetworkData'
 
@@ -216,7 +216,11 @@ function NetworkToolbarInner({
   riskFilter,
   onRiskFilterChange,
 }: NetworkTopControlsProps) {
-  const stats = useMemo(() => getAggregateStats(), [])
+  const filteredData = useMemo(() => getFilteredNetworkData(riskFilter), [riskFilter])
+  const stats = useMemo(
+    () => getAggregateStats(filteredData.visibleNodes, filteredData.visibleEdges),
+    [filteredData]
+  )
 
   const riskFilters = [
     { value: null, label: 'All', color: '#19D3C5', activeBg: 'rgba(25, 211, 197, 0.12)', borderColor: 'rgba(25, 211, 197, 0.4)' },

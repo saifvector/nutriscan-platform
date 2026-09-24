@@ -236,8 +236,29 @@ def test_recommendation_rationales():
 # ---------------------------------------------------------------------------
 
 def test_api_prediction_explanation_get():
-    """GET /api/v1/explainability/prediction-explanation returns 9 target explanations."""
-    resp = client.get("/api/v1/explainability/prediction-explanation")
+    """GET /api/v1/explainability/prediction-explanation requires valid assessment ID."""
+    # 1. No prediction_id returns 404 and does not inject a default synthetic profile
+    resp_empty = client.get("/api/v1/explainability/prediction-explanation")
+    assert resp_empty.status_code == 404
+    assert "No assessment or prediction ID provided" in resp_empty.json()["detail"]
+
+    # 2. Non-existent prediction_id returns 404
+    dummy_id = str(uuid.uuid4())
+    resp_missing = client.get(f"/api/v1/explainability/prediction-explanation?prediction_id={dummy_id}")
+    assert resp_missing.status_code == 404
+
+    # 3. Valid prediction_id returns 200 with dynamic explainability decomposition
+    valid_id = str(uuid.uuid4())
+    sample_payload = {
+        "age": 32,
+        "gender": "FEMALE",
+        "dietary_habits": {"dietary_pattern": "VEGAN", "meals_per_day": 3},
+        "lifestyle_factors": {"sunlight_exposure_min_per_day": 10, "sleep_hours_per_night": 6.5},
+        "symptoms": {"fatigue": 8, "weakness": 7, "dizziness": 5}
+    }
+    ExplainabilityService._active_payload_cache[valid_id] = sample_payload
+
+    resp = client.get(f"/api/v1/explainability/prediction-explanation?prediction_id={valid_id}")
     assert resp.status_code == 200
     data = resp.json()
 
@@ -250,6 +271,7 @@ def test_api_prediction_explanation_get():
     first = data["explanations"][0]
     assert "positive_contributors" in first
     assert "protective_contributors" in first
+    assert "confidence_score" in first
     assert "narratives" in first
     assert "patient_explanation" in first["narratives"]
     assert "clinician_evaluation" in first["narratives"]
@@ -342,9 +364,19 @@ def test_legacy_global_feature_importance():
 
 def test_explainability_latency_benchmarks():
     """Verify all Phase 11 endpoints execute within strict sub-500ms bounds."""
+    valid_id = str(uuid.uuid4())
+    sample_payload = {
+        "age": 32,
+        "gender": "FEMALE",
+        "dietary_habits": {"dietary_pattern": "VEGAN"},
+        "lifestyle_factors": {"sunlight_exposure_min_per_day": 10},
+        "symptoms": {"fatigue": 8}
+    }
+    ExplainabilityService._active_payload_cache[valid_id] = sample_payload
+
     # Prediction explanation benchmark
     t0 = time.perf_counter()
-    resp = client.get("/api/v1/explainability/prediction-explanation")
+    resp = client.get(f"/api/v1/explainability/prediction-explanation?prediction_id={valid_id}")
     elapsed_ms = (time.perf_counter() - t0) * 1000
     assert resp.status_code == 200
     assert elapsed_ms < 500, f"Prediction explanation took {elapsed_ms:.1f}ms (> 500ms target)"

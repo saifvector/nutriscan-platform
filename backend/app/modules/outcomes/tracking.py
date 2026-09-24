@@ -46,6 +46,115 @@ class OutcomeTrackingEngine:
     def __init__(self):
         self._symptom_cache: Dict[str, List[Dict[str, Any]]] = {}
         self._lab_cache: Dict[str, List[Dict[str, Any]]] = {}
+        self._init_demo_case()
+
+    def _init_demo_case(self):
+        d_0 = (date.today() - timedelta(days=35)).isoformat()
+        d_7 = (date.today() - timedelta(days=28)).isoformat()
+        d_14 = (date.today() - timedelta(days=21)).isoformat()
+        d_21 = (date.today() - timedelta(days=14)).isoformat()
+        d_28 = (date.today() - timedelta(days=7)).isoformat()
+        d_35 = date.today().isoformat()
+        self._symptom_cache["demo"] = [
+            {
+                "id": "demo-s-0",
+                "assessment_id": "demo",
+                "recorded_date": d_0,
+                "symptoms": {
+                    "Fatigue": 8.5, "Muscle Cramps": 7.0, "Brain Fog": 6.5,
+                    "Brittle Nails": 6.0, "Hair Thinning": 5.5, "Cold Intolerance": 5.0,
+                    "Restless Legs": 4.5, "Dizziness": 4.0, "Dry Skin": 3.5
+                },
+                "notes": "Baseline clinical intake"
+            },
+            {
+                "id": "demo-s-7",
+                "assessment_id": "demo",
+                "recorded_date": d_7,
+                "symptoms": {
+                    "Fatigue": 7.0, "Muscle Cramps": 5.5, "Brain Fog": 5.0,
+                    "Brittle Nails": 5.0, "Hair Thinning": 4.5, "Cold Intolerance": 4.0,
+                    "Restless Legs": 3.5, "Dizziness": 3.0, "Dry Skin": 2.5
+                },
+                "notes": "Week 1 check-in"
+            },
+            {
+                "id": "demo-s-14",
+                "assessment_id": "demo",
+                "recorded_date": d_14,
+                "symptoms": {
+                    "Fatigue": 5.5, "Muscle Cramps": 4.5, "Brain Fog": 4.0,
+                    "Brittle Nails": 4.0, "Hair Thinning": 3.5, "Cold Intolerance": 3.0,
+                    "Restless Legs": 2.5, "Dizziness": 2.5, "Dry Skin": 2.0
+                },
+                "notes": "Week 2 check-in"
+            },
+            {
+                "id": "demo-s-21",
+                "assessment_id": "demo",
+                "recorded_date": d_21,
+                "symptoms": {
+                    "Fatigue": 4.5, "Muscle Cramps": 3.5, "Brain Fog": 3.0,
+                    "Brittle Nails": 3.0, "Hair Thinning": 3.0, "Cold Intolerance": 2.5,
+                    "Restless Legs": 2.0, "Dizziness": 2.0, "Dry Skin": 1.5
+                },
+                "notes": "Week 3 check-in"
+            },
+            {
+                "id": "demo-s-28",
+                "assessment_id": "demo",
+                "recorded_date": d_28,
+                "symptoms": {
+                    "Fatigue": 3.5, "Muscle Cramps": 2.5, "Brain Fog": 2.5,
+                    "Brittle Nails": 2.5, "Hair Thinning": 2.5, "Cold Intolerance": 2.0,
+                    "Restless Legs": 1.5, "Dizziness": 1.5, "Dry Skin": 1.0
+                },
+                "notes": "Week 4 check-in"
+            },
+            {
+                "id": "demo-s-35",
+                "assessment_id": "demo",
+                "recorded_date": d_35,
+                "symptoms": {
+                    "Fatigue": 2.5, "Muscle Cramps": 2.0, "Brain Fog": 2.0,
+                    "Brittle Nails": 2.0, "Hair Thinning": 2.0, "Cold Intolerance": 1.5,
+                    "Restless Legs": 1.0, "Dizziness": 1.0, "Dry Skin": 1.0
+                },
+                "notes": "Month 1 check-in"
+            }
+        ]
+        self._lab_cache["demo"] = [
+            {
+                "id": "demo-l-0",
+                "assessment_id": "demo",
+                "test_date": d_0,
+                "lab_provider": "Quest Diagnostics",
+                "biomarkers": {
+                    "Serum Ferritin": 14.2,
+                    "25-Hydroxy Vitamin D": 18.0,
+                    "Serum Vitamin B12": 280.0,
+                    "RBC Magnesium": 4.2,
+                    "Serum Zinc": 62.0,
+                    "Hemoglobin (CBC)": 11.5
+                },
+                "clinical_interpretation": "Initial baseline deficiency profile."
+            },
+            {
+                "id": "demo-l-28",
+                "assessment_id": "demo",
+                "test_date": d_28,
+                "lab_provider": "Quest Diagnostics",
+                "biomarkers": {
+                    "Serum Ferritin": 38.5,
+                    "25-Hydroxy Vitamin D": 42.0,
+                    "Serum Vitamin B12": 550.0,
+                    "RBC Magnesium": 5.4,
+                    "Serum Zinc": 85.0,
+                    "Hemoglobin (CBC)": 13.2
+                },
+                "clinical_interpretation": "Marked therapeutic response at Day 28."
+            }
+        ]
 
     def log_symptoms(
         self,

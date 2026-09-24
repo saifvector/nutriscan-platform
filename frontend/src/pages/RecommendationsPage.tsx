@@ -8,6 +8,7 @@ import {
 import { sessionManager } from '../lib/sessionManager'
 import { ResumeAssessmentModal } from '../components/session/ResumeAssessmentModal'
 import { AssessmentRequiredState } from '../components/common/AssessmentRequiredState'
+import { PediatricSafetyBanner } from '../components/safety/PediatricSafetyBanner'
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -121,6 +122,13 @@ function useRecommendationData(assessmentId: string | null) {
             synergies,
             lifestyle,
             recovery,
+            patientAge: apiData.patient_age ?? apiData.demographics?.age ?? apiData.age,
+            safetyWarnings: [
+              ...(apiData.safety_evaluation?.violations || []),
+              ...(apiData.safety_warnings || []),
+              ...(apiData.contraindications || [])
+            ],
+            quarantinedItems: apiData.quarantined_items || apiData.safety_evaluation?.quarantined_items || [],
           })
         }
       } catch (err) {
@@ -173,7 +181,15 @@ export default function RecommendationsPage() {
     { key: 'recovery' as const, label: 'Recovery Roadmap', icon: Zap },
   ]
 
-  if (!effectiveId || (!loading && !data)) {
+  if (loading) {
+    return (
+      <div style={{ padding: 60, textAlign: 'center', color: 'var(--c-muted)', fontSize: '0.9375rem' }}>
+        Loading personalized recommendations...
+      </div>
+    )
+  }
+
+  if (!effectiveId || !data) {
     return (
       <>
         <AssessmentRequiredState
@@ -209,6 +225,12 @@ export default function RecommendationsPage() {
 
   return (
     <motion.div initial="hidden" animate="visible" variants={stagger}>
+      <PediatricSafetyBanner
+        patientAge={data.patientAge}
+        safetyWarnings={data.safetyWarnings}
+        quarantinedItems={data.quarantinedItems}
+      />
+
       <motion.div variants={fadeUp} style={{ marginBottom: 24 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 16 }}>
           <div>
@@ -216,7 +238,7 @@ export default function RecommendationsPage() {
             <p style={{ fontSize: '0.875rem', color: 'var(--c-muted)' }}>Evidence-based dietary guidance, lifestyle interventions, and structured recovery plans.</p>
           </div>
           <Link
-            to={`/intelligence/${assessmentId || 'demo'}`}
+            to={`/intelligence/${effectiveId}`}
             className="card card-hover"
             style={{
               padding: '10px 16px',

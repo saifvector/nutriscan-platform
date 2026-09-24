@@ -9,18 +9,20 @@ import { createPortal } from 'react-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3,
   FileText, Leaf, Sparkles, ShieldCheck,
-  Calendar, TrendingUp, Compass, Stethoscope, FlaskConical, Network,
-  MoreHorizontal, ChevronDown, Check
+  Calendar, TrendingUp, Compass, Stethoscope, Network,
+  MoreHorizontal, ChevronDown, Check, BrainCircuit, Users
 } from 'lucide-react'
+import { sessionManager } from '../../lib/sessionManager'
 import ThemeToggle from '../ui/ThemeToggle'
 
 const navItems = [
   { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { to: '/patients', label: 'Patients', icon: Users },
   { to: '/copilot', label: 'Copilot', icon: Stethoscope },
-  { to: '/research', label: 'Research', icon: FlaskConical },
   { to: '/network', label: 'Network', icon: Network },
   { to: '/assessment', label: 'Assessment', icon: ClipboardList },
   { to: '/predictions', label: 'Predictions', icon: BarChart3 },
+  { to: '/explainability', label: 'Reasoning', icon: BrainCircuit },
   { to: '/personalization', label: 'Personalization', icon: Compass },
   { to: '/recommendation-center', label: 'Precision Foods', icon: Sparkles },
   { to: '/meal-planner', label: 'Meal Planner', icon: Calendar },
@@ -32,7 +34,8 @@ const navItems = [
 export default function AppShell() {
   const { assessmentId } = useParams()
   const location = useLocation()
-  const id = assessmentId || 'demo'
+  const activeSession = sessionManager.getActiveSession()
+  const effectiveId = activeSession?.active_assessment_id || (assessmentId && assessmentId !== 'demo' ? assessmentId : null)
   const navRef = useRef<HTMLDivElement>(null)
   const moreButtonRef = useRef<HTMLButtonElement>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -61,8 +64,8 @@ export default function AppShell() {
   const overflowItems = navItems.slice(visibleLimit)
 
   const resolveLink = (base: string) => {
-    if (base === '/assessment') return base
-    return `${base}/${id}`
+    if (base === '/assessment' || base === '/patients') return base
+    return effectiveId ? `${base}/${effectiveId}` : base
   }
 
   const activeIdx = navItems.findIndex(item => location.pathname.startsWith(item.to))
@@ -339,17 +342,21 @@ export default function AppShell() {
             gap: 8,
           }}>
             <ThemeToggle variant="compact" />
-            <Link to="/profile" style={{
-              width: 28, height: 28, borderRadius: 8,
-              background: 'linear-gradient(135deg, var(--c-primary), var(--c-primary-dark))',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              textDecoration: 'none', fontSize: '0.625rem', fontWeight: 700, color: 'white',
-              fontFamily: 'var(--font-heading)',
-              boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
-              border: '1px solid rgba(255,255,255,0.1)',
-              flexShrink: 0,
-            }}>
-              JD
+            <Link
+              to="/patients"
+              title="Patient Records & Clinical History"
+              aria-label="Patient Records & Clinical History"
+              style={{
+                width: 28, height: 28, borderRadius: 8,
+                background: 'linear-gradient(135deg, var(--c-primary), var(--c-primary-dark))',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                textDecoration: 'none', color: 'white',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                flexShrink: 0,
+              }}
+            >
+              <Users size={14} />
             </Link>
           </div>
         </div>

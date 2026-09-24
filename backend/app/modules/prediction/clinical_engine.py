@@ -128,7 +128,8 @@ class ClinicalRiskEngine:
             top_shaps = []
             for p in top_raw[:3]:
                 fname = p['feature_name']
-                obs_val = df_105[fname].values[0] if fname in df_105.columns else None
+                val = df_105[fname].values[0] if fname in df_105.columns else None
+                obs_val = val.item() if hasattr(val, "item") else val
                 flabel = fname.replace("demo_", "Demographic: ").replace("exam_", "Exam: ").replace("diet_", "Dietary: ").replace("supp_", "Supplement: ").replace("_", " ").title()
                 top_shaps.append(ClinicalPredictorShap(
                     feature_name=fname,

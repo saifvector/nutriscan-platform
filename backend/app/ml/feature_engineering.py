@@ -18,6 +18,7 @@ import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.preprocessing import StandardScaler, RobustScaler, OneHotEncoder
 from .constants import SYMPTOM_CLUSTERS, PLAUSIBLE_RANGES, SYMPTOM_FIELDS
+from .sanitization import safe_float, safe_int, safe_bool, normalize_numeric_feature
 
 
 class ClinicalFeaturePipeline(BaseEstimator, TransformerMixin):
@@ -36,15 +37,23 @@ class ClinicalFeaturePipeline(BaseEstimator, TransformerMixin):
 
     ORDINAL_SMOKING = {
         "NEVER": 0,
+        "NONE": 0,
         "FORMER": 1,
-        "CURRENT": 2
+        "CURRENT": 2,
+        "DAILY": 2,
+        "CURRENT_DAILY": 2,
+        "REGULAR": 2,
+        "YES": 2
     }
 
     ORDINAL_ALCOHOL = {
         "NONE": 0,
+        "NEVER": 0,
         "OCCASIONAL": 1,
         "MODERATE": 2,
-        "HEAVY": 3
+        "HEAVY": 3,
+        "DAILY": 3,
+        "FREQUENT": 3
     }
 
     NOMINAL_DIETS = ["OMNIVORE", "VEGAN", "VEGETARIAN", "PESCATARIAN", "KETO", "MEDITERRANEAN", "OTHER"]
@@ -89,14 +98,15 @@ class ClinicalFeaturePipeline(BaseEstimator, TransformerMixin):
                 df_clean[col] = _continuous_defaults.get(col, 0.0)
 
         for col in continuous_cols:
+            default_val = self.medians_.get(col, _continuous_defaults.get(col, 0.0))
+            df_clean[col] = df_clean[col].apply(lambda v: safe_float(v, default=default_val)).astype(float)
             if is_fitting:
                 self.medians_[col] = float(df_clean[col].median())
-            df_clean[col] = df_clean[col].fillna(self.medians_.get(col, _continuous_defaults.get(col, 0.0)))
             
             # Apply biological plausibility clamping
             if col in PLAUSIBLE_RANGES:
                 min_val, max_val = PLAUSIBLE_RANGES[col]
-                df_clean[col] = df_clean[col].clip(lower=min_val, upper=max_val)
+                df_clean[col] = df_clean[col].clip(lower=float(min_val), upper=float(max_val))
 
         # 2. Compute or apply modes for categorical features
         cat_cols = ["gender", "dietary_pattern", "activity_level", "smoking_status", "alcohol_consumption"]
@@ -123,14 +133,16 @@ class ClinicalFeaturePipeline(BaseEstimator, TransformerMixin):
         for col in bool_cols:
             if col not in df_clean.columns:
                 df_clean[col] = 0.0
-            df_clean[col] = df_clean[col].fillna(False).astype(float)
+            else:
+                df_clean[col] = df_clean[col].apply(lambda v: 1.0 if safe_bool(v, default=False) else 0.0).astype(float)
 
         # 4. Impute symptoms (missing symptom = 0 severity)
         for sym in SYMPTOM_FIELDS:
             col = f"symptom_{sym}"
             if col not in df_clean.columns:
                 df_clean[col] = 0.0
-            df_clean[col] = df_clean[col].fillna(0.0).clip(0.0, 10.0)
+            else:
+                df_clean[col] = df_clean[col].apply(lambda v: safe_float(v, default=0.0, min_val=0.0, max_val=10.0)).astype(float)
 
         return df_clean
 
@@ -175,17 +187,17 @@ class ClinicalFeaturePipeline(BaseEstimator, TransformerMixin):
 
         # --- C. Lifestyle Factors & Ordinal Encodings ---
         df_feat["activity_level_code"] = df_clean["activity_level"].map(
-            lambda x: self.ORDINAL_ACTIVITY.get(x, 1)
+            lambda x: self.ORDINAL_ACTIVITY.get(str(x).strip().upper(), 1)
         ).astype(float)
         df_feat["sleep_hours"] = df_clean["sleep_hours_per_night"]
         df_feat["sunlight_minutes"] = df_clean["sunlight_exposure_min_per_day"]
         df_feat["is_low_sunlight"] = (df_feat["sunlight_minutes"] < 20.0).astype(float) # Vit D risk flag
         df_feat["stress_level"] = df_clean["stress_level"]
         df_feat["smoking_code"] = df_clean["smoking_status"].map(
-            lambda x: self.ORDINAL_SMOKING.get(x, 0)
+            lambda x: self.ORDINAL_SMOKING.get(str(x).strip().upper(), 0)
         ).astype(float)
         df_feat["alcohol_code"] = df_clean["alcohol_consumption"].map(
-            lambda x: self.ORDINAL_ALCOHOL.get(x, 0)
+            lambda x: self.ORDINAL_ALCOHOL.get(str(x).strip().upper(), 0)
         ).astype(float)
 
         # --- D. Medical History & Malabsorption ---

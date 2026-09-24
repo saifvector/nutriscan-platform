@@ -28,9 +28,26 @@ catboost_info/
 *.db
 *.db-shm
 *.db-wal
+*.db*
+*.backup*
+*.backup_*
+backend/data/
 !database/*.sql
 backups/
 *.db.gz
+
+# Transient Scratch & Audit Output Files
+scratch/
+backend/scratch_*.py
+*audit_results*.json
+scratch_*.json
+backend/*_audit*.json
+backend/extracted_*.json
+backend/frontend_keyword_scan.json
+backend/endpoint_frontend_mapping.json
+backend/openapi.json
+backend/audit_tools.py
+backend/verify_remediation.py
 
 # Frontend Build & Dependencies
 frontend/node_modules/

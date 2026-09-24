@@ -14,10 +14,10 @@ export default function RiskOverview({
   compositeScore,
   deficiencies
 }: RiskOverviewProps) {
-  const criticalCount = deficiencies.filter(d => d.risk_level === 'CRITICAL' || d.probability >= 0.75).length
-  const highCount = deficiencies.filter(d => (d.risk_level === 'HIGH' || (d.probability >= 0.55 && d.probability < 0.75))).length
-  const modCount = deficiencies.filter(d => d.risk_level === 'MODERATE' || (d.probability >= 0.35 && d.probability < 0.55)).length
-  const lowCount = Math.max(0, 11 - (criticalCount + highCount + modCount))
+  const criticalCount = deficiencies.filter(d => d.risk_level === 'CRITICAL').length
+  const highCount = deficiencies.filter(d => d.risk_level === 'HIGH').length
+  const modCount = deficiencies.filter(d => d.risk_level === 'MODERATE').length
+  const lowCount = deficiencies.filter(d => d.risk_level === 'LOW').length
 
   const total = 11
   const critPct = (criticalCount / total) * 100

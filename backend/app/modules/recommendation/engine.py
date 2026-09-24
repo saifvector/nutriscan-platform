@@ -78,33 +78,110 @@ class PersonalizedRecommendationEngine:
         restrictions: List[str]
     ) -> List[Dict[str, Any]]:
         """
-        Applies strict boolean filtering against patient dietary patterns and restrictions.
+        Applies strict boolean AND filtering against patient dietary patterns and restrictions.
+        Guarantees that ALL dietary constraints and ALL restriction rules are satisfied concurrently.
+        Performs dual-layer validation:
+        1. Explicit dietary_tags validation
+        2. Strict keyword and ingredient disjunction exclusion
         """
-        pattern_clean = dietary_pattern.upper()
-        restrictions_clean = [r.upper().replace("-", "_").replace(" ", "_") for r in restrictions]
+        pattern_clean = str(dietary_pattern or "OMNIVORE").upper().strip()
+        restrictions_clean = [str(r).upper().replace("-", "_").replace(" ", "_").strip() for r in (restrictions or []) if r]
+
+        # Clinical allergen and food-group keywords
+        MEAT_KEYWORDS = [
+            "beef", "chicken", "turkey", "pork", "lamb", "veal", "duck", "liver", "steak",
+            "bacon", "sausage", "ham", "bison", "venison", "meat"
+        ]
+        SEAFOOD_KEYWORDS = [
+            "salmon", "tuna", "sardine", "sardines", "mackerel", "trout", "cod", "halibut",
+            "anchovies", "anchovy", "shrimp", "oyster", "oysters", "clam", "clams", "mussel",
+            "mussels", "crab", "lobster", "fish", "herring", "seafood"
+        ]
+        DAIRY_KEYWORDS = [
+            "milk", "cheese", "yogurt", "butter", "whey", "casein", "cream", "ghee",
+            "cottage", "ricotta", "parmesan", "cheddar", "mozzarella", "kefir", "dairy"
+        ]
+        EGG_KEYWORDS = [
+            "egg", "eggs", "mayonnaise", "albumin", "yolk"
+        ]
+        NUT_KEYWORDS = [
+            "almond", "walnut", "cashew", "peanut", "pecan", "pistachio", "hazelnut",
+            "macadamia", "brazil nut", "pine nut"
+        ]
+        GLUTEN_KEYWORDS = [
+            "wheat", "barley", "rye", "spelt", "kamut", "couscous", "bulgur", "seitan", "semolina", "gluten"
+        ]
 
         filtered = []
         for food in food_list:
-            tags = [t.upper() for t in food.get("dietary_tags", [])]
+            fname = str(food.get("food_name", "")).lower()
+            fgroup = str(food.get("food_group", "")).upper()
+            tags = {str(t).upper().replace("-", "_").replace(" ", "_") for t in food.get("dietary_tags", [])}
 
-            # 1. Dietary Pattern Constraints
+            # -------------------------------------------------------------
+            # Layer 1: Dietary Pattern Enforcement
+            # -------------------------------------------------------------
             if "VEGAN" in pattern_clean:
                 if "VEGAN" not in tags:
+                    continue
+                if any(k in fname for k in MEAT_KEYWORDS + SEAFOOD_KEYWORDS + DAIRY_KEYWORDS + EGG_KEYWORDS):
                     continue
             elif "VEGETARIAN" in pattern_clean:
                 if "VEGETARIAN" not in tags and "VEGAN" not in tags:
                     continue
-
-            # 2. Specific Restriction Constraints
-            if any("DAIRY_FREE" in r for r in restrictions_clean):
-                if "DAIRY_FREE" not in tags and "VEGAN" not in tags:
+                if any(k in fname for k in MEAT_KEYWORDS + SEAFOOD_KEYWORDS):
+                    continue
+            elif "PESCATARIAN" in pattern_clean:
+                if any(k in fname for k in MEAT_KEYWORDS):
                     continue
 
-            if any("GLUTEN_FREE" in r for r in restrictions_clean):
-                if "GLUTEN_FREE" not in tags:
-                    continue
+            # -------------------------------------------------------------
+            # Layer 2: Specific Dietary Restrictions (Strict AND Logic)
+            # -------------------------------------------------------------
+            is_violating = False
 
-            filtered.append(food)
+            for r in restrictions_clean:
+                # 1. Meat-Free Restriction
+                if "MEAT_FREE" in r or "NO_MEAT" in r:
+                    if any(k in fname for k in MEAT_KEYWORDS + SEAFOOD_KEYWORDS):
+                        is_violating = True
+                        break
+                    if "VEGAN" not in tags and "VEGETARIAN" not in tags:
+                        is_violating = True
+                        break
+
+                # 2. Dairy-Free Restriction
+                if "DAIRY_FREE" in r or "NO_DAIRY" in r:
+                    if any(k in fname for k in DAIRY_KEYWORDS):
+                        is_violating = True
+                        break
+                    if "DAIRY_FREE" not in tags and "VEGAN" not in tags:
+                        is_violating = True
+                        break
+
+                # 3. Gluten-Free Restriction
+                if "GLUTEN_FREE" in r or "NO_GLUTEN" in r or "CELIAC" in r:
+                    if any(k in fname for k in GLUTEN_KEYWORDS):
+                        is_violating = True
+                        break
+                    if "GLUTEN_FREE" not in tags:
+                        is_violating = True
+                        break
+
+                # 4. Nut-Free Restriction
+                if "NUT_FREE" in r or "NO_NUTS" in r:
+                    if any(k in fname for k in NUT_KEYWORDS):
+                        is_violating = True
+                        break
+
+                # 5. Egg-Free Restriction
+                if "EGG_FREE" in r or "NO_EGGS" in r:
+                    if any(k in fname for k in EGG_KEYWORDS):
+                        is_violating = True
+                        break
+
+            if not is_violating:
+                filtered.append(food)
 
         return filtered
 
@@ -380,6 +457,28 @@ class PersonalizedRecommendationEngine:
                 cautionary_timing="Ensure adequate magnesium status prior to or concurrently with high-dose thiamine therapy."
             ))
 
+        if not pairings:
+            pairings.append(SynergyPairingItem(
+                primary_nutrient="Vitamin D",
+                synergistic_nutrient="Magnesium",
+                primary_food="UV-Exposed Mushrooms or Sardines",
+                enhancer_food="Raw Pumpkin Seeds or Almonds",
+                meal_concept="Foundational preventative pairing supporting enzymatic activation of Vitamin D.",
+                biochemical_mechanism="Magnesium acts as an essential enzymatic cofactor for hepatic 25-hydroxylase and renal 1-alpha-hydroxylase.",
+                absorption_boost_factor="Enzymatic cofactor activation",
+                cautionary_timing="Avoid taking high-dose oral magnesium with high-dose calcium concurrently."
+            ))
+            pairings.append(SynergyPairingItem(
+                primary_nutrient="Iron",
+                synergistic_nutrient="Vitamin C",
+                primary_food="Whole Lentils or Dark Leafy Greens",
+                enhancer_food="Citrus or Fresh Bell Peppers",
+                meal_concept="Whole-food salad with leafy greens and lemon vinaigrette to optimize natural iron bioavailability.",
+                biochemical_mechanism="Ascorbic acid maintains dietary iron in the absorbable ferrous state.",
+                absorption_boost_factor="Bioavailability enhancement",
+                cautionary_timing="Separate coffee or tea by 60 minutes from major meals."
+            ))
+
         return pairings
 
     @classmethod
@@ -393,7 +492,11 @@ class PersonalizedRecommendationEngine:
         """
         interventions: List[LifestyleInterventionItem] = []
 
-        elevated_nutrients = [p["nutrient"] for p in nutrient_predictions if p.get("risk_level") in ["HIGH", "MODERATE"]]
+        elevated_nutrients = [
+            p.get("nutrient", p.get("target_name", ""))
+            for p in nutrient_predictions
+            if str(p.get("risk_tier", p.get("risk_level", ""))).upper() in ["HIGH", "MODERATE"]
+        ]
 
         # 1. Sunlight & Phototherapy Protocol
         if "Vitamin D" in elevated_nutrients or "Calcium" in elevated_nutrients:
@@ -530,9 +633,13 @@ class PersonalizedRecommendationEngine:
         2. Nutrient Coverage Score: Proportion of target nutrients receiving strong food options.
         3. Diet Compatibility Score: Strictness of restriction compliance (100 if 0 violations).
         """
-        elevated = [p["nutrient"] for p in nutrient_predictions if p.get("risk_level") in ["HIGH", "MODERATE"]]
+        elevated = [
+            p.get("nutrient", p.get("target_name", ""))
+            for p in nutrient_predictions
+            if str(p.get("risk_tier", p.get("risk_level", ""))).upper() in ["HIGH", "MODERATE"]
+        ]
         if not elevated:
-            elevated = [p["nutrient"] for p in nutrient_predictions[:3]]
+            elevated = [p.get("nutrient", p.get("target_name", "")) for p in nutrient_predictions[:3]]
 
         # 1. Relevance Score
         addressed_nutrients = {f.target_nutrient for f in recommended_foods if f.priority_tier == FoodPriorityTierEnum.PRIORITY_1}
@@ -575,12 +682,43 @@ class PersonalizedRecommendationEngine:
         patient_is_pediatric = is_pediatric(age_years)
 
         is_pregnant = bool(patient_intake.get("is_pregnant", False) or patient_intake.get("demo_is_pregnant", 0) == 1)
-        conditions = [str(c).upper() for c in (patient_intake.get("conditions") or patient_intake.get("medical_conditions", []))]
-        medications = [str(m).upper() for m in patient_intake.get("medications", [])]
+        conditions_raw = []
+        if patient_intake.get("conditions"):
+            conditions_raw.extend(patient_intake["conditions"] if isinstance(patient_intake["conditions"], list) else [patient_intake["conditions"]])
+        if patient_intake.get("medical_conditions"):
+            conditions_raw.extend(patient_intake["medical_conditions"] if isinstance(patient_intake["medical_conditions"], list) else [patient_intake["medical_conditions"]])
+        if patient_intake.get("medical_history"):
+            for mh in patient_intake["medical_history"]:
+                if isinstance(mh, dict):
+                    if mh.get("is_active", True) is not False:
+                        conditions_raw.append(mh.get("condition_name", ""))
+                elif isinstance(mh, str):
+                    conditions_raw.append(mh)
+        conditions = [str(c).strip().upper() for c in conditions_raw if c]
+        if any("PREGNAN" in c for c in conditions):
+            is_pregnant = True
 
-        is_ckd = any("KIDNEY" in c or "CKD" in c for c in conditions)
-        is_hemochromatosis = any("HEMOCHROMATOSIS" in c for c in conditions)
-        is_smoker = bool(patient_intake.get("is_smoker", False) or "SMOK" in str(patient_intake.get("lifestyle", "")).upper() or any("SMOK" in c for c in conditions))
+        medications_raw = []
+        if patient_intake.get("medications"):
+            medications_raw.extend(patient_intake["medications"] if isinstance(patient_intake["medications"], list) else [patient_intake["medications"]])
+        medications = [str(m).strip().upper() for m in medications_raw if m]
+
+        is_ckd = any("KIDNEY" in c or "CKD" in c or "RENAL" in c for c in conditions)
+        is_hemochromatosis = any("HEMOCHROMATOSIS" in c or "IRON OVERLOAD" in c for c in conditions)
+
+        # Robust smoker status detection from lifestyle_factors, is_smoker flag, and intake fields
+        lifestyle_factors = patient_intake.get("lifestyle_factors", {})
+        smoking_val = str(
+            patient_intake.get("smoking_status", "") or
+            (lifestyle_factors.get("smoking_status", "") if isinstance(lifestyle_factors, dict) else "") or
+            patient_intake.get("lifestyle", "")
+        ).upper()
+        is_smoker = bool(
+            patient_intake.get("is_smoker", False) or
+            "CURRENT" in smoking_val or
+            "SMOK" in smoking_val or
+            any("SMOK" in c for c in conditions)
+        )
         is_warfarin = any("WARFARIN" in m or "COUMADIN" in m for m in medications)
 
         # ----------------------------------------------------
@@ -894,6 +1032,60 @@ class PersonalizedRecommendationEngine:
                     "clinical_rationale": "Delivers balanced essential amino acid profile with PDCAAS near 1.0, stimulating muscle protein synthesis and maintaining nitrogen balance.",
                     "evidence_reference": "Phillips SM et al. J Sports Sci 2011; 29(S1):S29-S38.",
                     "contraindications": "Severe renal impairment without dialysis (requires personalized nephrology protein titration)."
+                },
+                "Vitamin C": {
+                    "item_name": ("Low-Dose Ascorbic Acid with Bioflavonoids (Smoker-Adapted)" if is_smoker else "Buffered Ascorbic Acid with Citrus Bioflavonoids"),
+                    "target_nutrient": "Vitamin C",
+                    "dosage": ("200 - 500 mg/day" if is_smoker else "250 - 500 mg/day"),
+                    "frequency": "Divided BID with meals (morning and evening)",
+                    "clinical_rationale": ("Smokers require 35 mg/day additional Vitamin C due to accelerated oxidative turnover. Supports collagen synthesis, immune function, and iron absorption." if is_smoker else "Restores ascorbate tissue saturation; enhances non-heme iron absorption by 2-3x when co-ingested. Supports collagen synthesis and immune function."),
+                    "evidence_reference": "Carr AC, Maggini S. Nutrients 2017; 9(11):1211. NIH ODS Vitamin C Fact Sheet.",
+                    "contraindications": "History of calcium oxalate nephrolithiasis (reduce dose); hemochromatosis (enhances iron absorption)."
+                },
+                "Vitamin B1": {
+                    "item_name": "Benfotiamine (Fat-Soluble Thiamine Derivative)",
+                    "target_nutrient": "Vitamin B1",
+                    "dosage": "50 - 100 mg/day",
+                    "frequency": "Daily with a meal",
+                    "clinical_rationale": "Benfotiamine provides 5x greater bioavailability than water-soluble thiamine HCl. Critical for pyruvate dehydrogenase and alpha-ketoglutarate dehydrogenase in energy metabolism. Alcohol-induced depletion is a major risk factor.",
+                    "evidence_reference": "Lonsdale D. Evid Based Complement Alternat Med 2006; 3(1):49-59. NIH ODS Thiamin Fact Sheet.",
+                    "contraindications": "None established at physiological doses. No UL set by NIH/IOM."
+                },
+                "Vitamin B6": {
+                    "item_name": "Pyridoxal 5'-Phosphate (P5P Active B6)",
+                    "target_nutrient": "Vitamin B6",
+                    "dosage": "25 - 50 mg/day",
+                    "frequency": "Daily with breakfast",
+                    "clinical_rationale": "Active coenzyme form bypasses hepatic conversion. Essential for transamination, neurotransmitter synthesis (serotonin, dopamine, GABA), and homocysteine metabolism.",
+                    "evidence_reference": "Leklem JE. Am J Clin Nutr 1990; 51(5):859-862. NIH ODS Vitamin B6 Fact Sheet.",
+                    "contraindications": "Doses >100 mg/day chronically may cause peripheral neuropathy. UL: 100 mg/day."
+                },
+                "Potassium": {
+                    "item_name": "Potassium Citrate Capsules",
+                    "target_nutrient": "Potassium",
+                    "dosage": "99 mg elemental potassium per capsule, 1-2 daily",
+                    "frequency": "Daily with meals, titrate based on dietary intake",
+                    "clinical_rationale": "Supports electrolyte balance, nerve conduction, and muscle contraction. Citrate form provides alkalinizing effect beneficial for bone health. Dietary potassium (fruits, vegetables) remains primary strategy.",
+                    "evidence_reference": "Weaver CM. Adv Nutr 2013; 4(3):368S-377S. NIH ODS Potassium Fact Sheet.",
+                    "contraindications": "Chronic kidney disease (GFR <60), hyperkalemia, ACE inhibitor or ARB therapy (monitor levels), potassium-sparing diuretics."
+                },
+                "Selenium": {
+                    "item_name": "Selenomethionine (Organic Selenium)",
+                    "target_nutrient": "Selenium",
+                    "dosage": "55 - 100 mcg/day",
+                    "frequency": "Daily with a meal",
+                    "clinical_rationale": "Organic selenomethionine integrates into selenoproteins (glutathione peroxidase, thioredoxin reductase) supporting antioxidant defense and thyroid hormone metabolism.",
+                    "evidence_reference": "Rayman MP. Lancet 2012; 379(9822):1256-1268. NIH ODS Selenium Fact Sheet.",
+                    "contraindications": "Doses >400 mcg/day risk selenosis (garlic breath, hair loss, nail brittleness). UL: 400 mcg/day."
+                },
+                "Iodine": {
+                    "item_name": "Potassium Iodide (KI) Supplement",
+                    "target_nutrient": "Iodine",
+                    "dosage": "150 mcg/day",
+                    "frequency": "Daily with a meal",
+                    "clinical_rationale": "Essential for thyroid hormone synthesis (T3, T4). Iodine deficiency is the most common preventable cause of intellectual disability worldwide. Kelp-based sources have variable iodine content.",
+                    "evidence_reference": "Zimmermann MB. Endocr Rev 2009; 30(4):376-408. NIH ODS Iodine Fact Sheet.",
+                    "contraindications": "Autoimmune thyroid disease (Hashimoto's, Graves'). UL: 1100 mcg/day."
                 }
             }
 
@@ -933,7 +1125,8 @@ class PersonalizedRecommendationEngine:
                 "contraindications": "None at physiological RDA thresholds."
             })
 
-        return supplements
+        from .supplement_assembler import SupplementRegimenAssembler
+        return SupplementRegimenAssembler.assemble_regimen(supplements, patient_intake=patient_intake)
 
     @classmethod
     def generate_monitoring_plan(cls, elevated_nutrients: List[str]) -> List[Dict[str, Any]]:

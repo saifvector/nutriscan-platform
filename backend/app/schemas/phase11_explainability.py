@@ -11,7 +11,7 @@ Data Transfer Objects (DTOs) for:
 
 from enum import Enum
 from typing import List, Dict, Any, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 import uuid
 from datetime import datetime
 
@@ -45,6 +45,13 @@ class ContributionFactor(BaseModel):
     contribution_pct: float = Field(..., ge=0.0, le=100.0, description="Normalized attribution percentage of total variance")
     direction: FactorDirection = Field(..., description="POSITIVE (elevates risk) or PROTECTIVE (mitigates risk)")
 
+    @field_validator("value", mode="before")
+    @classmethod
+    def normalize_value(cls, v: Any) -> Any:
+        if hasattr(v, "item") and callable(getattr(v, "item", None)):
+            return v.item()
+        return v
+
 
 class ClinicalNarrative(BaseModel):
     """Dual-layer narrative explanation tailored to patient and clinician audiences."""
@@ -65,6 +72,7 @@ class TargetExplanation(BaseModel):
     optimal_threshold: float = Field(..., description="Calibrated clinical decision cutoff")
     positive_contributors: List[ContributionFactor] = Field(default_factory=list, description="Top factors elevating risk")
     protective_contributors: List[ContributionFactor] = Field(default_factory=list, description="Top factors providing protection")
+    confidence_score: float = Field(default=0.90, description="Model prediction confidence score")
     narratives: ClinicalNarrative = Field(..., description="Dual-perspective clinical narrative")
 
 

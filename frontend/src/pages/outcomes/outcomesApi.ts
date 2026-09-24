@@ -19,7 +19,7 @@ import type {
 const API_BASE = '/api/v1/outcomes';
 
 export const outcomesApi = {
-  async getAdherence(assessmentId: string = 'demo', period: string = 'weekly'): Promise<AdherenceSummaryResponse> {
+  async getAdherence(assessmentId: string, period: string = 'weekly'): Promise<AdherenceSummaryResponse> {
     const res = await fetch(`${API_BASE}/adherence?assessment_id=${encodeURIComponent(assessmentId)}`);
     if (!res.ok) throw new Error(`Failed to load adherence: ${res.statusText}`);
     return res.json();
@@ -35,7 +35,7 @@ export const outcomesApi = {
     return res.json();
   },
 
-  async getSymptoms(assessmentId: string = 'demo'): Promise<SymptomTimelineResponse> {
+  async getSymptoms(assessmentId: string): Promise<SymptomTimelineResponse> {
     const res = await fetch(`${API_BASE}/symptoms?assessment_id=${encodeURIComponent(assessmentId)}`);
     if (!res.ok) throw new Error(`Failed to load symptoms: ${res.statusText}`);
     return res.json();
@@ -51,31 +51,31 @@ export const outcomesApi = {
     return res.json();
   },
 
-  async getLabs(assessmentId: string = 'demo'): Promise<LabTrackingResponse> {
+  async getLabs(assessmentId: string): Promise<LabTrackingResponse> {
     const res = await fetch(`${API_BASE}/labs?assessment_id=${encodeURIComponent(assessmentId)}`);
     if (!res.ok) throw new Error(`Failed to load labs: ${res.statusText}`);
     return res.json();
   },
 
-  async getRecovery(assessmentId: string = 'demo'): Promise<RecoveryStatusResponse> {
+  async getRecovery(assessmentId: string): Promise<RecoveryStatusResponse> {
     const res = await fetch(`${API_BASE}/recovery?assessment_id=${encodeURIComponent(assessmentId)}`);
     if (!res.ok) throw new Error(`Failed to load recovery: ${res.statusText}`);
     return res.json();
   },
 
-  async getEffectiveness(assessmentId: string = 'demo'): Promise<EffectivenessResponse> {
+  async getEffectiveness(assessmentId: string): Promise<EffectivenessResponse> {
     const res = await fetch(`${API_BASE}/effectiveness?assessment_id=${encodeURIComponent(assessmentId)}`);
     if (!res.ok) throw new Error(`Failed to load effectiveness: ${res.statusText}`);
     return res.json();
   },
 
-  async getAdaptivePlans(assessmentId: string = 'demo'): Promise<AdaptivePlanResponse> {
+  async getAdaptivePlans(assessmentId: string): Promise<AdaptivePlanResponse> {
     const res = await fetch(`${API_BASE}/adaptive-plans?assessment_id=${encodeURIComponent(assessmentId)}`);
     if (!res.ok) throw new Error(`Failed to load adaptive plans: ${res.statusText}`);
     return res.json();
   },
 
-  async generateAdaptation(assessmentId: string = 'demo', scenario?: string, reason?: string): Promise<AdaptivePlanResponse> {
+  async generateAdaptation(assessmentId: string, scenario?: string, reason?: string): Promise<AdaptivePlanResponse> {
     const res = await fetch(`${API_BASE}/generate-adaptation`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -89,13 +89,13 @@ export const outcomesApi = {
     return res.json();
   },
 
-  async getPredictionAccuracy(assessmentId: string = 'demo'): Promise<PredictionAccuracyResponse> {
+  async getPredictionAccuracy(assessmentId: string): Promise<PredictionAccuracyResponse> {
     const res = await fetch(`${API_BASE}/prediction-accuracy?assessment_id=${encodeURIComponent(assessmentId)}`);
     if (!res.ok) throw new Error(`Failed to load prediction accuracy: ${res.statusText}`);
     return res.json();
   },
 
-  async getRiskMonitoring(assessmentId: string = 'demo'): Promise<RelapseRiskResponse> {
+  async getRiskMonitoring(assessmentId: string): Promise<RelapseRiskResponse> {
     const res = await fetch(`${API_BASE}/risk-monitoring?assessment_id=${encodeURIComponent(assessmentId)}`);
     if (!res.ok) throw new Error(`Failed to load risk monitoring: ${res.statusText}`);
     return res.json();

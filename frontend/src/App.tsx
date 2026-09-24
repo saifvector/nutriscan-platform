@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import AppShell from './components/layout/AppShell'
+import ErrorBoundary from './components/common/ErrorBoundary'
 
 // Lazy-loaded page components for optimal bundle splitting and performance
 const LandingPage = lazy(() => import('./pages/LandingPage'))
@@ -10,7 +11,7 @@ const PredictionsPage = lazy(() => import('./pages/PredictionsPage'))
 const ExplainabilityPage = lazy(() => import('./pages/ExplainabilityPage'))
 const RecommendationsPage = lazy(() => import('./pages/RecommendationsPage'))
 const ReportsPage = lazy(() => import('./pages/ReportsPage'))
-const ProfilePage = lazy(() => import('./pages/ProfilePage'))
+const PatientRecordsPage = lazy(() => import('./pages/PatientRecordsPage'))
 const NutrientNetworkPage = lazy(() => import('./pages/NutrientNetworkPage'))
 const NutritionIntelligencePage = lazy(() => import('./pages/NutritionIntelligencePage'))
 const OutcomeCenter = lazy(() => import('./pages/outcomes/OutcomeCenter'))
@@ -21,7 +22,6 @@ const MealPlannerPage = lazy(() => import('./pages/personalization/MealPlannerPa
 const ForecastDashboardPage = lazy(() => import('./pages/personalization/ForecastDashboardPage'))
 const InterventionComparisonPage = lazy(() => import('./pages/personalization/InterventionComparisonPage'))
 const ClinicalCopilotPage = lazy(() => import('./pages/copilot/ClinicalCopilotPage'))
-const ResearchWorkstationPage = lazy(() => import('./pages/research/ResearchWorkstationPage'))
 
 function RouteLoadingFallback() {
   return (
@@ -48,51 +48,53 @@ function RouteLoadingFallback() {
 
 export default function App() {
   return (
-    <Suspense fallback={<RouteLoadingFallback />}>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route element={<AppShell />}>
-          <Route path="/research" element={<ResearchWorkstationPage />} />
-          <Route path="/research/:assessmentId" element={<ResearchWorkstationPage />} />
-          <Route path="/copilot" element={<ClinicalCopilotPage />} />
-          <Route path="/copilot/:assessmentId" element={<ClinicalCopilotPage />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/dashboard/:assessmentId" element={<DashboardPage />} />
-          <Route path="/assessment" element={<AssessmentPage />} />
-          <Route path="/predictions" element={<PredictionsPage />} />
-          <Route path="/predictions/:assessmentId" element={<PredictionsPage />} />
-          <Route path="/explainability" element={<ExplainabilityPage />} />
-          <Route path="/explainability/:assessmentId" element={<ExplainabilityPage />} />
-          <Route path="/recommendations" element={<RecommendationsPage />} />
-          <Route path="/recommendations/:assessmentId" element={<RecommendationsPage />} />
-          <Route path="/personalization" element={<PersonalizedDashboardPage />} />
-          <Route path="/personalization/:assessmentId" element={<PersonalizedDashboardPage />} />
-          <Route path="/recommendation-center" element={<RecommendationCenterPage />} />
-          <Route path="/recommendation-center/:assessmentId" element={<RecommendationCenterPage />} />
-          <Route path="/meal-planner" element={<MealPlannerPage />} />
-          <Route path="/meal-planner/:assessmentId" element={<MealPlannerPage />} />
-          <Route path="/forecasting" element={<ForecastDashboardPage />} />
-          <Route path="/forecasting/:assessmentId" element={<ForecastDashboardPage />} />
-          <Route path="/intervention-comparison" element={<InterventionComparisonPage />} />
-          <Route path="/intervention-comparison/:assessmentId" element={<InterventionComparisonPage />} />
-          <Route path="/intelligence" element={<NutritionIntelligencePage />} />
-          <Route path="/intelligence/:assessmentId" element={<NutritionIntelligencePage />} />
-          <Route path="/outcomes" element={<OutcomeCenter />} />
-          <Route path="/outcomes/:assessmentId" element={<OutcomeCenter />} />
-          <Route path="/governance" element={<MonitoringDashboardPage />} />
-          <Route path="/governance/:assessmentId" element={<MonitoringDashboardPage />} />
-          <Route path="/monitoring" element={<MonitoringDashboardPage />} />
-          <Route path="/monitoring/:assessmentId" element={<MonitoringDashboardPage />} />
-          <Route path="/reports" element={<ReportsPage />} />
-          <Route path="/reports/:assessmentId" element={<ReportsPage />} />
-          <Route path="/network" element={<NutrientNetworkPage />} />
-          <Route path="/network/:assessmentId" element={<NutrientNetworkPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-        </Route>
-        {/* Catch-all fallback to dashboard */}
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
-      </Routes>
-    </Suspense>
+    <ErrorBoundary>
+      <Suspense fallback={<RouteLoadingFallback />}>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route element={<AppShell />}>
+            <Route path="/copilot" element={<ClinicalCopilotPage />} />
+            <Route path="/copilot/:assessmentId" element={<ClinicalCopilotPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/dashboard/:assessmentId" element={<DashboardPage />} />
+            <Route path="/assessment" element={<AssessmentPage />} />
+            <Route path="/predictions" element={<PredictionsPage />} />
+            <Route path="/predictions/:assessmentId" element={<PredictionsPage />} />
+            <Route path="/explainability" element={<ExplainabilityPage />} />
+            <Route path="/explainability/:assessmentId" element={<ExplainabilityPage />} />
+            <Route path="/recommendations" element={<RecommendationsPage />} />
+            <Route path="/recommendations/:assessmentId" element={<RecommendationsPage />} />
+            <Route path="/personalization" element={<PersonalizedDashboardPage />} />
+            <Route path="/personalization/:assessmentId" element={<PersonalizedDashboardPage />} />
+            <Route path="/recommendation-center" element={<RecommendationCenterPage />} />
+            <Route path="/recommendation-center/:assessmentId" element={<RecommendationCenterPage />} />
+            <Route path="/meal-planner" element={<MealPlannerPage />} />
+            <Route path="/meal-planner/:assessmentId" element={<MealPlannerPage />} />
+            <Route path="/forecasting" element={<ForecastDashboardPage />} />
+            <Route path="/forecasting/:assessmentId" element={<ForecastDashboardPage />} />
+            <Route path="/intervention-comparison" element={<InterventionComparisonPage />} />
+            <Route path="/intervention-comparison/:assessmentId" element={<InterventionComparisonPage />} />
+            <Route path="/intelligence" element={<NutritionIntelligencePage />} />
+            <Route path="/intelligence/:assessmentId" element={<NutritionIntelligencePage />} />
+            <Route path="/outcomes" element={<OutcomeCenter />} />
+            <Route path="/outcomes/:assessmentId" element={<OutcomeCenter />} />
+            <Route path="/governance" element={<MonitoringDashboardPage />} />
+            <Route path="/governance/:assessmentId" element={<MonitoringDashboardPage />} />
+            <Route path="/monitoring" element={<MonitoringDashboardPage />} />
+            <Route path="/monitoring/:assessmentId" element={<MonitoringDashboardPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/reports/:assessmentId" element={<ReportsPage />} />
+            <Route path="/network" element={<NutrientNetworkPage />} />
+            <Route path="/network/:assessmentId" element={<NutrientNetworkPage />} />
+            <Route path="/patients" element={<PatientRecordsPage />} />
+            <Route path="/patients/:patientId" element={<PatientRecordsPage />} />
+            <Route path="/profile" element={<Navigate to="/patients" replace />} />
+          </Route>
+          {/* Catch-all fallback to dashboard */}
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        </Routes>
+      </Suspense>
+    </ErrorBoundary>
   )
 }
 

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect, useMemo } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
   Activity, CheckCircle2, TrendingDown,
   BrainCircuit, Sliders, BookOpen, AlertTriangle, ShieldCheck, Zap
@@ -10,6 +10,9 @@ import SymptomTimeline from './SymptomTimeline';
 import EffectivenessCenter from './EffectivenessCenter';
 import AdaptiveRecommendationCenter from './AdaptiveRecommendationCenter';
 import PredictionAccuracyDashboard from './PredictionAccuracyDashboard';
+import AssessmentRequiredState from '../../components/common/AssessmentRequiredState';
+import { ResumeAssessmentModal } from '../../components/session/ResumeAssessmentModal';
+import { sessionManager } from '../../lib/sessionManager';
 import type {
   RecoveryStatusResponse,
   RelapseRiskResponse,
@@ -20,7 +23,13 @@ import { outcomesApi } from './outcomesApi';
 
 export default function OutcomeCenter() {
   const { assessmentId } = useParams();
-  const id = assessmentId || 'demo';
+  const navigate = useNavigate();
+  const [activeSession, setActiveSession] = useState(() => sessionManager.getActiveSession());
+  const [showResumeModal, setShowResumeModal] = useState(false);
+  const storedPrevious = useMemo(() => sessionManager.getStoredPreviousAssessment(), []);
+
+  const effectiveId = activeSession?.active_assessment_id || (assessmentId && assessmentId !== 'demo' ? assessmentId : null);
+  const id = effectiveId;
 
   const [activeTab, setActiveTab] = useState<
     'adherence' | 'journal' | 'timeline' | 'effectiveness' | 'adaptive' | 'accuracy'
@@ -32,6 +41,7 @@ export default function OutcomeCenter() {
   const [loading, setLoading] = useState(true);
 
   const loadExecutiveKPIs = async () => {
+    if (!id) return;
     try {
       const [recRes, adhRes, riskRes] = await Promise.all([
         outcomesApi.getRecovery(id),
@@ -49,8 +59,46 @@ export default function OutcomeCenter() {
   };
 
   useEffect(() => {
-    loadExecutiveKPIs();
+    if (id) {
+      loadExecutiveKPIs();
+    }
   }, [id]);
+
+  if (!effectiveId) {
+    return (
+      <>
+        <AssessmentRequiredState
+          title="Clinical Outcomes & Recovery Tracking Required"
+          description="Continuous clinical outcome surveillance, protocol adherence metrics, and adaptive recovery plans require an active nutritional assessment. Complete an assessment to initialize your recovery protocol."
+          actionLabel="Start Assessment"
+          onAction={() => navigate('/assessment')}
+          secondaryActionLabel={storedPrevious ? "Resume Previous Assessment" : undefined}
+          onSecondaryAction={storedPrevious ? () => setShowResumeModal(true) : undefined}
+          icon={Activity}
+        />
+
+        {storedPrevious && (
+          <ResumeAssessmentModal
+            isOpen={showResumeModal}
+            assessmentId={storedPrevious.id}
+            assessmentDate={storedPrevious.date}
+            onResume={() => {
+              sessionManager.setActiveSession(storedPrevious.id, storedPrevious.date, 'completed');
+              setActiveSession(sessionManager.getActiveSession());
+              setShowResumeModal(false);
+            }}
+            onStartNew={() => {
+              sessionManager.clearActiveSession();
+              setActiveSession(null);
+              setShowResumeModal(false);
+              navigate('/assessment');
+            }}
+            onClose={() => setShowResumeModal(false)}
+          />
+        )}
+      </>
+    );
+  }
 
   const tabs = [
     { id: 'adherence', label: 'Adherence', icon: CheckCircle2 },
@@ -188,22 +236,22 @@ export default function OutcomeCenter() {
       {/* Active Tab Subview */}
       <div className="transition-all duration-300">
         {activeTab === 'adherence' && (
-          <AdherenceDashboard assessmentId={id} onLogged={loadExecutiveKPIs} />
+          <AdherenceDashboard assessmentId={effectiveId} onLogged={loadExecutiveKPIs} />
         )}
         {activeTab === 'journal' && (
-          <RecoveryJournal assessmentId={id} onEntryLogged={loadExecutiveKPIs} />
+          <RecoveryJournal assessmentId={effectiveId} onEntryLogged={loadExecutiveKPIs} />
         )}
         {activeTab === 'timeline' && (
-          <SymptomTimeline assessmentId={id} />
+          <SymptomTimeline assessmentId={effectiveId} />
         )}
         {activeTab === 'effectiveness' && (
-          <EffectivenessCenter assessmentId={id} />
+          <EffectivenessCenter assessmentId={effectiveId} />
         )}
         {activeTab === 'adaptive' && (
-          <AdaptiveRecommendationCenter assessmentId={id} />
+          <AdaptiveRecommendationCenter assessmentId={effectiveId} />
         )}
         {activeTab === 'accuracy' && (
-          <PredictionAccuracyDashboard assessmentId={id} />
+          <PredictionAccuracyDashboard assessmentId={effectiveId} />
         )}
       </div>
     </div>

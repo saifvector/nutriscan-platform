@@ -195,8 +195,11 @@ class ClinicalFeaturePreprocessor:
 
             sleep_h = lifestyle.get('sleep_hours_per_night')
             if sleep_h is not None:
-                sh = float(sleep_h)
-                set_feat('symptom_short_sleep', 1.0 if sh < 6.0 else 0.0)
+                try:
+                    sh = float(sleep_h)
+                    set_feat('symptom_short_sleep', 1.0 if sh < 6.0 else 0.0)
+                except (ValueError, TypeError):
+                    pass
 
             alcohol = str(lifestyle.get('alcohol_consumption', '')).upper()
             if alcohol in ['MODERATE', 'HEAVY']:
@@ -207,7 +210,10 @@ class ClinicalFeaturePreprocessor:
         if isinstance(symptoms, dict):
             for sym_name, sev in symptoms.items():
                 sname = str(sym_name).lower()
-                sval = float(sev) if sev is not None else 0.0
+                try:
+                    sval = float(sev) if sev is not None else 0.0
+                except (ValueError, TypeError):
+                    sval = 0.0
                 if 'fatigue' in sname:
                     set_feat('symptom_poor_appetite', 1.0 if sval > 5 else 0.0)
                 if 'sleep' in sname or 'insomnia' in sname:

@@ -89,8 +89,12 @@ class SupplementUsageItem(BaseModel):
 class HealthAssessmentCreate(BaseModel):
     """
     Primary DTO submitted by users during screening.
-    Directly addresses all 10 user input fields.
+    Directly addresses all clinical input fields.
     """
+    # Patient Identification
+    patient_name: Optional[str] = Field(default=None, description="Patient full name or identifier")
+    patient_id: Optional[str] = Field(default=None, description="Existing patient unique identifier")
+
     # 1. Age
     age: int = Field(..., ge=1, le=125, description="Age in completed years")
     
@@ -130,6 +134,12 @@ class HealthAssessmentCreate(BaseModel):
         description="Current supplements, vitamins, and minerals consumed"
     )
 
+    # 11. Laboratory Biomarkers (Optional Grounding)
+    biomarkers: Optional[Dict[str, float]] = Field(
+        default_factory=dict,
+        description="Clinical laboratory biomarker values (e.g., serum_ferritin, serum_25ohd, serum_b12)"
+    )
+
     @field_validator("bmi", mode="before")
     def calculate_bmi_if_missing(cls, v, values):
         # Allow automated computation: weight / (height_m ^ 2)
@@ -156,3 +166,14 @@ class HealthAssessmentResponse(BaseModel):
     created_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+
+# Enterprise Assessment Schema Aliases
+from .enterprise_assessment import (
+    AssessmentRequest,
+    Biomarkers,
+    Symptoms as EnterpriseSymptoms,
+    LifestyleFactors as EnterpriseLifestyleFactors,
+    DietaryHabits as EnterpriseDietaryHabits,
+    SupplementUsage as EnterpriseSupplementUsage
+)

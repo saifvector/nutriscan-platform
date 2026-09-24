@@ -1,15 +1,16 @@
 import { useState, useEffect, useMemo } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { motion, type Variants } from 'framer-motion'
+import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import {
   ArrowRight, Sparkles, TrendingUp, TrendingDown, AlertTriangle,
   Shield, Zap, Utensils, Brain, FileText, ChevronRight,
-  Activity, Heart, Clock, Sun, Droplets, Moon, PlusCircle, RotateCcw
+  Activity, Heart, Clock, Sun, Droplets, Moon, PlusCircle, RotateCcw, X
 } from 'lucide-react'
 import { useTheme } from '../lib/theme'
 import { sessionManager, type ClinicalSession } from '../lib/sessionManager'
 import { ResumeAssessmentModal } from '../components/session/ResumeAssessmentModal'
 import { AssessmentRequiredState } from '../components/common/AssessmentRequiredState'
+import { PediatricSafetyBanner } from '../components/safety/PediatricSafetyBanner'
 
 /* ─── Animations ─── */
 const fadeUp: Variants = {
@@ -73,6 +74,7 @@ function useDashboardData(activeAssessmentId: string | null) {
         }
 
         const preds = assessmentDashboard?.predictions || 
+                      assessmentDashboard?.deficiency_priority_ranking ||
                       predictionPayload?.predictions || 
                       predictionPayload?.nutrient_predictions || 
                       []
@@ -86,7 +88,7 @@ function useDashboardData(activeAssessmentId: string | null) {
           const rawName = p.target_name || p.nutrient || 'Nutrient'
           const cleanName = rawName.replace(/ Deficiency/i, '').replace(/ Insufficiency/i, '')
           const prob = p.calibrated_probability ?? p.probability ?? 0
-          const risk = p.risk_tier || p.risk_level || (prob >= 0.7 ? 'HIGH' : prob >= 0.4 ? 'MODERATE' : 'LOW')
+          const risk = p.risk_tier || p.risk_level || 'LOW'
           return {
             name: cleanName,
             probability: prob,
@@ -107,19 +109,19 @@ function useDashboardData(activeAssessmentId: string | null) {
         }).sort((a: any, b: any) => b.probability - a.probability)
 
         // Derive health score directly from assessment or real predictions
-        let calculatedScore = assessmentDashboard?.health_score?.score ?? assessmentDashboard?.health_score
+        let calculatedScore = assessmentDashboard?.overall_health_score ?? assessmentDashboard?.health_score?.score ?? assessmentDashboard?.health_score
         if (calculatedScore == null && nutrients.length > 0) {
           const avgRiskProb = nutrients.slice(0, 5).reduce((sum: number, n: any) => sum + n.probability, 0) / Math.min(5, nutrients.length)
           calculatedScore = Math.max(20, Math.min(95, Math.round(100 - avgRiskProb * 80)))
         }
 
-        const calculatedRisk = calculatedScore >= 75 ? 'LOW' : calculatedScore >= 50 ? 'MODERATE' : 'HIGH'
+        const calculatedRisk = assessmentDashboard?.overall_risk_classification ?? (calculatedScore >= 75 ? 'LOW' : calculatedScore >= 50 ? 'MODERATE' : 'HIGH')
 
-        // Real Risk Counts
+        // Real Risk Counts directly from authoritative snapshot or verified predictions
         const riskCounts = {
-          high: nutrients.filter((n: any) => n.risk === 'HIGH' || n.probability >= 0.7).length,
-          moderate: nutrients.filter((n: any) => n.risk === 'MODERATE' || (n.probability >= 0.4 && n.probability < 0.7)).length,
-          low: nutrients.filter((n: any) => n.risk === 'LOW' || n.probability < 0.4).length,
+          high: assessmentDashboard?.nutrient_risk_distribution?.HIGH ?? nutrients.filter((n: any) => n.risk === 'HIGH').length,
+          moderate: assessmentDashboard?.nutrient_risk_distribution?.MODERATE ?? nutrients.filter((n: any) => n.risk === 'MODERATE').length,
+          low: assessmentDashboard?.nutrient_risk_distribution?.LOW ?? nutrients.filter((n: any) => n.risk === 'LOW').length,
         }
 
         // Real Top Risk Factors
@@ -138,7 +140,7 @@ function useDashboardData(activeAssessmentId: string | null) {
         })
 
         // Real Priority Foods mapped from actual elevated deficiencies
-        const topDeficiencies = nutrients.filter((n: any) => n.probability >= 0.4).slice(0, 3).map((n: any) => n.name)
+        const topDeficiencies = nutrients.filter((n: any) => n.risk === 'HIGH' || n.risk === 'MODERATE').slice(0, 3).map((n: any) => n.name)
         const priorityFoods: any[] = []
         topDeficiencies.forEach((defName: string) => {
           if (defName.includes('Vitamin D')) {
@@ -172,11 +174,19 @@ function useDashboardData(activeAssessmentId: string | null) {
             nutrients,
             riskCounts,
             aiInsight: {
-              headline: nutrients.length > 0 && nutrients[0].probability >= 0.4
+              headline: nutrients.length > 0 && (nutrients[0].risk === 'HIGH' || (nutrients[0].risk === 'MODERATE' && nutrients[0].probability >= 0.4))
                 ? `Primary deficiency alert: ${nutrients[0].name} (${Math.round(nutrients[0].probability * 100)}% risk)`
-                : 'Nutritional profile within monitored bounds.',
-              body: assessmentDashboard?.summary || `Clinical AI detected significant risk indicators in ${highestDef}. Personalized dietary and replenishment protocols have been synthesized.`,
-              actionable: assessmentDashboard?.critical_actions?.[0] || `Prioritize targeted repletion of ${highestDef} with bioavailable dietary co-factors.`,
+                : 'Nutritional profile within optimal bounds.',
+              body: assessmentDashboard?.summary || (
+                nutrients.length > 0 && nutrients[0].risk !== 'LOW'
+                  ? `Clinical AI detected significant risk indicators in ${highestDef}. Personalized dietary and replenishment protocols have been synthesized.`
+                  : 'Clinical AI evaluated all nutritional biomarkers. All monitored nutrients are within healthy ranges with no immediate replenishment required.'
+              ),
+              actionable: assessmentDashboard?.critical_actions?.[0] || (
+                nutrients.length > 0 && nutrients[0].risk !== 'LOW'
+                  ? `Prioritize targeted repletion of ${highestDef} with bioavailable dietary co-factors.`
+                  : 'Maintain current balanced dietary pattern and healthy lifestyle practices.'
+              ),
             },
             topRiskFactors: topRiskFactors.slice(0, 5),
             priorityFoods: priorityFoods.slice(0, 4),
@@ -191,6 +201,13 @@ function useDashboardData(activeAssessmentId: string | null) {
               { phase: 2, label: 'Phase 2', title: 'Homeostatic Balance', status: 'upcoming', tasks: ['Full dietary rotation active', 'Lifestyle factor optimization', 'Midpoint symptom check'] },
               { phase: 3, label: 'Phase 3', title: 'Long-Term Resilience', status: 'upcoming', tasks: ['Biomarker validation', 'Maintenance protocol', 'Sustained nutritional health'] },
             ],
+            patientAge: assessmentDashboard?.demographics?.age ?? predictionPayload?.demographics?.age ?? assessmentDashboard?.age ?? predictionPayload?.age,
+            safetyWarnings: [
+              ...(assessmentDashboard?.nutrient_interaction_alerts || []),
+              ...(predictionPayload?.safety_warnings || []),
+              ...(predictionPayload?.safety_violations || [])
+            ],
+            quarantinedItems: predictionPayload?.quarantined_items || [],
           })
         }
       } catch (err) {
@@ -217,13 +234,15 @@ function HeroScore({
   risk,
   change,
   date,
-  riskCounts
+  riskCounts,
+  onReset
 }: {
   score: number
   risk: string
   change: number
   date: string
   riskCounts: { high: number; moderate: number; low: number }
+  onReset?: () => void
 }) {
   const circumference = 2 * Math.PI * 68
   const offset = circumference - (score / 100) * circumference
@@ -290,7 +309,7 @@ function HeroScore({
         <p style={{ fontSize: '0.9375rem', color: 'var(--c-text-secondary)', lineHeight: 1.6, maxWidth: 440, marginBottom: 20 }}>
           Based on verified nutrient predictions, dietary analysis, lifestyle factors, and biochemical interaction modeling.
         </p>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
           <div style={{
             display: 'flex', alignItems: 'center', gap: 6, padding: '6px 12px',
             borderRadius: 8, background: 'var(--c-success-bg)',
@@ -301,6 +320,31 @@ function HeroScore({
             </span>
           </div>
           <span style={{ fontSize: '0.75rem', color: 'var(--c-muted)' }}>Assessed {date}</span>
+          {onReset && (
+            <button
+              onClick={onReset}
+              id="hero-reset-assessment-btn"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                padding: '6px 12px',
+                borderRadius: 8,
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                background: 'rgba(239, 68, 68, 0.08)',
+                color: '#ef4444',
+                border: '1px solid rgba(239, 68, 68, 0.2)',
+                cursor: 'pointer',
+                transition: 'all 0.15s ease',
+              }}
+              className="hover:bg-red-500/15 hover:border-red-500/40"
+              title="Remove current assessment and start new"
+            >
+              <RotateCcw size={12} />
+              Reset & Start New
+            </button>
+          )}
         </div>
       </div>
 
@@ -410,8 +454,8 @@ function NutrientHeatmap({ nutrients }: { nutrients: any[] }) {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
         {nutrients.slice(0, 12).map(n => {
           const pct = Math.round(n.probability * 100)
-          const isHigh = n.risk === 'HIGH' || n.probability >= 0.7
-          const isMod = n.risk === 'MODERATE' || (n.probability >= 0.4 && n.probability < 0.7)
+          const isHigh = n.risk === 'HIGH'
+          const isMod = n.risk === 'MODERATE'
           const bg = isHigh ? 'rgba(239, 68, 68, 0.12)' : isMod ? 'rgba(245, 158, 11, 0.10)' : 'rgba(34, 197, 94, 0.08)'
           const border = isHigh ? 'rgba(239, 68, 68, 0.3)' : isMod ? 'rgba(245, 158, 11, 0.25)' : 'rgba(34, 197, 94, 0.2)'
           const textColor = isHigh ? 'var(--c-danger)' : isMod ? 'var(--c-warning)' : 'var(--c-success)'
@@ -426,7 +470,7 @@ function NutrientHeatmap({ nutrients }: { nutrients: any[] }) {
                 {n.name}
               </span>
               <span style={{ fontSize: '0.875rem', fontWeight: 800, fontFamily: 'var(--font-heading)', color: textColor }}>
-                {pct}%
+                {n.probability < 0.01 && n.probability > 0 ? '<1%' : `${pct}%`}
               </span>
             </div>
           )
@@ -446,7 +490,7 @@ function BodyVisualization({ nutrients }: { nutrients: any[] }) {
       const area = n.bodyArea || 'other'
       if (!map[area]) map[area] = { label: n.bodyLabel || area, count: 0, highCount: 0, nutrients: [] }
       map[area].count++
-      if (n.risk === 'HIGH' || n.probability >= 0.7) map[area].highCount++
+      if (n.risk === 'HIGH') map[area].highCount++
       map[area].nutrients.push(n.name)
     })
     return Object.entries(map).map(([key, val]) => ({ key, ...val }))
@@ -725,6 +769,7 @@ export default function DashboardPage() {
 
   const [activeSession, setActiveSession] = useState<ClinicalSession | null>(() => sessionManager.getActiveSession())
   const [showResumeModal, setShowResumeModal] = useState<boolean>(false)
+  const [showResetConfirm, setShowResetConfirm] = useState<boolean>(false)
   const storedPrevious = useMemo(() => sessionManager.getStoredPreviousAssessment(), [])
 
   // Sync session if URL explicitly specifies an assessment
@@ -754,9 +799,10 @@ export default function DashboardPage() {
   }
 
   const handleConfirmStartNew = () => {
-    sessionManager.clearActiveSession()
+    sessionManager.clearAllStoredAssessments()
     setActiveSession(null)
     setShowResumeModal(false)
+    setShowResetConfirm(false)
     navigate('/assessment')
   }
 
@@ -807,6 +853,222 @@ export default function DashboardPage() {
         onClose={() => setShowResumeModal(false)}
       />
 
+      {/* Reset Assessment Confirmation Modal */}
+      <AnimatePresence>
+        {showResetConfirm && (
+          <div
+            style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 9999,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: 16,
+              background: 'rgba(0, 0, 0, 0.75)',
+              backdropFilter: 'blur(6px)',
+            }}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ duration: 0.2 }}
+              style={{
+                width: '100%',
+                maxWidth: 480,
+                borderRadius: 20,
+                background: 'var(--c-card)',
+                border: '1px solid var(--c-border)',
+                padding: '28px 24px',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <div style={{
+                    width: 42,
+                    height: 42,
+                    borderRadius: 12,
+                    background: 'rgba(239, 68, 68, 0.12)',
+                    border: '1px solid rgba(239, 68, 68, 0.3)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#ef4444',
+                    flexShrink: 0,
+                  }}>
+                    <RotateCcw size={20} />
+                  </div>
+                  <div>
+                    <h3 style={{
+                      fontFamily: 'var(--font-heading)',
+                      fontSize: '1.25rem',
+                      fontWeight: 700,
+                      color: 'var(--c-secondary)',
+                      margin: 0,
+                    }}>
+                      Reset Assessment Session?
+                    </h3>
+                    <p style={{ fontSize: '0.8125rem', color: 'var(--c-muted)', margin: 0 }}>
+                      Remove loaded clinical session & start fresh
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowResetConfirm(false)}
+                  style={{
+                    background: 'transparent',
+                    border: 'none',
+                    color: 'var(--c-muted)',
+                    cursor: 'pointer',
+                    padding: 6,
+                    borderRadius: 6,
+                  }}
+                  className="hover:text-white hover:bg-slate-800"
+                  aria-label="Close dialog"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              <div style={{
+                padding: '14px 16px',
+                borderRadius: 12,
+                background: 'var(--c-bg)',
+                border: '1px solid var(--c-border-light)',
+                marginBottom: 20,
+              }}>
+                <p style={{ fontSize: '0.875rem', color: 'var(--c-text-secondary)', lineHeight: 1.5, margin: 0 }}>
+                  This action will remove the current assessment (<span style={{ fontFamily: 'monospace', fontWeight: 600, color: 'var(--c-primary)' }}>{effectiveAssessmentId ? `${effectiveAssessmentId.slice(0, 16)}...` : 'Active'}</span>) and clear cached prediction results from your browser session. You will be redirected to the assessment intake form to begin a new evaluation.
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 12 }}>
+                <button
+                  type="button"
+                  onClick={() => setShowResetConfirm(false)}
+                  style={{
+                    padding: '9px 18px',
+                    borderRadius: 10,
+                    fontSize: '0.875rem',
+                    fontWeight: 600,
+                    background: 'transparent',
+                    color: 'var(--c-muted)',
+                    border: '1px solid var(--c-border)',
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease',
+                  }}
+                  className="hover:bg-slate-800 hover:text-slate-200"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  id="confirm-reset-btn"
+                  onClick={handleConfirmStartNew}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    padding: '9px 18px',
+                    borderRadius: 10,
+                    fontSize: '0.875rem',
+                    fontWeight: 600,
+                    background: '#dc2626',
+                    color: '#ffffff',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease',
+                  }}
+                  className="hover:bg-red-700 active:scale-98"
+                >
+                  <RotateCcw size={15} />
+                  Reset & Start New
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Top Session Status & Reset Action Bar */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: 12,
+        marginBottom: 16,
+        padding: '12px 20px',
+        borderRadius: 16,
+        background: 'var(--c-card)',
+        border: '1px solid var(--c-border)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+          <span style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 6,
+            padding: '4px 10px',
+            borderRadius: 6,
+            background: 'var(--c-surface-tint)',
+            fontSize: '0.6875rem',
+            fontWeight: 700,
+            color: 'var(--c-primary)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.06em',
+          }}>
+            <Activity size={12} /> Active Assessment
+          </span>
+          <span style={{
+            fontFamily: 'monospace',
+            fontSize: '0.8125rem',
+            fontWeight: 600,
+            color: 'var(--c-secondary)',
+          }}>
+            ID: {effectiveAssessmentId}
+          </span>
+          <span style={{ fontSize: '0.75rem', color: 'var(--c-muted)' }}>
+            ({data.assessmentDate})
+          </span>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <button
+            onClick={() => setShowResetConfirm(true)}
+            id="top-reset-assessment-btn"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              padding: '8px 16px',
+              borderRadius: 10,
+              fontSize: '0.8125rem',
+              fontWeight: 600,
+              background: 'rgba(239, 68, 68, 0.09)',
+              color: '#ef4444',
+              border: '1px solid rgba(239, 68, 68, 0.25)',
+              cursor: 'pointer',
+              transition: 'all 0.15s ease',
+            }}
+            className="hover:bg-red-500/15 hover:border-red-500/40 active:scale-98"
+            title="Remove current assessment and start new"
+          >
+            <RotateCcw size={14} />
+            Reset & Start New
+          </button>
+        </div>
+      </div>
+
+      {/* Pediatric Safety & Clinical Contraindication Alert */}
+      <PediatricSafetyBanner
+        patientAge={data.patientAge}
+        safetyWarnings={data.safetyWarnings}
+        quarantinedItems={data.quarantinedItems}
+      />
+
       {/* §1 — Hero Health Score */}
       <HeroScore
         score={data.healthScore}
@@ -814,6 +1076,7 @@ export default function DashboardPage() {
         change={data.scoreChange}
         date={data.assessmentDate}
         riskCounts={data.riskCounts}
+        onReset={() => setShowResetConfirm(true)}
       />
 
       {/* §2-3 — AI Insight + Nutrient Heatmap (Bento Row) */}
@@ -862,11 +1125,12 @@ export default function DashboardPage() {
                 </span>
               </div>
               <button
-                onClick={handleConfirmStartNew}
-                className="w-full py-2 px-3 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-colors flex items-center justify-center gap-1.5"
+                onClick={() => setShowResetConfirm(true)}
+                id="lifecycle-reset-assessment-btn"
+                className="w-full py-2 px-3 rounded-lg text-xs font-semibold bg-red-950/20 hover:bg-red-900/30 text-red-400 border border-red-800/40 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
               >
-                <PlusCircle className="w-3.5 h-3.5" />
-                Start New Assessment
+                <RotateCcw className="w-3.5 h-3.5" />
+                Reset & Start New Assessment
               </button>
             </div>
           </motion.div>

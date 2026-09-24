@@ -16,9 +16,9 @@ export default function ExecutiveSummary({
   patientName,
   topDeficiencies
 }: ExecutiveSummaryProps) {
-  // Extract high-probability deficiency names for key finding highlights
+  // Extract high-risk deficiency names for key finding highlights
   const criticalNutrients = topDeficiencies
-    .filter(d => d.risk_level === 'CRITICAL' || d.risk_level === 'HIGH' || d.probability >= 0.6)
+    .filter(d => d.risk_level === 'CRITICAL' || d.risk_level === 'HIGH')
     .map(d => d.nutrient)
 
   const formattedSummary = summary || `${patientName}'s clinical assessment demonstrates significant biomarker and dietary indicators of nutritional insufficiency. Key risk clusters center around ${criticalNutrients.slice(0, 2).join(' and ')}, exacerbated by restrictive dietary intake and diminished metabolic reserves. Immediate targeted repletion alongside confirmatory laboratory evaluation is advised to restore homeostatic balance.`
@@ -47,7 +47,7 @@ export default function ExecutiveSummary({
         <div className="mt-4 pt-3.5 border-t border-slate-800/60 flex items-center gap-2 flex-wrap">
           <span className="text-[11px] text-slate-400">Primary Targets:</span>
           {topDeficiencies.slice(0, 3).map(def => {
-            const isHigh = def.risk_level === 'CRITICAL' || def.risk_level === 'HIGH' || def.probability >= 0.65
+            const isHigh = def.risk_level === 'CRITICAL' || def.risk_level === 'HIGH'
             return (
               <span
                 key={def.nutrient}

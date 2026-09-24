@@ -71,9 +71,9 @@ export default function PriorityFindings({
       <div className="space-y-2">
         {findings.map((item, idx) => {
           const isExpanded = expandedIndex === idx
-          const isCritical = item.risk_level === 'CRITICAL' || item.probability >= 0.75
-          const isHigh = item.risk_level === 'HIGH' || (item.probability >= 0.55 && item.probability < 0.75)
-          const isModerate = !isCritical && !isHigh
+          const isCritical = item.risk_level === 'CRITICAL'
+          const isHigh = item.risk_level === 'HIGH'
+          const isModerate = item.risk_level === 'MODERATE'
 
           const probPercent = Math.round(item.probability * 100)
           const driverText = getDriver(item)

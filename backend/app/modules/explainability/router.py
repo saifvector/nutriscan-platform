@@ -190,16 +190,19 @@ async def get_global_feature_importance(
     description="Decomposes clinical predictions into positive vs. protective drivers with dual-layer patient & clinician narratives."
 )
 async def get_clinical_prediction_explanation(
-    prediction_id: Optional[uuid.UUID] = Query(None, description="Optional prediction or assessment UUID")
+    prediction_id: Optional[uuid.UUID] = Query(None, description="Assessment or prediction UUID (Required)")
 ):
+    if not prediction_id:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No assessment or prediction ID provided. Cannot generate clinical explanation without a valid assessment."
+        )
     try:
-        id_str = str(prediction_id) if prediction_id else None
-        payload = None
-        if id_str:
-            payload = ExplainabilityService._active_payload_cache.get(id_str)
-            if payload is None:
-                from ...core.persistence import PersistenceRepository
-                payload = PersistenceRepository.get_assessment(id_str)
+        id_str = str(prediction_id)
+        payload = ExplainabilityService._active_payload_cache.get(id_str)
+        if payload is None:
+            from ...core.persistence import PersistenceRepository
+            payload = PersistenceRepository.get_assessment(id_str)
 
         if payload is None:
             raise HTTPException(
@@ -209,7 +212,7 @@ async def get_clinical_prediction_explanation(
 
         return ExplainabilityService.explain_clinical_prediction(
             assessment_payload=payload,
-            prediction_id=prediction_id or uuid.uuid4()
+            prediction_id=prediction_id
         )
     except HTTPException:
         raise
@@ -231,6 +234,35 @@ async def get_clinical_prediction_explanation_by_id(
     prediction_id: uuid.UUID = Path(..., description="Unique assessment or prediction session UUID")
 ):
     return await get_clinical_prediction_explanation(prediction_id=prediction_id)
+
+
+@router.get(
+    "/explainability/evidence",
+    status_code=status.HTTP_200_OK,
+    summary="Get Dynamic Clinical Evidence & Scientific Knowledge Base (Phase 5 Remediation)",
+    description="Returns patient-grounded scientific evidence, citations, narratives, structured findings, and risk drivers."
+)
+async def get_dynamic_clinical_evidence(
+    target_id: Optional[str] = Query(None, description="Specific target ID (e.g. target_iron_deficiency)"),
+    assessment_id: Optional[str] = Query(None, description="Active assessment ID to ground dynamically in patient SHAP attributions (Required)")
+):
+    if not assessment_id:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No assessment ID provided. Cannot generate clinical evidence without a valid assessment."
+        )
+    try:
+        return ExplainabilityService.get_dynamic_evidence_base(
+            target_id=target_id,
+            assessment_id=assessment_id
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to generate clinical evidence: {str(e)}"
+        )
 
 
 @router.get(

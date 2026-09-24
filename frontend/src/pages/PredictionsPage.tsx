@@ -11,6 +11,7 @@ import { useTheme } from '../lib/theme'
 import { sessionManager } from '../lib/sessionManager'
 import { ResumeAssessmentModal } from '../components/session/ResumeAssessmentModal'
 import { AssessmentRequiredState } from '../components/common/AssessmentRequiredState'
+import { PediatricSafetyBanner } from '../components/safety/PediatricSafetyBanner'
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -41,7 +42,7 @@ function normalizePredictions(data: any): any[] {
       name: p.nutrient,
       code: p.nutrient_code || p.nutrient.toUpperCase().replace(/\s+/g, '_'),
       probability: p.probability ?? 0,
-      risk: p.risk_level || (p.probability >= 0.7 ? 'HIGH' : p.probability >= 0.4 ? 'MODERATE' : 'LOW'),
+      risk: p.risk_level || 'LOW',
       confidence: p.confidence ?? 0.88,
       rank: p.priority_rank || i + 1,
     }))
@@ -50,7 +51,7 @@ function normalizePredictions(data: any): any[] {
     return data.predictions.map((p: any, i: number) => {
       const cleanName = p.target_name.replace(/ Deficiency/i, '').replace(/ Insufficiency/i, '')
       const prob = p.calibrated_probability ?? p.probability ?? 0
-      const risk = p.risk_tier || (prob >= 0.7 ? 'HIGH' : prob >= 0.4 ? 'MODERATE' : 'LOW')
+      const risk = p.risk_tier || p.risk_level || 'LOW'
       return {
         name: cleanName,
         code: cleanName.toUpperCase().replace(/\s+/g, '_'),
@@ -67,6 +68,7 @@ function normalizePredictions(data: any): any[] {
 
 function usePredictionData(explicitId?: string) {
   const [predictions, setPredictions] = useState<any[]>([])
+  const [safety, setSafety] = useState<{ patientAge?: number; safetyWarnings?: any[]; quarantinedItems?: string[] }>({})
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -75,33 +77,36 @@ function usePredictionData(explicitId?: string) {
 
     if (!targetId) {
       setPredictions([])
+      setSafety({})
       return
     }
 
     const fetchPredictions = async () => {
       setLoading(true)
       try {
-        const res = await fetch(`/api/v1/predictions/${targetId}`)
-        if (res.ok) {
-          const data = await res.json()
-          const normalized = normalizePredictions(data)
-          setPredictions(normalized)
-          return
-        }
+        const [predRes, dashRes] = await Promise.allSettled([
+          fetch(`/api/v1/predictions/${targetId}`),
+          fetch(`/api/v1/dashboard/${targetId}`)
+        ])
 
-        // Try dashboard bundle if direct predictions not present
-        const dashRes = await fetch(`/api/v1/dashboard/${targetId}`)
-        if (dashRes.ok) {
-          const dashData = await dashRes.json()
-          const normalized = normalizePredictions(dashData)
-          setPredictions(normalized)
-          return
-        }
+        const data = predRes.status === 'fulfilled' && predRes.value.ok ? await predRes.value.json() : null
+        const dashData = dashRes.status === 'fulfilled' && dashRes.value.ok ? await dashRes.value.json() : null
 
-        setPredictions([])
+        const normalized = normalizePredictions(data || dashData)
+        setPredictions(normalized)
+
+        const age = data?.demographics?.age ?? dashData?.demographics?.age ?? data?.age ?? dashData?.age
+        const warnings = [
+          ...(data?.safety_warnings || []),
+          ...(data?.safety_violations || []),
+          ...(dashData?.nutrient_interaction_alerts || [])
+        ]
+        const quarantined = data?.quarantined_items || []
+        setSafety({ patientAge: age, safetyWarnings: warnings, quarantinedItems: quarantined })
       } catch (err) {
         console.error('Predictions fetch error:', err)
         setPredictions([])
+        setSafety({})
       } finally {
         setLoading(false)
       }
@@ -110,7 +115,7 @@ function usePredictionData(explicitId?: string) {
     fetchPredictions()
   }, [explicitId])
 
-  return { predictions, loading }
+  return { predictions, safety, loading }
 }
 
 function NutrientCard({ nutrient }: { nutrient: any }) {
@@ -132,13 +137,15 @@ function NutrientCard({ nutrient }: { nutrient: any }) {
       <div style={{ marginBottom: 10 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', marginBottom: 4 }}>
           <span style={{ color: 'var(--c-muted)' }}>Deficiency Probability</span>
-          <span style={{ fontWeight: 700, color: 'var(--c-secondary)' }}>{Math.round(nutrient.probability * 100)}%</span>
+          <span style={{ fontWeight: 700, color: 'var(--c-secondary)' }}>
+            {nutrient.probability < 0.01 && nutrient.probability > 0 ? '<1%' : `${Math.round(nutrient.probability * 100)}%`}
+          </span>
         </div>
         <div className="progress-bar">
           <div
             className="progress-bar-fill"
             style={{
-              width: `${Math.round(nutrient.probability * 100)}%`,
+              width: `${Math.max(nutrient.risk === 'LOW' ? 2 : 5, Math.round(nutrient.probability * 100))}%`,
               background: nutrient.risk === 'HIGH' ? 'var(--c-danger)' : nutrient.risk === 'MODERATE' ? 'var(--c-warning)' : 'var(--c-success)',
             }}
           />
@@ -169,7 +176,7 @@ export default function PredictionsPage() {
   }, [urlParamId])
 
   const effectiveId = activeSession?.active_assessment_id || (urlParamId !== 'demo' ? urlParamId : undefined)
-  const { predictions: nutrients, loading } = usePredictionData(effectiveId)
+  const { predictions: nutrients, safety, loading } = usePredictionData(effectiveId)
   const cc = useChartColors()
 
   const radarData = nutrients.map((n: any) => ({
@@ -233,6 +240,12 @@ export default function PredictionsPage() {
 
   return (
     <motion.div initial="hidden" animate="visible" variants={stagger}>
+      <PediatricSafetyBanner
+        patientAge={safety?.patientAge}
+        safetyWarnings={safety?.safetyWarnings}
+        quarantinedItems={safety?.quarantinedItems}
+      />
+
       <motion.div variants={fadeUp} style={{ marginBottom: 32 }}>
         <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.75rem', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: 6 }}>Nutrient Predictions</h1>
         <p style={{ fontSize: '0.875rem', color: 'var(--c-muted)' }}>AI-powered deficiency probability scores across 11 essential nutrients.</p>

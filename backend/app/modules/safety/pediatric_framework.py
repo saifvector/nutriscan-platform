@@ -416,10 +416,10 @@ PEDIATRIC_CLINICAL_PROFILES: Dict[str, Dict[str, NutrientSafetyProfile]] = {
             clinical_notes="Endocrine Society sufficiency cutoff is 30 ng/mL; toxicity > 100 ng/mL."
         ),
         "Vitamin B12": NutrientSafetyProfile(
-            nutrient="Vitamin B12", unit="mcg", rda=2.4, ul=50.0,
+            nutrient="Vitamin B12", unit="mcg", rda=2.4, ul=5000.0,
             deficiency_biomarker_cutoff=200.0, toxicity_biomarker_cutoff=1000.0,
             biomarker_name="Serum B12", biomarker_unit="pg/mL",
-            clinical_notes="Suboptimal borderline range is 200-300 pg/mL."
+            clinical_notes="NIH/IOM has not established a UL for B12 due to extremely low toxicity. 5000 mcg practical safety cap. Suboptimal borderline range is 200-300 pg/mL."
         ),
         "Iron": NutrientSafetyProfile(
             nutrient="Iron", unit="mg", rda=18.0, ul=45.0,

@@ -111,7 +111,8 @@ def test_health_score_calculation_and_categories(mock_predictions, sample_patien
         HealthScoreCategoryEnum.EXCELLENT,
         HealthScoreCategoryEnum.GOOD,
         HealthScoreCategoryEnum.MODERATE_RISK,
-        HealthScoreCategoryEnum.HIGH_RISK
+        HealthScoreCategoryEnum.HIGH_RISK,
+        HealthScoreCategoryEnum.CRITICAL
     ]
     assert breakdown.nutrient_risk_deduction > 0.0
     assert len(breakdown.interpretation) > 20

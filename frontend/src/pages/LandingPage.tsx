@@ -416,7 +416,7 @@ function CTA() {
 function Footer() {
   const cols = [
     { title: 'Product', links: ['Assessment', 'Dashboard', 'Reports', 'API'] },
-    { title: 'Resources', links: ['Documentation', 'Architecture', 'Research', 'Blog'] },
+    { title: 'Resources', links: ['Documentation', 'Architecture', 'Clinical Evidence', 'Blog'] },
     { title: 'Company', links: ['About', 'Careers', 'Contact', 'Press'] },
     { title: 'Legal', links: ['Privacy', 'Terms', 'HIPAA', 'Security'] },
   ]

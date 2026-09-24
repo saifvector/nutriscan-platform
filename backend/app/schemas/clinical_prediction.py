@@ -10,7 +10,7 @@ Provides structured definitions for:
 
 from enum import Enum
 from typing import List, Dict, Any, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 import uuid
 from datetime import datetime
 
@@ -32,6 +32,13 @@ class ClinicalPredictorShap(BaseModel):
     feature_label: str = Field(..., description="Human-readable clinical feature label")
     feature_value: Optional[Any] = Field(default=None, description="Observed or imputed input value")
     importance_weight: float = Field(..., description="Mean absolute SHAP / importance attribution")
+
+    @field_validator("feature_value", mode="before")
+    @classmethod
+    def convert_numpy_feature_value(cls, v):
+        if hasattr(v, "item"):
+            return v.item()
+        return v
 
 
 class ClinicalTargetPrediction(BaseModel):
