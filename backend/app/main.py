@@ -79,6 +79,9 @@ async def lifespan(app: FastAPI):
     except Exception as e:
         logger.warning(f"Governance baseline warm-up notice: {e}")
 
+    import gc
+    gc.collect()
+
     elapsed = round((time.perf_counter() - warm_start) * 1000, 2)
     logger.info(f"Multi-Nutrient Prediction, Clinical & Governance Engines warmed up in {elapsed} ms.")
     yield

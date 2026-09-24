@@ -116,27 +116,31 @@ class ModelDriftEngine:
             return
 
         if os.path.exists(DATASET_PATH):
-            df = pd.read_parquet(DATASET_PATH)
-            # Use training partition
-            n_train = int(len(df) * 0.80)
-            train_df = df.iloc[:n_train].copy()
+            try:
+                df = pd.read_parquet(DATASET_PATH)
+                # Use training partition
+                n_train = int(len(df) * 0.80)
+                train_df = df.iloc[:n_train].copy()
 
-            feature_cols = [c for c in ClinicalFeaturePreprocessor.EXPECTED_COLUMNS if c in train_df.columns]
-            cls._baseline_features_df = train_df[feature_cols].copy()
-            for c in feature_cols:
-                cls._baseline_features_df[c] = pd.to_numeric(cls._baseline_features_df[c], errors='coerce').fillna(0.0)
+                feature_cols = [c for c in ClinicalFeaturePreprocessor.EXPECTED_COLUMNS if c in train_df.columns]
+                cls._baseline_features_df = train_df[feature_cols].copy()
+                for c in feature_cols:
+                    cls._baseline_features_df[c] = pd.to_numeric(cls._baseline_features_df[c], errors='coerce').fillna(0.0)
 
-            # Pre-compute baseline predictions for targets
-            models = ClinicalModelRegistry().get_all_models()
-            for t_key, bundle in models.items():
-                clf = bundle['model']
-                cal = bundle['calibrator']
-                probs = cal.predict_proba(clf.predict_proba(cls._baseline_features_df)[:, 1])
-                cls._baseline_predictions[t_key] = probs
-            logger.info(f"[ModelDriftEngine] Baseline initialized with {len(cls._baseline_features_df)} records.")
+                # Pre-compute baseline predictions for targets
+                models = ClinicalModelRegistry().get_all_models()
+                for t_key, bundle in models.items():
+                    clf = bundle['model']
+                    cal = bundle['calibrator']
+                    probs = cal.predict_proba(clf.predict_proba(cls._baseline_features_df)[:, 1])
+                    cls._baseline_predictions[t_key] = probs
+                logger.info(f"[ModelDriftEngine] Baseline initialized with {len(cls._baseline_features_df)} records.")
+            except Exception as e:
+                logger.warning(f"[ModelDriftEngine] Baseline dataset read notice ({e}); utilizing synthetic baseline distribution.")
+                cls._baseline_features_df = pd.DataFrame(np.random.normal(10, 2, (500, 105)), columns=ClinicalFeaturePreprocessor.EXPECTED_COLUMNS)
         else:
             logger.warning("[ModelDriftEngine] Baseline dataset not found. Using synthetic baseline.")
-            cls._baseline_features_df = pd.DataFrame(np.random.normal(10, 2, (1000, 105)), columns=ClinicalFeaturePreprocessor.EXPECTED_COLUMNS)
+            cls._baseline_features_df = pd.DataFrame(np.random.normal(10, 2, (500, 105)), columns=ClinicalFeaturePreprocessor.EXPECTED_COLUMNS)
 
     @classmethod
     def record_inference_event(
