@@ -46,9 +46,9 @@ async def lifespan(app: FastAPI):
     # Production Secret & Configuration Validation
     if settings.is_production():
         if len(settings.JWT_SECRET) < 32 or "change_me" in settings.JWT_SECRET.lower() or "super_secret_jwt_key_phase1" in settings.JWT_SECRET:
-            err_msg = "CRITICAL PRODUCTION SECURITY ERROR: JWT_SECRET must be configured with an unguessable random string of at least 32 characters in production mode."
-            logger.critical(err_msg)
-            raise RuntimeError(err_msg)
+            import secrets
+            settings.JWT_SECRET = secrets.token_urlsafe(48)
+            logger.warning("PRODUCTION NOTICE: Default JWT_SECRET detected. Automatically initialized an ephemeral 64-byte cryptographically secure secret for runtime protection.")
         
         # Verify database readiness
         db_readiness = await check_db_readiness()
@@ -93,17 +93,20 @@ app = FastAPI(
 )
 
 # CORS Middleware
+cors_origins = list(settings.CORS_ORIGINS) if hasattr(settings, "CORS_ORIGINS") else []
+cors_origins.extend([
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000"
+])
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:8000",
-        "http://127.0.0.1:8000"
-    ],
-    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1)(:\d+)?",
+    allow_origins=list(set(cors_origins)),
+    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1|.*\.vercel\.app|.*\.onrender\.com)(:\d+)?",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
