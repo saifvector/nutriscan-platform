@@ -16,7 +16,6 @@ from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional, Tuple
 import numpy as np
 import pandas as pd
-from scipy.stats import ks_2samp
 
 from ..prediction.registry import ClinicalModelRegistry, TARGET_DISPLAY_NAMES
 from ..prediction.clinical_preprocessor import ClinicalFeaturePreprocessor
@@ -106,8 +105,22 @@ class ModelDriftEngine:
         if len(expected) < 2 or len(actual) < 2:
             return 0.0, 1.0
 
-        res = ks_2samp(expected, actual)
-        return float(res.statistic), float(res.pvalue)
+        try:
+            from scipy.stats import ks_2samp
+            res = ks_2samp(expected, actual)
+            return float(res.statistic), float(res.pvalue)
+        except Exception:
+            # Pure NumPy two-sample Kolmogorov-Smirnov test fallback
+            n1 = len(expected)
+            n2 = len(actual)
+            all_vals = np.concatenate([expected, actual])
+            cdf1 = np.searchsorted(np.sort(expected), all_vals, side='right') / n1
+            cdf2 = np.searchsorted(np.sort(actual), all_vals, side='right') / n2
+            d_stat = float(np.max(np.abs(cdf1 - cdf2)))
+            en = np.sqrt(n1 * n2 / (n1 + n2))
+            lambda_val = (en + 0.12 + 0.11 / en) * d_stat
+            p_val = float(np.clip(2.0 * np.exp(-2.0 * lambda_val * lambda_val), 0.0, 1.0))
+            return d_stat, p_val
 
     @classmethod
     def initialize_baseline(cls):
